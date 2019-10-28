@@ -16,5 +16,14 @@ namespace TRACNGHIEM
         {
             InitializeComponent();
         }
+
+        private void btnThoatDki_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                Application.ExitThread();
+            }
+        }
     }
 }

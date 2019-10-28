@@ -27,7 +27,7 @@ namespace TRACNGHIEM
         public static String mlogin = "";
         public static String password = "";
 
-        public static String database = "TRACNGHIEM";
+        public static String database = "TN";
         public static String remotelogin = "sa";
         public static String remotepassword = "123";
         public static String mloginDN = "";
@@ -55,7 +55,8 @@ namespace TRACNGHIEM
 
             catch (Exception e)
             {
-                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nBạn xem lại user name và password.\n " + e.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nBạn xem lại user name và password.\n "
+                    + e.Message, "", MessageBoxButtons.OK);
                 return 0;
             }
         }
@@ -100,7 +101,7 @@ namespace TRACNGHIEM
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-            Application.Run(new frmDangNhap());
+            Application.Run(new frmGiangVien());
         }
     }
 }

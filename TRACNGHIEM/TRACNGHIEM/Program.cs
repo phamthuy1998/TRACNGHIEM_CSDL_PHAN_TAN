@@ -94,7 +94,7 @@ namespace TRACNGHIEM
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-            Application.Run(new frmMonHoc());
+            Application.Run(new frmBoDe());
         }
     }
 }

@@ -16,5 +16,20 @@ namespace TRACNGHIEM
         {
             InitializeComponent();
         }
+
+        private void bODEBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        {
+            this.Validate();
+            this.bODEBindingSource.EndEdit();
+            this.tableAdapterManager.UpdateAll(this.tNDataSet);
+
+        }
+
+        private void frmBoDe_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
+            this.bODETableAdapter.Fill(this.tNDataSet.BODE);
+
+        }
     }
 }

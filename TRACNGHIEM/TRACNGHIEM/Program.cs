@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 using DevExpress.UserSkins;
-using DevExpress.Skins;
 
 using System.Data;
 using System.Data.SqlClient;
@@ -14,11 +11,6 @@ namespace TRACNGHIEM
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        /// 
-
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
         public static SqlDataReader myReader;
@@ -35,6 +27,7 @@ namespace TRACNGHIEM
         public static String mGroup = "";
         public static String mHoten = "";
         public static int mCoSo = 0;
+        public static String mTenCoSo = "";
 
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
         //public static frmMain frmChinh;
@@ -101,7 +94,7 @@ namespace TRACNGHIEM
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-            Application.Run(new frmGiangVien());
+            Application.Run(new frmMonHoc());
         }
     }
 }

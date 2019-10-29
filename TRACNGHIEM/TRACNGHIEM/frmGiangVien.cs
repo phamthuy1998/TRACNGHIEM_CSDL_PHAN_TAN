@@ -37,7 +37,7 @@ namespace TRACNGHIEM
                 return;
             }
 
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên "+ ((DataRowView)this.bdsGV.Current).Row["TEN"].ToString()+"?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
@@ -63,6 +63,8 @@ namespace TRACNGHIEM
 
         private void frmGiangVien_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'tNDataSet.COSO' table. You can move, or remove it, as needed.
+            this.cOSOTableAdapter.Fill(this.tNDataSet.COSO);
 
             this.gIAOVIENTableAdapter1.Fill(this.tNDataSet.GIAOVIEN);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
@@ -75,7 +77,19 @@ namespace TRACNGHIEM
             this.bODETableAdapter.Fill(this.tNDataSet.BODE);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
 
-            DataTable dt = new DataTable();
+            //DataTable dt = new DataTable();
+            //dt = Program.ExecSqlDataTable("Select MACS from COSO");
+            //BindingSource bdsCoSo = new BindingSource();
+            //bdsCoSo.DataSource = dt;
+            //Program.mTenCoSo = ((DataRowView) bdsCoSo[0])["MACS"].ToString();
+
+            //cbbCoSoGV.DataSource = Program.bds_dspm;
+            //cbbCoSoGV.DisplayMember = "TENCS";
+            //cbbCoSoGV.ValueMember = "TENSERVER";
+            //cbbCoSoGV.SelectedIndex = Program.mCoSo;
+            //if (Program.mGroup == "Truong") cbbCoSoGV.Enabled = true;
+            //else cbbCoSoGV.Enabled = false;
+
         }
 
         //Them mới
@@ -143,7 +157,6 @@ namespace TRACNGHIEM
                 //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
                 // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
                 this.gIAOVIENTableAdapter1.Update(this.tNDataSet.GIAOVIEN);
-                MessageBox.Show("Ghi dữ liệu giảng viên thành công", "", MessageBoxButtons.OK);
             }
             catch (Exception ex)
             {

@@ -58,6 +58,8 @@ namespace TRACNGHIEM
             SqlDataReader myreader;
             SqlCommand sqlcmd = new SqlCommand(strLenh, Program.conn);
             sqlcmd.CommandType = CommandType.Text;
+            //tối đa cho đợi 10p, tgian tính bằng s
+            sqlcmd.CommandTimeout = 600;
             // Kiểm tra trạng thái đóng hay mở
             if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
             try
@@ -94,7 +96,7 @@ namespace TRACNGHIEM
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-            Application.Run(new frmThi());
+            Application.Run(new frmG());
         }
     }
 }

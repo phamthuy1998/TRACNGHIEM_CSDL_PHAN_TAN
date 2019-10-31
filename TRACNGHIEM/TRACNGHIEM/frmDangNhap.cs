@@ -115,13 +115,12 @@ namespace TRACNGHIEM
                 cbbCoso.DataSource = dt;
                 cbbCoso.DisplayMember = "TENCS";
                 cbbCoso.ValueMember = "TENSERVER";
-                cbbCoso.SelectedIndex = 2;
                 cbbCoso.SelectedIndex = 1;
                 cbbCoso.SelectedIndex = 0;
             }
             catch (Exception a)
             {
-                MessageBox.Show("Không thể kết nối tới database! " + a.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể kết nối tới data base! " + a.Message, "", MessageBoxButtons.OK);
             }
         }
 
@@ -144,6 +143,16 @@ namespace TRACNGHIEM
                 Application.ExitThread();
             }
             else e.Cancel = true;
+        }
+
+        private void radGiaoVien_CheckedChanged(object sender, EventArgs e)
+        {
+            label2.Text = "Tên ĐN";
+        }
+
+        private void radSinhVien_CheckedChanged(object sender, EventArgs e)
+        {
+            label2.Text = "Mã sinh viên";
         }
     }
 }

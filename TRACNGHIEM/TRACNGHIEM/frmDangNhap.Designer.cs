@@ -44,7 +44,7 @@
             // 
             this.btnThoat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThoat.Location = new System.Drawing.Point(983, 812);
+            this.btnThoat.Location = new System.Drawing.Point(1031, 799);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(352, 106);
             this.btnThoat.TabIndex = 19;
@@ -55,7 +55,7 @@
             // btnDangNhap
             // 
             this.btnDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDangNhap.Location = new System.Drawing.Point(365, 812);
+            this.btnDangNhap.Location = new System.Drawing.Point(365, 799);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(352, 106);
             this.btnDangNhap.TabIndex = 18;
@@ -69,14 +69,14 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(357, 460);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(196, 46);
+            this.label3.Size = new System.Drawing.Size(183, 46);
             this.label3.TabIndex = 17;
-            this.label3.Text = "Password";
+            this.label3.Text = "Mật khẩu";
             // 
             // txPassword
             // 
             this.txPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txPassword.Location = new System.Drawing.Point(660, 450);
+            this.txPassword.Location = new System.Drawing.Point(708, 444);
             this.txPassword.Name = "txPassword";
             this.txPassword.PasswordChar = '*';
             this.txPassword.Size = new System.Drawing.Size(675, 56);
@@ -85,7 +85,7 @@
             // txUsername
             // 
             this.txUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txUsername.Location = new System.Drawing.Point(660, 300);
+            this.txUsername.Location = new System.Drawing.Point(708, 294);
             this.txUsername.Name = "txUsername";
             this.txUsername.Size = new System.Drawing.Size(675, 56);
             this.txUsername.TabIndex = 15;
@@ -102,9 +102,10 @@
             // 
             // cbbCoso
             // 
+            this.cbbCoso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbCoso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbCoso.FormattingEnabled = true;
-            this.cbbCoso.Location = new System.Drawing.Point(660, 148);
+            this.cbbCoso.Location = new System.Drawing.Point(708, 142);
             this.cbbCoso.Name = "cbbCoso";
             this.cbbCoso.Size = new System.Drawing.Size(675, 59);
             this.cbbCoso.TabIndex = 13;
@@ -124,25 +125,27 @@
             // 
             this.radGiaoVien.AutoSize = true;
             this.radGiaoVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radGiaoVien.Location = new System.Drawing.Point(674, 628);
+            this.radGiaoVien.Location = new System.Drawing.Point(722, 622);
             this.radGiaoVien.Name = "radGiaoVien";
             this.radGiaoVien.Size = new System.Drawing.Size(246, 50);
             this.radGiaoVien.TabIndex = 20;
             this.radGiaoVien.TabStop = true;
             this.radGiaoVien.Text = "Giảng viên";
             this.radGiaoVien.UseVisualStyleBackColor = true;
+            this.radGiaoVien.CheckedChanged += new System.EventHandler(this.radGiaoVien_CheckedChanged);
             // 
             // radSinhVien
             // 
             this.radSinhVien.AutoSize = true;
             this.radSinhVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radSinhVien.Location = new System.Drawing.Point(1115, 628);
+            this.radSinhVien.Location = new System.Drawing.Point(1163, 622);
             this.radSinhVien.Name = "radSinhVien";
             this.radSinhVien.Size = new System.Drawing.Size(220, 50);
             this.radSinhVien.TabIndex = 21;
             this.radSinhVien.TabStop = true;
             this.radSinhVien.Text = "Sinh viên";
             this.radSinhVien.UseVisualStyleBackColor = true;
+            this.radSinhVien.CheckedChanged += new System.EventHandler(this.radSinhVien_CheckedChanged);
             // 
             // frmDangNhap
             // 

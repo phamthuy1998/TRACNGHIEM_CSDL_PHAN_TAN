@@ -190,3 +190,5 @@ D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\T
 D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.frmDSSinhVien.resources
 D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.frmMonHoc.resources
 D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.frmBoDe.resources
+D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.frmGiangVienDangKy.resources
+D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.frmThi.resources

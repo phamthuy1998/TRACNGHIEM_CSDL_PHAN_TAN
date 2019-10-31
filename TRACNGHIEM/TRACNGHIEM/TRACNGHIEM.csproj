@@ -85,11 +85,23 @@
     <Compile Include="frmGiangVien.Designer.cs">
       <DependentUpon>frmGiangVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmGiangVienDangKy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmGiangVienDangKy.Designer.cs">
+      <DependentUpon>frmGiangVienDangKy.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMonHoc.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmMonHoc.Designer.cs">
       <DependentUpon>frmMonHoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThi.Designer.cs">
+      <DependentUpon>frmThi.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,8 +126,14 @@
     <EmbeddedResource Include="frmGiangVien.resx">
       <DependentUpon>frmGiangVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmGiangVienDangKy.resx">
+      <DependentUpon>frmGiangVienDangKy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMonHoc.resx">
       <DependentUpon>frmMonHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThi.resx">
+      <DependentUpon>frmThi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

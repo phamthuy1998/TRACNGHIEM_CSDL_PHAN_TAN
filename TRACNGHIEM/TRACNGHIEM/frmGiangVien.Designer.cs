@@ -75,7 +75,7 @@
             this.barDockControl12 = new DevExpress.XtraBars.BarDockControl();
             this.tNDataSet = new TRACNGHIEM.TNDataSet();
             this.bdsGV = new System.Windows.Forms.BindingSource(this.components);
-            this.gIAOVIENTableAdapter1 = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIENTableAdapter();
+            this.tbGiaoVien = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIENTableAdapter();
             this.tableAdapterManager1 = new TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager();
             this.groupControl = new DevExpress.XtraEditors.GroupControl();
             this.edtHocViGv = new DevExpress.XtraEditors.TextEdit();
@@ -86,16 +86,16 @@
             this.edtMaGV = new DevExpress.XtraEditors.TextEdit();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.bdsBoDeGV = new System.Windows.Forms.BindingSource(this.components);
-            this.bODETableAdapter = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
+            this.tbBoDe = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
             this.bdsGVDangKy = new System.Windows.Forms.BindingSource(this.components);
-            this.gIAOVIEN_DANGKYTableAdapter = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
+            this.tb_GiaoVienDKi = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.cbbCoSoGV = new System.Windows.Forms.ComboBox();
-            this.cOSOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bdsCoSo = new System.Windows.Forms.BindingSource(this.components);
             this.cbbKhoa = new DevExpress.XtraEditors.ComboBoxEdit();
             this.gcGiangVien = new DevExpress.XtraGrid.GridControl();
             this.gvGiangVien = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.cOSOTableAdapter = new TRACNGHIEM.TNDataSetTableAdapters.COSOTableAdapter();
+            this.tbCoSo = new TRACNGHIEM.TNDataSetTableAdapters.COSOTableAdapter();
             mAGVLabel = new System.Windows.Forms.Label();
             mAKHLabel = new System.Windows.Forms.Label();
             hOLabel = new System.Windows.Forms.Label();
@@ -122,7 +122,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDangKy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cOSOBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsCoSo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbKhoa.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcGiangVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGiangVien)).BeginInit();
@@ -185,7 +185,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(803, 121);
+            label1.Location = new System.Drawing.Point(803, 98);
             label1.Name = "label1";
             label1.Size = new System.Drawing.Size(77, 34);
             label1.TabIndex = 12;
@@ -194,7 +194,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(107, 113);
+            label2.Location = new System.Drawing.Point(107, 90);
             label2.Name = "label2";
             label2.Size = new System.Drawing.Size(86, 34);
             label2.TabIndex = 13;
@@ -498,9 +498,9 @@
             this.bdsGV.DataMember = "GIAOVIEN";
             this.bdsGV.DataSource = this.tNDataSet;
             // 
-            // gIAOVIENTableAdapter1
+            // tbGiaoVien
             // 
-            this.gIAOVIENTableAdapter1.ClearBeforeFill = true;
+            this.tbGiaoVien.ClearBeforeFill = true;
             // 
             // tableAdapterManager1
             // 
@@ -510,7 +510,7 @@
             this.tableAdapterManager1.BODETableAdapter = null;
             this.tableAdapterManager1.COSOTableAdapter = null;
             this.tableAdapterManager1.GIAOVIEN_DANGKYTableAdapter = null;
-            this.tableAdapterManager1.GIAOVIENTableAdapter = this.gIAOVIENTableAdapter1;
+            this.tableAdapterManager1.GIAOVIENTableAdapter = this.tbGiaoVien;
             this.tableAdapterManager1.KHOATableAdapter = null;
             this.tableAdapterManager1.LOPTableAdapter = null;
             this.tableAdapterManager1.MONHOCTableAdapter = null;
@@ -597,18 +597,18 @@
             this.bdsBoDeGV.DataMember = "FK_BODE_GIAOVIEN";
             this.bdsBoDeGV.DataSource = this.bdsGV;
             // 
-            // bODETableAdapter
+            // tbBoDe
             // 
-            this.bODETableAdapter.ClearBeforeFill = true;
+            this.tbBoDe.ClearBeforeFill = true;
             // 
             // bdsGVDangKy
             // 
             this.bdsGVDangKy.DataMember = "FK_GIAOVIEN_DANGKY_GIAOVIEN1";
             this.bdsGVDangKy.DataSource = this.bdsGV;
             // 
-            // gIAOVIEN_DANGKYTableAdapter
+            // tb_GiaoVienDKi
             // 
-            this.gIAOVIEN_DANGKYTableAdapter.ClearBeforeFill = true;
+            this.tb_GiaoVienDKi.ClearBeforeFill = true;
             // 
             // groupControl1
             // 
@@ -619,26 +619,26 @@
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 96);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(2564, 214);
+            this.groupControl1.Size = new System.Drawing.Size(2564, 179);
             this.groupControl1.TabIndex = 57;
             // 
             // cbbCoSoGV
             // 
-            this.cbbCoSoGV.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.cOSOBindingSource, "MACS", true));
+            this.cbbCoSoGV.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsCoSo, "MACS", true));
             this.cbbCoSoGV.FormattingEnabled = true;
-            this.cbbCoSoGV.Location = new System.Drawing.Point(270, 118);
+            this.cbbCoSoGV.Location = new System.Drawing.Point(270, 95);
             this.cbbCoSoGV.Name = "cbbCoSoGV";
             this.cbbCoSoGV.Size = new System.Drawing.Size(390, 41);
             this.cbbCoSoGV.TabIndex = 15;
             // 
-            // cOSOBindingSource
+            // bdsCoSo
             // 
-            this.cOSOBindingSource.DataMember = "COSO";
-            this.cOSOBindingSource.DataSource = this.tNDataSet;
+            this.bdsCoSo.DataMember = "COSO";
+            this.bdsCoSo.DataSource = this.tNDataSet;
             // 
             // cbbKhoa
             // 
-            this.cbbKhoa.Location = new System.Drawing.Point(977, 113);
+            this.cbbKhoa.Location = new System.Drawing.Point(977, 90);
             this.cbbKhoa.MenuManager = this.barManager1;
             this.cbbKhoa.Name = "cbbKhoa";
             this.cbbKhoa.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
@@ -650,11 +650,11 @@
             // 
             this.gcGiangVien.DataSource = this.bdsGV;
             this.gcGiangVien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcGiangVien.Location = new System.Drawing.Point(0, 310);
+            this.gcGiangVien.Location = new System.Drawing.Point(0, 275);
             this.gcGiangVien.MainView = this.gvGiangVien;
             this.gcGiangVien.MenuManager = this.barManager1;
             this.gcGiangVien.Name = "gcGiangVien";
-            this.gcGiangVien.Size = new System.Drawing.Size(2564, 674);
+            this.gcGiangVien.Size = new System.Drawing.Size(2564, 709);
             this.gcGiangVien.TabIndex = 57;
             this.gcGiangVien.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gvGiangVien});
@@ -664,9 +664,9 @@
             this.gvGiangVien.GridControl = this.gcGiangVien;
             this.gvGiangVien.Name = "gvGiangVien";
             // 
-            // cOSOTableAdapter
+            // tbCoSo
             // 
-            this.cOSOTableAdapter.ClearBeforeFill = true;
+            this.tbCoSo.ClearBeforeFill = true;
             // 
             // frmGiangVien
             // 
@@ -717,7 +717,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cOSOBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsCoSo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cbbKhoa.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcGiangVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvGiangVien)).EndInit();
@@ -760,7 +760,7 @@
         private DevExpress.XtraBars.BarDockControl barDockControl12;
         private TNDataSet tNDataSet;
         private System.Windows.Forms.BindingSource bdsGV;
-        private TNDataSetTableAdapters.GIAOVIENTableAdapter gIAOVIENTableAdapter1;
+        private TNDataSetTableAdapters.GIAOVIENTableAdapter tbGiaoVien;
         private TNDataSetTableAdapters.TableAdapterManager tableAdapterManager1;
         private DevExpress.XtraEditors.GroupControl groupControl;
         private DevExpress.XtraEditors.TextEdit edtHocViGv;
@@ -772,16 +772,16 @@
         private DevExpress.XtraBars.BarButtonItem btnGhiGV;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private System.Windows.Forms.BindingSource bdsBoDeGV;
-        private TNDataSetTableAdapters.BODETableAdapter bODETableAdapter;
+        private TNDataSetTableAdapters.BODETableAdapter tbBoDe;
         private System.Windows.Forms.BindingSource bdsGVDangKy;
-        private TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter gIAOVIEN_DANGKYTableAdapter;
+        private TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter tb_GiaoVienDKi;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraGrid.GridControl gcGiangVien;
         private DevExpress.XtraGrid.Views.Grid.GridView gvGiangVien;
         private DevExpress.XtraEditors.ComboBoxEdit cbbKhoa;
-        private System.Windows.Forms.BindingSource cOSOBindingSource;
-        private TNDataSetTableAdapters.COSOTableAdapter cOSOTableAdapter;
+        private System.Windows.Forms.BindingSource bdsCoSo;
+        private TNDataSetTableAdapters.COSOTableAdapter tbCoSo;
         private System.Windows.Forms.ComboBox cbbCoSoGV;
     }
 }

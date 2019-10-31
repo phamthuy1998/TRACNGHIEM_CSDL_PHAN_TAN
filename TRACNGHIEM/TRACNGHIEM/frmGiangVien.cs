@@ -37,14 +37,14 @@ namespace TRACNGHIEM
                 return;
             }
 
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên "+ ((DataRowView)this.bdsGV.Current).Row["TEN"].ToString()+"?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên " + ((DataRowView)this.bdsGV.Current).Row["TEN"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
                 {
                     //phải chạy lệnh del from where mới chính xác
                     bdsGV.RemoveCurrent();
                     //đẩy dữ liệu về adapter
-                    this.gIAOVIENTableAdapter1.Update(this.tNDataSet.GIAOVIEN);
+                    this.tbGiaoVien.Update(this.tNDataSet.GIAOVIEN);
                 }
                 catch (Exception ex)
                 {
@@ -64,17 +64,17 @@ namespace TRACNGHIEM
         private void frmGiangVien_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'tNDataSet.COSO' table. You can move, or remove it, as needed.
-            this.cOSOTableAdapter.Fill(this.tNDataSet.COSO);
+            this.tbCoSo.Fill(this.tNDataSet.COSO);
 
-            this.gIAOVIENTableAdapter1.Fill(this.tNDataSet.GIAOVIEN);
+            this.tbGiaoVien.Fill(this.tNDataSet.GIAOVIEN);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
-            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.tNDataSet.GIAOVIEN_DANGKY);
+            this.tb_GiaoVienDKi.Fill(this.tNDataSet.GIAOVIEN_DANGKY);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
-            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.tNDataSet.GIAOVIEN_DANGKY);
+            this.tb_GiaoVienDKi.Fill(this.tNDataSet.GIAOVIEN_DANGKY);
             // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
-            this.bODETableAdapter.Fill(this.tNDataSet.BODE);
+            this.tbBoDe.Fill(this.tNDataSet.BODE);
             // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
-            this.bODETableAdapter.Fill(this.tNDataSet.BODE);
+            this.tbBoDe.Fill(this.tNDataSet.BODE);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
 
             //DataTable dt = new DataTable();
@@ -123,7 +123,15 @@ namespace TRACNGHIEM
         // Lấy dữ liệu mới nhất trong csdl 
         private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.gIAOVIENTableAdapter1.Fill(this.tNDataSet.GIAOVIEN);
+            try
+            {
+                this.tbGiaoVien.Fill(this.tNDataSet.GIAOVIEN);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể tải lại danh sách giảng viên: " + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
         }
 
         private void btnPrintf_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -156,7 +164,7 @@ namespace TRACNGHIEM
 
                 //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
                 // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
-                this.gIAOVIENTableAdapter1.Update(this.tNDataSet.GIAOVIEN);
+                this.tbGiaoVien.Update(this.tNDataSet.GIAOVIEN);
             }
             catch (Exception ex)
             {

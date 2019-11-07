@@ -28,8 +28,9 @@ namespace TRACNGHIEM
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rbBaoCao;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
+        private DevExpress.XtraBars.BarButtonItem btnBangDiemBaoCao;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
 
         public frmMain()
@@ -48,7 +49,7 @@ namespace TRACNGHIEM
             this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rbBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPage2 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -58,6 +59,7 @@ namespace TRACNGHIEM
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnBangDiemBaoCao = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
@@ -71,13 +73,14 @@ namespace TRACNGHIEM
             this.ribbonControl1.SearchEditItem,
             this.btnDangNhap,
             this.btnThoat,
-            this.barButtonItem2});
+            this.barButtonItem2,
+            this.btnBangDiemBaoCao});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 6;
+            this.ribbonControl1.MaxItemId = 7;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
-            this.ribbonPage3});
+            this.rbBaoCao});
             this.ribbonControl1.Size = new System.Drawing.Size(2052, 346);
             // 
             // btnDangNhap
@@ -125,15 +128,16 @@ namespace TRACNGHIEM
             this.ribbonPageGroup2.ItemLinks.Add(this.btnThoat);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
-            // ribbonPage3
+            // rbBaoCao
             // 
-            this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rbBaoCao.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup5});
-            this.ribbonPage3.Name = "ribbonPage3";
-            this.ribbonPage3.Text = "ribbonPage3";
+            this.rbBaoCao.Name = "rbBaoCao";
+            this.rbBaoCao.Text = "Báo cáo";
             // 
             // ribbonPageGroup5
             // 
+            this.ribbonPageGroup5.ItemLinks.Add(this.btnBangDiemBaoCao);
             this.ribbonPageGroup5.Name = "ribbonPageGroup5";
             this.ribbonPageGroup5.Text = "ribbonPageGroup5";
             // 
@@ -158,19 +162,19 @@ namespace TRACNGHIEM
             // MASO
             // 
             this.MASO.Name = "MASO";
-            this.MASO.Size = new System.Drawing.Size(103, 43);
+            this.MASO.Size = new System.Drawing.Size(103, 41);
             this.MASO.Text = "MASO";
             // 
             // HOTEN
             // 
             this.HOTEN.Name = "HOTEN";
-            this.HOTEN.Size = new System.Drawing.Size(114, 43);
+            this.HOTEN.Size = new System.Drawing.Size(114, 41);
             this.HOTEN.Text = "HOTEN";
             // 
             // NHOM
             // 
             this.NHOM.Name = "NHOM";
-            this.NHOM.Size = new System.Drawing.Size(111, 43);
+            this.NHOM.Size = new System.Drawing.Size(111, 41);
             this.NHOM.Text = "NHOM";
             // 
             // xtraTabbedMdiManager1
@@ -188,6 +192,14 @@ namespace TRACNGHIEM
             this.barButtonItem1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
             this.barButtonItem1.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.LargeImage")));
             this.barButtonItem1.Name = "barButtonItem1";
+            // 
+            // btnBangDiemBaoCao
+            // 
+            this.btnBangDiemBaoCao.Caption = "Bảng điểm";
+            this.btnBangDiemBaoCao.Id = 6;
+            this.btnBangDiemBaoCao.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
+            this.btnBangDiemBaoCao.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.btnBangDiemBaoCao.Name = "btnBangDiemBaoCao";
             // 
             // frmMain
             // 

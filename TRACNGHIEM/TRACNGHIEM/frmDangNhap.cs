@@ -83,23 +83,30 @@ namespace TRACNGHIEM
                 Program.mGroup = Program.myReader.GetString(2);
                 Program.myReader.Close();
                 Program.conn.Close();
-                //Program.frmMain.MASO.Text = "Mã số: " + Program.username;
-                //Program.frmMain.HOTEN.Text = "Họ tên: " + Program.mHoten;
-                //Program.frmMain.NHOM.Text = "Nhóm: " + Program.mGroup;
+
                 if (radSinhVien.Checked)
                 {
+                    this.Hide();
                     Program.frmMain = new frmMain();
                     Program.frmMain.Activate();
-                    Program.frmMain.Show();
+                    Program.frmMain.MASO.Text = "Mã số: " + Program.username;
+                    Program.frmMain.HOTEN.Text = "Họ tên: " + Program.mHoten;
+                    Program.frmMain.NHOM.Text = "Nhóm: " + Program.mGroup;
+                    Program.frmMain.ShowDialog();
+                    this.Close();
                 }
                 else
                 {
+                    this.Hide();
                     Program.frmMain = new frmMain();
                     //Program.frmMain.Activate();
+                    Program.frmMain.MASO.Text = "Mã số: " + Program.username;
+                    Program.frmMain.HOTEN.Text = "Họ tên: " + Program.mHoten;
+                    Program.frmMain.NHOM.Text = "Nhóm: " + Program.mGroup;
                     Program.frmMain.ShowDialog();
+                    this.Close();
                 }
-
-                this.Hide();
+                //this.Hide();
             }
 
         }

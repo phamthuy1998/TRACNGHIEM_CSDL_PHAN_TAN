@@ -87,12 +87,12 @@ namespace TRACNGHIEM
                 if (radSinhVien.Checked)
                 {
                     this.Hide();
-                    Program.frmMain = new frmMain();
-                    Program.frmMain.Activate();
-                    Program.frmMain.MASO.Text = "Mã số: " + Program.username;
-                    Program.frmMain.HOTEN.Text = "Họ tên: " + Program.mHoten;
-                    Program.frmMain.NHOM.Text = "Nhóm: " + Program.mGroup;
-                    Program.frmMain.ShowDialog();
+                    Program.frmSinhVienMain = new frmSinhVienMain();
+                    Program.frmSinhVienMain.Activate();
+                    Program.frmSinhVienMain.MASO.Text = "Mã số: " + Program.username;
+                    Program.frmSinhVienMain.HOTEN.Text = "Họ tên: " + Program.mHoten;
+                    Program.frmSinhVienMain.NHOM.Text = "Nhóm: " + Program.mGroup;
+                    Program.frmSinhVienMain.ShowDialog();
                     this.Close();
                 }
                 else

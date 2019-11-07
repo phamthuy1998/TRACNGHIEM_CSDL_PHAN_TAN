@@ -51,7 +51,7 @@ namespace TRACNGHIEM
             if (Program.myReader == null) return;
             Program.myReader.Read();
 
-           // Check giáo viên nhưng lại lấy tài khoản sinh viên đăng nhập
+            // Check giáo viên nhưng lại lấy tài khoản sinh viên đăng nhập
             if (radGiaoVien.Checked)
             {
                 if (Program.myReader.GetString(2).Trim().Equals("Sinhvien"))
@@ -77,13 +77,37 @@ namespace TRACNGHIEM
                 MessageBox.Show("Login bạn nhập không có quyền truy cập dữ liệu\n Bạn xem lại username, password", "", MessageBoxButtons.OK);
                 return;
             }
+            else
+            {
+                Program.mHoten = Program.myReader.GetString(1);
+                Program.mGroup = Program.myReader.GetString(2);
+                Program.myReader.Close();
+                Program.conn.Close();
 
-            Program.mHoten = Program.myReader.GetString(1);
-            Program.mGroup = Program.myReader.GetString(2);
-            Program.myReader.Close();
-            Program.conn.Close();
-
-            MessageBox.Show("Nhan vien - Nhom : " + Program.mHoten + " - " + Program.mGroup, "", MessageBoxButtons.OK);
+                if (radSinhVien.Checked)
+                {
+                    this.Hide();
+                    Program.frmMain = new frmMain();
+                    Program.frmMain.Activate();
+                    Program.frmMain.MASO.Text = "Mã số: " + Program.username;
+                    Program.frmMain.HOTEN.Text = "Họ tên: " + Program.mHoten;
+                    Program.frmMain.NHOM.Text = "Nhóm: " + Program.mGroup;
+                    Program.frmMain.ShowDialog();
+                    this.Close();
+                }
+                else
+                {
+                    this.Hide();
+                    Program.frmMain = new frmMain();
+                    //Program.frmMain.Activate();
+                    Program.frmMain.MASO.Text = "Mã số: " + Program.username;
+                    Program.frmMain.HOTEN.Text = "Họ tên: " + Program.mHoten;
+                    Program.frmMain.NHOM.Text = "Nhóm: " + Program.mGroup;
+                    Program.frmMain.ShowDialog();
+                    this.Close();
+                }
+                //this.Hide();
+            }
 
         }
 
@@ -99,11 +123,13 @@ namespace TRACNGHIEM
 
         private void frmDangNhap_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'dSCS.V_DS_COSO' table. You can move, or remove it, as needed.
+            this.v_DS_COSOTableAdapter.Fill(this.dSCS.V_DS_COSO);
             radGiaoVien.Checked = true;
             try
             {
                 //Integrated Security=True--> Kết nối về site chủ không cần password và tài khoản
-                string chuoiketnoi = "Data Source=THUY;Initial Catalog=TRACNGHIEM;Integrated Security=True";
+                string chuoiketnoi = "Data Source=THUY;Initial Catalog=TN;Integrated Security=True";
                 Program.conn.ConnectionString = chuoiketnoi;
 
                 // Gọi view V_DS_COSO và trả về datable 
@@ -115,13 +141,12 @@ namespace TRACNGHIEM
                 cbbCoso.DataSource = dt;
                 cbbCoso.DisplayMember = "TENCS";
                 cbbCoso.ValueMember = "TENSERVER";
-                cbbCoso.SelectedIndex = 2;
                 cbbCoso.SelectedIndex = 1;
                 cbbCoso.SelectedIndex = 0;
             }
             catch (Exception a)
             {
-                MessageBox.Show("Không thể kết nối tới database! " + a.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể kết nối tới data base! " + a.Message, "", MessageBoxButtons.OK);
             }
         }
 
@@ -129,8 +154,11 @@ namespace TRACNGHIEM
         {
             try
             {
-                Program.servername = cbbCoso.SelectedValue.ToString();
-                // txTenServer.Text = Program.servername;
+                if (cbbCoso.SelectedValue != null)
+                {
+                    Program.servername = cbbCoso.SelectedValue.ToString();
+                    // txTenServer.Text = Program.servername;
+                }
             }
             catch (Exception) { };
         }
@@ -144,6 +172,16 @@ namespace TRACNGHIEM
                 Application.ExitThread();
             }
             else e.Cancel = true;
+        }
+
+        private void radGiaoVien_CheckedChanged(object sender, EventArgs e)
+        {
+            label2.Text = "Tên ĐN";
+        }
+
+        private void radSinhVien_CheckedChanged(object sender, EventArgs e)
+        {
+            label2.Text = "Mã sinh viên";
         }
     }
 }

@@ -65,7 +65,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(86, 132);
+            this.label1.Location = new System.Drawing.Point(96, 148);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(86, 34);
             this.label1.TabIndex = 0;
@@ -74,25 +75,28 @@
             // cbbCoSo
             // 
             this.cbbCoSo.FormattingEnabled = true;
-            this.cbbCoSo.Location = new System.Drawing.Point(224, 125);
+            this.cbbCoSo.Location = new System.Drawing.Point(286, 138);
+            this.cbbCoSo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbbCoSo.Name = "cbbCoSo";
-            this.cbbCoSo.Size = new System.Drawing.Size(449, 41);
+            this.cbbCoSo.Size = new System.Drawing.Size(616, 41);
             this.cbbCoSo.TabIndex = 1;
             this.cbbCoSo.SelectedIndexChanged += new System.EventHandler(this.cbbCoSo_SelectedIndexChanged);
             // 
             // cbbTenLop
             // 
             this.cbbTenLop.FormattingEnabled = true;
-            this.cbbTenLop.Location = new System.Drawing.Point(1071, 122);
+            this.cbbTenLop.Location = new System.Drawing.Point(1451, 134);
+            this.cbbTenLop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbbTenLop.Name = "cbbTenLop";
-            this.cbbTenLop.Size = new System.Drawing.Size(449, 41);
+            this.cbbTenLop.Size = new System.Drawing.Size(616, 41);
             this.cbbTenLop.TabIndex = 3;
             this.cbbTenLop.SelectedIndexChanged += new System.EventHandler(this.cbbTenLop_SelectedIndexChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(913, 125);
+            this.label2.Location = new System.Drawing.Point(1233, 138);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 34);
             this.label2.TabIndex = 2;
@@ -101,16 +105,18 @@
             // cbbTenMonhoc
             // 
             this.cbbTenMonhoc.FormattingEnabled = true;
-            this.cbbTenMonhoc.Location = new System.Drawing.Point(2006, 122);
+            this.cbbTenMonhoc.Location = new System.Drawing.Point(2736, 134);
+            this.cbbTenMonhoc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbbTenMonhoc.Name = "cbbTenMonhoc";
-            this.cbbTenMonhoc.Size = new System.Drawing.Size(449, 41);
+            this.cbbTenMonhoc.Size = new System.Drawing.Size(616, 41);
             this.cbbTenMonhoc.TabIndex = 5;
             this.cbbTenMonhoc.SelectedIndexChanged += new System.EventHandler(this.cbbTenMonhoc_SelectedIndexChanged);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1792, 125);
+            this.label3.Location = new System.Drawing.Point(2442, 138);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(163, 34);
             this.label3.TabIndex = 4;
@@ -119,16 +125,18 @@
             // cbbLanThi
             // 
             this.cbbLanThi.FormattingEnabled = true;
-            this.cbbLanThi.Location = new System.Drawing.Point(2841, 125);
+            this.cbbLanThi.Location = new System.Drawing.Point(3906, 169);
+            this.cbbLanThi.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbbLanThi.Name = "cbbLanThi";
-            this.cbbLanThi.Size = new System.Drawing.Size(174, 41);
+            this.cbbLanThi.Size = new System.Drawing.Size(238, 41);
             this.cbbLanThi.TabIndex = 7;
             this.cbbLanThi.SelectedIndexChanged += new System.EventHandler(this.cbbLanThi_SelectedIndexChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(2685, 125);
+            this.label4.Location = new System.Drawing.Point(3692, 169);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 34);
             this.label4.TabIndex = 6;
@@ -146,8 +154,9 @@
             this.groupControl1.Controls.Add(this.label3);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 96);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(3358, 273);
+            this.groupControl1.Size = new System.Drawing.Size(3844, 288);
             this.groupControl1.TabIndex = 8;
             // 
             // tNDataSet
@@ -231,15 +240,17 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
-            this.barDockControlTop.Size = new System.Drawing.Size(3358, 96);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barDockControlTop.Size = new System.Drawing.Size(3844, 96);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1516);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 2054);
             this.barDockControlBottom.Manager = this.barManager1;
-            this.barDockControlBottom.Size = new System.Drawing.Size(3358, 0);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barDockControlBottom.Size = new System.Drawing.Size(3844, 0);
             // 
             // barDockControlLeft
             // 
@@ -247,46 +258,53 @@
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 96);
             this.barDockControlLeft.Manager = this.barManager1;
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1420);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1958);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(3358, 96);
+            this.barDockControlRight.Location = new System.Drawing.Point(3844, 96);
             this.barDockControlRight.Manager = this.barManager1;
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1420);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1958);
             // 
             // bANGDIEMGridControl
             // 
             this.bANGDIEMGridControl.DataSource = this.bdsBangDiem;
             this.bANGDIEMGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.bANGDIEMGridControl.Location = new System.Drawing.Point(0, 369);
+            this.bANGDIEMGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.bANGDIEMGridControl.Location = new System.Drawing.Point(0, 384);
             this.bANGDIEMGridControl.MainView = this.gridView1;
-            this.bANGDIEMGridControl.Margin = new System.Windows.Forms.Padding(200, 0, 200, 200);
+            this.bANGDIEMGridControl.Margin = new System.Windows.Forms.Padding(275, 0, 275, 271);
             this.bANGDIEMGridControl.MenuManager = this.barManager1;
             this.bANGDIEMGridControl.Name = "bANGDIEMGridControl";
-            this.bANGDIEMGridControl.Size = new System.Drawing.Size(3358, 1147);
+            this.bANGDIEMGridControl.Size = new System.Drawing.Size(3844, 1670);
             this.bANGDIEMGridControl.TabIndex = 13;
             this.bANGDIEMGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
+            this.gridView1.DetailHeight = 474;
+            this.gridView1.FixedLineWidth = 3;
             this.gridView1.GridControl = this.bANGDIEMGridControl;
             this.gridView1.Name = "gridView1";
             // 
             // frmBangDiem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 42F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(3358, 1516);
+            this.ClientSize = new System.Drawing.Size(3844, 2054);
             this.Controls.Add(this.bANGDIEMGridControl);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmBangDiem";
             this.Text = "Form bảng điểm";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

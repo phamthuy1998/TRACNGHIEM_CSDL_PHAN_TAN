@@ -11,6 +11,9 @@ namespace TRACNGHIEM
 {
     static class Program
     {
+        public static frmDangNhap frmDangNhap;
+        public static frmMain frmMain;
+        public static frmSinhVienMain frmSinhVienMain;
         public static SqlConnection conn = new SqlConnection();
         public static String connstr;
         public static SqlDataReader myReader;
@@ -96,7 +99,8 @@ namespace TRACNGHIEM
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
-            Application.Run(new frmG());
+            frmDangNhap = new frmDangNhap();
+            Application.Run(frmDangNhap);
         }
     }
 }

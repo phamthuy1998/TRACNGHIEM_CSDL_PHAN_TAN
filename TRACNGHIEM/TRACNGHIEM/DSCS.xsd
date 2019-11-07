@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSCS" targetNamespace="http://tempuri.org/DSCS.xsd" xmlns:mstns="http://tempuri.org/DSCS.xsd" xmlns="http://tempuri.org/DSCS.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="TNConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="TNConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.TRACNGHIEM.Properties.Settings.GlobalReference.Default.TNConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="V_DS_COSOTableAdapter" GeneratorDataComponentClassName="V_DS_COSOTableAdapter" Name="V_DS_COSO" UserDataComponentName="V_DS_COSOTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="TNConnectionString (Settings)" DbObjectName="TN.dbo.V_DS_COSO" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT TENCS, TENSERVER FROM dbo.V_DS_COSO</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="TENCS" DataSetColumn="TENCS" />
+              <Mapping SourceColumn="TENSERVER" DataSetColumn="TENSERVER" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSCS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DSCS" msprop:Generator_UserDSName="DSCS">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="V_DS_COSO" msprop:Generator_TableClassName="V_DS_COSODataTable" msprop:Generator_TableVarName="tableV_DS_COSO" msprop:Generator_TablePropName="V_DS_COSO" msprop:Generator_RowDeletingName="V_DS_COSORowDeleting" msprop:Generator_RowChangingName="V_DS_COSORowChanging" msprop:Generator_RowEvHandlerName="V_DS_COSORowChangeEventHandler" msprop:Generator_RowDeletedName="V_DS_COSORowDeleted" msprop:Generator_UserTableName="V_DS_COSO" msprop:Generator_RowChangedName="V_DS_COSORowChanged" msprop:Generator_RowEvArgName="V_DS_COSORowChangeEvent" msprop:Generator_RowClassName="V_DS_COSORow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TENCS" msprop:Generator_ColumnVarNameInTable="columnTENCS" msprop:Generator_ColumnPropNameInRow="TENCS" msprop:Generator_ColumnPropNameInTable="TENCSColumn" msprop:Generator_UserColumnName="TENCS" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TENSERVER" msprop:Generator_ColumnVarNameInTable="columnTENSERVER" msprop:Generator_ColumnPropNameInRow="TENSERVER" msprop:Generator_ColumnPropNameInTable="TENSERVERColumn" msprop:Generator_UserColumnName="TENSERVER" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="128" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

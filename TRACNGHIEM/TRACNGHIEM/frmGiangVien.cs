@@ -44,7 +44,7 @@ namespace TRACNGHIEM
                     //phải chạy lệnh del from where mới chính xác
                     bdsGV.RemoveCurrent();
                     //đẩy dữ liệu về adapter
-                    this.tbGiaoVien.Update(this.tNDataSet.GIAOVIEN);
+                    this.tbGiaoVien.Update(this.TNDataSet.GIAOVIEN);
                 }
                 catch (Exception ex)
                 {
@@ -63,18 +63,22 @@ namespace TRACNGHIEM
 
         private void frmGiangVien_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'tNDataSet.BAITHI' table. You can move, or remove it, as needed.
+            //this.bAITHITaleAdapter.Fill(this.tNDataSet.BAITHI);
             // TODO: This line of code loads data into the 'tNDataSet.COSO' table. You can move, or remove it, as needed.
-            this.tbCoSo.Fill(this.tNDataSet.COSO);
+            // TNDataSet.enforce
+            TNDataSet.EnforceConstraints = false;
+            this.tbCoSo.Fill(this.TNDataSet.COSO);
 
-            this.tbGiaoVien.Fill(this.tNDataSet.GIAOVIEN);
+            this.tbGiaoVien.Fill(this.TNDataSet.GIAOVIEN);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
-            this.tb_GiaoVienDKi.Fill(this.tNDataSet.GIAOVIEN_DANGKY);
+            this.tb_GiaoVienDKi.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
-            this.tb_GiaoVienDKi.Fill(this.tNDataSet.GIAOVIEN_DANGKY);
+            this.tb_GiaoVienDKi.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
             // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
-            this.tbBoDe.Fill(this.tNDataSet.BODE);
+            this.tbBoDe.Fill(this.TNDataSet.BODE);
             // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
-            this.tbBoDe.Fill(this.tNDataSet.BODE);
+            this.tbBoDe.Fill(this.TNDataSet.BODE);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
 
             //DataTable dt = new DataTable();
@@ -89,7 +93,7 @@ namespace TRACNGHIEM
             //cbbCoSoGV.SelectedIndex = Program.mCoSo;
             //if (Program.mGroup == "Truong") cbbCoSoGV.Enabled = true;
             //else cbbCoSoGV.Enabled = false;
-
+           
         }
 
         //Them mới
@@ -125,7 +129,7 @@ namespace TRACNGHIEM
         {
             try
             {
-                this.tbGiaoVien.Fill(this.tNDataSet.GIAOVIEN);
+                this.tbGiaoVien.Fill(this.TNDataSet.GIAOVIEN);
             }
             catch (Exception ex)
             {
@@ -164,7 +168,7 @@ namespace TRACNGHIEM
 
                 //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
                 // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
-                this.tbGiaoVien.Update(this.tNDataSet.GIAOVIEN);
+                this.tbGiaoVien.Update(this.TNDataSet.GIAOVIEN);
             }
             catch (Exception ex)
             {

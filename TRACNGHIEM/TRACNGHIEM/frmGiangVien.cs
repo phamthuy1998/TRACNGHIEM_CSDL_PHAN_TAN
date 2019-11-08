@@ -19,6 +19,7 @@ namespace TRACNGHIEM
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+<<<<<<< Updated upstream
             if (bdsBoDeGV.Count > 0)
             {
                 MessageBox.Show("Giảng viên này đã làm bộ đề, không thể xóa", "", MessageBoxButtons.OK);
@@ -51,6 +52,9 @@ namespace TRACNGHIEM
                     MessageBox.Show("Lỗi xóa giảng viên " + ex.Message, "", MessageBoxButtons.OK);
                 }
             }
+=======
+           
+>>>>>>> Stashed changes
         }
 
         private void gIAOVIENBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -92,8 +96,17 @@ namespace TRACNGHIEM
 
         }
 
-        //Them mới
-        private void barButtonItem3_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void frmGiangVien_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form giảng viên", "", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                Application.ExitThread();
+            }
+            else e.Cancel = true;
+        }
+
+        private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
@@ -109,8 +122,9 @@ namespace TRACNGHIEM
             }
         }
 
-        private void btnEdit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+<<<<<<< Updated upstream
 
         }
 
@@ -125,28 +139,43 @@ namespace TRACNGHIEM
         {
             this.gIAOVIENTableAdapter1.Fill(this.tNDataSet.GIAOVIEN);
         }
-
-        private void btnPrintf_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
-        }
-
-        private void btnExit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+=======
+            if (bdsBoDeGV.Count > 0)
             {
-                Application.ExitThread();
+                MessageBox.Show("Giảng viên này đã làm bộ đề, không thể xóa", "", MessageBoxButtons.OK);
+                return;
             }
-            // Kiểm tra có mẫu tin nào đang ghi dở hk, hỏi người dùng có muốn ghi?
+
+            if (bdsGVDangKy.Count > 0)
+            {
+                MessageBox.Show("Giảng viên này đã được đăng ký, không thể xóa", "", MessageBoxButtons.OK);
+                return;
+            }
+>>>>>>> Stashed changes
+
+            if (bdsBoDeGV.Count > 0)
+            {
+                MessageBox.Show("Giảng viên này đã làm bộ đề, không thể xóa", "", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên " + ((DataRowView)this.bdsGV.Current).Row["TEN"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                try
+                {
+                    //phải chạy lệnh del from where mới chính xác
+                    bdsGV.RemoveCurrent();
+                    //đẩy dữ liệu về adapter
+                    this.tbGiaoVien.Update(this.TNDataSet.GIAOVIEN);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi xóa giảng viên " + ex.Message, "", MessageBoxButtons.OK);
+                }
+            }
         }
 
-        private void gIAOVIENGridControl_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSave_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             try
             {
@@ -164,14 +193,33 @@ namespace TRACNGHIEM
             }
         }
 
-        private void frmGiangVien_FormClosing(object sender, FormClosingEventArgs e)
+        private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
+            // Hủy bỏ thao tác đang hiệu chỉnh
+            bdsGV.CancelEdit();
+        }
+
+        private void btnTailai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            try
+            {
+                this.tbGiaoVien.Fill(this.TNDataSet.GIAOVIEN);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Không thể tải lại danh sách giảng viên: " + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
+        }
+
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form giảng viên?", "", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
                 Application.ExitThread();
             }
-            else e.Cancel = true;
+            // Kiểm tra có mẫu tin nào đang ghi dở hk, hỏi người dùng có muốn ghi?
         }
     }
 }

@@ -94,7 +94,12 @@ namespace TRACNGHIEM
             Application.SetCompatibleTextRenderingDefault(false);
 
             BonusSkins.Register();
+<<<<<<< Updated upstream
             Application.Run(new frmBoDe());
+=======
+            frmDangNhap = new frmDangNhap();
+            Application.Run(new frmKhoa());
+>>>>>>> Stashed changes
         }
     }
 }

@@ -38,6 +38,16 @@
             this.label1 = new System.Windows.Forms.Label();
             this.radGiaoVien = new System.Windows.Forms.RadioButton();
             this.radSinhVien = new System.Windows.Forms.RadioButton();
+<<<<<<< Updated upstream
+=======
+            this.dSCS = new TRACNGHIEM.DSCS();
+            this.v_DS_COSOBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.v_DS_COSOTableAdapter = new TRACNGHIEM.DSCSTableAdapters.V_DS_COSOTableAdapter();
+            this.tableAdapterManager = new TRACNGHIEM.DSCSTableAdapters.TableAdapterManager();
+            this.myLoader1 = new TRACNGHIEM.myLoader();
+            ((System.ComponentModel.ISupportInitialize)(this.dSCS)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.v_DS_COSOBindingSource)).BeginInit();
+>>>>>>> Stashed changes
             this.SuspendLayout();
             // 
             // btnThoat
@@ -144,12 +154,21 @@
             this.radSinhVien.Text = "Sinh viên";
             this.radSinhVien.UseVisualStyleBackColor = true;
             // 
+            // myLoader1
+            // 
+            this.myLoader1.Location = new System.Drawing.Point(808, 258);
+            this.myLoader1.Name = "myLoader1";
+            this.myLoader1.Size = new System.Drawing.Size(312, 274);
+            this.myLoader1.TabIndex = 22;
+            this.myLoader1.Visible = false;
+            // 
             // frmDangNhap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnThoat;
             this.ClientSize = new System.Drawing.Size(1693, 1066);
+            this.Controls.Add(this.myLoader1);
             this.Controls.Add(this.radSinhVien);
             this.Controls.Add(this.radGiaoVien);
             this.Controls.Add(this.btnThoat);
@@ -183,5 +202,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radGiaoVien;
         private System.Windows.Forms.RadioButton radSinhVien;
+<<<<<<< Updated upstream
+=======
+        private DSCS dSCS;
+        private System.Windows.Forms.BindingSource v_DS_COSOBindingSource;
+        private DSCSTableAdapters.V_DS_COSOTableAdapter v_DS_COSOTableAdapter;
+        private DSCSTableAdapters.TableAdapterManager tableAdapterManager;
+        private myLoader myLoader1;
+>>>>>>> Stashed changes
     }
 }

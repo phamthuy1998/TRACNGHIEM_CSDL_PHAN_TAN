@@ -95,6 +95,12 @@
     <Compile Include="frmKhoa.Designer.cs">
       <DependentUpon>frmKhoa.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmKQThi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKQThi.Designer.cs">
+      <DependentUpon>frmKQThi.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLop.cs">
       <SubType>Form</SubType>
     </Compile>

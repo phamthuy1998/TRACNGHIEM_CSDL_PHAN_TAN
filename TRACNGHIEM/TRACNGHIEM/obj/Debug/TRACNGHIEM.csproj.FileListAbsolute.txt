@@ -291,3 +291,4 @@ D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\T
 D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\bin\Debug\ru\DevExpress.Diagram.v19.1.Core.resources.dll
 D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.frmMain.resources
 D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.frmSinhVienMain.resources
+D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.frmKhoa.resources

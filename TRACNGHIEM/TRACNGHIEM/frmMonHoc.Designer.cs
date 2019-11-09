@@ -58,7 +58,7 @@
             this.gcMonHoc = new DevExpress.XtraEditors.GroupControl();
             this.mACSComboBox = new System.Windows.Forms.ComboBox();
             this.bdsCoSo = new System.Windows.Forms.BindingSource(this.components);
-            this.tNDataSet = new TRACNGHIEM.TNDataSet();
+            this.TNDataSet = new TRACNGHIEM.TNDataSet();
             this.bdsMonHoc = new System.Windows.Forms.BindingSource(this.components);
             this.tbMonHoc = new TRACNGHIEM.TNDataSetTableAdapters.MONHOCTableAdapter();
             this.tableAdapterManager = new TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager();
@@ -67,7 +67,6 @@
             this.mAMHTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.mONHOCGridControl = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.cOSOTableAdapter = new TRACNGHIEM.TNDataSetTableAdapters.COSOTableAdapter();
             this.bdsGiaoVienDkiMH = new System.Windows.Forms.BindingSource(this.components);
             this.gIAOVIEN_DANGKYTableAdapter = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
             this.bdsBoDeMH = new System.Windows.Forms.BindingSource(this.components);
@@ -82,7 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gcMonHoc)).BeginInit();
             this.gcMonHoc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCoSo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tNDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TNDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
@@ -355,17 +354,17 @@
             // bdsCoSo
             // 
             this.bdsCoSo.DataMember = "COSO";
-            this.bdsCoSo.DataSource = this.tNDataSet;
+            this.bdsCoSo.DataSource = this.TNDataSet;
             // 
-            // tNDataSet
+            // TNDataSet
             // 
-            this.tNDataSet.DataSetName = "TNDataSet";
-            this.tNDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.TNDataSet.DataSetName = "TNDataSet";
+            this.TNDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // bdsMonHoc
             // 
             this.bdsMonHoc.DataMember = "MONHOC";
-            this.bdsMonHoc.DataSource = this.tNDataSet;
+            this.bdsMonHoc.DataSource = this.TNDataSet;
             // 
             // tbMonHoc
             // 
@@ -434,10 +433,6 @@
             this.gridView1.GridControl = this.mONHOCGridControl;
             this.gridView1.Name = "gridView1";
             // 
-            // cOSOTableAdapter
-            // 
-            this.cOSOTableAdapter.ClearBeforeFill = true;
-            // 
             // bdsGiaoVienDkiMH
             // 
             this.bdsGiaoVienDkiMH.DataMember = "FK_GIAOVIEN_DANGKY_MONHOC1";
@@ -493,7 +488,7 @@
             this.gcMonHoc.ResumeLayout(false);
             this.gcMonHoc.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsCoSo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tNDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.TNDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsMonHoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
@@ -536,14 +531,13 @@
         private DevExpress.XtraBars.BarButtonItem btnInDanhSachMH;
         private DevExpress.XtraBars.BarButtonItem btnThoatMH;
         private System.Windows.Forms.BindingSource bdsMonHoc;
-        private TNDataSet tNDataSet;
+        private TNDataSet TNDataSet;
         private TNDataSetTableAdapters.MONHOCTableAdapter tbMonHoc;
         private TNDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private DevExpress.XtraEditors.GroupControl groupControl1;
         private DevExpress.XtraGrid.GridControl mONHOCGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.BindingSource bdsCoSo;
-        private TNDataSetTableAdapters.COSOTableAdapter cOSOTableAdapter;
         private DevExpress.XtraEditors.TextEdit tENMHTextEdit;
         private DevExpress.XtraEditors.TextEdit mAMHTextEdit;
         private System.Windows.Forms.ComboBox mACSComboBox;

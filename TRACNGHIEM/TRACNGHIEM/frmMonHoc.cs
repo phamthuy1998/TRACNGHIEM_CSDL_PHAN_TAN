@@ -21,24 +21,23 @@ namespace TRACNGHIEM
         {
             this.Validate();
             this.bdsMonHoc.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.tNDataSet);
+            this.tableAdapterManager.UpdateAll(this.TNDataSet);
 
         }
 
         private void frmMonHoc_Load(object sender, EventArgs e)
         {
+            TNDataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'tNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
-            this.bANGDIEMTableAdapter.Fill(this.tNDataSet.BANGDIEM);
+            this.bANGDIEMTableAdapter.Fill(this.TNDataSet.BANGDIEM);
             // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
-            this.bODETableAdapter.Fill(this.tNDataSet.BODE);
+            this.bODETableAdapter.Fill(this.TNDataSet.BODE);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
-            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.tNDataSet.GIAOVIEN_DANGKY);
+            this.gIAOVIEN_DANGKYTableAdapter.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
             // TODO: This line of code loads data into the 'tNDataSet.COSO' table. You can move, or remove it, as needed.
-            this.cOSOTableAdapter.Fill(this.tNDataSet.COSO);
             // TODO: This line of code loads data into the 'tNDataSet.COSO' table. You can move, or remove it, as needed.
-            this.cOSOTableAdapter.Fill(this.tNDataSet.COSO);
             // TODO: This line of code loads data into the 'tNDataSet.MONHOC' table. You can move, or remove it, as needed.
-            this.tbMonHoc.Fill(this.tNDataSet.MONHOC);
+            this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
 
         }
 
@@ -69,7 +68,7 @@ namespace TRACNGHIEM
 
                 //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
                 // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
-                this.tbMonHoc.Update(this.tNDataSet.MONHOC);
+                this.tbMonHoc.Update(this.TNDataSet.MONHOC);
                 MessageBox.Show("Ghi dữ liệu môn học thành công", "", MessageBoxButtons.OK);
             }
             catch (Exception ex)
@@ -105,7 +104,7 @@ namespace TRACNGHIEM
                     //phải chạy lệnh del from where mới chính xác
                     bdsMonHoc.RemoveCurrent();
                     //đẩy dữ liệu về adapter
-                    this.tbMonHoc.Update(this.tNDataSet.MONHOC);
+                    this.tbMonHoc.Update(this.TNDataSet.MONHOC);
                 }
                 catch (Exception ex)
                 {
@@ -127,7 +126,7 @@ namespace TRACNGHIEM
 
         private void btnTaiLaiMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            this.tbMonHoc.Fill(this.tNDataSet.MONHOC);
+            this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
         }
 
         private void btnInDanhSachMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

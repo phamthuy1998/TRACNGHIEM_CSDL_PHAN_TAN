@@ -27,6 +27,7 @@ namespace TRACNGHIEM
 
         private void frmBoDe_Load(object sender, EventArgs e)
         {
+            tNDataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'tNDataSet.MONHOC' table. You can move, or remove it, as needed.
             this.tbMonHoc.Fill(this.tNDataSet.MONHOC);
             // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.

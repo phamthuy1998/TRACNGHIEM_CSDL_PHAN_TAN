@@ -30,6 +30,7 @@ namespace TRACNGHIEM
         private void frmBangDiem_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'tNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
+            tNDataSet.EnforceConstraints = false;
             this.tbBangDiem.Fill(this.tNDataSet.BANGDIEM);
             cbbCoSo.DataSource = Program.bds_dspm;
 

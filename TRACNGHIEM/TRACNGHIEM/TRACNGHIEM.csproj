@@ -83,6 +83,24 @@
     <Compile Include="frmBoDe.Designer.cs">
       <DependentUpon>frmBoDe.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDSDK.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDSDK.Designer.cs">
+      <DependentUpon>frmDSDK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKhoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKhoa.Designer.cs">
+      <DependentUpon>frmKhoa.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLop.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLop.Designer.cs">
+      <DependentUpon>frmLop.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>

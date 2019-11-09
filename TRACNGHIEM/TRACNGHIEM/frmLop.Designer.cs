@@ -32,8 +32,8 @@
             System.Windows.Forms.Label mALOPLabel;
             System.Windows.Forms.Label tENLOPLabel;
             System.Windows.Forms.Label tENKHLabel;
-            System.Windows.Forms.Label label2;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLop));
+            System.Windows.Forms.Label mAKHLabel;
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar6 = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
@@ -55,10 +55,10 @@
             this.bdsLop = new System.Windows.Forms.BindingSource(this.components);
             this.tbLopADT = new TRACNGHIEM.TNDataSetTableAdapters.LOPTableAdapter();
             this.tableAdapterManager = new TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager();
-            this.lOPGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gcLop = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
-            this.tENKHComboBox = new System.Windows.Forms.ComboBox();
+            this.cbbTenKhoa = new System.Windows.Forms.ComboBox();
             this.bdsDSKhoa = new System.Windows.Forms.BindingSource(this.components);
             this.mALOPTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.tENLOPTextEdit = new DevExpress.XtraEditors.TextEdit();
@@ -73,17 +73,17 @@
             this.sINHVIENBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tbDSKhoaADT = new TRACNGHIEM.TNDataSetTableAdapters.DSKHOATableAdapter();
             this.sINHVIENTableAdapter = new TRACNGHIEM.TNDataSetTableAdapters.SINHVIENTableAdapter();
-            this.mAKHComboBox = new System.Windows.Forms.ComboBox();
+            this.edtMaKhoa = new DevExpress.XtraEditors.TextEdit();
             mALOPLabel = new System.Windows.Forms.Label();
             tENLOPLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
-            label2 = new System.Windows.Forms.Label();
+            mAKHLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TNDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lOPGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcLop)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
@@ -94,6 +94,7 @@
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sINHVIENDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sINHVIENBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtMaKhoa.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mALOPLabel
@@ -122,15 +123,6 @@
             tENKHLabel.Size = new System.Drawing.Size(77, 34);
             tENKHLabel.TabIndex = 4;
             tENKHLabel.Text = "Khoa";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(62, 458);
-            label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(121, 34);
-            label2.TabIndex = 6;
-            label2.Text = "Mã khoa";
             // 
             // barManager
             // 
@@ -326,30 +318,30 @@
             this.tableAdapterManager.SINHVIENTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // lOPGridControl
+            // gcLop
             // 
-            this.lOPGridControl.DataSource = this.bdsLop;
-            this.lOPGridControl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.lOPGridControl.Location = new System.Drawing.Point(0, 196);
-            this.lOPGridControl.MainView = this.gridView1;
-            this.lOPGridControl.MenuManager = this.barManager;
-            this.lOPGridControl.Name = "lOPGridControl";
-            this.lOPGridControl.Size = new System.Drawing.Size(2449, 434);
-            this.lOPGridControl.TabIndex = 6;
-            this.lOPGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gcLop.DataSource = this.bdsLop;
+            this.gcLop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gcLop.Location = new System.Drawing.Point(0, 196);
+            this.gcLop.MainView = this.gridView1;
+            this.gcLop.MenuManager = this.barManager;
+            this.gcLop.Name = "gcLop";
+            this.gcLop.Size = new System.Drawing.Size(2449, 434);
+            this.gcLop.TabIndex = 6;
+            this.gcLop.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
             // 
             // gridView1
             // 
-            this.gridView1.GridControl = this.lOPGridControl;
+            this.gridView1.GridControl = this.gcLop;
             this.gridView1.Name = "gridView1";
             // 
             // panelControl2
             // 
-            this.panelControl2.Controls.Add(this.mAKHComboBox);
-            this.panelControl2.Controls.Add(label2);
+            this.panelControl2.Controls.Add(mAKHLabel);
+            this.panelControl2.Controls.Add(this.edtMaKhoa);
             this.panelControl2.Controls.Add(tENKHLabel);
-            this.panelControl2.Controls.Add(this.tENKHComboBox);
+            this.panelControl2.Controls.Add(this.cbbTenKhoa);
             this.panelControl2.Controls.Add(mALOPLabel);
             this.panelControl2.Controls.Add(this.mALOPTextEdit);
             this.panelControl2.Controls.Add(tENLOPLabel);
@@ -360,18 +352,19 @@
             this.panelControl2.Size = new System.Drawing.Size(799, 861);
             this.panelControl2.TabIndex = 7;
             // 
-            // tENKHComboBox
+            // cbbTenKhoa
             // 
-            this.tENKHComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDSKhoa, "TENKH", true));
-            this.tENKHComboBox.DataSource = this.bdsDSKhoa;
-            this.tENKHComboBox.DisplayMember = "TENKH";
-            this.tENKHComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tENKHComboBox.FormattingEnabled = true;
-            this.tENKHComboBox.Location = new System.Drawing.Point(224, 360);
-            this.tENKHComboBox.Name = "tENKHComboBox";
-            this.tENKHComboBox.Size = new System.Drawing.Size(534, 41);
-            this.tENKHComboBox.TabIndex = 5;
-            this.tENKHComboBox.ValueMember = "MAKH";
+            this.cbbTenKhoa.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDSKhoa, "TENKH", true));
+            this.cbbTenKhoa.DataSource = this.bdsDSKhoa;
+            this.cbbTenKhoa.DisplayMember = "TENKH";
+            this.cbbTenKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbTenKhoa.FormattingEnabled = true;
+            this.cbbTenKhoa.Location = new System.Drawing.Point(224, 358);
+            this.cbbTenKhoa.Name = "cbbTenKhoa";
+            this.cbbTenKhoa.Size = new System.Drawing.Size(534, 41);
+            this.cbbTenKhoa.TabIndex = 5;
+            this.cbbTenKhoa.ValueMember = "MAKH";
+            this.cbbTenKhoa.SelectedIndexChanged += new System.EventHandler(this.tENKHComboBox_SelectedIndexChanged);
             // 
             // bdsDSKhoa
             // 
@@ -473,19 +466,24 @@
             // 
             this.sINHVIENTableAdapter.ClearBeforeFill = true;
             // 
-            // mAKHComboBox
+            // mAKHLabel
             // 
-            this.mAKHComboBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDSKhoa, "MAKH", true));
-            this.mAKHComboBox.DataSource = this.bdsDSKhoa;
-            this.mAKHComboBox.DisplayMember = "MAKH";
-            this.mAKHComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.mAKHComboBox.Enabled = false;
-            this.mAKHComboBox.FormattingEnabled = true;
-            this.mAKHComboBox.Location = new System.Drawing.Point(224, 455);
-            this.mAKHComboBox.Name = "mAKHComboBox";
-            this.mAKHComboBox.Size = new System.Drawing.Size(254, 41);
-            this.mAKHComboBox.TabIndex = 8;
-            this.mAKHComboBox.ValueMember = "MAKH";
+            mAKHLabel.AutoSize = true;
+            mAKHLabel.Location = new System.Drawing.Point(52, 474);
+            mAKHLabel.Name = "mAKHLabel";
+            mAKHLabel.Size = new System.Drawing.Size(121, 34);
+            mAKHLabel.TabIndex = 6;
+            mAKHLabel.Text = "Mã khoa";
+            // 
+            // edtMaKhoa
+            // 
+            this.edtMaKhoa.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsDSKhoa, "MAKH", true));
+            this.edtMaKhoa.Enabled = false;
+            this.edtMaKhoa.Location = new System.Drawing.Point(224, 466);
+            this.edtMaKhoa.MenuManager = this.barManager;
+            this.edtMaKhoa.Name = "edtMaKhoa";
+            this.edtMaKhoa.Size = new System.Drawing.Size(250, 50);
+            this.edtMaKhoa.TabIndex = 7;
             // 
             // frmLop
             // 
@@ -494,7 +492,7 @@
             this.ClientSize = new System.Drawing.Size(2449, 1491);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
-            this.Controls.Add(this.lOPGridControl);
+            this.Controls.Add(this.gcLop);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControl3);
             this.Controls.Add(this.barDockControl4);
@@ -509,7 +507,7 @@
             this.panelControl1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TNDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lOPGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gcLop)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
@@ -521,6 +519,7 @@
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sINHVIENDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sINHVIENBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.edtMaKhoa.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -553,11 +552,11 @@
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private DevExpress.XtraEditors.TextEdit mALOPTextEdit;
         private DevExpress.XtraEditors.TextEdit tENLOPTextEdit;
-        private DevExpress.XtraGrid.GridControl lOPGridControl;
+        private DevExpress.XtraGrid.GridControl gcLop;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private System.Windows.Forms.BindingSource bdsDSKhoa;
         private TNDataSetTableAdapters.DSKHOATableAdapter tbDSKhoaADT;
-        private System.Windows.Forms.ComboBox tENKHComboBox;
+        private System.Windows.Forms.ComboBox cbbTenKhoa;
         private System.Windows.Forms.BindingSource sINHVIENBindingSource;
         private TNDataSetTableAdapters.SINHVIENTableAdapter sINHVIENTableAdapter;
         private System.Windows.Forms.DataGridView sINHVIENDataGridView;
@@ -567,6 +566,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.ComboBox mAKHComboBox;
+        private DevExpress.XtraEditors.TextEdit edtMaKhoa;
     }
 }

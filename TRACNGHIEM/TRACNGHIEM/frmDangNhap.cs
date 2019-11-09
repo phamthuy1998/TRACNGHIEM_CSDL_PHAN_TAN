@@ -123,14 +123,14 @@ namespace TRACNGHIEM
 
         private void frmDangNhap_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'dSCS.V_DS_COSO' table. You can move, or remove it, as needed.
-            this.v_DS_COSOTableAdapter.Fill(this.dSCS.V_DS_COSO);
             radGiaoVien.Checked = true;
             try
             {
                 //Integrated Security=True--> Kết nối về site chủ không cần password và tài khoản
+                // dùng để lấy danh sách cơ sở từ site chủ
                 string chuoiketnoi = "Data Source=THUY;Initial Catalog=TN;Integrated Security=True";
                 Program.conn.ConnectionString = chuoiketnoi;
+                Program.conn.Open();
 
                 // Gọi view V_DS_COSO và trả về datable 
                 DataTable dt = new DataTable();
@@ -157,7 +157,6 @@ namespace TRACNGHIEM
                 if (cbbCoso.SelectedValue != null)
                 {
                     Program.servername = cbbCoso.SelectedValue.ToString();
-                    // txTenServer.Text = Program.servername;
                 }
             }
             catch (Exception) { };

@@ -29,14 +29,25 @@ namespace TRACNGHIEM
         {
             TNDataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'tNDataSet.SINHVIEN' table. You can move, or remove it, as needed.
+            // gán chuỗi kết nối được lấy từ form đăng nhập trước khi fiew dữ liêu về
+            this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
             this.sINHVIENTableAdapter.Fill(this.TNDataSet.SINHVIEN);
-            TNDataSet.EnforceConstraints = false; 
             // TODO: This line of code loads data into the 'tNDataSet.DSKHOA' table. You can move, or remove it, as needed.
+            this.tbDSKhoaADT.Connection.ConnectionString = Program.connstr;
             this.tbDSKhoaADT.Fill(this.TNDataSet.DSKHOA);
             // TODO: This line of code loads data into the 'tNDataSet.LOP' table. You can move, or remove it, as needed.
+            this.tbLopADT.Connection.ConnectionString = Program.connstr;
             this.tbLopADT.Fill(this.TNDataSet.LOP);
 
         }
 
+        private void tENKHComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                edtMaKhoa.Text = cbbTenKhoa.SelectedValue.ToString();
+            }
+            catch (Exception) { }
+        }
     }
 }

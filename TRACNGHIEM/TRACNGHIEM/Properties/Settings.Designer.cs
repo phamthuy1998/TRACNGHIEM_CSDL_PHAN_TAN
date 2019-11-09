@@ -37,10 +37,21 @@ namespace TRACNGHIEM.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=THUY;Initial Catalog=TN;User ID=sa;Password=123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-2Q5B6UG\\SV1;Initial Catalog=TN2;User ID=sa;Password=123")]
         public string TNConnectionString {
             get {
                 return ((string)(this["TNConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-2Q5B6UG\\LETHITHU;Initial Catalog=TRACNGHIEM;User ID=sa;Passwo" +
+            "rd=123")]
+        public string SP {
+            get {
+                return ((string)(this["SP"]));
             }
         }
     }

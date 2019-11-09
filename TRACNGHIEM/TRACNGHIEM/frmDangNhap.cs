@@ -111,6 +111,8 @@ namespace TRACNGHIEM
 
         }
 
+
+
         private void btnThoat_Click(object sender, EventArgs e)
         {
 
@@ -124,12 +126,11 @@ namespace TRACNGHIEM
         private void frmDangNhap_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'dSCS.V_DS_COSO' table. You can move, or remove it, as needed.
-            this.v_DS_COSOTableAdapter.Fill(this.dSCS.V_DS_COSO);
             radGiaoVien.Checked = true;
             try
             {
                 //Integrated Security=True--> Kết nối về site chủ không cần password và tài khoản
-                string chuoiketnoi = "Data Source=THUY;Initial Catalog=TN;Integrated Security=True";
+                string chuoiketnoi = "Data Source=DESKTOP-2Q5B6UG\\LETHITHU;Initial Catalog=TN2;Integrated Security=True";
                 Program.conn.ConnectionString = chuoiketnoi;
 
                 // Gọi view V_DS_COSO và trả về datable 

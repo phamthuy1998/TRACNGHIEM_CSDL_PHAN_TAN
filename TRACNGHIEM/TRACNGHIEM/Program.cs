@@ -22,7 +22,7 @@ namespace TRACNGHIEM
         public static String mlogin = "";
         public static String password = "";
 
-        public static String database = "TN";
+        public static String database = "TN2";
         public static String remotelogin = "sa";
         public static String remotepassword = "123";
         public static String mloginDN = "";

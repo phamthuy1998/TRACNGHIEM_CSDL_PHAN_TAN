@@ -19,7 +19,6 @@ namespace TRACNGHIEM
 
         private void barButtonItem4_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-<<<<<<< Updated upstream
             if (bdsBoDeGV.Count > 0)
             {
                 MessageBox.Show("Giảng viên này đã làm bộ đề, không thể xóa", "", MessageBoxButtons.OK);
@@ -52,9 +51,6 @@ namespace TRACNGHIEM
                     MessageBox.Show("Lỗi xóa giảng viên " + ex.Message, "", MessageBoxButtons.OK);
                 }
             }
-=======
-           
->>>>>>> Stashed changes
         }
 
         private void gIAOVIENBindingNavigatorSaveItem_Click(object sender, EventArgs e)
@@ -124,22 +120,6 @@ namespace TRACNGHIEM
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-<<<<<<< Updated upstream
-
-        }
-
-        private void btnRevert_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            // Hủy bỏ thao tác đang hiệu chỉnh
-            bdsGV.CancelEdit();
-        }
-
-        // Lấy dữ liệu mới nhất trong csdl 
-        private void btnRefresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-            this.gIAOVIENTableAdapter1.Fill(this.tNDataSet.GIAOVIEN);
-        }
-=======
             if (bdsBoDeGV.Count > 0)
             {
                 MessageBox.Show("Giảng viên này đã làm bộ đề, không thể xóa", "", MessageBoxButtons.OK);
@@ -151,7 +131,6 @@ namespace TRACNGHIEM
                 MessageBox.Show("Giảng viên này đã được đăng ký, không thể xóa", "", MessageBoxButtons.OK);
                 return;
             }
->>>>>>> Stashed changes
 
             if (bdsBoDeGV.Count > 0)
             {

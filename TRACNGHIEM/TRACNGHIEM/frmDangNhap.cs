@@ -34,19 +34,12 @@ namespace TRACNGHIEM
                 if (Program.KetNoi() == 0) { myLoader1.Visible = false; return; }
 
 
-<<<<<<< Updated upstream
-           // Check giáo viên nhưng lại lấy tài khoản sinh viên đăng nhập
-            if (radGiaoVien.Checked)
-            {
-                if (Program.myReader.GetString(2).Trim().Equals("Sinhvien"))
-=======
                 Program.mCoSo = cbbCoso.SelectedIndex;
                 Program.mloginDN = Program.mlogin;
                 Program.passwordDN = Program.password;
 
                 string strLenh;
                 if (radGiaoVien.Checked)
->>>>>>> Stashed changes
                 {
                     strLenh = "EXEC SP_LAY_TT_DANGNHAP  '" + Program.mlogin + "'";
                 }
@@ -65,22 +58,6 @@ namespace TRACNGHIEM
                 }
                 Program.myReader.Read();
 
-<<<<<<< Updated upstream
-            Program.username = Program.myReader.GetString(0);     // Lay user name
-            if (Convert.IsDBNull(Program.username))
-            {
-                MessageBox.Show("Login bạn nhập không có quyền truy cập dữ liệu\n Bạn xem lại username, password", "", MessageBoxButtons.OK);
-                return;
-            }
-
-            Program.mHoten = Program.myReader.GetString(1);
-            Program.mGroup = Program.myReader.GetString(2);
-            Program.myReader.Close();
-            Program.conn.Close();
-
-            MessageBox.Show("Nhan vien - Nhom : " + Program.mHoten + " - " + Program.mGroup, "", MessageBoxButtons.OK);
-
-=======
                 // Check giáo viên nhưng lại lấy tài khoản sinh viên đăng nhập
                 if (radGiaoVien.Checked)
                 {
@@ -142,7 +119,6 @@ namespace TRACNGHIEM
                     }
                 }
             }
->>>>>>> Stashed changes
         }
 
         private void btnThoat_Click(object sender, EventArgs e)

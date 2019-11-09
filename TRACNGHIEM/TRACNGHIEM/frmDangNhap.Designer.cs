@@ -38,16 +38,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.radGiaoVien = new System.Windows.Forms.RadioButton();
             this.radSinhVien = new System.Windows.Forms.RadioButton();
-<<<<<<< Updated upstream
-=======
-            this.dSCS = new TRACNGHIEM.DSCS();
-            this.v_DS_COSOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.v_DS_COSOTableAdapter = new TRACNGHIEM.DSCSTableAdapters.V_DS_COSOTableAdapter();
-            this.tableAdapterManager = new TRACNGHIEM.DSCSTableAdapters.TableAdapterManager();
-            this.myLoader1 = new TRACNGHIEM.myLoader();
-            ((System.ComponentModel.ISupportInitialize)(this.dSCS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v_DS_COSOBindingSource)).BeginInit();
->>>>>>> Stashed changes
             this.SuspendLayout();
             // 
             // btnThoat
@@ -202,13 +192,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radGiaoVien;
         private System.Windows.Forms.RadioButton radSinhVien;
-<<<<<<< Updated upstream
-=======
-        private DSCS dSCS;
-        private System.Windows.Forms.BindingSource v_DS_COSOBindingSource;
-        private DSCSTableAdapters.V_DS_COSOTableAdapter v_DS_COSOTableAdapter;
-        private DSCSTableAdapters.TableAdapterManager tableAdapterManager;
-        private myLoader myLoader1;
->>>>>>> Stashed changes
     }
 }

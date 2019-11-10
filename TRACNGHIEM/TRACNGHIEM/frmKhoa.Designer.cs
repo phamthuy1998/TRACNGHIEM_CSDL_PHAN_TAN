@@ -40,7 +40,6 @@
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
-            this.btnSua = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnTaiLai = new DevExpress.XtraBars.BarButtonItem();
             this.btnInDS = new DevExpress.XtraBars.BarButtonItem();
@@ -49,6 +48,7 @@
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl3 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
+            this.btnSua = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,9 +67,27 @@
             this.tENKHTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.mACSTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
-            this.bdsGiaoVien = new System.Windows.Forms.BindingSource(this.components);
             this.gIAOVIENGridControl = new DevExpress.XtraGrid.GridControl();
+            this.bdsGiaoVien = new System.Windows.Forms.BindingSource(this.components);
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.bdsLop = new System.Windows.Forms.BindingSource(this.components);
+            this.tbLopADT = new TRACNGHIEM.TNDataSetTableAdapters.LOPTableAdapter();
+            this.ctxMenuGV = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnThemGV = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnXoaGV = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnGhiGV = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnTaiLaiGV = new System.Windows.Forms.ToolStripMenuItem();
+            this.bdsGVDK = new System.Windows.Forms.BindingSource(this.components);
+            this.tbGiaoVienDKADT = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
+            this.bdsBoDe = new System.Windows.Forms.BindingSource(this.components);
+            this.tbBoDeADT = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
+            this.btnPhucHoiGV = new System.Windows.Forms.ToolStripMenuItem();
+            this.colMAGV = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTEN = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colMAKH1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colHOCVI = new DevExpress.XtraGrid.Columns.GridColumn();
             mAKHLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
             mACSLabel = new System.Windows.Forms.Label();
@@ -89,9 +107,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.mACSTextEdit.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gIAOVIENGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVien)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).BeginInit();
+            this.ctxMenuGV.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsBoDe)).BeginInit();
             this.SuspendLayout();
             // 
             // mAKHLabel
@@ -169,7 +191,6 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSua, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnTaiLai, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnInDS, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -185,6 +206,7 @@
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.LargeImage")));
             this.btnThem.Name = "btnThem";
+            this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
             // btnGhi
             // 
@@ -193,6 +215,7 @@
             this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
             this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
             this.btnGhi.Name = "btnGhi";
+            this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
             // 
             // btnXoa
             // 
@@ -201,14 +224,7 @@
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
             this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
             this.btnXoa.Name = "btnXoa";
-            // 
-            // btnSua
-            // 
-            this.btnSua.Caption = "Sửa";
-            this.btnSua.Id = 3;
-            this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
-            this.btnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.LargeImage")));
-            this.btnSua.Name = "btnSua";
+            this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
             // 
             // btnPhucHoi
             // 
@@ -273,6 +289,14 @@
             this.barDockControl4.Location = new System.Drawing.Point(2496, 96);
             this.barDockControl4.Manager = this.barManager;
             this.barDockControl4.Size = new System.Drawing.Size(0, 1365);
+            // 
+            // btnSua
+            // 
+            this.btnSua.Caption = "Sửa";
+            this.btnSua.Id = 3;
+            this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
+            this.btnSua.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.LargeImage")));
+            this.btnSua.Name = "btnSua";
             // 
             // panelControl1
             // 
@@ -398,7 +422,7 @@
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelControl2.Location = new System.Drawing.Point(0, 455);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(838, 1006);
+            this.panelControl2.Size = new System.Drawing.Size(977, 1006);
             this.panelControl2.TabIndex = 7;
             // 
             // mAKHTextEdit
@@ -432,15 +456,10 @@
             // 
             this.panelControl3.Controls.Add(this.gIAOVIENGridControl);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(838, 455);
+            this.panelControl3.Location = new System.Drawing.Point(977, 455);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(1658, 1006);
+            this.panelControl3.Size = new System.Drawing.Size(1519, 1006);
             this.panelControl3.TabIndex = 8;
-            // 
-            // bdsGiaoVien
-            // 
-            this.bdsGiaoVien.DataMember = "FK_GIAOVIEN_KHOA";
-            this.bdsGiaoVien.DataSource = this.bdsKhoa;
             // 
             // gIAOVIENGridControl
             // 
@@ -450,21 +469,162 @@
             this.gIAOVIENGridControl.MainView = this.gridView2;
             this.gIAOVIENGridControl.MenuManager = this.barManager;
             this.gIAOVIENGridControl.Name = "gIAOVIENGridControl";
-            this.gIAOVIENGridControl.Size = new System.Drawing.Size(1652, 1000);
+            this.gIAOVIENGridControl.Size = new System.Drawing.Size(1513, 1000);
             this.gIAOVIENGridControl.TabIndex = 0;
             this.gIAOVIENGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
             // 
+            // bdsGiaoVien
+            // 
+            this.bdsGiaoVien.DataMember = "FK_GIAOVIEN_KHOA";
+            this.bdsGiaoVien.DataSource = this.bdsKhoa;
+            // 
             // gridView2
             // 
+            this.gridView2.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colMAGV,
+            this.colHO,
+            this.colTEN,
+            this.colDIACHI,
+            this.colMAKH1,
+            this.colHOCVI});
             this.gridView2.GridControl = this.gIAOVIENGridControl;
             this.gridView2.Name = "gridView2";
+            // 
+            // bdsLop
+            // 
+            this.bdsLop.DataMember = "FK_LOP_KHOA";
+            this.bdsLop.DataSource = this.bdsKhoa;
+            // 
+            // tbLopADT
+            // 
+            this.tbLopADT.ClearBeforeFill = true;
+            // 
+            // ctxMenuGV
+            // 
+            this.ctxMenuGV.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.ctxMenuGV.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnThemGV,
+            this.btnXoaGV,
+            this.btnPhucHoiGV,
+            this.btnGhiGV,
+            this.btnTaiLaiGV});
+            this.ctxMenuGV.Name = "btnThemGV";
+            this.ctxMenuGV.Size = new System.Drawing.Size(365, 234);
+            // 
+            // btnThemGV
+            // 
+            this.btnThemGV.Name = "btnThemGV";
+            this.btnThemGV.Size = new System.Drawing.Size(364, 46);
+            this.btnThemGV.Text = "Thêm giảng viên";
+            this.btnThemGV.Click += new System.EventHandler(this.btnThemGV_Click);
+            // 
+            // btnXoaGV
+            // 
+            this.btnXoaGV.Name = "btnXoaGV";
+            this.btnXoaGV.Size = new System.Drawing.Size(364, 46);
+            this.btnXoaGV.Text = "Xóa giảng viên";
+            this.btnXoaGV.Click += new System.EventHandler(this.btnXoaGV_Click);
+            // 
+            // btnGhiGV
+            // 
+            this.btnGhiGV.Name = "btnGhiGV";
+            this.btnGhiGV.Size = new System.Drawing.Size(364, 46);
+            this.btnGhiGV.Text = "Ghi giảng viên";
+            this.btnGhiGV.Click += new System.EventHandler(this.btnGhiGV_Click);
+            // 
+            // btnTaiLaiGV
+            // 
+            this.btnTaiLaiGV.Name = "btnTaiLaiGV";
+            this.btnTaiLaiGV.Size = new System.Drawing.Size(364, 46);
+            this.btnTaiLaiGV.Text = "Tải lại danh sách";
+            this.btnTaiLaiGV.Click += new System.EventHandler(this.btnTaiLaiGV_Click);
+            // 
+            // bdsGVDK
+            // 
+            this.bdsGVDK.DataMember = "FK_GIAOVIEN_DANGKY_GIAOVIEN1";
+            this.bdsGVDK.DataSource = this.bdsGiaoVien;
+            // 
+            // tbGiaoVienDKADT
+            // 
+            this.tbGiaoVienDKADT.ClearBeforeFill = true;
+            // 
+            // bdsBoDe
+            // 
+            this.bdsBoDe.DataMember = "FK_BODE_GIAOVIEN";
+            this.bdsBoDe.DataSource = this.bdsGiaoVien;
+            // 
+            // tbBoDeADT
+            // 
+            this.tbBoDeADT.ClearBeforeFill = true;
+            // 
+            // btnPhucHoiGV
+            // 
+            this.btnPhucHoiGV.Name = "btnPhucHoiGV";
+            this.btnPhucHoiGV.Size = new System.Drawing.Size(364, 46);
+            this.btnPhucHoiGV.Text = "Phục hồi  giảng viên";
+            this.btnPhucHoiGV.Click += new System.EventHandler(this.btnPhucHoiGV_Click);
+            // 
+            // colMAGV
+            // 
+            this.colMAGV.FieldName = "MAGV";
+            this.colMAGV.MinWidth = 50;
+            this.colMAGV.Name = "colMAGV";
+            this.colMAGV.Visible = true;
+            this.colMAGV.VisibleIndex = 0;
+            this.colMAGV.Width = 187;
+            // 
+            // colHO
+            // 
+            this.colHO.FieldName = "HO";
+            this.colHO.MinWidth = 50;
+            this.colHO.Name = "colHO";
+            this.colHO.Visible = true;
+            this.colHO.VisibleIndex = 1;
+            this.colHO.Width = 187;
+            // 
+            // colTEN
+            // 
+            this.colTEN.FieldName = "TEN";
+            this.colTEN.MinWidth = 50;
+            this.colTEN.Name = "colTEN";
+            this.colTEN.Visible = true;
+            this.colTEN.VisibleIndex = 2;
+            this.colTEN.Width = 187;
+            // 
+            // colDIACHI
+            // 
+            this.colDIACHI.FieldName = "DIACHI";
+            this.colDIACHI.MinWidth = 50;
+            this.colDIACHI.Name = "colDIACHI";
+            this.colDIACHI.Visible = true;
+            this.colDIACHI.VisibleIndex = 3;
+            this.colDIACHI.Width = 187;
+            // 
+            // colMAKH1
+            // 
+            this.colMAKH1.FieldName = "MAKH";
+            this.colMAKH1.MinWidth = 50;
+            this.colMAKH1.Name = "colMAKH1";
+            this.colMAKH1.Visible = true;
+            this.colMAKH1.VisibleIndex = 4;
+            this.colMAKH1.Width = 187;
+            // 
+            // colHOCVI
+            // 
+            this.colHOCVI.FieldName = "HOCVI";
+            this.colHOCVI.MinWidth = 50;
+            this.colHOCVI.Name = "colHOCVI";
+            this.colHOCVI.Visible = true;
+            this.colHOCVI.VisibleIndex = 5;
+            this.colHOCVI.Width = 187;
             // 
             // frmKhoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(2496, 1461);
+            this.ContextMenuStrip = this.ctxMenuGV;
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl2);
             this.Controls.Add(this.kHOAGridControl);
@@ -474,7 +634,7 @@
             this.Controls.Add(this.barDockControl2);
             this.Controls.Add(this.barDockControl1);
             this.Name = "frmKhoa";
-            this.Text = "frmKhoa";
+            this.Text = "Form khoa";
             this.Load += new System.EventHandler(this.frmKhoa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -492,9 +652,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.mACSTextEdit.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gIAOVIENGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVien)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsLop)).EndInit();
+            this.ctxMenuGV.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsBoDe)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -537,5 +701,23 @@
         private System.Windows.Forms.BindingSource bdsGiaoVien;
         private DevExpress.XtraGrid.GridControl gIAOVIENGridControl;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
+        private System.Windows.Forms.BindingSource bdsLop;
+        private TNDataSetTableAdapters.LOPTableAdapter tbLopADT;
+        private System.Windows.Forms.ContextMenuStrip ctxMenuGV;
+        private System.Windows.Forms.ToolStripMenuItem btnThemGV;
+        private System.Windows.Forms.ToolStripMenuItem btnXoaGV;
+        private System.Windows.Forms.ToolStripMenuItem btnGhiGV;
+        private System.Windows.Forms.ToolStripMenuItem btnTaiLaiGV;
+        private System.Windows.Forms.BindingSource bdsGVDK;
+        private TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter tbGiaoVienDKADT;
+        private System.Windows.Forms.BindingSource bdsBoDe;
+        private TNDataSetTableAdapters.BODETableAdapter tbBoDeADT;
+        private System.Windows.Forms.ToolStripMenuItem btnPhucHoiGV;
+        private DevExpress.XtraGrid.Columns.GridColumn colMAGV;
+        private DevExpress.XtraGrid.Columns.GridColumn colHO;
+        private DevExpress.XtraGrid.Columns.GridColumn colTEN;
+        private DevExpress.XtraGrid.Columns.GridColumn colDIACHI;
+        private DevExpress.XtraGrid.Columns.GridColumn colMAKH1;
+        private DevExpress.XtraGrid.Columns.GridColumn colHOCVI;
     }
 }

@@ -39,12 +39,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.radGiaoVien = new System.Windows.Forms.RadioButton();
             this.radSinhVien = new System.Windows.Forms.RadioButton();
-            this.dSCS = new TRACNGHIEM.DSCS();
-            this.v_DS_COSOBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.v_DS_COSOTableAdapter = new TRACNGHIEM.DSCSTableAdapters.V_DS_COSOTableAdapter();
-            this.tableAdapterManager = new TRACNGHIEM.DSCSTableAdapters.TableAdapterManager();
-            ((System.ComponentModel.ISupportInitialize)(this.dSCS)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v_DS_COSOBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btnThoat
@@ -153,29 +147,6 @@
             this.radSinhVien.Text = "Sinh viên";
             this.radSinhVien.UseVisualStyleBackColor = true;
             this.radSinhVien.CheckedChanged += new System.EventHandler(this.radSinhVien_CheckedChanged);
-            // 
-            // dSCS
-            // 
-            this.dSCS.DataSetName = "DSCS";
-            this.dSCS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // v_DS_COSOBindingSource
-            // 
-            this.v_DS_COSOBindingSource.DataMember = "V_DS_COSO";
-            this.v_DS_COSOBindingSource.DataSource = this.dSCS;
-            // 
-            // v_DS_COSOTableAdapter
-            // 
-            this.v_DS_COSOTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.Connection = null;
-            this.tableAdapterManager.UpdateOrder = TRACNGHIEM.DSCSTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // frmDangNhap
-            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnThoat;
@@ -198,8 +169,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDangNhap_FormClosing);
             this.Load += new System.EventHandler(this.frmDangNhap_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dSCS)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.v_DS_COSOBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -216,9 +185,5 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radGiaoVien;
         private System.Windows.Forms.RadioButton radSinhVien;
-        private DSCS dSCS;
-        private System.Windows.Forms.BindingSource v_DS_COSOBindingSource;
-        private DSCSTableAdapters.V_DS_COSOTableAdapter v_DS_COSOTableAdapter;
-        private DSCSTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }

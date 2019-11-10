@@ -43,7 +43,6 @@ namespace TRACNGHIEM
 
         private void btnThemMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
             try
             {
                 bdsMonHoc.AddNew();
@@ -111,11 +110,6 @@ namespace TRACNGHIEM
                     MessageBox.Show("Lỗi xóa giảng viên " + ex.Message, "", MessageBoxButtons.OK);
                 }
             }
-        }
-
-        private void btnSuaMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-        {
-
         }
 
         private void btnPhucHoiMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

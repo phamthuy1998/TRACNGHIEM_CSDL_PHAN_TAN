@@ -262,7 +262,6 @@
             this.btnSuaMH.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaMH.ImageOptions.Image")));
             this.btnSuaMH.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSuaMH.ImageOptions.LargeImage")));
             this.btnSuaMH.Name = "btnSuaMH";
-            this.btnSuaMH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSuaMH_ItemClick);
             // 
             // btnPhucHoiMH
             // 

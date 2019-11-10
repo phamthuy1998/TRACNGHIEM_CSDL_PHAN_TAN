@@ -66,11 +66,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DSCS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DSCS.xsd</DependentUpon>
-    </Compile>
     <Compile Include="frmBangDiem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,17 +210,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <None Include="App.config" />
-    <None Include="DSCS.xsc">
-      <DependentUpon>DSCS.xsd</DependentUpon>
-    </None>
-    <None Include="DSCS.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DSCS.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="DSCS.xss">
-      <DependentUpon>DSCS.xsd</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

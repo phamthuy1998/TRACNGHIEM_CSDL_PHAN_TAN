@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDangNhap));
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnDangNhap = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
@@ -39,29 +39,39 @@
             this.label1 = new System.Windows.Forms.Label();
             this.radGiaoVien = new System.Windows.Forms.RadioButton();
             this.radSinhVien = new System.Windows.Forms.RadioButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // btnThoat
             // 
+            this.btnThoat.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnThoat.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnThoat.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThoat.Location = new System.Drawing.Point(1031, 799);
+            this.btnThoat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThoat.Location = new System.Drawing.Point(996, 799);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(352, 106);
             this.btnThoat.TabIndex = 19;
             this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = true;
+            this.btnThoat.UseVisualStyleBackColor = false;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
             // 
             // btnDangNhap
             // 
+            this.btnDangNhap.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.btnDangNhap.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDangNhap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnDangNhap.Location = new System.Drawing.Point(365, 799);
             this.btnDangNhap.Name = "btnDangNhap";
             this.btnDangNhap.Size = new System.Drawing.Size(352, 106);
             this.btnDangNhap.TabIndex = 18;
             this.btnDangNhap.Text = "Đăng nhập";
-            this.btnDangNhap.UseVisualStyleBackColor = true;
+            this.btnDangNhap.UseVisualStyleBackColor = false;
             this.btnDangNhap.Click += new System.EventHandler(this.btnDangNhap_Click);
             // 
             // label3
@@ -77,7 +87,7 @@
             // txPassword
             // 
             this.txPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txPassword.Location = new System.Drawing.Point(708, 444);
+            this.txPassword.Location = new System.Drawing.Point(673, 444);
             this.txPassword.Name = "txPassword";
             this.txPassword.PasswordChar = '*';
             this.txPassword.Size = new System.Drawing.Size(675, 56);
@@ -86,7 +96,7 @@
             // txUsername
             // 
             this.txUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txUsername.Location = new System.Drawing.Point(708, 294);
+            this.txUsername.Location = new System.Drawing.Point(673, 294);
             this.txUsername.Name = "txUsername";
             this.txUsername.Size = new System.Drawing.Size(675, 56);
             this.txUsername.TabIndex = 15;
@@ -106,7 +116,7 @@
             this.cbbCoso.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbCoso.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbCoso.FormattingEnabled = true;
-            this.cbbCoso.Location = new System.Drawing.Point(708, 142);
+            this.cbbCoso.Location = new System.Drawing.Point(673, 142);
             this.cbbCoso.Name = "cbbCoso";
             this.cbbCoso.Size = new System.Drawing.Size(675, 59);
             this.cbbCoso.TabIndex = 13;
@@ -126,7 +136,7 @@
             // 
             this.radGiaoVien.AutoSize = true;
             this.radGiaoVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radGiaoVien.Location = new System.Drawing.Point(722, 622);
+            this.radGiaoVien.Location = new System.Drawing.Point(687, 622);
             this.radGiaoVien.Name = "radGiaoVien";
             this.radGiaoVien.Size = new System.Drawing.Size(246, 50);
             this.radGiaoVien.TabIndex = 20;
@@ -139,7 +149,7 @@
             // 
             this.radSinhVien.AutoSize = true;
             this.radSinhVien.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radSinhVien.Location = new System.Drawing.Point(1163, 622);
+            this.radSinhVien.Location = new System.Drawing.Point(1128, 622);
             this.radSinhVien.Name = "radSinhVien";
             this.radSinhVien.Size = new System.Drawing.Size(220, 50);
             this.radSinhVien.TabIndex = 21;
@@ -147,10 +157,47 @@
             this.radSinhVien.Text = "Sinh viên";
             this.radSinhVien.UseVisualStyleBackColor = true;
             this.radSinhVien.CheckedChanged += new System.EventHandler(this.radSinhVien_CheckedChanged);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(261, 155);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(62, 59);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 22;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(261, 294);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(62, 54);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 23;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(261, 444);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(62, 62);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 24;
+            this.pictureBox3.TabStop = false;
+            // 
+            // frmDangNhap
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.CancelButton = this.btnThoat;
             this.ClientSize = new System.Drawing.Size(1693, 1066);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.radSinhVien);
             this.Controls.Add(this.radGiaoVien);
             this.Controls.Add(this.btnThoat);
@@ -161,14 +208,16 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cbbCoso);
             this.Controls.Add(this.label1);
-            this.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.MaximumSize = new System.Drawing.Size(1725, 1154);
             this.Name = "frmDangNhap";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Đăng nhập";
-            this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmDangNhap_FormClosing);
             this.Load += new System.EventHandler(this.frmDangNhap_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,5 +234,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton radGiaoVien;
         private System.Windows.Forms.RadioButton radSinhVien;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }

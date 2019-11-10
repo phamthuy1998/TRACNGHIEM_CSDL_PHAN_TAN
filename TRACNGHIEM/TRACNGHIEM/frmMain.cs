@@ -13,8 +13,9 @@ namespace TRACNGHIEM
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private Boolean checkDangXuat = false;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
-        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPage rbpTaiKhoan;
         private StatusStrip statusStrip1;
         public ToolStripStatusLabel MASO;
         public ToolStripStatusLabel HOTEN;
@@ -34,21 +35,21 @@ namespace TRACNGHIEM
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.BarButtonItem btnThoatMain;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
-        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarButtonItem btnDangXuat;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup7;
         private DevExpress.XtraBars.BarButtonItem btnMonHoc;
         private DevExpress.XtraBars.BarButtonItem btnKhoa;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup8;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbMon;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbKhoa;
         private DevExpress.XtraBars.BarButtonItem btnLop;
         private DevExpress.XtraBars.BarButtonItem barButtonItem5;
         private DevExpress.XtraBars.BarButtonItem btnDe;
         private DevExpress.XtraBars.BarButtonItem btnThiThu;
         private DevExpress.XtraBars.BarButtonItem btnBangdiem;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup9;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup11;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup12;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbLop;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbDe;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbThiThu;
         private DevExpress.XtraBars.BarButtonItem btnDSDK;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
@@ -69,7 +70,7 @@ namespace TRACNGHIEM
             this.btnBangDiemBaoCao = new DevExpress.XtraBars.BarButtonItem();
             this.btnTaoTK = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoatMain = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnDangXuat = new DevExpress.XtraBars.BarButtonItem();
             this.btnMonHoc = new DevExpress.XtraBars.BarButtonItem();
             this.btnKhoa = new DevExpress.XtraBars.BarButtonItem();
             this.btnLop = new DevExpress.XtraBars.BarButtonItem();
@@ -78,16 +79,16 @@ namespace TRACNGHIEM
             this.btnThiThu = new DevExpress.XtraBars.BarButtonItem();
             this.btnBangdiem = new DevExpress.XtraBars.BarButtonItem();
             this.btnDSDK = new DevExpress.XtraBars.BarButtonItem();
-            this.ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            this.rbKhoa = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbLop = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbMon = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbDe = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbThiThu = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbpTaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup8 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup9 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup11 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup12 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup10 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -117,7 +118,7 @@ namespace TRACNGHIEM
             this.btnBangDiemBaoCao,
             this.btnTaoTK,
             this.btnThoatMain,
-            this.barButtonItem3,
+            this.btnDangXuat,
             this.btnMonHoc,
             this.btnKhoa,
             this.btnLop,
@@ -130,11 +131,10 @@ namespace TRACNGHIEM
             this.ribbonControl1.MaxItemId = 18;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
-            this.ribbonPage1,
             this.ribbonPage3,
+            this.rbpTaiKhoan,
             this.rbBaoCao});
             this.ribbonControl1.Size = new System.Drawing.Size(2052, 346);
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             // 
             // btnDangNhap
             // 
@@ -188,13 +188,14 @@ namespace TRACNGHIEM
             this.btnThoatMain.Name = "btnThoatMain";
             this.btnThoatMain.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoatMain_ItemClick);
             // 
-            // barButtonItem3
+            // btnDangXuat
             // 
-            this.barButtonItem3.Caption = "Đăng xuất";
-            this.barButtonItem3.Id = 9;
-            this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
-            this.barButtonItem3.Name = "barButtonItem3";
+            this.btnDangXuat.Caption = "Đăng xuất";
+            this.btnDangXuat.Id = 9;
+            this.btnDangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
+            this.btnDangXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.btnDangXuat.Name = "btnDangXuat";
+            this.btnDangXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDangXuat_ItemClick);
             // 
             // btnMonHoc
             // 
@@ -257,14 +258,55 @@ namespace TRACNGHIEM
             this.btnDSDK.Name = "btnDSDK";
             this.btnDSDK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDSDK_ItemClick);
             // 
-            // ribbonPage1
+            // ribbonPage3
             // 
-            this.ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
+            this.rbKhoa,
+            this.rbLop,
+            this.rbMon,
+            this.rbDe,
+            this.rbThiThu});
+            this.ribbonPage3.Name = "ribbonPage3";
+            this.ribbonPage3.Text = "Quản lý";
+            // 
+            // rbKhoa
+            // 
+            this.rbKhoa.ItemLinks.Add(this.btnKhoa);
+            this.rbKhoa.Name = "rbKhoa";
+            this.rbKhoa.Text = "ribbonPageGroup4";
+            // 
+            // rbLop
+            // 
+            this.rbLop.ItemLinks.Add(this.btnLop);
+            this.rbLop.Name = "rbLop";
+            this.rbLop.Text = "ribbonPageGroup4";
+            // 
+            // rbMon
+            // 
+            this.rbMon.ItemLinks.Add(this.btnMonHoc);
+            this.rbMon.Name = "rbMon";
+            this.rbMon.Text = "ribbonPageGroup4";
+            // 
+            // rbDe
+            // 
+            this.rbDe.ItemLinks.Add(this.btnDe);
+            this.rbDe.Name = "rbDe";
+            this.rbDe.Text = "ribbonPageGroup11";
+            // 
+            // rbThiThu
+            // 
+            this.rbThiThu.ItemLinks.Add(this.btnThiThu);
+            this.rbThiThu.Name = "rbThiThu";
+            this.rbThiThu.Text = "ribbonPageGroup12";
+            // 
+            // rbpTaiKhoan
+            // 
+            this.rbpTaiKhoan.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.ribbonPageGroup6,
             this.ribbonPageGroup7,
             this.ribbonPageGroup2});
-            this.ribbonPage1.Name = "ribbonPage1";
-            this.ribbonPage1.Text = "Tài khoản";
+            this.rbpTaiKhoan.Name = "rbpTaiKhoan";
+            this.rbpTaiKhoan.Text = "Tài khoản";
             // 
             // ribbonPageGroup6
             // 
@@ -274,7 +316,7 @@ namespace TRACNGHIEM
             // 
             // ribbonPageGroup7
             // 
-            this.ribbonPageGroup7.ItemLinks.Add(this.barButtonItem3);
+            this.ribbonPageGroup7.ItemLinks.Add(this.btnDangXuat);
             this.ribbonPageGroup7.Name = "ribbonPageGroup7";
             this.ribbonPageGroup7.Text = "ribbonPageGroup7";
             // 
@@ -283,47 +325,6 @@ namespace TRACNGHIEM
             this.ribbonPageGroup2.ItemLinks.Add(this.btnThoatMain);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             this.ribbonPageGroup2.Text = "ribbonPageGroup2";
-            // 
-            // ribbonPage3
-            // 
-            this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup8,
-            this.ribbonPageGroup9,
-            this.ribbonPageGroup4,
-            this.ribbonPageGroup11,
-            this.ribbonPageGroup12});
-            this.ribbonPage3.Name = "ribbonPage3";
-            this.ribbonPage3.Text = "Quản lý";
-            // 
-            // ribbonPageGroup8
-            // 
-            this.ribbonPageGroup8.ItemLinks.Add(this.btnKhoa);
-            this.ribbonPageGroup8.Name = "ribbonPageGroup8";
-            this.ribbonPageGroup8.Text = "ribbonPageGroup8";
-            // 
-            // ribbonPageGroup9
-            // 
-            this.ribbonPageGroup9.ItemLinks.Add(this.btnLop);
-            this.ribbonPageGroup9.Name = "ribbonPageGroup9";
-            this.ribbonPageGroup9.Text = "ribbonPageGroup9";
-            // 
-            // ribbonPageGroup4
-            // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnMonHoc);
-            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
-            // 
-            // ribbonPageGroup11
-            // 
-            this.ribbonPageGroup11.ItemLinks.Add(this.btnDe);
-            this.ribbonPageGroup11.Name = "ribbonPageGroup11";
-            this.ribbonPageGroup11.Text = "ribbonPageGroup11";
-            // 
-            // ribbonPageGroup12
-            // 
-            this.ribbonPageGroup12.ItemLinks.Add(this.btnThiThu);
-            this.ribbonPageGroup12.Name = "ribbonPageGroup12";
-            this.ribbonPageGroup12.Text = "ribbonPageGroup12";
             // 
             // rbBaoCao
             // 
@@ -411,6 +412,7 @@ namespace TRACNGHIEM
             this.Name = "frmMain";
             this.Ribbon = this.ribbonControl1;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.frmMain_Load);
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
             this.statusStrip1.ResumeLayout(false);
@@ -423,6 +425,18 @@ namespace TRACNGHIEM
 
         private void frmMain_Load(object sender, EventArgs e)
         {
+            //Giangvien thì chỉ được quyền cập nhật đề thi, và chỉ được quyền hiệu chỉnh câu hỏi thi do mình soạn
+            //, được thi thử nhưng không ghi điểm
+            if (Program.mGroup == "Giangvien")
+            {
+                rbKhoa.Visible = rbLop.Visible = rbMon.Visible = false;
+                rbpTaiKhoan.Visible = rbBaoCao.Visible = false;
+            }
+            else if (Program.mGroup == "Truong" || Program.mGroup == "Giangvien")
+            {
+                rbKhoa.Visible = rbLop.Visible = rbMon.Visible = true;
+                rbpTaiKhoan.Visible = rbBaoCao.Visible = true;
+            }
 
         }
 
@@ -571,14 +585,33 @@ namespace TRACNGHIEM
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+            if(checkDangXuat == true)
             {
-                Application.ExitThread();
+                // xác nhận xem có cần lưu lại những thay đổi trước khi đăng xuất không?
+                this.Close();
+                return;
             }
-            else e.Cancel = true;
+            else
+            {
+                DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    Application.ExitThread();
+                }
+                else e.Cancel = true;
+            }
         }
 
-        
+        private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            checkDangXuat = true;
+            Program.mlogin = "";
+            Program.password = "";
+            this.Hide();
+            Program.frmDangNhap = new frmDangNhap();
+            Program.frmDangNhap.Activate();
+            Program.frmDangNhap.ShowDialog();
+            this.Close();
+        }
     }
 }

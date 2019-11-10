@@ -50,7 +50,7 @@
             this.barDockControl4 = new DevExpress.XtraBars.BarDockControl();
             this.btnSua = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbbCoSo = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TNDataSet = new TRACNGHIEM.TNDataSet();
             this.bdsKhoa = new System.Windows.Forms.BindingSource(this.components);
@@ -300,7 +300,7 @@
             // 
             // panelControl1
             // 
-            this.panelControl1.Controls.Add(this.comboBox1);
+            this.panelControl1.Controls.Add(this.cbbCoSo);
             this.panelControl1.Controls.Add(this.label1);
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 96);
@@ -308,14 +308,14 @@
             this.panelControl1.Size = new System.Drawing.Size(2496, 100);
             this.panelControl1.TabIndex = 4;
             // 
-            // comboBox1
+            // cbbCoSo
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Tahoma", 9.900001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(445, 26);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(604, 48);
-            this.comboBox1.TabIndex = 1;
+            this.cbbCoSo.Font = new System.Drawing.Font("Tahoma", 9.900001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbbCoSo.FormattingEnabled = true;
+            this.cbbCoSo.Location = new System.Drawing.Point(445, 26);
+            this.cbbCoSo.Name = "cbbCoSo";
+            this.cbbCoSo.Size = new System.Drawing.Size(604, 48);
+            this.cbbCoSo.TabIndex = 1;
             // 
             // label1
             // 
@@ -506,8 +506,8 @@
             this.ctxMenuGV.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnThemGV,
             this.btnXoaGV,
-            this.btnPhucHoiGV,
             this.btnGhiGV,
+            this.btnPhucHoiGV,
             this.btnTaiLaiGV});
             this.ctxMenuGV.Name = "btnThemGV";
             this.ctxMenuGV.Size = new System.Drawing.Size(365, 234);
@@ -683,7 +683,7 @@
         private System.Windows.Forms.BindingSource bdsKhoa;
         private TNDataSet TNDataSet;
         private DevExpress.XtraEditors.PanelControl panelControl1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbbCoSo;
         private System.Windows.Forms.Label label1;
         private TNDataSetTableAdapters.KHOATableAdapter tbKhoaADT;
         private TNDataSetTableAdapters.TableAdapterManager tableAdapterManager;

@@ -22,6 +22,13 @@ namespace TRACNGHIEM
         public static String mlogin = "";
         public static String password = "";
 
+
+        public static String mlogin1 = "HTKN";
+        public static String password1 = "123";
+        public static String connstr1;
+        public static String servername1 = "";
+        public static SqlConnection conn1 = new SqlConnection();
+
         public static String database = "TN";
         public static String remotelogin = "sa";
         public static String remotepassword = "123";
@@ -33,7 +40,29 @@ namespace TRACNGHIEM
         public static String mTenCoSo = "";
 
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
-        //public static frmMain frmChinh;
+                                                                     //public static frmMain frmChinh;
+
+        public static int KetNoiCosoKhac()
+        {
+            if (Program.conn1 != null && Program.conn1.State == ConnectionState.Open)
+                Program.conn1.Close();
+            try
+            {
+                Program.connstr1 = "Data Source=" + Program.servername1 + ";Initial Catalog=" +
+                      Program.database + ";User ID=" +
+                      Program.mlogin1 + ";password=" + Program.password1;
+                Program.conn1.ConnectionString = Program.connstr1;
+                Program.conn1.Open();
+                return 1;
+            }
+
+            catch (Exception e)
+            {
+                MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nBạn xem lại user name và password.\n "
+                    + e.Message, "", MessageBoxButtons.OK);
+                return 0;
+            }
+        }
 
         public static int KetNoi()
         {
@@ -56,6 +85,7 @@ namespace TRACNGHIEM
                 return 0;
             }
         }
+
         public static SqlDataReader ExecSqlDataReader(String strLenh)
         {
             SqlDataReader myreader;

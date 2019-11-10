@@ -35,7 +35,7 @@
             System.Windows.Forms.Label mAKHLabel;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLop));
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
-            this.bar6 = new DevExpress.XtraBars.Bar();
+            this.bar = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
@@ -80,14 +80,14 @@
             this.tbSinhVienADT = new TRACNGHIEM.TNDataSetTableAdapters.SINHVIENTableAdapter();
             this.ctxMenuSV = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.btnThemSV = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnGhiSV = new System.Windows.Forms.ToolStripMenuItem();
             this.btnXoaSV = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnGhiSV = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPhucHoiSV = new System.Windows.Forms.ToolStripMenuItem();
             this.btnTaiLaiSV = new System.Windows.Forms.ToolStripMenuItem();
             this.bdsGiaoVienDK = new System.Windows.Forms.BindingSource(this.components);
             this.tbGiaoVienADT = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
             this.tbBangDiemADT = new TRACNGHIEM.TNDataSetTableAdapters.BANGDIEMTableAdapter();
-            this.btnPhucHoiSV = new System.Windows.Forms.ToolStripMenuItem();
             mALOPLabel = new System.Windows.Forms.Label();
             tENLOPLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
@@ -154,7 +154,7 @@
             // barManager
             // 
             this.barManager.Bars.AddRange(new DevExpress.XtraBars.Bar[] {
-            this.bar6});
+            this.bar});
             this.barManager.DockControls.Add(this.barDockControl1);
             this.barManager.DockControls.Add(this.barDockControl2);
             this.barManager.DockControls.Add(this.barDockControl3);
@@ -169,16 +169,16 @@
             this.btnTaiLai,
             this.btnInDS,
             this.btnThoat});
-            this.barManager.MainMenu = this.bar6;
+            this.barManager.MainMenu = this.bar;
             this.barManager.MaxItemId = 8;
             // 
-            // bar6
+            // bar
             // 
-            this.bar6.BarName = "Main menu";
-            this.bar6.DockCol = 0;
-            this.bar6.DockRow = 0;
-            this.bar6.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
-            this.bar6.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
+            this.bar.BarName = "Main menu";
+            this.bar.DockCol = 0;
+            this.bar.DockRow = 0;
+            this.bar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
+            this.bar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -186,9 +186,9 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnTaiLai, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnInDS, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
-            this.bar6.OptionsBar.MultiLine = true;
-            this.bar6.OptionsBar.UseWholeRow = true;
-            this.bar6.Text = "Main menu";
+            this.bar.OptionsBar.MultiLine = true;
+            this.bar.OptionsBar.UseWholeRow = true;
+            this.bar.Text = "Main menu";
             // 
             // btnThem
             // 
@@ -305,12 +305,14 @@
             // 
             // cbbCoSo
             // 
+            this.cbbCoSo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbCoSo.Font = new System.Drawing.Font("Tahoma", 9.900001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbCoSo.FormattingEnabled = true;
             this.cbbCoSo.Location = new System.Drawing.Point(445, 26);
             this.cbbCoSo.Name = "cbbCoSo";
             this.cbbCoSo.Size = new System.Drawing.Size(604, 48);
             this.cbbCoSo.TabIndex = 1;
+            this.cbbCoSo.SelectedIndexChanged += new System.EventHandler(this.cbbCoSo_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -574,33 +576,45 @@
             this.btnPhucHoiSV,
             this.btnTaiLaiSV});
             this.ctxMenuSV.Name = "contextMenuStrip1";
-            this.ctxMenuSV.Size = new System.Drawing.Size(438, 289);
+            this.ctxMenuSV.Size = new System.Drawing.Size(462, 234);
             // 
             // btnThemSV
             // 
+            this.btnThemSV.Image = ((System.Drawing.Image)(resources.GetObject("btnThemSV.Image")));
             this.btnThemSV.Name = "btnThemSV";
-            this.btnThemSV.Size = new System.Drawing.Size(437, 46);
+            this.btnThemSV.Size = new System.Drawing.Size(461, 46);
             this.btnThemSV.Text = "Thêm sinh viên";
             this.btnThemSV.Click += new System.EventHandler(this.btnThemSV_Click);
             // 
-            // btnGhiSV
-            // 
-            this.btnGhiSV.Name = "btnGhiSV";
-            this.btnGhiSV.Size = new System.Drawing.Size(437, 46);
-            this.btnGhiSV.Text = "Ghi sinh viên";
-            this.btnGhiSV.Click += new System.EventHandler(this.btnGhiSV_Click);
-            // 
             // btnXoaSV
             // 
+            this.btnXoaSV.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaSV.Image")));
             this.btnXoaSV.Name = "btnXoaSV";
-            this.btnXoaSV.Size = new System.Drawing.Size(437, 46);
+            this.btnXoaSV.Size = new System.Drawing.Size(461, 46);
             this.btnXoaSV.Text = "Xóa sinh viên";
             this.btnXoaSV.Click += new System.EventHandler(this.btnXoaSV_Click);
             // 
+            // btnGhiSV
+            // 
+            this.btnGhiSV.Image = ((System.Drawing.Image)(resources.GetObject("btnGhiSV.Image")));
+            this.btnGhiSV.Name = "btnGhiSV";
+            this.btnGhiSV.Size = new System.Drawing.Size(461, 46);
+            this.btnGhiSV.Text = "Ghi sinh viên";
+            this.btnGhiSV.Click += new System.EventHandler(this.btnGhiSV_Click);
+            // 
+            // btnPhucHoiSV
+            // 
+            this.btnPhucHoiSV.Image = ((System.Drawing.Image)(resources.GetObject("btnPhucHoiSV.Image")));
+            this.btnPhucHoiSV.Name = "btnPhucHoiSV";
+            this.btnPhucHoiSV.Size = new System.Drawing.Size(461, 46);
+            this.btnPhucHoiSV.Text = "Phục hồi";
+            this.btnPhucHoiSV.Click += new System.EventHandler(this.btnPhucHoiSV_Click);
+            // 
             // btnTaiLaiSV
             // 
+            this.btnTaiLaiSV.Image = ((System.Drawing.Image)(resources.GetObject("btnTaiLaiSV.Image")));
             this.btnTaiLaiSV.Name = "btnTaiLaiSV";
-            this.btnTaiLaiSV.Size = new System.Drawing.Size(437, 46);
+            this.btnTaiLaiSV.Size = new System.Drawing.Size(461, 46);
             this.btnTaiLaiSV.Text = "Tải lại danh sách sinh viên";
             this.btnTaiLaiSV.Click += new System.EventHandler(this.btnTaiLaiSV_Click);
             // 
@@ -621,13 +635,6 @@
             // tbBangDiemADT
             // 
             this.tbBangDiemADT.ClearBeforeFill = true;
-            // 
-            // btnPhucHoiSV
-            // 
-            this.btnPhucHoiSV.Name = "btnPhucHoiSV";
-            this.btnPhucHoiSV.Size = new System.Drawing.Size(437, 46);
-            this.btnPhucHoiSV.Text = "Phục hồi";
-            this.btnPhucHoiSV.Click += new System.EventHandler(this.btnPhucHoiSV_Click);
             // 
             // frmLop
             // 
@@ -678,8 +685,7 @@
         #endregion
 
         private DevExpress.XtraBars.BarManager barManager;
-        private DevExpress.XtraBars.Bar bar6;
-        private DevExpress.XtraBars.BarButtonItem btnThem;
+        private DevExpress.XtraBars.Bar bar;
         private DevExpress.XtraBars.BarButtonItem btnGhi;
         private DevExpress.XtraBars.BarButtonItem btnXoa;
         private DevExpress.XtraBars.BarButtonItem btnSua;
@@ -731,5 +737,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colMAKH;
         private System.Windows.Forms.ToolStripMenuItem btnTaiLaiSV;
         private System.Windows.Forms.ToolStripMenuItem btnPhucHoiSV;
+        public DevExpress.XtraBars.BarButtonItem btnThem;
     }
 }

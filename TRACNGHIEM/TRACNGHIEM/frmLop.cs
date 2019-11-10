@@ -12,6 +12,7 @@ namespace TRACNGHIEM
 {
     public partial class frmLop : Form
     {
+        private int dem = 0;
         public frmLop()
         {
             InitializeComponent();
@@ -25,9 +26,49 @@ namespace TRACNGHIEM
 
         }
 
+
+        private void cbbCoSo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbbCoSo.SelectedValue != null && dem != 0)
+                {
+
+                    Program.servername1 = cbbCoSo.SelectedValue.ToString();
+                    if (Program.KetNoiCosoKhac() == 0) return;
+                    else
+                    {
+                        Program.conn.ConnectionString = Program.connstr1;
+                        // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
+                        this.tbBangDiemADT.Fill(this.TNDataSet.BANGDIEM);
+                        // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+                        this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
+                        // TODO: This line of code loads data into the 'tNDataSet.SINHVIEN' table. You can move, or remove it, as needed.
+                        // gán chuỗi kết nối được lấy từ form đăng nhập trước khi fiew dữ liêu về
+                        this.tbSinhVienADT.Connection.ConnectionString = Program.connstr1;
+                        this.tbSinhVienADT.Fill(this.TNDataSet.SINHVIEN);
+                        // TODO: This line of code loads data into the 'tNDataSet.DSKHOA' table. You can move, or remove it, as needed.
+                        this.tbDSKhoaADT.Connection.ConnectionString = Program.connstr1;
+                        this.tbDSKhoaADT.Fill(this.TNDataSet.DSKHOA);
+                        // TODO: This line of code loads data into the 'tNDataSet.LOP' table. You can move, or remove it, as needed.
+                        this.tbLopADT.Connection.ConnectionString = Program.connstr1;
+                        this.tbLopADT.Fill(this.TNDataSet.LOP);
+                    }
+                }
+            }
+            catch (Exception) { };
+        }
+
         private void frmLop_Load(object sender, EventArgs e)
         {
             TNDataSet.EnforceConstraints = false;
+
+            // Lấy kết danh sách phân mảnh đổ vào combobox
+            cbbCoSo.DataSource = Program.bds_dspm.DataSource;
+            cbbCoSo.DisplayMember = "TENCS";
+            cbbCoSo.ValueMember = "TENSERVER";
+            cbbCoSo.SelectedIndex = Program.mCoSo;
+
             // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
             this.tbBangDiemADT.Fill(this.TNDataSet.BANGDIEM);
             // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
@@ -43,6 +84,22 @@ namespace TRACNGHIEM
             this.tbLopADT.Connection.ConnectionString = Program.connstr;
             this.tbLopADT.Fill(this.TNDataSet.LOP);
 
+            // phân quyền
+            // nhóm CoSo thì ta chỉ cho phép toàn quyền làm việc trên cơ sở  đó , không được log vào cơ sở  khác,   
+            if (Program.mGroup == "Coso")
+            {
+                cbbCoSo.Enabled = false;
+                btnThemSV.Visible = btnGhiSV.Visible = btnXoaSV.Visible = btnPhucHoiSV.Visible = true;
+                btnThem.Visibility = btnGhi.Visibility = btnXoa.Visibility = btnPhucHoi.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            //Truong thì login đó có thể đăng nhập vào bất kỳ phân mảnh  nào để xem dữ liệu 
+            else if (Program.mGroup == "Truong")
+            {
+                cbbCoSo.Enabled = true;
+                btnThem.Visibility = btnGhi.Visibility = btnXoa.Visibility = btnPhucHoi.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                btnThemSV.Visible = btnGhiSV.Visible = btnXoaSV.Visible= btnPhucHoiSV.Visible= false;
+            }
+            dem++;
         }
 
         private void tENKHComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -51,7 +108,8 @@ namespace TRACNGHIEM
             {
                 edtMaKhoa.Text = cbbTenKhoa.SelectedValue.ToString();
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return;
             }
         }
@@ -119,7 +177,7 @@ namespace TRACNGHIEM
             try
             {
                 bdsLop.AddNew();
-               
+
             }
             catch (Exception ex)
             {
@@ -205,7 +263,7 @@ namespace TRACNGHIEM
             //DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form lớp", "", MessageBoxButtons.YesNo);
             //if (dr == DialogResult.Yes)
             //{
-                this.Close();
+            this.Close();
             //}
             //else e.Cancel = true;
         }
@@ -220,5 +278,6 @@ namespace TRACNGHIEM
             // Hủy bỏ thao tác đang hiệu chỉnh
             bdsSinhVien.CancelEdit();
         }
+
     }
 }

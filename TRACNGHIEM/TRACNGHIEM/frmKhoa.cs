@@ -39,6 +39,14 @@ namespace TRACNGHIEM
             // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
             this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
 
+            // phân quyền
+            // nhóm CoSo thì ta chỉ cho phép toàn quyền làm việc trên cơ sở  đó , không được log vào cơ sở  khác,   
+            if (Program.mGroup == "Coso")
+            {
+                cbbCoSo.Enabled = false;
+            }
+            //Truong thì login đó có thể đăng nhập vào bất kỳ phân mảnh  nào để xem dữ liệu 
+            else if (Program.mGroup == "Truong") cbbCoSo.Enabled = true;
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

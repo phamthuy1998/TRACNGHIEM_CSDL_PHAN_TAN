@@ -30,8 +30,8 @@ namespace TRACNGHIEM
             TNDataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'tNDataSet.SINHVIEN' table. You can move, or remove it, as needed.
             // gán chuỗi kết nối được lấy từ form đăng nhập trước khi fiew dữ liêu về
-            this.sINHVIENTableAdapter.Connection.ConnectionString = Program.connstr;
-            this.sINHVIENTableAdapter.Fill(this.TNDataSet.SINHVIEN);
+            this.tbSinhVienADT.Connection.ConnectionString = Program.connstr;
+            this.tbSinhVienADT.Fill(this.TNDataSet.SINHVIEN);
             // TODO: This line of code loads data into the 'tNDataSet.DSKHOA' table. You can move, or remove it, as needed.
             this.tbDSKhoaADT.Connection.ConnectionString = Program.connstr;
             this.tbDSKhoaADT.Fill(this.TNDataSet.DSKHOA);
@@ -47,7 +47,10 @@ namespace TRACNGHIEM
             {
                 edtMaKhoa.Text = cbbTenKhoa.SelectedValue.ToString();
             }
-            catch (Exception) { }
+            catch (Exception ex) {
+                MessageBox.Show("Lỗi load dữ liệu khoa: "+ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
         }
     }
 }

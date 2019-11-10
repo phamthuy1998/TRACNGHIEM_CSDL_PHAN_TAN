@@ -68,13 +68,8 @@
             this.mACSTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.bdsGiaoVien = new System.Windows.Forms.BindingSource(this.components);
-            this.gIAOVIENDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gIAOVIENGridControl = new DevExpress.XtraGrid.GridControl();
+            this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
             mAKHLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
             mACSLabel = new System.Windows.Forms.Label();
@@ -95,7 +90,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).BeginInit();
             this.panelControl3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVien)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gIAOVIENDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gIAOVIENGridControl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // mAKHLabel
@@ -434,7 +430,7 @@
             // 
             // panelControl3
             // 
-            this.panelControl3.Controls.Add(this.gIAOVIENDataGridView);
+            this.panelControl3.Controls.Add(this.gIAOVIENGridControl);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelControl3.Location = new System.Drawing.Point(838, 455);
             this.panelControl3.Name = "panelControl3";
@@ -446,60 +442,23 @@
             this.bdsGiaoVien.DataMember = "FK_GIAOVIEN_KHOA";
             this.bdsGiaoVien.DataSource = this.bdsKhoa;
             // 
-            // gIAOVIENDataGridView
+            // gIAOVIENGridControl
             // 
-            this.gIAOVIENDataGridView.AutoGenerateColumns = false;
-            this.gIAOVIENDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gIAOVIENDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
-            this.gIAOVIENDataGridView.DataSource = this.bdsGiaoVien;
-            this.gIAOVIENDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gIAOVIENDataGridView.Location = new System.Drawing.Point(3, 3);
-            this.gIAOVIENDataGridView.Name = "gIAOVIENDataGridView";
-            this.gIAOVIENDataGridView.RowTemplate.Height = 40;
-            this.gIAOVIENDataGridView.Size = new System.Drawing.Size(1652, 1000);
-            this.gIAOVIENDataGridView.TabIndex = 0;
+            this.gIAOVIENGridControl.DataSource = this.bdsGiaoVien;
+            this.gIAOVIENGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gIAOVIENGridControl.Location = new System.Drawing.Point(3, 3);
+            this.gIAOVIENGridControl.MainView = this.gridView2;
+            this.gIAOVIENGridControl.MenuManager = this.barManager;
+            this.gIAOVIENGridControl.Name = "gIAOVIENGridControl";
+            this.gIAOVIENGridControl.Size = new System.Drawing.Size(1652, 1000);
+            this.gIAOVIENGridControl.TabIndex = 0;
+            this.gIAOVIENGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView2});
             // 
-            // dataGridViewTextBoxColumn1
+            // gridView2
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MAGV";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MAGV";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "HO";
-            this.dataGridViewTextBoxColumn2.HeaderText = "HO";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "TEN";
-            this.dataGridViewTextBoxColumn3.HeaderText = "TEN";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "DIACHI";
-            this.dataGridViewTextBoxColumn4.HeaderText = "DIACHI";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "MAKH";
-            this.dataGridViewTextBoxColumn5.HeaderText = "MAKH";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "HOCVI";
-            this.dataGridViewTextBoxColumn6.HeaderText = "HOCVI";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.gridView2.GridControl = this.gIAOVIENGridControl;
+            this.gridView2.Name = "gridView2";
             // 
             // frmKhoa
             // 
@@ -534,7 +493,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.panelControl3)).EndInit();
             this.panelControl3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVien)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gIAOVIENDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gIAOVIENGridControl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -575,12 +535,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn colMACS;
         private TNDataSetTableAdapters.GIAOVIENTableAdapter tbGiaoVienADT;
         private System.Windows.Forms.BindingSource bdsGiaoVien;
-        private System.Windows.Forms.DataGridView gIAOVIENDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private DevExpress.XtraGrid.GridControl gIAOVIENGridControl;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView2;
     }
 }

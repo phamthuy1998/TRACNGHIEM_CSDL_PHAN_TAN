@@ -31,7 +31,7 @@ namespace TRACNGHIEM
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
         private DevExpress.XtraBars.BarButtonItem btnBangDiemBaoCao;
         private DevExpress.XtraBars.BarButtonItem btnTaoTK;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup6;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbTaoTK;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.BarButtonItem btnThoatMain;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
@@ -86,7 +86,7 @@ namespace TRACNGHIEM
             this.rbDe = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbThiThu = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbpTaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPage();
-            this.ribbonPageGroup6 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbTaoTK = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup7 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbBaoCao = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -192,8 +192,8 @@ namespace TRACNGHIEM
             // 
             this.btnDangXuat.Caption = "Đăng xuất";
             this.btnDangXuat.Id = 9;
-            this.btnDangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.btnDangXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.btnDangXuat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDangXuat.ImageOptions.Image")));
+            this.btnDangXuat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDangXuat.ImageOptions.LargeImage")));
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDangXuat_ItemClick);
             // 
@@ -302,17 +302,17 @@ namespace TRACNGHIEM
             // rbpTaiKhoan
             // 
             this.rbpTaiKhoan.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
-            this.ribbonPageGroup6,
+            this.rbTaoTK,
             this.ribbonPageGroup7,
             this.ribbonPageGroup2});
             this.rbpTaiKhoan.Name = "rbpTaiKhoan";
             this.rbpTaiKhoan.Text = "Tài khoản";
             // 
-            // ribbonPageGroup6
+            // rbTaoTK
             // 
-            this.ribbonPageGroup6.ItemLinks.Add(this.btnTaoTK);
-            this.ribbonPageGroup6.Name = "ribbonPageGroup6";
-            this.ribbonPageGroup6.Text = "ribbonPageGroup6";
+            this.rbTaoTK.ItemLinks.Add(this.btnTaoTK);
+            this.rbTaoTK.Name = "rbTaoTK";
+            this.rbTaoTK.Text = "ribbonPageGroup6";
             // 
             // ribbonPageGroup7
             // 
@@ -430,14 +430,15 @@ namespace TRACNGHIEM
             if (Program.mGroup == "Giangvien")
             {
                 rbKhoa.Visible = rbLop.Visible = rbMon.Visible = false;
-                rbpTaiKhoan.Visible = rbBaoCao.Visible = false;
+                rbBaoCao.Visible = false;
+                rbTaoTK.Visible = false;
             }
             else if (Program.mGroup == "Truong" || Program.mGroup == "Giangvien")
             {
                 rbKhoa.Visible = rbLop.Visible = rbMon.Visible = true;
-                rbpTaiKhoan.Visible = rbBaoCao.Visible = true;
+                rbBaoCao.Visible = true;
+                rbTaoTK.Visible = true;
             }
-
         }
 
         private Form CheckExists(Type ftype)
@@ -585,7 +586,7 @@ namespace TRACNGHIEM
 
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if(checkDangXuat == true)
+            if (checkDangXuat == true)
             {
                 // xác nhận xem có cần lưu lại những thay đổi trước khi đăng xuất không?
                 this.Close();

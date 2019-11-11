@@ -123,6 +123,7 @@ namespace TRACNGHIEM
 
         private void frmDangNhap_Load(object sender, EventArgs e)
         {
+            txUsername.Focus();
             radGiaoVien.Checked = true;
             try
             {

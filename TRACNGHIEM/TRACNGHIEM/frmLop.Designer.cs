@@ -37,8 +37,9 @@
             this.barManager = new DevExpress.XtraBars.BarManager(this.components);
             this.bar = new DevExpress.XtraBars.Bar();
             this.btnThem = new DevExpress.XtraBars.BarButtonItem();
-            this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
+            this.btnSuaL = new DevExpress.XtraBars.BarButtonItem();
             this.btnXoa = new DevExpress.XtraBars.BarButtonItem();
+            this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnTaiLai = new DevExpress.XtraBars.BarButtonItem();
             this.btnInDS = new DevExpress.XtraBars.BarButtonItem();
@@ -68,6 +69,12 @@
             this.tENLOPTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.gvSinhVien = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.bdsSinhVien = new System.Windows.Forms.BindingSource(this.components);
             this.tbDSKhoaADT = new TRACNGHIEM.TNDataSetTableAdapters.DSKHOATableAdapter();
             this.tbSinhVienADT = new TRACNGHIEM.TNDataSetTableAdapters.SINHVIENTableAdapter();
@@ -81,12 +88,6 @@
             this.tbGiaoVienADT = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
             this.tbBangDiemADT = new TRACNGHIEM.TNDataSetTableAdapters.BANGDIEMTableAdapter();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             mALOPLabel = new System.Windows.Forms.Label();
             tENLOPLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
@@ -166,9 +167,10 @@
             this.btnPhucHoi,
             this.btnTaiLai,
             this.btnInDS,
-            this.btnThoat});
+            this.btnThoat,
+            this.btnSuaL});
             this.barManager.MainMenu = this.bar;
-            this.barManager.MaxItemId = 8;
+            this.barManager.MaxItemId = 9;
             // 
             // bar
             // 
@@ -178,8 +180,9 @@
             this.bar.DockStyle = DevExpress.XtraBars.BarDockStyle.Top;
             this.bar.LinksPersistInfo.AddRange(new DevExpress.XtraBars.LinkPersistInfo[] {
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThem, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSuaL, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoa, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnTaiLai, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnInDS, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
@@ -197,14 +200,13 @@
             this.btnThem.Name = "btnThem";
             this.btnThem.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThem_ItemClick);
             // 
-            // btnGhi
+            // btnSuaL
             // 
-            this.btnGhi.Caption = "Ghi";
-            this.btnGhi.Id = 1;
-            this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
-            this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
-            this.btnGhi.Name = "btnGhi";
-            this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
+            this.btnSuaL.Caption = "Sửa";
+            this.btnSuaL.Id = 8;
+            this.btnSuaL.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaL.ImageOptions.Image")));
+            this.btnSuaL.Name = "btnSuaL";
+            this.btnSuaL.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSuaL_ItemClick);
             // 
             // btnXoa
             // 
@@ -214,6 +216,15 @@
             this.btnXoa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.LargeImage")));
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoa_ItemClick);
+            // 
+            // btnGhi
+            // 
+            this.btnGhi.Caption = "Ghi";
+            this.btnGhi.Id = 1;
+            this.btnGhi.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.Image")));
+            this.btnGhi.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGhi.ImageOptions.LargeImage")));
+            this.btnGhi.Name = "btnGhi";
+            this.btnGhi.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGhi_ItemClick);
             // 
             // btnPhucHoi
             // 
@@ -378,6 +389,7 @@
             this.colMALOP1.FieldName = "MALOP";
             this.colMALOP1.MinWidth = 50;
             this.colMALOP1.Name = "colMALOP1";
+            this.colMALOP1.OptionsColumn.AllowEdit = false;
             this.colMALOP1.Visible = true;
             this.colMALOP1.VisibleIndex = 0;
             this.colMALOP1.Width = 187;
@@ -387,6 +399,7 @@
             this.colTENLOP.FieldName = "TENLOP";
             this.colTENLOP.MinWidth = 50;
             this.colTENLOP.Name = "colTENLOP";
+            this.colTENLOP.OptionsColumn.AllowEdit = false;
             this.colTENLOP.Visible = true;
             this.colTENLOP.VisibleIndex = 1;
             this.colTENLOP.Width = 187;
@@ -396,6 +409,7 @@
             this.colMAKH.FieldName = "MAKH";
             this.colMAKH.MinWidth = 50;
             this.colMAKH.Name = "colMAKH";
+            this.colMAKH.OptionsColumn.AllowEdit = false;
             this.colMAKH.Visible = true;
             this.colMAKH.VisibleIndex = 2;
             this.colMAKH.Width = 187;
@@ -491,6 +505,56 @@
             this.gvSinhVien.Size = new System.Drawing.Size(1550, 916);
             this.gvSinhVien.TabIndex = 0;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "MASV";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã sinh viên";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "HO";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Họ";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "TEN";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Tên";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "NGAYSINH";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Ngày sinh";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "DIACHI";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 350;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "MALOP";
+            this.dataGridViewTextBoxColumn6.DataSource = this.bdsLop;
+            this.dataGridViewTextBoxColumn6.DisplayMember = "TENLOP";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Lớp";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn6.ValueMember = "MALOP";
+            this.dataGridViewTextBoxColumn6.Width = 300;
+            // 
             // bdsSinhVien
             // 
             this.bdsSinhVien.DataMember = "FK_SINHVIEN_LOP";
@@ -573,56 +637,6 @@
             // tbBangDiemADT
             // 
             this.tbBangDiemADT.ClearBeforeFill = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MASV";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mã sinh viên";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 15;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "HO";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Họ";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 15;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 200;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "TEN";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Tên";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 15;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "NGAYSINH";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Ngày sinh";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 15;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "DIACHI";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Địa chỉ";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 15;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 350;
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "MALOP";
-            this.dataGridViewTextBoxColumn6.DataSource = this.bdsLop;
-            this.dataGridViewTextBoxColumn6.DisplayMember = "TENLOP";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Lớp";
-            this.dataGridViewTextBoxColumn6.MinimumWidth = 15;
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn6.ValueMember = "MALOP";
-            this.dataGridViewTextBoxColumn6.Width = 300;
             // 
             // frmLop
             // 
@@ -724,5 +738,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewComboBoxColumn dataGridViewTextBoxColumn6;
+        private DevExpress.XtraBars.BarButtonItem btnSuaL;
     }
 }

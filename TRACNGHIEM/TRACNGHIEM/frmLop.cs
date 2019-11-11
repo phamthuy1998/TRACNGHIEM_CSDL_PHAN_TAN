@@ -265,7 +265,7 @@ namespace TRACNGHIEM
             //DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form lớp", "", MessageBoxButtons.YesNo);
             //if (dr == DialogResult.Yes)
             //{
-            this.Close();
+           // this.Close();
             //}
             //else e.Cancel = true;
         }
@@ -281,5 +281,9 @@ namespace TRACNGHIEM
             bdsSinhVien.CancelEdit();
         }
 
+        private void btnSuaL_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
     }
 }

@@ -13,6 +13,10 @@ namespace TRACNGHIEM
     public partial class frmKhoa : Form
     {
         private int dem = 0;
+        private Boolean checkThem = false;
+        private Boolean checkXoa = false;
+        private Boolean checkSua = false;
+
         public frmKhoa()
         {
             InitializeComponent();
@@ -29,12 +33,20 @@ namespace TRACNGHIEM
         private void frmKhoa_Load(object sender, EventArgs e)
         {
             TNDataSet.EnforceConstraints = false;
-
+            gcKhoa.UseDisabledStatePainter = false;
             // Lấy kết danh sách phân mảnh đổ vào combobox
             cbbCoSo.DataSource = Program.bds_dspm.DataSource;
             cbbCoSo.DisplayMember = "TENCS";
             cbbCoSo.ValueMember = "TENSERVER";
             cbbCoSo.SelectedIndex = Program.mCoSo;
+
+            // Lấy kết danh sách phân mảnh đổ vào combobox
+            cbbCoSoAdd.DataSource = Program.bds_dspm.DataSource;
+            cbbCoSoAdd.DisplayMember = "TENCS";
+            cbbCoSoAdd.ValueMember = "MACS";
+            cbbCoSoAdd.SelectedIndex = Program.mCoSo;
+            cbbCoSoAdd.Enabled = false;
+            txtMaCS.Text = cbbCoSoAdd.SelectedIndex.ToString();
 
             // TODO: This line of code loads data into the 'TNDataSet.BODE' table. You can move, or remove it, as needed.
             this.tbBoDeADT.Connection.ConnectionString = Program.connstr;
@@ -71,6 +83,7 @@ namespace TRACNGHIEM
                 btnThem.Visibility = btnGhi.Visibility = btnXoa.Visibility = btnPhucHoi.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 btnThemGV.Visible = btnGhiGV.Visible = btnXoaGV.Visible = btnPhucHoiGV.Visible = false;
             }
+            txtMaKH.Enabled = txtTenKH.Enabled = false;
             dem++;
         }
 
@@ -79,10 +92,15 @@ namespace TRACNGHIEM
             try
             {
                 bdsKhoa.AddNew();
-                //btnAdd.Enabled = btnEdit.Enabled
-                //    = btnDel.Enabled = btnRefres     h.Enabled = btnExit.Enabled=false;
-                //btnSave.Enabled = btnRevert.Enabled = true;
-                //gcGiangVien.Enabled = false;
+                checkThem = true;
+                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = btnInDS.Enabled = false;
+                txtMaKH.Focus();
+                btnGhi.Enabled = true;
+                gcKhoa.Enabled = false;
+                gcGiaoVien.Enabled = false;
+                ctxMenuGV.Enabled = false;
+                txtMaKH.Enabled = txtTenKH.Enabled = true;
+                txtMaCS.Text = cbbCoSoAdd.SelectedValue.ToString();
             }
             catch (Exception ex)
             {
@@ -90,7 +108,7 @@ namespace TRACNGHIEM
             }
         }
 
-        private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private int ghiKhoa()
         {
             try
             {
@@ -100,11 +118,41 @@ namespace TRACNGHIEM
                 //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
                 // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
                 this.tbKhoaADT.Update(this.TNDataSet.KHOA);
+
+                checkThem = false;
+                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = btnInDS.Enabled = true;
+                txtMaKH.Focus();
+                btnGhi.Enabled = true;
+                gcKhoa.Enabled = true;
+                gcGiaoVien.Enabled = true;
+                ctxMenuGV.Enabled = true;
+                txtMaKH.Enabled = txtTenKH.Enabled = false;
+                cbbCoSoAdd.Enabled = false;
+                return 0;
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi ghi khoa" + ex.Message, "", MessageBoxButtons.OK);
+                return -1;
             }
+        }
+        private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (txtMaKH.Text.Equals(""))
+            {
+                MessageBox.Show("Mã khoa không được rỗng", "", MessageBoxButtons.OK);
+                txtMaKH.Focus();
+                return;
+            }
+            if (txtTenKH.Text.Equals(""))
+            {
+                MessageBox.Show("Tên khoa không được rỗng", "", MessageBoxButtons.OK);
+                txtMaKH.Focus();
+                return;
+            }
+
+            //if ()
+                ghiKhoa();
         }
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -166,7 +214,7 @@ namespace TRACNGHIEM
                 MessageBox.Show("Giảng viên này ra đề thi, không thể xóa", "", MessageBoxButtons.OK);
                 return;
             }
-            
+
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên: " + ((DataRowView)this.bdsGiaoVien.Current).Row["TEN"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
@@ -242,10 +290,98 @@ namespace TRACNGHIEM
 
                         this.tbKhoaADT.Connection.ConnectionString = Program.connstr1;
                         this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
+
+                        cbbCoSoAdd.SelectedIndex = Program.mCoSo;
+                        txtMaCS.Text = cbbCoSoAdd.SelectedValue.ToString();
                     }
                 }
             }
             catch (Exception) { };
+        }
+
+        private void btnSuaK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            checkSua = true;
+            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = btnInDS.Enabled = false;
+            txtMaKH.Focus();
+            btnGhi.Enabled = true;
+            gcKhoa.Enabled = false;
+            gcGiaoVien.Enabled = false;
+            cbbCoSoAdd.Enabled = true;
+            ctxMenuGV.Enabled = false;
+            txtTenKH.Enabled = true;
+        }
+
+        private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            // Hủy bỏ thao tác đang hiệu chỉnh
+            bdsKhoa.CancelEdit();
+            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = btnInDS.Enabled = true;
+            txtMaKH.Focus();
+            checkThem = false;
+            btnGhi.Enabled = true;
+            gcKhoa.Enabled = true;
+            gcGiaoVien.Enabled = true;
+            ctxMenuGV.Enabled = true;
+            this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
+            txtMaKH.Enabled = txtTenKH.Enabled = false;
+            cbbCoSoAdd.Enabled = false;
+        }
+
+        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (checkThem == true)
+            {
+                if (MessageBox.Show("Bạn đang tạo khoa mới, nếu không ghi khoa mới sẽ không được lưu, bạn có muốn ghi khoa?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        ghiKhoa();
+                        // ghi xong đóng form
+                        //Close();
+                        //checkThem = false;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi ghi khoa" + ex.Message, "", MessageBoxButtons.OK);
+                    }
+                }
+                else
+                {
+                    Close();
+                }
+            }
+            else
+            {
+                this.Close();
+            }
+
+        }
+
+        private void frmKhoa_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            //DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form lớp", "", MessageBoxButtons.YesNo);
+            //if (dr == DialogResult.Yes)
+            //{
+            //  this.Close();
+            //}
+            //else e.Cancel = true;
+        }
+
+        private void btnInDS_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void btnTaiLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
+        }
+
+        private void cbbCoSoAdd_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtMaCS.Text = cbbCoSoAdd.SelectedValue.ToString();
         }
     }
 }

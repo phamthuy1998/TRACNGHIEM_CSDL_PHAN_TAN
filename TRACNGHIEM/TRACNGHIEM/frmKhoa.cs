@@ -12,6 +12,7 @@ namespace TRACNGHIEM
 {
     public partial class frmKhoa : Form
     {
+        private int dem = 0;
         public frmKhoa()
         {
             InitializeComponent();
@@ -28,15 +29,31 @@ namespace TRACNGHIEM
         private void frmKhoa_Load(object sender, EventArgs e)
         {
             TNDataSet.EnforceConstraints = false;
+
+            // Lấy kết danh sách phân mảnh đổ vào combobox
+            cbbCoSo.DataSource = Program.bds_dspm.DataSource;
+            cbbCoSo.DisplayMember = "TENCS";
+            cbbCoSo.ValueMember = "TENSERVER";
+            cbbCoSo.SelectedIndex = Program.mCoSo;
+
             // TODO: This line of code loads data into the 'TNDataSet.BODE' table. You can move, or remove it, as needed.
+            this.tbBoDeADT.Connection.ConnectionString = Program.connstr;
             this.tbBoDeADT.Fill(this.TNDataSet.BODE);
             // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+
+            this.tbGiaoVienDKADT.Connection.ConnectionString = Program.connstr;
             this.tbGiaoVienDKADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
             // TODO: This line of code loads data into the 'TNDataSet.LOP' table. You can move, or remove it, as needed.
+
+            this.tbLopADT.Connection.ConnectionString = Program.connstr;
             this.tbLopADT.Fill(this.TNDataSet.LOP);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
+
+            this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
             this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
             // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
+
+            this.tbKhoaADT.Connection.ConnectionString = Program.connstr;
             this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
 
             // phân quyền
@@ -44,9 +61,17 @@ namespace TRACNGHIEM
             if (Program.mGroup == "Coso")
             {
                 cbbCoSo.Enabled = false;
+                btnThemGV.Visible = btnGhiGV.Visible = btnXoaGV.Visible = btnPhucHoiGV.Visible = true;
+                btnThem.Visibility = btnGhi.Visibility = btnXoa.Visibility = btnPhucHoi.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             }
             //Truong thì login đó có thể đăng nhập vào bất kỳ phân mảnh  nào để xem dữ liệu 
-            else if (Program.mGroup == "Truong") cbbCoSo.Enabled = true;
+            else if (Program.mGroup == "Truong")
+            {
+                cbbCoSo.Enabled = true;
+                btnThem.Visibility = btnGhi.Visibility = btnXoa.Visibility = btnPhucHoi.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                btnThemGV.Visible = btnGhiGV.Visible = btnXoaGV.Visible = btnPhucHoiGV.Visible = false;
+            }
+            dem++;
         }
 
         private void btnThem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -185,6 +210,42 @@ namespace TRACNGHIEM
         {
             // Hủy bỏ thao tác đang hiệu chỉnh
             bdsGiaoVien.CancelEdit();
+        }
+
+        private void cbbCoSo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cbbCoSo.SelectedValue != null && dem != 0)
+                {
+
+                    Program.servername1 = cbbCoSo.SelectedValue.ToString();
+                    if (Program.KetNoiCosoKhac() == 0) return;
+                    else
+                    {
+                        // TODO: This line of code loads data into the 'TNDataSet.BODE' table. You can move, or remove it, as needed.
+                        this.tbBoDeADT.Connection.ConnectionString = Program.connstr1;
+                        this.tbBoDeADT.Fill(this.TNDataSet.BODE);
+                        // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+
+                        this.tbGiaoVienDKADT.Connection.ConnectionString = Program.connstr1;
+                        this.tbGiaoVienDKADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
+                        // TODO: This line of code loads data into the 'TNDataSet.LOP' table. You can move, or remove it, as needed.
+
+                        this.tbLopADT.Connection.ConnectionString = Program.connstr1;
+                        this.tbLopADT.Fill(this.TNDataSet.LOP);
+                        // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
+
+                        this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr1;
+                        this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
+                        // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
+
+                        this.tbKhoaADT.Connection.ConnectionString = Program.connstr1;
+                        this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
+                    }
+                }
+            }
+            catch (Exception) { };
         }
     }
 }

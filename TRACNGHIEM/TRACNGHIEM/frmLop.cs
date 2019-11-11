@@ -39,9 +39,9 @@ namespace TRACNGHIEM
                     else
                     {
                         Program.conn.ConnectionString = Program.connstr1;
-                        // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
                         this.tbBangDiemADT.Fill(this.TNDataSet.BANGDIEM);
-                        // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+                        // giao vien dang ky
+                        this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr1;
                         this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
                         // TODO: This line of code loads data into the 'tNDataSet.SINHVIEN' table. You can move, or remove it, as needed.
                         // gán chuỗi kết nối được lấy từ form đăng nhập trước khi fiew dữ liêu về
@@ -53,6 +53,7 @@ namespace TRACNGHIEM
                         // TODO: This line of code loads data into the 'tNDataSet.LOP' table. You can move, or remove it, as needed.
                         this.tbLopADT.Connection.ConnectionString = Program.connstr1;
                         this.tbLopADT.Fill(this.TNDataSet.LOP);
+                        
                     }
                 }
             }
@@ -70,8 +71,10 @@ namespace TRACNGHIEM
             cbbCoSo.SelectedIndex = Program.mCoSo;
 
             // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
+            this.tbBangDiemADT.Connection.ConnectionString = Program.connstr;
             this.tbBangDiemADT.Fill(this.TNDataSet.BANGDIEM);
             // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+            this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
             this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
             // TODO: This line of code loads data into the 'tNDataSet.SINHVIEN' table. You can move, or remove it, as needed.
             // gán chuỗi kết nối được lấy từ form đăng nhập trước khi fiew dữ liêu về
@@ -177,7 +180,6 @@ namespace TRACNGHIEM
             try
             {
                 bdsLop.AddNew();
-
             }
             catch (Exception ex)
             {

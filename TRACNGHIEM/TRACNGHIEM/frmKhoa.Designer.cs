@@ -70,24 +70,24 @@
             this.gIAOVIENGridControl = new DevExpress.XtraGrid.GridControl();
             this.bdsGiaoVien = new System.Windows.Forms.BindingSource(this.components);
             this.gridView2 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.bdsLop = new System.Windows.Forms.BindingSource(this.components);
-            this.tbLopADT = new TRACNGHIEM.TNDataSetTableAdapters.LOPTableAdapter();
-            this.ctxMenuGV = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnThemGV = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnXoaGV = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnGhiGV = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnTaiLaiGV = new System.Windows.Forms.ToolStripMenuItem();
-            this.bdsGVDK = new System.Windows.Forms.BindingSource(this.components);
-            this.tbGiaoVienDKADT = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
-            this.bdsBoDe = new System.Windows.Forms.BindingSource(this.components);
-            this.tbBoDeADT = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
-            this.btnPhucHoiGV = new System.Windows.Forms.ToolStripMenuItem();
             this.colMAGV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHO = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colTEN = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colDIACHI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKH1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHOCVI = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.bdsLop = new System.Windows.Forms.BindingSource(this.components);
+            this.tbLopADT = new TRACNGHIEM.TNDataSetTableAdapters.LOPTableAdapter();
+            this.ctxMenuGV = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnThemGV = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnXoaGV = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnGhiGV = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnPhucHoiGV = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnTaiLaiGV = new System.Windows.Forms.ToolStripMenuItem();
+            this.bdsGVDK = new System.Windows.Forms.BindingSource(this.components);
+            this.tbGiaoVienDKADT = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
+            this.bdsBoDe = new System.Windows.Forms.BindingSource(this.components);
+            this.tbBoDeADT = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
             mAKHLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
             mACSLabel = new System.Windows.Forms.Label();
@@ -310,12 +310,14 @@
             // 
             // cbbCoSo
             // 
+            this.cbbCoSo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbCoSo.Font = new System.Drawing.Font("Tahoma", 9.900001F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbCoSo.FormattingEnabled = true;
             this.cbbCoSo.Location = new System.Drawing.Point(445, 26);
             this.cbbCoSo.Name = "cbbCoSo";
             this.cbbCoSo.Size = new System.Drawing.Size(604, 48);
             this.cbbCoSo.TabIndex = 1;
+            this.cbbCoSo.SelectedIndexChanged += new System.EventHandler(this.cbbCoSo_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -491,80 +493,6 @@
             this.gridView2.GridControl = this.gIAOVIENGridControl;
             this.gridView2.Name = "gridView2";
             // 
-            // bdsLop
-            // 
-            this.bdsLop.DataMember = "FK_LOP_KHOA";
-            this.bdsLop.DataSource = this.bdsKhoa;
-            // 
-            // tbLopADT
-            // 
-            this.tbLopADT.ClearBeforeFill = true;
-            // 
-            // ctxMenuGV
-            // 
-            this.ctxMenuGV.ImageScalingSize = new System.Drawing.Size(40, 40);
-            this.ctxMenuGV.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnThemGV,
-            this.btnXoaGV,
-            this.btnGhiGV,
-            this.btnPhucHoiGV,
-            this.btnTaiLaiGV});
-            this.ctxMenuGV.Name = "btnThemGV";
-            this.ctxMenuGV.Size = new System.Drawing.Size(365, 234);
-            // 
-            // btnThemGV
-            // 
-            this.btnThemGV.Name = "btnThemGV";
-            this.btnThemGV.Size = new System.Drawing.Size(364, 46);
-            this.btnThemGV.Text = "Thêm giảng viên";
-            this.btnThemGV.Click += new System.EventHandler(this.btnThemGV_Click);
-            // 
-            // btnXoaGV
-            // 
-            this.btnXoaGV.Name = "btnXoaGV";
-            this.btnXoaGV.Size = new System.Drawing.Size(364, 46);
-            this.btnXoaGV.Text = "Xóa giảng viên";
-            this.btnXoaGV.Click += new System.EventHandler(this.btnXoaGV_Click);
-            // 
-            // btnGhiGV
-            // 
-            this.btnGhiGV.Name = "btnGhiGV";
-            this.btnGhiGV.Size = new System.Drawing.Size(364, 46);
-            this.btnGhiGV.Text = "Ghi giảng viên";
-            this.btnGhiGV.Click += new System.EventHandler(this.btnGhiGV_Click);
-            // 
-            // btnTaiLaiGV
-            // 
-            this.btnTaiLaiGV.Name = "btnTaiLaiGV";
-            this.btnTaiLaiGV.Size = new System.Drawing.Size(364, 46);
-            this.btnTaiLaiGV.Text = "Tải lại danh sách";
-            this.btnTaiLaiGV.Click += new System.EventHandler(this.btnTaiLaiGV_Click);
-            // 
-            // bdsGVDK
-            // 
-            this.bdsGVDK.DataMember = "FK_GIAOVIEN_DANGKY_GIAOVIEN1";
-            this.bdsGVDK.DataSource = this.bdsGiaoVien;
-            // 
-            // tbGiaoVienDKADT
-            // 
-            this.tbGiaoVienDKADT.ClearBeforeFill = true;
-            // 
-            // bdsBoDe
-            // 
-            this.bdsBoDe.DataMember = "FK_BODE_GIAOVIEN";
-            this.bdsBoDe.DataSource = this.bdsGiaoVien;
-            // 
-            // tbBoDeADT
-            // 
-            this.tbBoDeADT.ClearBeforeFill = true;
-            // 
-            // btnPhucHoiGV
-            // 
-            this.btnPhucHoiGV.Name = "btnPhucHoiGV";
-            this.btnPhucHoiGV.Size = new System.Drawing.Size(364, 46);
-            this.btnPhucHoiGV.Text = "Phục hồi  giảng viên";
-            this.btnPhucHoiGV.Click += new System.EventHandler(this.btnPhucHoiGV_Click);
-            // 
             // colMAGV
             // 
             this.colMAGV.FieldName = "MAGV";
@@ -618,6 +546,85 @@
             this.colHOCVI.Visible = true;
             this.colHOCVI.VisibleIndex = 5;
             this.colHOCVI.Width = 187;
+            // 
+            // bdsLop
+            // 
+            this.bdsLop.DataMember = "FK_LOP_KHOA";
+            this.bdsLop.DataSource = this.bdsKhoa;
+            // 
+            // tbLopADT
+            // 
+            this.tbLopADT.ClearBeforeFill = true;
+            // 
+            // ctxMenuGV
+            // 
+            this.ctxMenuGV.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.ctxMenuGV.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnThemGV,
+            this.btnXoaGV,
+            this.btnGhiGV,
+            this.btnPhucHoiGV,
+            this.btnTaiLaiGV});
+            this.ctxMenuGV.Name = "btnThemGV";
+            this.ctxMenuGV.Size = new System.Drawing.Size(389, 234);
+            // 
+            // btnThemGV
+            // 
+            this.btnThemGV.Image = ((System.Drawing.Image)(resources.GetObject("btnThemGV.Image")));
+            this.btnThemGV.Name = "btnThemGV";
+            this.btnThemGV.Size = new System.Drawing.Size(388, 46);
+            this.btnThemGV.Text = "Thêm giảng viên";
+            this.btnThemGV.Click += new System.EventHandler(this.btnThemGV_Click);
+            // 
+            // btnXoaGV
+            // 
+            this.btnXoaGV.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaGV.Image")));
+            this.btnXoaGV.Name = "btnXoaGV";
+            this.btnXoaGV.Size = new System.Drawing.Size(388, 46);
+            this.btnXoaGV.Text = "Xóa giảng viên";
+            this.btnXoaGV.Click += new System.EventHandler(this.btnXoaGV_Click);
+            // 
+            // btnGhiGV
+            // 
+            this.btnGhiGV.Image = ((System.Drawing.Image)(resources.GetObject("btnGhiGV.Image")));
+            this.btnGhiGV.Name = "btnGhiGV";
+            this.btnGhiGV.Size = new System.Drawing.Size(388, 46);
+            this.btnGhiGV.Text = "Ghi giảng viên";
+            this.btnGhiGV.Click += new System.EventHandler(this.btnGhiGV_Click);
+            // 
+            // btnPhucHoiGV
+            // 
+            this.btnPhucHoiGV.Image = ((System.Drawing.Image)(resources.GetObject("btnPhucHoiGV.Image")));
+            this.btnPhucHoiGV.Name = "btnPhucHoiGV";
+            this.btnPhucHoiGV.Size = new System.Drawing.Size(388, 46);
+            this.btnPhucHoiGV.Text = "Phục hồi  giảng viên";
+            this.btnPhucHoiGV.Click += new System.EventHandler(this.btnPhucHoiGV_Click);
+            // 
+            // btnTaiLaiGV
+            // 
+            this.btnTaiLaiGV.Image = ((System.Drawing.Image)(resources.GetObject("btnTaiLaiGV.Image")));
+            this.btnTaiLaiGV.Name = "btnTaiLaiGV";
+            this.btnTaiLaiGV.Size = new System.Drawing.Size(388, 46);
+            this.btnTaiLaiGV.Text = "Tải lại danh sách";
+            this.btnTaiLaiGV.Click += new System.EventHandler(this.btnTaiLaiGV_Click);
+            // 
+            // bdsGVDK
+            // 
+            this.bdsGVDK.DataMember = "FK_GIAOVIEN_DANGKY_GIAOVIEN1";
+            this.bdsGVDK.DataSource = this.bdsGiaoVien;
+            // 
+            // tbGiaoVienDKADT
+            // 
+            this.tbGiaoVienDKADT.ClearBeforeFill = true;
+            // 
+            // bdsBoDe
+            // 
+            this.bdsBoDe.DataMember = "FK_BODE_GIAOVIEN";
+            this.bdsBoDe.DataSource = this.bdsGiaoVien;
+            // 
+            // tbBoDeADT
+            // 
+            this.tbBoDeADT.ClearBeforeFill = true;
             // 
             // frmKhoa
             // 

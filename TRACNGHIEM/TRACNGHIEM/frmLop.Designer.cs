@@ -68,12 +68,6 @@
             this.tENLOPTextEdit = new DevExpress.XtraEditors.TextEdit();
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.gvSinhVien = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.bdsSinhVien = new System.Windows.Forms.BindingSource(this.components);
             this.tbDSKhoaADT = new TRACNGHIEM.TNDataSetTableAdapters.DSKHOATableAdapter();
             this.tbSinhVienADT = new TRACNGHIEM.TNDataSetTableAdapters.SINHVIENTableAdapter();
@@ -87,6 +81,12 @@
             this.tbGiaoVienADT = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
             this.tbBangDiemADT = new TRACNGHIEM.TNDataSetTableAdapters.BANGDIEMTableAdapter();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewComboBoxColumn();
             mALOPLabel = new System.Windows.Forms.Label();
             tENLOPLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
@@ -491,47 +491,6 @@
             this.gvSinhVien.Size = new System.Drawing.Size(1550, 916);
             this.gvSinhVien.TabIndex = 0;
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "MASV";
-            this.dataGridViewTextBoxColumn1.HeaderText = "MASV";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "HO";
-            this.dataGridViewTextBoxColumn2.HeaderText = "HO";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "TEN";
-            this.dataGridViewTextBoxColumn3.HeaderText = "TEN";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "NGAYSINH";
-            this.dataGridViewTextBoxColumn4.HeaderText = "NGAYSINH";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "DIACHI";
-            this.dataGridViewTextBoxColumn5.HeaderText = "DIACHI";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "MALOP";
-            this.dataGridViewTextBoxColumn6.DataSource = this.bdsLop;
-            this.dataGridViewTextBoxColumn6.DisplayMember = "TENLOP";
-            this.dataGridViewTextBoxColumn6.HeaderText = "MALOP";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewTextBoxColumn6.ValueMember = "MALOP";
-            // 
             // bdsSinhVien
             // 
             this.bdsSinhVien.DataMember = "FK_SINHVIEN_LOP";
@@ -614,6 +573,56 @@
             // tbBangDiemADT
             // 
             this.tbBangDiemADT.ClearBeforeFill = true;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "MASV";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã sinh viên";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "HO";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Họ";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 200;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "TEN";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Tên";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "NGAYSINH";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Ngày sinh";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "DIACHI";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 350;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "MALOP";
+            this.dataGridViewTextBoxColumn6.DataSource = this.bdsLop;
+            this.dataGridViewTextBoxColumn6.DisplayMember = "TENLOP";
+            this.dataGridViewTextBoxColumn6.HeaderText = "Lớp";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 15;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewTextBoxColumn6.ValueMember = "MALOP";
+            this.dataGridViewTextBoxColumn6.Width = 300;
             // 
             // frmLop
             // 

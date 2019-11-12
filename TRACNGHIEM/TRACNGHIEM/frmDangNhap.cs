@@ -30,7 +30,6 @@ namespace TRACNGHIEM
             // Đăng nhập thất bại
             if (Program.KetNoi() == 0) return;
 
-
             Program.mCoSo = cbbCoso.SelectedIndex;
             Program.mloginDN = Program.mlogin;
             Program.passwordDN = Program.password;

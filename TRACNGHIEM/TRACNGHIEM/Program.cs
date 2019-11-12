@@ -41,7 +41,7 @@ namespace TRACNGHIEM
 
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
                                                                      //public static frmMain frmChinh;
-
+        public static SqlDataReader dtKhoa;
         public static int KetNoiCosoKhac()
         {
             if (Program.conn1 != null && Program.conn1.State == ConnectionState.Open)
@@ -61,6 +61,26 @@ namespace TRACNGHIEM
                 MessageBox.Show("Lỗi kết nối cơ sở dữ liệu.\nBạn xem lại user name và password.\n "
                     + e.Message, "", MessageBoxButtons.OK);
                 return 0;
+            }
+        }
+
+        public static int ExecSqlNonQuery(String strlenh)
+        {
+            SqlCommand Sqlcmd = new SqlCommand(strlenh, conn);
+            Sqlcmd.CommandType = CommandType.Text;
+            Sqlcmd.CommandTimeout = 600;// 10 phut 
+            if (conn.State == ConnectionState.Closed) conn.Open();
+            try
+            {
+                Sqlcmd.ExecuteNonQuery(); conn.Close();
+                return 0;
+
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                conn.Close();
+                return ex.State; // trang thai lỗi gởi từ RAISERROR trong SQL Server qua
             }
         }
 
@@ -107,6 +127,29 @@ namespace TRACNGHIEM
                 return null;
             }
         }
+
+        public static SqlDataReader ExecSqlDataReader1(String strLenh)
+        {
+            SqlDataReader myreader;
+            SqlCommand sqlcmd = new SqlCommand(strLenh, Program.conn1);
+            sqlcmd.CommandType = CommandType.Text;
+            //tối đa cho đợi 10p, tgian tính bằng s
+            sqlcmd.CommandTimeout = 600;
+            // Kiểm tra trạng thái đóng hay mở
+            if (Program.conn1.State == ConnectionState.Closed) Program.conn1.Open();
+            try
+            {
+                myreader = sqlcmd.ExecuteReader(); return myreader;
+
+            }
+            catch (SqlException ex)
+            {
+                Program.conn1.Close();
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
         public static DataTable ExecSqlDataTable(String cmd)
         {
             // Trả về datable

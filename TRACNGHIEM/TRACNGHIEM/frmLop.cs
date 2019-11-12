@@ -38,7 +38,7 @@ namespace TRACNGHIEM
                     if (Program.KetNoiCosoKhac() == 0) return;
                     else
                     {
-                        Program.conn.ConnectionString = Program.connstr1;
+                        tbBangDiemADT.Connection.ConnectionString = Program.connstr1;
                         this.tbBangDiemADT.Fill(this.TNDataSet.BANGDIEM);
                         // giao vien dang ky
                         this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr1;

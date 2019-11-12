@@ -497,6 +497,7 @@
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6});
+            this.gvSinhVien.ContextMenuStrip = this.ctxMenuSV;
             this.gvSinhVien.DataSource = this.bdsSinhVien;
             this.gvSinhVien.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvSinhVien.Location = new System.Drawing.Point(3, 3);

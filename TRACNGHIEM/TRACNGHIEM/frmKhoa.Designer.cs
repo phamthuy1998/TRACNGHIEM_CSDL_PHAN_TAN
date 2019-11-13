@@ -63,7 +63,7 @@ namespace TRACNGHIEM
             this.btnTimKiem = new DevExpress.XtraBars.BarButtonItem();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.panelTimGV = new DevExpress.XtraEditors.PanelControl();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnTim = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.edtTimGV = new DevExpress.XtraEditors.TextEdit();
             this.cbbCoSo = new System.Windows.Forms.ComboBox();
@@ -435,7 +435,7 @@ namespace TRACNGHIEM
             // 
             // panelTimGV
             // 
-            this.panelTimGV.Controls.Add(this.button1);
+            this.panelTimGV.Controls.Add(this.btnTim);
             this.panelTimGV.Controls.Add(this.label2);
             this.panelTimGV.Controls.Add(this.edtTimGV);
             this.panelTimGV.Dock = System.Windows.Forms.DockStyle.Right;
@@ -444,16 +444,17 @@ namespace TRACNGHIEM
             this.panelTimGV.Size = new System.Drawing.Size(1141, 94);
             this.panelTimGV.TabIndex = 5;
             // 
-            // button1
+            // btnTim
             // 
-            this.button1.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(928, 10);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(142, 74);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Tìm";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnTim.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.btnTim.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnTim.Location = new System.Drawing.Point(928, 10);
+            this.btnTim.Name = "btnTim";
+            this.btnTim.Size = new System.Drawing.Size(142, 74);
+            this.btnTim.TabIndex = 7;
+            this.btnTim.Text = "Tìm";
+            this.btnTim.UseVisualStyleBackColor = false;
+            this.btnTim.Click += new System.EventHandler(this.btnTim_Click);
             // 
             // label2
             // 
@@ -472,6 +473,7 @@ namespace TRACNGHIEM
             this.edtTimGV.Name = "edtTimGV";
             this.edtTimGV.Size = new System.Drawing.Size(576, 50);
             this.edtTimGV.TabIndex = 5;
+            this.edtTimGV.EditValueChanged += new System.EventHandler(this.edtTimGV_EditValueChanged);
             // 
             // cbbCoSo
             // 
@@ -586,7 +588,7 @@ namespace TRACNGHIEM
             this.btnPhucHoiGV,
             this.btnTaiLaiGV});
             this.ctxMenuGV.Name = "btnThemGV";
-            this.ctxMenuGV.Size = new System.Drawing.Size(389, 381);
+            this.ctxMenuGV.Size = new System.Drawing.Size(389, 326);
             // 
             // btnThemGV
             // 
@@ -1070,7 +1072,7 @@ namespace TRACNGHIEM
         private System.Windows.Forms.ToolStripMenuItem btnSuaGV;
         private System.Windows.Forms.ToolStripMenuItem btnChuyenKhoaGV;
         private DevExpress.XtraEditors.PanelControl panelTimGV;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnTim;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.TextEdit edtTimGV;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;

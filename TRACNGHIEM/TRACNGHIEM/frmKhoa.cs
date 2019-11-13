@@ -37,6 +37,7 @@ namespace TRACNGHIEM
 
         private void frmKhoa_Load(object sender, EventArgs e)
         {
+            Program.connstr1 = Program.connstr;
             TNDataSet.EnforceConstraints = false;
             gcKhoa.UseDisabledStatePainter = false;
             gcGiaoVien.UseDisabledStatePainter = false;
@@ -150,7 +151,7 @@ namespace TRACNGHIEM
         }
         private void btnGhi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (checkThem == true )
+            if (checkThem == true)
             {
                 if (txtMaKH.Text.Equals(""))
                 {
@@ -178,9 +179,10 @@ namespace TRACNGHIEM
                     ghiKhoa();
                     checkThem = false;
                 }
-            }else if (checkSua == true)
+            }
+            else if (checkSua == true)
             {
-               
+
                 if (txtTenKH.Text.Equals(""))
                 {
                     MessageBox.Show("Tên khoa không được rỗng", "", MessageBoxButtons.OK);
@@ -355,7 +357,26 @@ namespace TRACNGHIEM
 
         private void btnTaiLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            // TODO: This line of code loads data into the 'TNDataSet.BODE' table. You can move, or remove it, as needed.
+            this.tbBoDeADT.Connection.ConnectionString = Program.connstr;
+            this.tbBoDeADT.Fill(this.TNDataSet.BODE);
+            // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+
+            this.tbGiaoVienDKADT.Connection.ConnectionString = Program.connstr;
+            this.tbGiaoVienDKADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
+            // TODO: This line of code loads data into the 'TNDataSet.LOP' table. You can move, or remove it, as needed.
+
+            this.tbLopADT.Connection.ConnectionString = Program.connstr;
+            this.tbLopADT.Fill(this.TNDataSet.LOP);
+            // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
+
+            this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+            this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
+            // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
+
+            this.tbKhoaADT.Connection.ConnectionString = Program.connstr;
             this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
+            edtTimGV.Text = "";
         }
 
         private void cbbCoSoAdd_SelectedIndexChanged(object sender, EventArgs e)
@@ -562,7 +583,7 @@ namespace TRACNGHIEM
 
         private void btnPhucHoiGV_Click_1(object sender, EventArgs e)
         {
-                // Hủy bỏ thao tác đang hiệu chỉnh
+            // Hủy bỏ thao tác đang hiệu chỉnh
             bdsGiaoVien.CancelEdit();
             checkSuaGV = false;
             checkThemGV = false;
@@ -637,6 +658,50 @@ namespace TRACNGHIEM
             catch (Exception ex)
             {
                 return;
+            }
+        }
+
+        private void edtTimGV_EditValueChanged(object sender, EventArgs e)
+        {
+            String tim = edtTimGV.Text.Trim();
+            if (!tim.Equals(""))
+            {
+                String kqTimkiem = "";
+                String strlenh = "SELECT MAGV from dbo.GIAOVIEN WHERE MAGV = '"
+                   + tim + "' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
+                Program.myReader = Program.ExecSqlDataReader(strlenh);
+                while (Program.myReader.Read())
+                {
+                    kqTimkiem += "'" + Program.myReader.GetString(0).Trim() + "',";
+                }
+                Program.conn.Close();
+                if (!kqTimkiem.Equals(""))
+                    bdsGiaoVien.Filter = "MAGV IN (" + kqTimkiem + ")";
+            }
+        }
+
+        private void btnTim_Click(object sender, EventArgs e)
+        {
+
+            String tim = edtTimGV.Text.Trim();
+            if (tim.Equals(""))
+            {
+                MessageBox.Show("Bạn chưa nhập tìm kiếm", "", MessageBoxButtons.OK);
+                return;
+            }
+            else
+            {
+                String kqTimkiem = "";
+                String strlenh = "SELECT MAGV from dbo.GIAOVIEN WHERE MAGV = '"
+                   + tim + "' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
+                Program.myReader = Program.ExecSqlDataReader(strlenh);
+                while (Program.myReader.Read())
+                {
+                    kqTimkiem += "'" + Program.myReader.GetString(0).Trim() + "',";
+                }
+
+                Program.conn.Close();
+                bdsGiaoVien.Filter = "MAGV IN (" + kqTimkiem + ")";
             }
         }
     }

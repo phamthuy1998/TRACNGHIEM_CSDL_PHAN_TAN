@@ -105,18 +105,6 @@ namespace TRACNGHIEM
             dem++;
         }
 
-        private void tENKHComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                edtMaKhoa.Text = cbbTenKhoa.SelectedValue.ToString();
-            }
-            catch (Exception ex)
-            {
-                return;
-            }
-        }
-
         private void btnThemSV_Click(object sender, EventArgs e)
         {
             try
@@ -285,5 +273,18 @@ namespace TRACNGHIEM
         {
 
         }
+
+        private void cbbTenKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                edtMaKhoa.Text = cbbTenKhoa.SelectedValue.ToString();
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
+
     }
 }

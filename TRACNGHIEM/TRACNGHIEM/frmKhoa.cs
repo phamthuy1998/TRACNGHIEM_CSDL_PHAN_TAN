@@ -37,6 +37,12 @@ namespace TRACNGHIEM
 
         private void frmKhoa_Load(object sender, EventArgs e)
         {
+            cbbHocVi.Items.Add("Thạc sĩ");
+            cbbHocVi.Items.Add("Nghiên cứu sinh");
+            cbbHocVi.Items.Add("Tiến sĩ");
+            cbbHocVi.Items.Add("Tiến sĩ khoa học");
+
+
             Program.connstr1 = Program.connstr;
             TNDataSet.EnforceConstraints = false;
             gcKhoa.UseDisabledStatePainter = false;
@@ -96,6 +102,9 @@ namespace TRACNGHIEM
             edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled = edtDiachiGV.Enabled
                 = cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
             cbbKhoaGV.SelectedValue = txtTenKH.Text;
+
+
+            cbbHocVi.SelectedValue = ((DataRowView)this.bdsGiaoVien.Current).Row["HOCVI"].ToString();
             dem++;
         }
 
@@ -105,7 +114,7 @@ namespace TRACNGHIEM
             {
                 bdsKhoa.AddNew();
                 checkThem = true;
-                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = btnInDS.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = false;
                 txtMaKH.Focus();
                 btnGhi.Enabled = true;
                 gcKhoa.Enabled = false;
@@ -132,7 +141,7 @@ namespace TRACNGHIEM
                 this.tbKhoaADT.Update(this.TNDataSet.KHOA);
 
                 checkThem = false;
-                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = btnInDS.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled  = true;
                 txtMaKH.Focus();
                 btnGhi.Enabled = true;
                 gcKhoa.Enabled = true;
@@ -284,7 +293,7 @@ namespace TRACNGHIEM
         private void btnSuaK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             checkSua = true;
-            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = btnInDS.Enabled = false;
+            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled= false;
             txtMaKH.Focus();
             btnGhi.Enabled = true;
             gcKhoa.Enabled = false;
@@ -298,7 +307,7 @@ namespace TRACNGHIEM
         {
             // Hủy bỏ thao tác đang hiệu chỉnh
             bdsKhoa.CancelEdit();
-            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = btnInDS.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled  = true;
             txtMaKH.Focus();
             checkThem = false;
             btnGhi.Enabled = true;
@@ -379,11 +388,7 @@ namespace TRACNGHIEM
             edtTimGV.Text = "";
         }
 
-        private void cbbCoSoAdd_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            txtMaCS.Text = cbbCoSoAdd.SelectedValue.ToString();
-        }
-
+    
 
         private void btnThemGV_Click_1(object sender, EventArgs e)
         {
@@ -397,7 +402,7 @@ namespace TRACNGHIEM
                 cbbKhoaGV.ValueMember = txtTenKH.Text;
                 edtMaKHGV.Text = txtMaKH.Text;
 
-                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = btnInDS.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = false;
                 txtMaKH.Focus();
                 btnGhi.Enabled = false;
                 btnPhucHoi.Enabled = false;
@@ -448,24 +453,57 @@ namespace TRACNGHIEM
             {
                 try
                 {
-                    bdsGiaoVien.EndEdit();
-                    //lấy dữ liệu hiện tại của control phía dưới lưu lên bên trên
-                    bdsGiaoVien.ResetCurrentItem();
-                    //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
-                    // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
-                    this.tbGiaoVienADT.Update(this.TNDataSet.GIAOVIEN);
+                    if (edtMaGV.Text.Trim().Equals(""))
+                    {
+                        MessageBox.Show("Mã giảng viên không được để trống, vui lòng nhập lại ", "", MessageBoxButtons.OK);
+                        return;
+                    }
+                    
+                    if (edtHoGV.Text.Trim().Equals(""))
+                    {
+                        MessageBox.Show("Họ giảng viên không được để trống, vui lòng nhập lại ", "", MessageBoxButtons.OK);
+                        return;
+                    }
+                    if (edtTenGV.Text.Trim().Equals(""))
+                    {
+                        MessageBox.Show("Tên giảng viên không được để trống, vui lòng nhập lại ", "", MessageBoxButtons.OK);
+                        return;
+                    }
+                    if (edtDiachiGV.Text.Trim().Equals(""))
+                    {
+                        MessageBox.Show("Địa chỉ giảng viên không được để trống, vui lòng nhập lại ", "", MessageBoxButtons.OK);
+                        return;
+                    }
 
-                    edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
-                      = edtDiachiGV.Enabled = false;
-                    cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
-                    checkThemGV = false;
+                    String sql = "EXEC SP_KTGV_TONTAI '" + edtMaGV.Text.Trim().ToString() + "'";
 
-                    btnPhucHoi.Enabled = true;
-                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled = btnInDS.Enabled = true;
-                    btnGhi.Enabled = true;
-                    gcKhoa.Enabled = true;
-                    gcGiaoVien.Enabled = true;
-                    btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
+                    int kq = Program.ExecSqlNonQuery(sql);
+                    if (kq == 1)
+                    {
+                        edtMaGV.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        bdsGiaoVien.EndEdit();
+                        //lấy dữ liệu hiện tại của control phía dưới lưu lên bên trên
+                        bdsGiaoVien.ResetCurrentItem();
+                        //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
+                        // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
+                        this.tbGiaoVienADT.Update(this.TNDataSet.GIAOVIEN);
+
+                        edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
+                          = edtDiachiGV.Enabled = false;
+                        cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
+                        checkThemGV = false;
+
+                        btnPhucHoi.Enabled = true;
+                        btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled  = true;
+                        btnGhi.Enabled = true;
+                        gcKhoa.Enabled = true;
+                        gcGiaoVien.Enabled = true;
+                        btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -490,7 +528,7 @@ namespace TRACNGHIEM
                     checkThemGV = false;
 
                     btnPhucHoi.Enabled = true;
-                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled = btnInDS.Enabled = true;
+                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled ;
                     btnGhi.Enabled = true;
                     gcKhoa.Enabled = true;
                     gcGiaoVien.Enabled = true;
@@ -537,7 +575,7 @@ namespace TRACNGHIEM
                         checkChuyenKhoa = false;
 
                         btnPhucHoi.Enabled = true;
-                        btnThem.Enabled = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = btnInDS.Enabled = true;
+                        btnThem.Enabled = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled  = true;
                         btnGhi.Enabled = true;
                         gcKhoa.Enabled = true;
                         gcGiaoVien.Enabled = true;
@@ -568,7 +606,7 @@ namespace TRACNGHIEM
                     checkThemGV = false;
 
                     btnPhucHoi.Enabled = true;
-                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled = btnInDS.Enabled = true;
+                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled  = true;
                     btnGhi.Enabled = true;
                     gcKhoa.Enabled = true;
                     gcGiaoVien.Enabled = true;
@@ -593,7 +631,7 @@ namespace TRACNGHIEM
             edtMaKHGV.Enabled = false;
 
             btnPhucHoi.Enabled = true;
-            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled = btnInDS.Enabled = true;
+            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled = true;
             btnGhi.Enabled = true;
             gcKhoa.Enabled = true;
             gcGiaoVien.Enabled = true;
@@ -607,6 +645,7 @@ namespace TRACNGHIEM
 
         private void btnSuaGV_Click(object sender, EventArgs e)
         {
+            cbbHocVi.SelectedValue = ((DataRowView)this.bdsGiaoVien.Current).Row["HOCVI"].ToString();
             edtMaGV.Enabled = false;
             edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled = edtDiachiGV.Enabled = true;
             cbbKhoaGV.Enabled = false;
@@ -622,7 +661,7 @@ namespace TRACNGHIEM
             cbbKhoaGV.Enabled = true;
             edtMaKHGV.Enabled = false;
 
-            btnThem.Enabled = btnSuaK.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnInDS.Enabled
+            btnThem.Enabled = btnSuaK.Enabled = btnXoa.Enabled = btnTaiLai.Enabled 
                 = btnPhucHoi.Enabled = btnGhi.Enabled = false;
             gcKhoa.Enabled = false;
             gcGiaoVien.Enabled = false;
@@ -678,6 +717,14 @@ namespace TRACNGHIEM
                 if (!kqTimkiem.Equals(""))
                     bdsGiaoVien.Filter = "MAGV IN (" + kqTimkiem + ")";
             }
+            else
+            {
+                bdsGiaoVien.Filter = "";
+                this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr1;
+                this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
+                // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
+
+            }
         }
 
         private void btnTim_Click(object sender, EventArgs e)
@@ -687,6 +734,9 @@ namespace TRACNGHIEM
             if (tim.Equals(""))
             {
                 MessageBox.Show("Bạn chưa nhập tìm kiếm", "", MessageBoxButtons.OK);
+                this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+                this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
+                // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
                 return;
             }
             else
@@ -704,5 +754,11 @@ namespace TRACNGHIEM
                 bdsGiaoVien.Filter = "MAGV IN (" + kqTimkiem + ")";
             }
         }
+
+        private void cbbCoSoAdd_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            txtMaCS.Text = cbbCoSoAdd.SelectedValue.ToString();
+        }
+        
     }
 }

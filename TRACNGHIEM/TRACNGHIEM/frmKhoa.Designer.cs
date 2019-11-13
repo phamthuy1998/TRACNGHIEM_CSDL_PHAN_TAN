@@ -53,7 +53,6 @@ namespace TRACNGHIEM
             this.btnGhi = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoi = new DevExpress.XtraBars.BarButtonItem();
             this.btnTaiLai = new DevExpress.XtraBars.BarButtonItem();
-            this.btnInDS = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoat = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
             this.barDockControl2 = new DevExpress.XtraBars.BarDockControl();
@@ -278,7 +277,6 @@ namespace TRACNGHIEM
             this.btnSua,
             this.btnPhucHoi,
             this.btnTaiLai,
-            this.btnInDS,
             this.btnThoat,
             this.btnSuaK,
             this.btnTimKiem});
@@ -298,7 +296,6 @@ namespace TRACNGHIEM
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhi, "", true, true, true, 0, null, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoi, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnTaiLai, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
-            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnInDS, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoat, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar6.OptionsBar.MultiLine = true;
             this.bar6.OptionsBar.UseWholeRow = true;
@@ -357,15 +354,6 @@ namespace TRACNGHIEM
             this.btnTaiLai.Name = "btnTaiLai";
             this.btnTaiLai.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTaiLai_ItemClick);
             // 
-            // btnInDS
-            // 
-            this.btnInDS.Caption = "In danh sách";
-            this.btnInDS.Id = 6;
-            this.btnInDS.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnInDS.ImageOptions.Image")));
-            this.btnInDS.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnInDS.ImageOptions.LargeImage")));
-            this.btnInDS.Name = "btnInDS";
-            this.btnInDS.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnInDS_ItemClick);
-            // 
             // btnThoat
             // 
             this.btnThoat.Caption = "Thoát";
@@ -381,7 +369,7 @@ namespace TRACNGHIEM
             this.barDockControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager;
-            this.barDockControl1.Size = new System.Drawing.Size(2596, 96);
+            this.barDockControl1.Size = new System.Drawing.Size(2665, 96);
             // 
             // barDockControl2
             // 
@@ -389,7 +377,7 @@ namespace TRACNGHIEM
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.barDockControl2.Location = new System.Drawing.Point(0, 1461);
             this.barDockControl2.Manager = this.barManager;
-            this.barDockControl2.Size = new System.Drawing.Size(2596, 0);
+            this.barDockControl2.Size = new System.Drawing.Size(2665, 0);
             // 
             // barDockControl3
             // 
@@ -403,7 +391,7 @@ namespace TRACNGHIEM
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(2596, 96);
+            this.barDockControl4.Location = new System.Drawing.Point(2665, 96);
             this.barDockControl4.Manager = this.barManager;
             this.barDockControl4.Size = new System.Drawing.Size(0, 1365);
             // 
@@ -430,7 +418,7 @@ namespace TRACNGHIEM
             this.panelControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelControl1.Location = new System.Drawing.Point(0, 96);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(2596, 100);
+            this.panelControl1.Size = new System.Drawing.Size(2665, 114);
             this.panelControl1.TabIndex = 4;
             // 
             // panelTimGV
@@ -439,9 +427,9 @@ namespace TRACNGHIEM
             this.panelTimGV.Controls.Add(this.label2);
             this.panelTimGV.Controls.Add(this.edtTimGV);
             this.panelTimGV.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelTimGV.Location = new System.Drawing.Point(1452, 3);
+            this.panelTimGV.Location = new System.Drawing.Point(1521, 3);
             this.panelTimGV.Name = "panelTimGV";
-            this.panelTimGV.Size = new System.Drawing.Size(1141, 94);
+            this.panelTimGV.Size = new System.Drawing.Size(1141, 108);
             this.panelTimGV.TabIndex = 5;
             // 
             // btnTim
@@ -533,9 +521,9 @@ namespace TRACNGHIEM
             // 
             this.panelControl3.Controls.Add(this.tableLayoutPanel1);
             this.panelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl3.Location = new System.Drawing.Point(0, 196);
+            this.panelControl3.Location = new System.Drawing.Point(0, 210);
             this.panelControl3.Name = "panelControl3";
-            this.panelControl3.Size = new System.Drawing.Size(2596, 1265);
+            this.panelControl3.Size = new System.Drawing.Size(2665, 1251);
             this.panelControl3.TabIndex = 8;
             // 
             // tableLayoutPanel1
@@ -559,7 +547,7 @@ namespace TRACNGHIEM
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(2590, 1259);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(2659, 1245);
             this.tableLayoutPanel1.TabIndex = 10;
             // 
             // gcGiaoVien
@@ -567,11 +555,11 @@ namespace TRACNGHIEM
             this.gcGiaoVien.ContextMenuStrip = this.ctxMenuGV;
             this.gcGiaoVien.DataSource = this.bdsGiaoVien;
             this.gcGiaoVien.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcGiaoVien.Location = new System.Drawing.Point(1049, 3);
+            this.gcGiaoVien.Location = new System.Drawing.Point(1076, 3);
             this.gcGiaoVien.MainView = this.gridView2;
             this.gcGiaoVien.MenuManager = this.barManager;
             this.gcGiaoVien.Name = "gcGiaoVien";
-            this.gcGiaoVien.Size = new System.Drawing.Size(1538, 766);
+            this.gcGiaoVien.Size = new System.Drawing.Size(1580, 758);
             this.gcGiaoVien.TabIndex = 10;
             this.gcGiaoVien.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView2});
@@ -734,9 +722,9 @@ namespace TRACNGHIEM
             this.panelControl2.Controls.Add(this.txtTenKH);
             this.panelControl2.Controls.Add(mACSLabel);
             this.panelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl2.Location = new System.Drawing.Point(3, 775);
+            this.panelControl2.Location = new System.Drawing.Point(3, 767);
             this.panelControl2.Name = "panelControl2";
-            this.panelControl2.Size = new System.Drawing.Size(1040, 481);
+            this.panelControl2.Size = new System.Drawing.Size(1067, 475);
             this.panelControl2.TabIndex = 10;
             // 
             // cbbCoSoAdd
@@ -748,6 +736,7 @@ namespace TRACNGHIEM
             this.cbbCoSoAdd.Name = "cbbCoSoAdd";
             this.cbbCoSoAdd.Size = new System.Drawing.Size(486, 41);
             this.cbbCoSoAdd.TabIndex = 11;
+            this.cbbCoSoAdd.SelectedIndexChanged += new System.EventHandler(this.cbbCoSoAdd_SelectedIndexChanged_1);
             // 
             // txtMaCS
             // 
@@ -785,7 +774,7 @@ namespace TRACNGHIEM
             this.gcKhoa.MainView = this.gridView1;
             this.gcKhoa.MenuManager = this.barManager;
             this.gcKhoa.Name = "gcKhoa";
-            this.gcKhoa.Size = new System.Drawing.Size(1040, 766);
+            this.gcKhoa.Size = new System.Drawing.Size(1067, 758);
             this.gcKhoa.TabIndex = 1;
             this.gcKhoa.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -847,14 +836,15 @@ namespace TRACNGHIEM
             this.panelControl4.Controls.Add(mAKHLabel1);
             this.panelControl4.Controls.Add(hOCVILabel);
             this.panelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelControl4.Location = new System.Drawing.Point(1049, 775);
+            this.panelControl4.Location = new System.Drawing.Point(1076, 767);
             this.panelControl4.Name = "panelControl4";
-            this.panelControl4.Size = new System.Drawing.Size(1538, 481);
+            this.panelControl4.Size = new System.Drawing.Size(1580, 475);
             this.panelControl4.TabIndex = 11;
             // 
             // cbbHocVi
             // 
             this.cbbHocVi.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsGiaoVien, "HOCVI", true));
+            this.cbbHocVi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbHocVi.FormattingEnabled = true;
             this.cbbHocVi.Location = new System.Drawing.Point(855, 49);
             this.cbbHocVi.Name = "cbbHocVi";
@@ -949,7 +939,7 @@ namespace TRACNGHIEM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2596, 1461);
+            this.ClientSize = new System.Drawing.Size(2665, 1461);
             this.Controls.Add(this.panelControl3);
             this.Controls.Add(this.panelControl1);
             this.Controls.Add(this.barDockControl3);
@@ -1012,7 +1002,6 @@ namespace TRACNGHIEM
         private DevExpress.XtraBars.BarButtonItem btnSua;
         private DevExpress.XtraBars.BarButtonItem btnPhucHoi;
         private DevExpress.XtraBars.BarButtonItem btnTaiLai;
-        private DevExpress.XtraBars.BarButtonItem btnInDS;
         private DevExpress.XtraBars.BarButtonItem btnThoat;
         private DevExpress.XtraBars.BarDockControl barDockControl1;
         private DevExpress.XtraBars.BarDockControl barDockControl2;

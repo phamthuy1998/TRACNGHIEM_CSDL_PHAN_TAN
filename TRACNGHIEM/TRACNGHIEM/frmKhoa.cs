@@ -141,7 +141,7 @@ namespace TRACNGHIEM
                 this.tbKhoaADT.Update(this.TNDataSet.KHOA);
 
                 checkThem = false;
-                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled  = true;
+                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = true;
                 txtMaKH.Focus();
                 btnGhi.Enabled = true;
                 gcKhoa.Enabled = true;
@@ -221,30 +221,38 @@ namespace TRACNGHIEM
 
         private void btnXoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (bdsLop.Count > 0)
+            if (bdsKhoa.Count == 0)
             {
-                MessageBox.Show("Khoa đã có lớp, không thể xóa", "", MessageBoxButtons.OK);
-                return;
-            }
+                MessageBox.Show("Không có Khoa để xóa!", "THÔNG BÁO", MessageBoxButtons.OK);
 
-            if (bdsGiaoVien.Count > 0)
-            {
-                MessageBox.Show("Khoa đã có giáo viên, không thể xóa", "", MessageBoxButtons.OK);
-                return;
             }
-
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((DataRowView)this.bdsKhoa.Current).Row["TENKH"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            else
             {
-                try
+                if (bdsLop.Count > 0)
                 {
-                    //phải chạy lệnh del from where mới chính xác
-                    bdsKhoa.RemoveCurrent();
-                    //đẩy dữ liệu về adapter
-                    this.tbKhoaADT.Update(this.TNDataSet.KHOA);
+                    MessageBox.Show("Khoa đã có lớp, không thể xóa", "", MessageBoxButtons.OK);
+                    return;
                 }
-                catch (Exception ex)
+
+                if (bdsGiaoVien.Count > 0)
                 {
-                    MessageBox.Show("Lỗi xóa khoa" + ex.Message, "", MessageBoxButtons.OK);
+                    MessageBox.Show("Khoa đã có giáo viên, không thể xóa", "", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa " + ((DataRowView)this.bdsKhoa.Current).Row["TENKH"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        //phải chạy lệnh del from where mới chính xác
+                        bdsKhoa.RemoveCurrent();
+                        //đẩy dữ liệu về adapter
+                        this.tbKhoaADT.Update(this.TNDataSet.KHOA);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi xóa khoa" + ex.Message, "", MessageBoxButtons.OK);
+                    }
                 }
             }
         }
@@ -292,22 +300,30 @@ namespace TRACNGHIEM
 
         private void btnSuaK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            checkSua = true;
-            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled= false;
-            txtMaKH.Focus();
-            btnGhi.Enabled = true;
-            gcKhoa.Enabled = false;
-            gcGiaoVien.Enabled = false;
-            cbbCoSoAdd.Enabled = true;
-            ctxMenuGV.Enabled = false;
-            txtTenKH.Enabled = true;
+            if (bdsKhoa.Count == 0)
+            {
+                MessageBox.Show("Không có Khoa để sửa!", "THÔNG BÁO", MessageBoxButtons.OK);
+
+            }
+            else
+            {
+                checkSua = true;
+                btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = false;
+                txtMaKH.Focus();
+                btnGhi.Enabled = true;
+                gcKhoa.Enabled = false;
+                gcGiaoVien.Enabled = false;
+                cbbCoSoAdd.Enabled = true;
+                ctxMenuGV.Enabled = false;
+                txtTenKH.Enabled = true;
+            }
         }
 
         private void btnPhucHoi_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // Hủy bỏ thao tác đang hiệu chỉnh
             bdsKhoa.CancelEdit();
-            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled  = true;
+            btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = true;
             txtMaKH.Focus();
             checkThem = false;
             btnGhi.Enabled = true;
@@ -388,7 +404,7 @@ namespace TRACNGHIEM
             edtTimGV.Text = "";
         }
 
-    
+
 
         private void btnThemGV_Click_1(object sender, EventArgs e)
         {
@@ -419,30 +435,38 @@ namespace TRACNGHIEM
 
         private void btnXoaGV_Click_1(object sender, EventArgs e)
         {
-            if (bdsGVDK.Count > 0)
+            if (bdsGiaoVien.Count == 0)
             {
-                MessageBox.Show("Giáo viên này đã tồn tại trong bảng giảng viên đăng ký, không thể xóa", "", MessageBoxButtons.OK);
-                return;
-            }
+                MessageBox.Show("Không có giáo viên để xóa!", "THÔNG BÁO", MessageBoxButtons.OK);
 
-            if (bdsBoDe.Count > 0)
-            {
-                MessageBox.Show("Giảng viên này ra đề thi, không thể xóa", "", MessageBoxButtons.OK);
-                return;
             }
-
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên: " + ((DataRowView)this.bdsGiaoVien.Current).Row["TEN"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            else
             {
-                try
+                if (bdsGVDK.Count > 0)
                 {
-                    //phải chạy lệnh del from where mới chính xác
-                    bdsGiaoVien.RemoveCurrent();
-                    //đẩy dữ liệu về adapter
-                    this.tbGiaoVienADT.Update(this.TNDataSet.GIAOVIEN);
+                    MessageBox.Show("Giáo viên này đã tồn tại trong bảng giảng viên đăng ký, không thể xóa", "", MessageBoxButtons.OK);
+                    return;
                 }
-                catch (Exception ex)
+
+                if (bdsBoDe.Count > 0)
                 {
-                    MessageBox.Show("Lỗi xóa giảng viên " + ex.Message, "", MessageBoxButtons.OK);
+                    MessageBox.Show("Giảng viên này ra đề thi, không thể xóa", "", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên: " + ((DataRowView)this.bdsGiaoVien.Current).Row["TEN"].ToString() + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    try
+                    {
+                        //phải chạy lệnh del from where mới chính xác
+                        bdsGiaoVien.RemoveCurrent();
+                        //đẩy dữ liệu về adapter
+                        this.tbGiaoVienADT.Update(this.TNDataSet.GIAOVIEN);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Lỗi xóa giảng viên " + ex.Message, "", MessageBoxButtons.OK);
+                    }
                 }
             }
         }
@@ -458,7 +482,7 @@ namespace TRACNGHIEM
                         MessageBox.Show("Mã giảng viên không được để trống, vui lòng nhập lại ", "", MessageBoxButtons.OK);
                         return;
                     }
-                    
+
                     if (edtHoGV.Text.Trim().Equals(""))
                     {
                         MessageBox.Show("Họ giảng viên không được để trống, vui lòng nhập lại ", "", MessageBoxButtons.OK);
@@ -498,7 +522,7 @@ namespace TRACNGHIEM
                         checkThemGV = false;
 
                         btnPhucHoi.Enabled = true;
-                        btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled  = true;
+                        btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled = true;
                         btnGhi.Enabled = true;
                         gcKhoa.Enabled = true;
                         gcGiaoVien.Enabled = true;
@@ -528,7 +552,7 @@ namespace TRACNGHIEM
                     checkThemGV = false;
 
                     btnPhucHoi.Enabled = true;
-                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled ;
+                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled;
                     btnGhi.Enabled = true;
                     gcKhoa.Enabled = true;
                     gcGiaoVien.Enabled = true;
@@ -575,7 +599,7 @@ namespace TRACNGHIEM
                         checkChuyenKhoa = false;
 
                         btnPhucHoi.Enabled = true;
-                        btnThem.Enabled = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled  = true;
+                        btnThem.Enabled = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = true;
                         btnGhi.Enabled = true;
                         gcKhoa.Enabled = true;
                         gcGiaoVien.Enabled = true;
@@ -606,7 +630,7 @@ namespace TRACNGHIEM
                     checkThemGV = false;
 
                     btnPhucHoi.Enabled = true;
-                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled  = true;
+                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled = true;
                     btnGhi.Enabled = true;
                     gcKhoa.Enabled = true;
                     gcGiaoVien.Enabled = true;
@@ -645,47 +669,66 @@ namespace TRACNGHIEM
 
         private void btnSuaGV_Click(object sender, EventArgs e)
         {
-            cbbHocVi.SelectedValue = ((DataRowView)this.bdsGiaoVien.Current).Row["HOCVI"].ToString();
-            edtMaGV.Enabled = false;
-            edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled = edtDiachiGV.Enabled = true;
-            cbbKhoaGV.Enabled = false;
-            edtMaKHGV.Enabled = false;
-            btnThemGV.Enabled = btnXoaGV.Enabled = btnSuaGV.Enabled = btnChuyenKhoaGV.Enabled = false;
+            if (bdsGiaoVien.Count == 0)
+            {
+                MessageBox.Show("Không có giáo viên để sửa!", "THÔNG BÁO", MessageBoxButtons.OK);
+
+            }
+            else
+            {
+                cbbHocVi.SelectedValue = ((DataRowView)this.bdsGiaoVien.Current).Row["HOCVI"].ToString();
+                edtMaGV.Enabled = false;
+                edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled = edtDiachiGV.Enabled = true;
+                cbbKhoaGV.Enabled = false;
+                edtMaKHGV.Enabled = false;
+                btnThemGV.Enabled = btnXoaGV.Enabled = btnSuaGV.Enabled = btnChuyenKhoaGV.Enabled = false;
+            }
         }
 
         private void btnChuyenKhoaGV_Click(object sender, EventArgs e)
         {
-            checkChuyenKhoa = true;
-            edtMaGV.Enabled = false;
-            edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled = edtDiachiGV.Enabled = false;
-            cbbKhoaGV.Enabled = true;
-            edtMaKHGV.Enabled = false;
-
-            btnThem.Enabled = btnSuaK.Enabled = btnXoa.Enabled = btnTaiLai.Enabled 
-                = btnPhucHoi.Enabled = btnGhi.Enabled = false;
-            gcKhoa.Enabled = false;
-            gcGiaoVien.Enabled = false;
-            btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = false;
-            txtMaKH.Enabled = txtTenKH.Enabled = false;
-            try
+            if (bdsGiaoVien.Count == 0)
             {
-                string chuoiketnoi = "Data Source=THUY;Initial Catalog=TN;Integrated Security=True";
-                Program.conn.ConnectionString = chuoiketnoi;
-                Program.conn.Open();
+                MessageBox.Show("Không có giáo viên để chuyển khoa!", "THÔNG BÁO", MessageBoxButtons.OK);
 
-                // Gọi view V_DS_COSO và trả về datable 
-                DataTable dt = new DataTable();
-                dt = Program.ExecSqlDataTable("SELECT MAKH, TENKH, MACS FROM dbo.KHOA");
-                Program.bds_dspm.DataSource = dt;
-
-                // Lấy kết quả đổ vào combobox
-                cbbKhoaGV.DataSource = dt;
-                cbbKhoaGV.DisplayMember = "TENKH";
-                cbbKhoaGV.ValueMember = "MAKH";
-                cbbKhoaGV.SelectedIndex = 1;
-                cbbKhoaGV.SelectedIndex = 0;
             }
-            catch (Exception ex) { }
+            else
+            {
+                checkChuyenKhoa = true;
+                edtMaGV.Enabled = false;
+                edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled = edtDiachiGV.Enabled = false;
+                cbbKhoaGV.Enabled = true;
+                edtMaKHGV.Enabled = false;
+
+                btnThem.Enabled = btnSuaK.Enabled = btnXoa.Enabled = btnTaiLai.Enabled
+                    = btnPhucHoi.Enabled = btnGhi.Enabled = false;
+                gcKhoa.Enabled = false;
+                gcGiaoVien.Enabled = false;
+                btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = false;
+                txtMaKH.Enabled = txtTenKH.Enabled = false;
+                try
+                {
+                    string chuoiketnoi = "Data Source=THUY;Initial Catalog=TN;Integrated Security=True";
+                    Program.conn.ConnectionString = chuoiketnoi;
+                    Program.conn.Open();
+
+                    // Gọi view V_DS_COSO và trả về datable 
+                    DataTable dt = new DataTable();
+                    dt = Program.ExecSqlDataTable("SELECT MAKH, TENKH, MACS FROM dbo.KHOA");
+                    Program.bds_dspm.DataSource = dt;
+
+                    // Lấy kết quả đổ vào combobox
+                    cbbKhoaGV.DataSource = dt;
+                    cbbKhoaGV.DisplayMember = "TENKH";
+                    cbbKhoaGV.ValueMember = "MAKH";
+                    cbbKhoaGV.SelectedIndex = 1;
+                    cbbKhoaGV.SelectedIndex = 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi đổ dữ liệu khoa " + ex.Message, "", MessageBoxButtons.OK);
+                }
+            }
         }
 
         private void cbbKhoaGV_SelectedIndexChanged(object sender, EventArgs e)
@@ -759,6 +802,7 @@ namespace TRACNGHIEM
         {
             txtMaCS.Text = cbbCoSoAdd.SelectedValue.ToString();
         }
-        
+
+
     }
 }

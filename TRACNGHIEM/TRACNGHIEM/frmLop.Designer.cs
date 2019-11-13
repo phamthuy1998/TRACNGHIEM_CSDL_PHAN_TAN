@@ -70,6 +70,7 @@
             this.panelControl3 = new DevExpress.XtraEditors.PanelControl();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.pcLop = new DevExpress.XtraEditors.PanelControl();
+            this.edtMaKH = new DevExpress.XtraEditors.TextEdit();
             this.cbbTenKhoa = new System.Windows.Forms.ComboBox();
             this.edtMaLop = new DevExpress.XtraEditors.TextEdit();
             this.edtTenLop = new DevExpress.XtraEditors.TextEdit();
@@ -96,7 +97,7 @@
             this.colTENLOP = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colMAKH = new DevExpress.XtraGrid.Columns.GridColumn();
             this.pcSV = new DevExpress.XtraEditors.PanelControl();
-            this.cbbTenLop = new System.Windows.Forms.ComboBox();
+            this.bdsDSLOP = new System.Windows.Forms.BindingSource(this.components);
             this.edtMaSV = new DevExpress.XtraEditors.TextEdit();
             this.edtHo = new DevExpress.XtraEditors.TextEdit();
             this.edtTen = new DevExpress.XtraEditors.TextEdit();
@@ -109,7 +110,8 @@
             this.tbGiaoVienADT = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
             this.tbBangDiemADT = new TRACNGHIEM.TNDataSetTableAdapters.BANGDIEMTableAdapter();
-            this.edtMaKH = new DevExpress.XtraEditors.TextEdit();
+            this.tbDSLopADT = new TRACNGHIEM.TNDataSetTableAdapters.DSLOPTableAdapter();
+            this.cbbTenLop = new System.Windows.Forms.ComboBox();
             mAKHLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
             mALOPLabel = new System.Windows.Forms.Label();
@@ -135,6 +137,7 @@
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcLop)).BeginInit();
             this.pcLop.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtMaKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaLop.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTenLop.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSinhVien)).BeginInit();
@@ -145,6 +148,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcSV)).BeginInit();
             this.pcSV.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsDSLOP)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaSV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtHo.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTen.Properties)).BeginInit();
@@ -154,7 +158,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtMaLopSV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVienDK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBangDiem)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtMaKH.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mAKHLabel
@@ -548,6 +551,16 @@
             this.pcLop.Size = new System.Drawing.Size(926, 550);
             this.pcLop.TabIndex = 8;
             // 
+            // edtMaKH
+            // 
+            this.edtMaKH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsLop, "MAKH", true));
+            this.edtMaKH.Enabled = false;
+            this.edtMaKH.Location = new System.Drawing.Point(260, 391);
+            this.edtMaKH.MenuManager = this.barManager;
+            this.edtMaKH.Name = "edtMaKH";
+            this.edtMaKH.Size = new System.Drawing.Size(250, 50);
+            this.edtMaKH.TabIndex = 9;
+            // 
             // cbbTenKhoa
             // 
             this.cbbTenKhoa.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDSKhoa, "TENKH", true));
@@ -606,7 +619,7 @@
             this.btnPhucHoiSV,
             this.btnTaiLaiSV});
             this.ctxMenuSV.Name = "contextMenuStrip1";
-            this.ctxMenuSV.Size = new System.Drawing.Size(462, 326);
+            this.ctxMenuSV.Size = new System.Drawing.Size(462, 381);
             // 
             // btnThemSV
             // 
@@ -796,8 +809,8 @@
             // pcSV
             // 
             this.pcSV.ContextMenuStrip = this.ctxMenuSV;
-            this.pcSV.Controls.Add(label2);
             this.pcSV.Controls.Add(this.cbbTenLop);
+            this.pcSV.Controls.Add(label2);
             this.pcSV.Controls.Add(mASVLabel);
             this.pcSV.Controls.Add(this.edtMaSV);
             this.pcSV.Controls.Add(hOLabel);
@@ -816,15 +829,10 @@
             this.pcSV.Size = new System.Drawing.Size(2092, 550);
             this.pcSV.TabIndex = 9;
             // 
-            // cbbTenLop
+            // bdsDSLOP
             // 
-            this.cbbTenLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbTenLop.FormattingEnabled = true;
-            this.cbbTenLop.Location = new System.Drawing.Point(299, 396);
-            this.cbbTenLop.Name = "cbbTenLop";
-            this.cbbTenLop.Size = new System.Drawing.Size(564, 41);
-            this.cbbTenLop.TabIndex = 12;
-            this.cbbTenLop.SelectedIndexChanged += new System.EventHandler(this.cbbTenLop_SelectedIndexChanged);
+            this.bdsDSLOP.DataMember = "DSLOP";
+            this.bdsDSLOP.DataSource = this.TNDataSet;
             // 
             // edtMaSV
             // 
@@ -912,15 +920,23 @@
             // 
             this.tbBangDiemADT.ClearBeforeFill = true;
             // 
-            // edtMaKH
+            // tbDSLopADT
             // 
-            this.edtMaKH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsLop, "MAKH", true));
-            this.edtMaKH.Enabled = false;
-            this.edtMaKH.Location = new System.Drawing.Point(260, 391);
-            this.edtMaKH.MenuManager = this.barManager;
-            this.edtMaKH.Name = "edtMaKH";
-            this.edtMaKH.Size = new System.Drawing.Size(250, 50);
-            this.edtMaKH.TabIndex = 9;
+            this.tbDSLopADT.ClearBeforeFill = true;
+            // 
+            // cbbTenLop
+            // 
+            this.cbbTenLop.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.bdsDSLOP, "TENLOP", true));
+            this.cbbTenLop.DataSource = this.bdsDSLOP;
+            this.cbbTenLop.DisplayMember = "TENLOP";
+            this.cbbTenLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbTenLop.FormattingEnabled = true;
+            this.cbbTenLop.Location = new System.Drawing.Point(299, 396);
+            this.cbbTenLop.Name = "cbbTenLop";
+            this.cbbTenLop.Size = new System.Drawing.Size(563, 41);
+            this.cbbTenLop.TabIndex = 14;
+            this.cbbTenLop.ValueMember = "MALOP";
+            this.cbbTenLop.SelectedIndexChanged += new System.EventHandler(this.cbbTenLop_SelectedIndexChanged);
             // 
             // frmLop
             // 
@@ -954,6 +970,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcLop)).EndInit();
             this.pcLop.ResumeLayout(false);
             this.pcLop.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.edtMaKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaLop.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTenLop.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcSinhVien)).EndInit();
@@ -965,6 +982,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pcSV)).EndInit();
             this.pcSV.ResumeLayout(false);
             this.pcSV.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsDSLOP)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaSV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtHo.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTen.Properties)).EndInit();
@@ -974,7 +992,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtMaLopSV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVienDK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBangDiem)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.edtMaKH.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1037,7 +1054,6 @@
         private DevExpress.XtraGrid.Columns.GridColumn colDIACHI;
         private DevExpress.XtraGrid.Columns.GridColumn colMALOP;
         private DevExpress.XtraEditors.PanelControl pcSV;
-        private System.Windows.Forms.ComboBox cbbTenLop;
         private DevExpress.XtraEditors.TextEdit edtMaSV;
         private DevExpress.XtraEditors.TextEdit edtHo;
         private DevExpress.XtraEditors.TextEdit edtTen;
@@ -1051,5 +1067,8 @@
         private System.Windows.Forms.ToolStripMenuItem btnSuaSV;
         private System.Windows.Forms.ToolStripMenuItem btnChuyenLop;
         private DevExpress.XtraEditors.TextEdit edtMaKH;
+        private System.Windows.Forms.BindingSource bdsDSLOP;
+        private System.Windows.Forms.ComboBox cbbTenLop;
+        private TNDataSetTableAdapters.DSLOPTableAdapter tbDSLopADT;
     }
 }

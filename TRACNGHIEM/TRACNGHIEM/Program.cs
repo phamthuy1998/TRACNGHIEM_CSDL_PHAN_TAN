@@ -39,6 +39,7 @@ namespace TRACNGHIEM
         public static int mCoSo = 0;
         public static String mTenCoSo = "";
 
+        public static BindingSource bds_dsLop = new BindingSource();
         public static BindingSource bds_dspm = new BindingSource();  // giữ bdsPM khi đăng nhập
                                                                      //public static frmMain frmChinh;
         public static SqlDataReader dtKhoa;

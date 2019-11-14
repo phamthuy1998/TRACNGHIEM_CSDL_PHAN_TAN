@@ -116,6 +116,8 @@ namespace TRACNGHIEM
             this.bdsBoDe = new System.Windows.Forms.BindingSource(this.components);
             this.tbBoDeADT = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
+            this.bdsDSKHOA = new System.Windows.Forms.BindingSource(this.components);
+            this.tbDSKHOAADT = new TRACNGHIEM.TNDataSetTableAdapters.DSKHOATableAdapter();
             mACSLabel1 = new System.Windows.Forms.Label();
             mAKHLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
@@ -160,6 +162,7 @@ namespace TRACNGHIEM
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBoDe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsDSKHOA)).BeginInit();
             this.SuspendLayout();
             // 
             // mACSLabel1
@@ -853,6 +856,9 @@ namespace TRACNGHIEM
             // 
             // cbbKhoaGV
             // 
+            this.cbbKhoaGV.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bdsKhoa, "MAKH", true));
+            this.cbbKhoaGV.DataSource = this.bdsDSKHOA;
+            this.cbbKhoaGV.DisplayMember = "TENKH";
             this.cbbKhoaGV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbKhoaGV.Enabled = false;
             this.cbbKhoaGV.FormattingEnabled = true;
@@ -860,6 +866,7 @@ namespace TRACNGHIEM
             this.cbbKhoaGV.Name = "cbbKhoaGV";
             this.cbbKhoaGV.Size = new System.Drawing.Size(540, 41);
             this.cbbKhoaGV.TabIndex = 14;
+            this.cbbKhoaGV.ValueMember = "MAKH";
             this.cbbKhoaGV.SelectedIndexChanged += new System.EventHandler(this.cbbKhoaGV_SelectedIndexChanged);
             // 
             // edtMaKHGV
@@ -935,6 +942,15 @@ namespace TRACNGHIEM
             // 
             this.tbBoDeADT.ClearBeforeFill = true;
             // 
+            // bdsDSKHOA
+            // 
+            this.bdsDSKHOA.DataMember = "DSKHOA";
+            this.bdsDSKHOA.DataSource = this.TNDataSet;
+            // 
+            // tbDSKHOAADT
+            // 
+            this.tbDSKHOAADT.ClearBeforeFill = true;
+            // 
             // frmKhoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -987,6 +1003,7 @@ namespace TRACNGHIEM
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBoDe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsDSKHOA)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1065,5 +1082,7 @@ namespace TRACNGHIEM
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.TextEdit edtTimGV;
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
+        private System.Windows.Forms.BindingSource bdsDSKHOA;
+        private TNDataSetTableAdapters.DSKHOATableAdapter tbDSKHOAADT;
     }
 }

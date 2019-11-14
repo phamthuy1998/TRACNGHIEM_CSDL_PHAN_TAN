@@ -37,6 +37,8 @@ namespace TRACNGHIEM
 
         private void frmKhoa_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'TNDataSet.DSKHOA' table. You can move, or remove it, as needed.
+           
             cbbHocVi.Items.Add("Thạc sĩ");
             cbbHocVi.Items.Add("Nghiên cứu sinh");
             cbbHocVi.Items.Add("Tiến sĩ");
@@ -47,19 +49,24 @@ namespace TRACNGHIEM
             TNDataSet.EnforceConstraints = false;
             gcKhoa.UseDisabledStatePainter = false;
             gcGiaoVien.UseDisabledStatePainter = false;
-            // Lấy kết danh sách phân mảnh đổ vào combobox
-            cbbCoSo.DataSource = Program.bds_dspm.DataSource;
-            cbbCoSo.DisplayMember = "TENCS";
-            cbbCoSo.ValueMember = "TENSERVER";
-            cbbCoSo.SelectedIndex = Program.mCoSo;
+            try
+            {
+                // Lấy kết danh sách phân mảnh đổ vào combobox
+                cbbCoSo.DataSource = Program.bds_dspm.DataSource;
+                cbbCoSo.DisplayMember = "TENCS";
+                cbbCoSo.ValueMember = "TENSERVER";
+                cbbCoSo.SelectedIndex = Program.mCoSo;
 
-            // Lấy kết danh sách phân mảnh đổ vào combobox
-            cbbCoSoAdd.DataSource = Program.bds_dspm.DataSource;
-            cbbCoSoAdd.DisplayMember = "TENCS";
-            cbbCoSoAdd.ValueMember = "MACS";
-            cbbCoSoAdd.SelectedIndex = Program.mCoSo;
-            cbbCoSoAdd.Enabled = false;
-            txtMaCS.Text = cbbCoSoAdd.SelectedIndex.ToString();
+
+                // Lấy kết danh sách phân mảnh đổ vào combobox
+                cbbCoSoAdd.DataSource = Program.bds_dspm.DataSource;
+                cbbCoSoAdd.DisplayMember = "TENCS";
+                cbbCoSoAdd.ValueMember = "MACS";
+                cbbCoSoAdd.SelectedIndex = Program.mCoSo;
+                cbbCoSoAdd.Enabled = false;
+                txtMaCS.Text = cbbCoSoAdd.SelectedIndex.ToString();
+            }
+            catch (Exception ex) { }
 
             // TODO: This line of code loads data into the 'TNDataSet.BODE' table. You can move, or remove it, as needed.
             this.tbBoDeADT.Connection.ConnectionString = Program.connstr;
@@ -80,6 +87,9 @@ namespace TRACNGHIEM
 
             this.tbKhoaADT.Connection.ConnectionString = Program.connstr;
             this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
+
+            this.tbDSKHOAADT.Connection.ConnectionString = Program.connstr;
+            this.tbDSKHOAADT.Fill(this.TNDataSet.DSKHOA);
 
             // phân quyền
             // nhóm CoSo thì ta chỉ cho phép toàn quyền làm việc trên cơ sở  đó , không được log vào cơ sở  khác,   
@@ -103,8 +113,13 @@ namespace TRACNGHIEM
                 = cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
             cbbKhoaGV.SelectedValue = txtTenKH.Text;
 
+            if ((DataRowView)this.bdsGiaoVien.Current!=null){
+                cbbHocVi.SelectedValue = ((DataRowView)this.bdsGiaoVien.Current).Row["HOCVI"].ToString();
 
-            cbbHocVi.SelectedValue = ((DataRowView)this.bdsGiaoVien.Current).Row["HOCVI"].ToString();
+              //  for(int i=0; i<)
+                //cbbKhoaGV.SelectedIndex = txtMaKH.Text;
+            }
+
             dem++;
         }
 
@@ -580,15 +595,15 @@ namespace TRACNGHIEM
                         //Thực hiện sp
                         Program.myReader = Program.ExecSqlDataReader1(strLenh);
 
-                        if (Program.myReader == null)
-                        {
-                            MessageBox.Show("Lỗi chuyển khoa ", "", MessageBoxButtons.OK);
-                            return;
-                        }
-                        else
-                        {
-                            MessageBox.Show("Chuyển khoa cho giảng viên thành công, vui lòng đợi 1p sau để dữ liệu được cập nhật! ", "", MessageBoxButtons.OK);
-                        }
+                        //if (Program.myReader == null)
+                        //{
+                        //    MessageBox.Show("Lỗi chuyển khoa ", "", MessageBoxButtons.OK);
+                        //    return;
+                        //}
+                        //else
+                        //{
+                        //    MessageBox.Show("Chuyển khoa cho giảng viên thành công, vui lòng đợi 1p sau để dữ liệu được cập nhật! ", "", MessageBoxButtons.OK);
+                        //}
 
                         this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
                         tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
@@ -609,7 +624,6 @@ namespace TRACNGHIEM
                 catch (Exception ex)
                 {
                     MessageBox.Show("Lỗi chuyển khoa " + ex.Message, "", MessageBoxButtons.OK);
-                    Console.WriteLine("Lỗi: " + ex.Message);
                 }
             }
             else
@@ -660,6 +674,8 @@ namespace TRACNGHIEM
             gcKhoa.Enabled = true;
             gcGiaoVien.Enabled = true;
             btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
+            this.tbDSKHOAADT.Connection.ConnectionString = Program.connstr;
+            this.tbDSKHOAADT.Fill(this.TNDataSet.DSKHOA);
         }
 
         private void btnTaiLaiGV_Click_1(object sender, EventArgs e)
@@ -715,14 +731,13 @@ namespace TRACNGHIEM
                     // Gọi view V_DS_COSO và trả về datable 
                     DataTable dt = new DataTable();
                     dt = Program.ExecSqlDataTable("SELECT MAKH, TENKH, MACS FROM dbo.KHOA");
-                    Program.bds_dspm.DataSource = dt;
 
                     // Lấy kết quả đổ vào combobox
                     cbbKhoaGV.DataSource = dt;
                     cbbKhoaGV.DisplayMember = "TENKH";
                     cbbKhoaGV.ValueMember = "MAKH";
-                    cbbKhoaGV.SelectedIndex = 1;
-                    cbbKhoaGV.SelectedIndex = 0;
+
+                    cbbKhoaGV.SelectedValue = ((DataRowView)this.bdsKhoa.Current).Row["MAKH"].ToString();
                 }
                 catch (Exception ex)
                 {

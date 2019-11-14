@@ -73,18 +73,30 @@ namespace TRACNGHIEM
             TNDataSet.EnforceConstraints = false;
 
             // Lấy kết danh sách phân mảnh đổ vào combobox
-            cbbCoSo.DataSource = Program.bds_dspm.DataSource;
-            cbbCoSo.DisplayMember = "TENCS";
-            cbbCoSo.ValueMember = "TENSERVER";
-            cbbCoSo.SelectedIndex = Program.mCoSo;
+            try
+            {
+                if (Program.bds_dspm.DataSource != null)
+                {
+                    cbbCoSo.DataSource = Program.bds_dspm.DataSource;
+                    cbbCoSo.DisplayMember = "TENCS";
+                    cbbCoSo.ValueMember = "TENSERVER";
+                    cbbCoSo.SelectedIndex = Program.mCoSo;
+                }
+                else
+                {
+                    MessageBox.Show("Lỗi load dữ liệu cơ sở ", "Lỗi", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi load dữ liệu cơ sở " + ex.Message, "", MessageBoxButtons.OK);
+            }
 
             // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
             this.tbBangDiemADT.Connection.ConnectionString = Program.connstr;
             this.tbBangDiemADT.Fill(this.TNDataSet.BANGDIEM);
 
             // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
-            this.tbDSLopADT.Connection.ConnectionString = Program.connstr;
-            this.tbDSLopADT.Fill(this.TNDataSet.DSLOP);
 
             // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
             this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
@@ -117,8 +129,11 @@ namespace TRACNGHIEM
             }
             dem++;
             pcSV.Enabled = pcLop.Enabled = false;
+            if ((DataRowView)this.bdsSinhVien.Current != null)
+            {
+                cbbTenLop.SelectedItem = ((DataRowView)this.bdsLop.Current);
+            }
 
-            cbbTenLop.SelectedValue = edtMaLop.Text;
         }
 
         private void btnThemSV_Click(object sender, EventArgs e)
@@ -137,11 +152,9 @@ namespace TRACNGHIEM
                 cbbTenLop.Enabled = false;
                 checkThemSV = true;
                 // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
-                this.tbDSLopADT.Connection.ConnectionString = Program.connstr;
-                this.tbDSLopADT.Fill(this.TNDataSet.DSLOP);
                 cbbTenLop.SelectedValue = edtMaLop.Text;
                 edtMaLopSV.Text = ((DataRowView)this.bdsLop.Current).Row["MALOP"].ToString();
-                
+
             }
             catch (Exception ex)
             {
@@ -198,7 +211,7 @@ namespace TRACNGHIEM
             {
                 if (edtMaSV.Text.Trim().Equals(""))
                 {
-                    MessageBox.Show("Mã sinh viên không được để trống, vui lòng nhập lại","", MessageBoxButtons.OK);
+                    MessageBox.Show("Mã sinh viên không được để trống, vui lòng nhập lại", "", MessageBoxButtons.OK);
                     return;
                 }
 
@@ -234,6 +247,27 @@ namespace TRACNGHIEM
             }
             else if (checkChuyenLop == true)
             {
+                DialogResult dialogResult = MessageBox.Show("Xác nhận chuyển mã sv: " + edtMaSV.Text + " sang mã lớp : " + edtMaLopSV.Text + "!", "THÔNG BÁO", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    String sql = "EXEC SP_CHUYENLOP '" + edtMaSV.Text.Trim() + "', '" + edtMaLopSV.Text.Trim() + "'";
+                    Program.myReader = Program.ExecSqlDataReader(sql);
+                    Program.myReader.Read();
+                    int kq = int.Parse(Program.myReader[0].ToString());
+                    if (kq == 0)
+                    {
+                        MessageBox.Show("Chuyển thành công!", "THÔNG BÁO", MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Chuyển thất bại!", "THÔNG BÁO", MessageBoxButtons.OK);
+                    }
+                    Program.myReader.Close();
+                }
+                else
+                {
+
+                }
                 checkChuyenLop = false;
             }
             else
@@ -517,7 +551,7 @@ namespace TRACNGHIEM
             btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = true;
             pcLop.Enabled = false;
 
-            checkThemSV = checkSuaSV = checkXoaSV =checkChuyenLop=  false;
+            checkThemSV = checkSuaSV = checkXoaSV = checkChuyenLop = false;
 
             pcSV.Enabled = false;
             btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
@@ -588,39 +622,85 @@ namespace TRACNGHIEM
             }
             else
             {
-                cbbTenLop.SelectedValue = edtTenLop.Text;
-
-                btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = false;
-                pcLop.Enabled = false;
-
-                pcSV.Enabled = true;
-                btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = false;
-                edtMaSV.Enabled = false;
-                edtHo.Enabled = edtTen.Enabled = edtNgaySInh.Enabled = edtDiaChi.Enabled = false;
-                cbbTenLop.Enabled = true;
-                checkChuyenLop = true;
+                if (cbbTenLop.Items.Count == 0)
+                {
+                    MessageBox.Show("Không có lớp để chuyển!", "THÔNG BÁO", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = false;
+                    pcLop.Enabled = false;
+                    pcSV.Enabled = true;
+                    btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = false;
+                    edtMaSV.Enabled = false;
+                    edtHo.Enabled = edtTen.Enabled = edtNgaySInh.Enabled = edtDiaChi.Enabled = false;
+                    cbbTenLop.Enabled = true;
+                    checkChuyenLop = true;
+                    cbbTenLop.SelectedText = edtMaLopSV.Text;
+                }
             }
         }
 
         private void edtTimSV_EditValueChanged(object sender, EventArgs e)
         {
+            String tim = edtTimSV.Text.Trim();
+            if (!tim.Equals(""))
+            {
+                String kqTimkiem = "";
+                String strlenh = "SELECT MASV from dbo.SINHVIEN WHERE MASV = '"
+                   + tim + "' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
+                Program.myReader = Program.ExecSqlDataReader(strlenh);
+                while (Program.myReader.Read())
+                {
+                    kqTimkiem += "'" + Program.myReader.GetString(0).Trim() + "',";
+                }
+                Program.conn.Close();
+                if (!kqTimkiem.Equals(""))
+                    bdsSinhVien.Filter = "MASV IN (" + kqTimkiem + ")";
+            }
+            else
+            {
+                bdsSinhVien.Filter = "";
+                this.tbSinhVienADT.Connection.ConnectionString = Program.connstr1;
+                this.tbSinhVienADT.Fill(this.TNDataSet.SINHVIEN);
+                // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
 
+            }
         }
 
         private void btnTim_Click(object sender, EventArgs e)
         {
-
+            String tim = edtTimSV.Text.Trim();
+            if (tim.Equals(""))
+            {
+                MessageBox.Show("Bạn chưa nhập tìm kiếm", "", MessageBoxButtons.OK);
+                this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+                this.tbSinhVienADT.Fill(this.TNDataSet.SINHVIEN);
+                return;
+            }
+            else
+            {
+                String kqTimkiem = "";
+                String strlenh = "SELECT MASV from dbo.SINHVIEN WHERE MASV = '"
+                   + tim + "' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
+                Program.myReader = Program.ExecSqlDataReader(strlenh);
+                while (Program.myReader.Read())
+                {
+                    kqTimkiem += "'" + Program.myReader.GetString(0).Trim() + "',";
+                }
+                Program.conn.Close();
+                if (!kqTimkiem.Equals(""))
+                    bdsSinhVien.Filter = "MASV IN (" + kqTimkiem + ")";
+            }
         }
 
         private void cbbTenLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             try
             {
                 TNDataSet.EnforceConstraints = false;
                 // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
-                this.tbDSLopADT.Connection.ConnectionString = Program.connstr;
-                this.tbDSLopADT.Fill(this.TNDataSet.DSLOP);
                 edtMaLopSV.Text = cbbTenLop.SelectedValue.ToString();
             }
             catch (Exception ex)
@@ -628,5 +708,6 @@ namespace TRACNGHIEM
                 return;
             }
         }
+
     }
 }

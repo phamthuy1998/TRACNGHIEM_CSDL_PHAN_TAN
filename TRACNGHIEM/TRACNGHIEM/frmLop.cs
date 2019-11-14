@@ -70,8 +70,11 @@ namespace TRACNGHIEM
 
         private void frmLop_Load(object sender, EventArgs e)
         {
-            TNDataSet.EnforceConstraints = false;
+            // TODO: This line of code loads data into the 'TNDataSet.DSLOP' table. You can move, or remove it, as needed.
 
+            TNDataSet.EnforceConstraints = false;
+            gcSinhVien.UseDisabledStatePainter = false;
+            gcLop.UseDisabledStatePainter = false;
             // Lấy kết danh sách phân mảnh đổ vào combobox
             try
             {
@@ -91,7 +94,8 @@ namespace TRACNGHIEM
             {
                 MessageBox.Show("Lỗi load dữ liệu cơ sở " + ex.Message, "", MessageBoxButtons.OK);
             }
-
+            this.tbDSLopADT.Connection.ConnectionString = Program.connstr;
+            this.tbDSLopADT.Fill(this.TNDataSet.DSLOP);
             // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
             this.tbBangDiemADT.Connection.ConnectionString = Program.connstr;
             this.tbBangDiemADT.Fill(this.TNDataSet.BANGDIEM);
@@ -142,10 +146,15 @@ namespace TRACNGHIEM
             {
                 bdsSinhVien.AddNew();
 
-                btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = false;
-                edtMaLop.Enabled = edtTenLop.Enabled = true;
+                btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = btnGhi.Enabled
+                    = btnPhucHoi.Enabled = btnTaiLai.Enabled = false;
+
+                pcLop.Enabled = false;
 
                 pcSV.Enabled = true;
+
+                gcSinhVien.Enabled = gcLop.Enabled = false;
+
                 btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = false;
                 btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
                 edtMaSV.Enabled = edtHo.Enabled = edtTen.Enabled = edtNgaySInh.Enabled = edtDiaChi.Enabled = true;
@@ -190,12 +199,13 @@ namespace TRACNGHIEM
                 this.tbLopADT.Connection.ConnectionString = Program.connstr;
                 this.tbLopADT.Fill(this.TNDataSet.LOP);
 
-                btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = true;
-                pcLop.Enabled = false;
+                btnThem.Enabled = btnSuaL.Enabled
+                    = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnPhucHoi.Enabled = true;
+                pcLop.Enabled = pcSV.Enabled = false;
 
+                gcLop.Enabled = gcSinhVien.Enabled = true;
                 checkThemSV = checkSuaSV = checkXoaSV = false;
 
-                pcSV.Enabled = false;
                 btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
                 btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
             }
@@ -239,40 +249,91 @@ namespace TRACNGHIEM
                     return;
                 }
 
+                String sql = "EXEC SP_KTSV_TONTAI '" + edtMaSV.Text.Trim().ToString() + "'";
+
+                int kq = Program.ExecSqlNonQuery(sql);
+                if (kq == 1)
+                {
+                    edtMaSV.Focus();
+                    return;
+                }
+                else
+                {
+                    ghiSinhVien();
+                }
 
             }
             else if (checkSuaSV == true)
             {
+                if (edtHo.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Họ sinh viên không được để trống, vui lòng nhập lại", "", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (edtTen.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Tên sinh viên không được để trống, vui lòng nhập lại", "", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (edtNgaySInh.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Ngày sinh của sinh viên không được để trống, vui lòng nhập lại", "", MessageBoxButtons.OK);
+                    return;
+                }
+
+                if (edtDiaChi.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Địa chỉ của sinh viên không được để trống, vui lòng nhập lại", "", MessageBoxButtons.OK);
+                    return;
+                }
+
                 checkSuaSV = false;
+                ghiSinhVien();
             }
             else if (checkChuyenLop == true)
             {
-                DialogResult dialogResult = MessageBox.Show("Xác nhận chuyển mã sv: " + edtMaSV.Text + " sang mã lớp : " + edtMaLopSV.Text + "!", "THÔNG BÁO", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes)
-                {
-                    String sql = "EXEC SP_CHUYENLOP '" + edtMaSV.Text.Trim() + "', '" + edtMaLopSV.Text.Trim() + "'";
-                    Program.myReader = Program.ExecSqlDataReader(sql);
-                    Program.myReader.Read();
-                    int kq = int.Parse(Program.myReader[0].ToString());
-                    if (kq == 0)
-                    {
-                        MessageBox.Show("Chuyển thành công!", "THÔNG BÁO", MessageBoxButtons.OK);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Chuyển thất bại!", "THÔNG BÁO", MessageBoxButtons.OK);
-                    }
-                    Program.myReader.Close();
-                }
-                else
-                {
 
-                }
+                String sql = "EXEC SP_CHUYENLOP N'" + edtMaLopSV.Text.Trim() + "', N'" + edtMaSV.Text.Trim() + "'";
+
+                int kq = Program.ExecSqlNonQuery(sql);
+                // thành công
+                btnThem.Enabled = btnSuaL.Enabled
+                    = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnPhucHoi.Enabled = true;
+                pcLop.Enabled = pcSV.Enabled = false;
+
+                gcLop.Enabled = gcSinhVien.Enabled = true;
+                checkThemSV = checkSuaSV = checkXoaSV = false;
+
+                btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
+                btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
                 checkChuyenLop = false;
+                this.tbDSLopADT.Connection.ConnectionString = Program.connstr;
+                this.tbDSLopADT.Fill(this.TNDataSet.DSLOP);
+                // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
+                this.tbBangDiemADT.Connection.ConnectionString = Program.connstr;
+                this.tbBangDiemADT.Fill(this.TNDataSet.BANGDIEM);
+
+                // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
+
+                // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+                this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+                this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
+                // TODO: This line of code loads data into the 'tNDataSet.SINHVIEN' table. You can move, or remove it, as needed.
+                // gán chuỗi kết nối được lấy từ form đăng nhập trước khi fiew dữ liêu về
+                this.tbSinhVienADT.Connection.ConnectionString = Program.connstr;
+                this.tbSinhVienADT.Fill(this.TNDataSet.SINHVIEN);
+                // TODO: This line of code loads data into the 'tNDataSet.DSKHOA' table. You can move, or remove it, as needed.
+                this.tbDSKhoaADT.Connection.ConnectionString = Program.connstr;
+                this.tbDSKhoaADT.Fill(this.TNDataSet.DSKHOA);
+                // TODO: This line of code loads data into the 'tNDataSet.LOP' table. You can move, or remove it, as needed.
+                this.tbLopADT.Connection.ConnectionString = Program.connstr;
+                this.tbLopADT.Fill(this.TNDataSet.LOP);
             }
             else
             {
-
+                ghiSinhVien();
             }
         }
 
@@ -311,6 +372,7 @@ namespace TRACNGHIEM
         {
             try
             {
+                gcLop.Enabled = gcSinhVien.Enabled = false;
                 bdsLop.AddNew();
                 btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = false;
                 ctxMenuSV.Enabled = false;
@@ -339,12 +401,17 @@ namespace TRACNGHIEM
                 //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
                 // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
                 this.tbLopADT.Update(this.TNDataSet.LOP);
-                btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = true;
+                btnThem.Enabled = btnSuaL.Enabled
+                   = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnPhucHoi.Enabled = true;
+                pcLop.Enabled = pcSV.Enabled = false;
+
+                gcLop.Enabled = gcSinhVien.Enabled = true;
+                checkThem = checkSua = checkXoa = false;
+
                 ctxMenuSV.Enabled = true;
-                btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled
-                    = btnGhiSV.Enabled = btnTaiLaiSV.Enabled = btnPhucHoiSV.Enabled = true;
-                pcLop.Enabled = false;
-                pcSV.Enabled = false;
+
+                btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
+                btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -468,16 +535,17 @@ namespace TRACNGHIEM
             // TODO: This line of code loads data into the 'tNDataSet.LOP' table. You can move, or remove it, as needed.
             this.tbLopADT.Connection.ConnectionString = Program.connstr;
             this.tbLopADT.Fill(this.TNDataSet.LOP);
-            checkThem = false;
-            checkSua = false;
-            checkXoa = false;
-            // Hủy bỏ thao tác đang hiệu chỉnh
-            bdsLop.CancelEdit();
-            btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = true;
-            ctxMenuSV.Enabled = true;
-            pcLop.Enabled = false;
-            pcSV.Enabled = false;
+            btnThem.Enabled = btnSuaL.Enabled
+            = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnPhucHoi.Enabled = true;
+            pcLop.Enabled = pcSV.Enabled = false;
 
+            gcLop.Enabled = gcSinhVien.Enabled = true;
+            checkThem = checkSua = checkXoa = false;
+
+            ctxMenuSV.Enabled = true;
+
+            btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
+            btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
         }
 
         private void btnTaiLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -523,6 +591,8 @@ namespace TRACNGHIEM
 
         private void btnTaiLaiSV_Click(object sender, EventArgs e)
         {
+            edtTimSV.Text = "";
+            this.tbSinhVienADT.Connection.ConnectionString = Program.connstr;
             this.tbSinhVienADT.Fill(this.TNDataSet.SINHVIEN);
         }
 
@@ -548,12 +618,13 @@ namespace TRACNGHIEM
             this.tbLopADT.Connection.ConnectionString = Program.connstr;
             this.tbLopADT.Fill(this.TNDataSet.LOP);
 
-            btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = true;
-            pcLop.Enabled = false;
+            btnThem.Enabled = btnSuaL.Enabled
+                    = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnPhucHoi.Enabled = true;
+            pcLop.Enabled = pcSV.Enabled = false;
 
-            checkThemSV = checkSuaSV = checkXoaSV = checkChuyenLop = false;
+            gcLop.Enabled = gcSinhVien.Enabled = true;
+            checkThemSV = checkSuaSV = checkXoaSV = false;
 
-            pcSV.Enabled = false;
             btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
             btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
         }
@@ -571,6 +642,7 @@ namespace TRACNGHIEM
                 btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = false;
                 ctxMenuSV.Enabled = false;
                 pcLop.Enabled = true;
+                gcLop.Enabled = gcSinhVien.Enabled = false;
                 this.tbDSKhoaADT.Connection.ConnectionString = Program.connstr;
                 this.tbDSKhoaADT.Fill(this.TNDataSet.DSKHOA);
                 cbbTenKhoa.SelectedValue = ((DataRowView)this.bdsLop.Current).Row["MAKH"].ToString();
@@ -600,12 +672,12 @@ namespace TRACNGHIEM
             }
             else
             {
-                btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = false;
+                btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled
+                    = btnPhucHoi.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = false;
                 pcLop.Enabled = false;
-
+                gcLop.Enabled = gcSinhVien.Enabled = false;
                 pcSV.Enabled = true;
                 btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = false;
-                btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
                 edtMaSV.Enabled = false;
                 edtHo.Enabled = edtTen.Enabled = edtNgaySInh.Enabled = edtDiaChi.Enabled = true;
                 cbbTenLop.Enabled = false;
@@ -628,9 +700,11 @@ namespace TRACNGHIEM
                 }
                 else
                 {
-                    btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled = false;
+                    btnThem.Enabled = btnSuaL.Enabled = btnXoa.Enabled
+                  = btnPhucHoi.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = false;
                     pcLop.Enabled = false;
                     pcSV.Enabled = true;
+                    gcLop.Enabled = gcSinhVien.Enabled = false;
                     btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = false;
                     edtMaSV.Enabled = false;
                     edtHo.Enabled = edtTen.Enabled = edtNgaySInh.Enabled = edtDiaChi.Enabled = false;
@@ -661,7 +735,7 @@ namespace TRACNGHIEM
             else
             {
                 bdsSinhVien.Filter = "";
-                this.tbSinhVienADT.Connection.ConnectionString = Program.connstr1;
+                this.tbSinhVienADT.Connection.ConnectionString = Program.connstr;
                 this.tbSinhVienADT.Fill(this.TNDataSet.SINHVIEN);
                 // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
 
@@ -696,11 +770,8 @@ namespace TRACNGHIEM
 
         private void cbbTenLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             try
             {
-                TNDataSet.EnforceConstraints = false;
-                // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
                 edtMaLopSV.Text = cbbTenLop.SelectedValue.ToString();
             }
             catch (Exception ex)

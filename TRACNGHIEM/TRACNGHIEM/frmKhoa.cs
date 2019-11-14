@@ -38,7 +38,7 @@ namespace TRACNGHIEM
         private void frmKhoa_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'TNDataSet.DSKHOA' table. You can move, or remove it, as needed.
-           
+
             cbbHocVi.Items.Add("Thạc sĩ");
             cbbHocVi.Items.Add("Nghiên cứu sinh");
             cbbHocVi.Items.Add("Tiến sĩ");
@@ -113,10 +113,11 @@ namespace TRACNGHIEM
                 = cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
             cbbKhoaGV.SelectedValue = txtTenKH.Text;
 
-            if ((DataRowView)this.bdsGiaoVien.Current!=null){
+            if ((DataRowView)this.bdsGiaoVien.Current != null)
+            {
                 cbbHocVi.SelectedValue = ((DataRowView)this.bdsGiaoVien.Current).Row["HOCVI"].ToString();
 
-              //  for(int i=0; i<)
+                //  for(int i=0; i<)
                 //cbbKhoaGV.SelectedIndex = txtMaKH.Text;
             }
 
@@ -128,6 +129,7 @@ namespace TRACNGHIEM
             try
             {
                 bdsKhoa.AddNew();
+
                 checkThem = true;
                 btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = false;
                 txtMaKH.Focus();
@@ -140,7 +142,7 @@ namespace TRACNGHIEM
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi thêm môn học " + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi thêm khoa " + ex.Message, "", MessageBoxButtons.OK);
             }
         }
 
@@ -239,7 +241,7 @@ namespace TRACNGHIEM
             if (bdsKhoa.Count == 0)
             {
                 MessageBox.Show("Không có Khoa để xóa!", "THÔNG BÁO", MessageBoxButtons.OK);
-
+                return;
             }
             else
             {
@@ -437,8 +439,7 @@ namespace TRACNGHIEM
                 txtMaKH.Focus();
                 btnGhi.Enabled = false;
                 btnPhucHoi.Enabled = false;
-                gcKhoa.Enabled = false;
-                gcGiaoVien.Enabled = false;
+                gcKhoa.Enabled = gcGiaoVien.Enabled = false;
                 btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = false;
                 txtMaKH.Enabled = txtTenKH.Enabled = false;
             }
@@ -485,6 +486,37 @@ namespace TRACNGHIEM
                 }
             }
         }
+        private void ghiGV()
+        {
+            try
+            {
+                bdsGiaoVien.EndEdit();
+                //lấy dữ liệu hiện tại của control phía dưới lưu lên bên trên
+                bdsGiaoVien.ResetCurrentItem();
+                //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
+                // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
+                this.tbGiaoVienADT.Update(this.TNDataSet.GIAOVIEN);
+
+                edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
+                  = edtDiachiGV.Enabled = false;
+                cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
+                checkThemGV = checkSuaGV = checkXoaGV = false;
+
+                btnPhucHoi.Enabled = true;
+                btnGhi.Enabled = true;
+                gcKhoa.Enabled = true;
+                gcGiaoVien.Enabled = true;
+                btnThem.Enabled = btnXoa.Enabled = btnSuaK.Enabled
+                 = btnPhucHoi.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = true;
+                gcGiaoVien.Enabled = true; edtTimGV.Text = "";
+                btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi ghi giảng viên " + ex.Message, "", MessageBoxButtons.OK);
+            }
+        }
 
         private void btnGhiGV_Click_1(object sender, EventArgs e)
         {
@@ -524,24 +556,8 @@ namespace TRACNGHIEM
                     }
                     else
                     {
-                        bdsGiaoVien.EndEdit();
-                        //lấy dữ liệu hiện tại của control phía dưới lưu lên bên trên
-                        bdsGiaoVien.ResetCurrentItem();
-                        //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
-                        // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
-                        this.tbGiaoVienADT.Update(this.TNDataSet.GIAOVIEN);
+                        ghiGV();
 
-                        edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
-                          = edtDiachiGV.Enabled = false;
-                        cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
-                        checkThemGV = false;
-
-                        btnPhucHoi.Enabled = true;
-                        btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled = true;
-                        btnGhi.Enabled = true;
-                        gcKhoa.Enabled = true;
-                        gcGiaoVien.Enabled = true;
-                        btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
                     }
                 }
                 catch (Exception ex)
@@ -553,25 +569,7 @@ namespace TRACNGHIEM
             {
                 try
                 {
-                    bdsGiaoVien.EndEdit();
-                    //lấy dữ liệu hiện tại của control phía dưới lưu lên bên trên
-                    bdsGiaoVien.ResetCurrentItem();
-
-                    //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
-                    // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
-                    this.tbGiaoVienADT.Update(this.TNDataSet.GIAOVIEN);
-
-                    edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
-                      = edtDiachiGV.Enabled = false;
-                    cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
-                    checkThemGV = false;
-
-                    btnPhucHoi.Enabled = true;
-                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled;
-                    btnGhi.Enabled = true;
-                    gcKhoa.Enabled = true;
-                    gcGiaoVien.Enabled = true;
-                    btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
+                    ghiGV();
                 }
                 catch (Exception ex)
                 {
@@ -594,7 +592,7 @@ namespace TRACNGHIEM
                         string strLenh = "EXEC sp_chuyenKhoa '" + edtMaKHGV.Text + "','" + edtMaGV.Text + "'";
                         //Thực hiện sp
                         Program.myReader = Program.ExecSqlDataReader1(strLenh);
-
+                        Program.myReader.Close();
                         //if (Program.myReader == null)
                         //{
                         //    MessageBox.Show("Lỗi chuyển khoa ", "", MessageBoxButtons.OK);
@@ -605,20 +603,23 @@ namespace TRACNGHIEM
                         //    MessageBox.Show("Chuyển khoa cho giảng viên thành công, vui lòng đợi 1p sau để dữ liệu được cập nhật! ", "", MessageBoxButtons.OK);
                         //}
 
-                        this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
                         tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+                        this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
 
                         edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
-                          = edtDiachiGV.Enabled = false;
+                           = edtDiachiGV.Enabled = false;
                         cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
-                        checkChuyenKhoa = false;
+                        checkThemGV = checkSuaGV = checkXoaGV = false;
 
                         btnPhucHoi.Enabled = true;
-                        btnThem.Enabled = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = true;
                         btnGhi.Enabled = true;
                         gcKhoa.Enabled = true;
                         gcGiaoVien.Enabled = true;
+                        btnThem.Enabled = btnXoa.Enabled = btnSuaK.Enabled
+                         = btnPhucHoi.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = true;
+                        gcGiaoVien.Enabled = true; edtTimGV.Text = "";
                         btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
+
                     }
                 }
                 catch (Exception ex)
@@ -628,32 +629,7 @@ namespace TRACNGHIEM
             }
             else
             {
-                try
-                {
-                    bdsGiaoVien.EndEdit();
-                    //lấy dữ liệu hiện tại của control phía dưới lưu lên bên trên
-                    bdsGiaoVien.ResetCurrentItem();
-
-                    //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
-                    // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
-                    this.tbGiaoVienADT.Update(this.TNDataSet.GIAOVIEN);
-
-                    edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
-                      = edtDiachiGV.Enabled = false;
-                    cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
-                    checkThemGV = false;
-
-                    btnPhucHoi.Enabled = true;
-                    btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = btnSuaK.Enabled = true;
-                    btnGhi.Enabled = true;
-                    gcKhoa.Enabled = true;
-                    gcGiaoVien.Enabled = true;
-                    btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Lỗi ghi giáo viên " + ex.Message, "", MessageBoxButtons.OK);
-                }
+                ghiGV();
             }
         }
 
@@ -680,6 +656,7 @@ namespace TRACNGHIEM
 
         private void btnTaiLaiGV_Click_1(object sender, EventArgs e)
         {
+            edtTimGV.Text = "";
             this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
         }
 
@@ -696,6 +673,9 @@ namespace TRACNGHIEM
                 edtMaGV.Enabled = false;
                 edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled = edtDiachiGV.Enabled = true;
                 cbbKhoaGV.Enabled = false;
+                gcGiaoVien.Enabled = gcKhoa.Enabled = false;
+                btnThem.Enabled = btnXoa.Enabled = btnSuaK.Enabled
+                    = btnPhucHoi.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = false;
                 edtMaKHGV.Enabled = false;
                 btnThemGV.Enabled = btnXoaGV.Enabled = btnSuaGV.Enabled = btnChuyenKhoaGV.Enabled = false;
             }
@@ -818,6 +798,6 @@ namespace TRACNGHIEM
             txtMaCS.Text = cbbCoSoAdd.SelectedValue.ToString();
         }
 
-
+      
     }
 }

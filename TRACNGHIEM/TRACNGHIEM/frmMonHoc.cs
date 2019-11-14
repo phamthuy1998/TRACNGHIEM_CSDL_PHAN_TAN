@@ -75,6 +75,7 @@ namespace TRACNGHIEM
                 bdsMonHoc.EndEdit();
                 bdsMonHoc.ResetCurrentItem();
                 this.tbMonHoc.Update(this.TNDataSet.MONHOC);
+                edtTim.Text = "";
                 this.tbMonHoc.Connection.ConnectionString = Program.connstr;
                 this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
             }
@@ -132,9 +133,13 @@ namespace TRACNGHIEM
                 else
                 {
                     ghiMH();
-                    checkThem = false;
+                    checkSua = false;
                 }
 
+            }
+            else
+            {
+                ghiMH();
             }
         }
 
@@ -197,6 +202,8 @@ namespace TRACNGHIEM
 
         private void btnTaiLaiMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            edtTim.Text = "";
+            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
             this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
         }
 

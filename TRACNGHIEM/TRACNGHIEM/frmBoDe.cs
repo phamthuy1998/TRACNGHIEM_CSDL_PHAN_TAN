@@ -12,6 +12,7 @@ namespace TRACNGHIEM
 {
     public partial class frmBoDe : Form
     {
+        private int dem = 0;
         public frmBoDe()
         {
             InitializeComponent();
@@ -28,10 +29,24 @@ namespace TRACNGHIEM
         private void frmBoDe_Load(object sender, EventArgs e)
         {
             tNDataSet.EnforceConstraints = false;
+            // TODO: This line of code loads data into the 'tNDataSet.BAITHI' table. You can move, or remove it, as needed.
+            this.tbBaiThiADT.Connection.ConnectionString = Program.connstr;
+            this.tbBaiThiADT.Fill(this.tNDataSet.BAITHI);
+            // TODO: This line of code loads data into the 'tNDataSet.DSGIAOVIEN' table. You can move, or remove it, as needed.
+            this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+            this.tbGiaoVienADT.Fill(this.tNDataSet.DSGIAOVIEN);
+            // TODO: This line of code loads data into the 'tNDataSet.DSMONHOC' table. You can move, or remove it, as needed.
+            this.tbMonHocADT.Connection.ConnectionString = Program.connstr;
+            this.tbMonHocADT.Fill(this.tNDataSet.DSMONHOC);
             // TODO: This line of code loads data into the 'tNDataSet.MONHOC' table. You can move, or remove it, as needed.
+            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
             this.tbMonHoc.Fill(this.tNDataSet.MONHOC);
             // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
+            this.tbBoDe.Connection.ConnectionString = Program.connstr;
             this.tbBoDe.Fill(this.tNDataSet.BODE);
+            cbbTenMonHocC.SelectedIndex = 0;
+
+            dem++;
 
         }
 
@@ -91,9 +106,21 @@ namespace TRACNGHIEM
 
         private void btnXoaBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (bdsBoDe.Count == 0)
+            {
+                MessageBox.Show("Không có câu hỏi để xóa!", "THÔNG BÁO", MessageBoxButtons.OK);
+                return;
+            }
+
+            if (bdsBaiThi.Count > 0)
+            {
+                MessageBox.Show("Câu này đã tồn tại trong bài thi của sinh viên, không được xóa", "THÔNG BÁO", MessageBoxButtons.OK);
+                return;
+            }
+
             if (MessageBox.Show("Bạn có chắc chắn muốn xóa câu hỏi thi "
                 + ((DataRowView)this.bdsBoDe.Current).Row["CAUHOI"].ToString()
-                + "\n"+((DataRowView)this.bdsBoDe.Current).Row["NOIDUNG"].ToString()
+                + "\n" + ((DataRowView)this.bdsBoDe.Current).Row["NOIDUNG"].ToString()
                 + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 try
@@ -127,6 +154,39 @@ namespace TRACNGHIEM
         {
             // Hủy bỏ thao tác đang hiệu chỉnh
             bdsBoDe.CancelEdit();
+        }
+
+        private void cbbTenMonHocC_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbbTenMonHocC.SelectedValue != null)
+            {
+
+                //Console.WriteLine(cbbMH.SelectedValue.ToString());
+                //this.sP_DSLanThiDKTableAdapter.Connection.ConnectionString = Program.connstr1;
+                //this.sP_DSLanThiDKTableAdapter.Fill(this.tNDataSet.SP_DSLanThiDK, cbbMH.SelectedValue.ToString(), cbbLop.SelectedValue.ToString());
+                //cbbLThi.SelectedIndex = 0;
+
+                //this.sP_XemKetQuaSVTableAdapter.Connection.ConnectionString = Program.connstr1;
+                //this.sP_XemKetQuaSVTableAdapter.Fill(this.tNDataSet.SP_XemKetQuaSV, cbbLop.SelectedValue.ToString(), cbbMH.SelectedValue.ToString(), short.Parse(cbbLThi.SelectedValue.ToString()));
+                try
+                {
+                    String kqTimkiem = "";
+                    String strlenh = "SELECT CAUHOI FROM dbo.BODE WHERE MAMH = '" 
+                        +cbbTenMonHocC.SelectedValue.ToString()+"'";
+                    Program.myReader = Program.ExecSqlDataReader(strlenh);
+                    while (Program.myReader.Read())
+                    {
+                        kqTimkiem += "'" + Program.myReader.GetString(0).Trim() + "',";
+                    }
+                    Program.conn.Close();
+                    bdsBoDe.Filter = "MAMH IN (" + kqTimkiem + ")";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi tải dữ liệu theo môn học " + ex.Message, "Lỗi", MessageBoxButtons.OK);
+                }
+
+            }
         }
     }
 }

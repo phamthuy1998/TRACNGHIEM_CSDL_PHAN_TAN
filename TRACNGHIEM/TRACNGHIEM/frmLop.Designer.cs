@@ -110,6 +110,8 @@
             this.tbGiaoVienADT = new TRACNGHIEM.TNDataSetTableAdapters.GIAOVIEN_DANGKYTableAdapter();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
             this.tbBangDiemADT = new TRACNGHIEM.TNDataSetTableAdapters.BANGDIEMTableAdapter();
+            this.bdsDSLop = new System.Windows.Forms.BindingSource(this.components);
+            this.tbDSLopADT = new TRACNGHIEM.TNDataSetTableAdapters.DSLOPTableAdapter();
             mAKHLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
             mALOPLabel = new System.Windows.Forms.Label();
@@ -155,6 +157,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtMaLopSV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVienDK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBangDiem)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsDSLop)).BeginInit();
             this.SuspendLayout();
             // 
             // mAKHLabel
@@ -700,7 +703,7 @@
             this.colMASV.OptionsColumn.AllowEdit = false;
             this.colMASV.Visible = true;
             this.colMASV.VisibleIndex = 0;
-            this.colMASV.Width = 187;
+            this.colMASV.Width = 159;
             // 
             // colHO
             // 
@@ -710,7 +713,7 @@
             this.colHO.OptionsColumn.AllowFocus = false;
             this.colHO.Visible = true;
             this.colHO.VisibleIndex = 1;
-            this.colHO.Width = 187;
+            this.colHO.Width = 541;
             // 
             // colTEN
             // 
@@ -720,7 +723,7 @@
             this.colTEN.OptionsColumn.AllowEdit = false;
             this.colTEN.Visible = true;
             this.colTEN.VisibleIndex = 2;
-            this.colTEN.Width = 187;
+            this.colTEN.Width = 179;
             // 
             // colNGAYSINH
             // 
@@ -730,7 +733,7 @@
             this.colNGAYSINH.OptionsColumn.AllowEdit = false;
             this.colNGAYSINH.Visible = true;
             this.colNGAYSINH.VisibleIndex = 3;
-            this.colNGAYSINH.Width = 187;
+            this.colNGAYSINH.Width = 228;
             // 
             // colDIACHI
             // 
@@ -740,7 +743,7 @@
             this.colDIACHI.OptionsColumn.AllowEdit = false;
             this.colDIACHI.Visible = true;
             this.colDIACHI.VisibleIndex = 4;
-            this.colDIACHI.Width = 187;
+            this.colDIACHI.Width = 770;
             // 
             // colMALOP
             // 
@@ -750,7 +753,7 @@
             this.colMALOP.OptionsColumn.AllowEdit = false;
             this.colMALOP.Visible = true;
             this.colMALOP.VisibleIndex = 5;
-            this.colMALOP.Width = 187;
+            this.colMALOP.Width = 175;
             // 
             // gcLop
             // 
@@ -782,7 +785,7 @@
             this.colMALOP1.OptionsColumn.AllowEdit = false;
             this.colMALOP1.Visible = true;
             this.colMALOP1.VisibleIndex = 0;
-            this.colMALOP1.Width = 187;
+            this.colMALOP1.Width = 135;
             // 
             // colTENLOP
             // 
@@ -792,7 +795,7 @@
             this.colTENLOP.OptionsColumn.AllowEdit = false;
             this.colTENLOP.Visible = true;
             this.colTENLOP.VisibleIndex = 1;
-            this.colTENLOP.Width = 187;
+            this.colTENLOP.Width = 587;
             // 
             // colMAKH
             // 
@@ -802,7 +805,7 @@
             this.colMAKH.OptionsColumn.AllowEdit = false;
             this.colMAKH.Visible = true;
             this.colMAKH.VisibleIndex = 2;
-            this.colMAKH.Width = 187;
+            this.colMAKH.Width = 164;
             // 
             // pcSV
             // 
@@ -830,7 +833,7 @@
             // cbbTenLop
             // 
             this.cbbTenLop.DataBindings.Add(new System.Windows.Forms.Binding("SelectedValue", this.bdsLop, "MALOP", true));
-            this.cbbTenLop.DataSource = this.bdsLop;
+            this.cbbTenLop.DataSource = this.bdsDSLop;
             this.cbbTenLop.DisplayMember = "TENLOP";
             this.cbbTenLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbTenLop.FormattingEnabled = true;
@@ -927,6 +930,15 @@
             // 
             this.tbBangDiemADT.ClearBeforeFill = true;
             // 
+            // bdsDSLop
+            // 
+            this.bdsDSLop.DataMember = "DSLOP";
+            this.bdsDSLop.DataSource = this.TNDataSet;
+            // 
+            // tbDSLopADT
+            // 
+            this.tbDSLopADT.ClearBeforeFill = true;
+            // 
             // frmLop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -980,6 +992,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtMaLopSV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsGiaoVienDK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBangDiem)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsDSLop)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1056,5 +1069,7 @@
         private System.Windows.Forms.ToolStripMenuItem btnChuyenLop;
         private DevExpress.XtraEditors.TextEdit edtMaKH;
         private System.Windows.Forms.ComboBox cbbTenLop;
+        private System.Windows.Forms.BindingSource bdsDSLop;
+        private TNDataSetTableAdapters.DSLOPTableAdapter tbDSLopADT;
     }
 }

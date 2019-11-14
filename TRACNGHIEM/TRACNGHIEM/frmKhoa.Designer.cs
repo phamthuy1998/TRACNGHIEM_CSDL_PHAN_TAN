@@ -94,7 +94,6 @@ namespace TRACNGHIEM
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
             this.cbbCoSoAdd = new System.Windows.Forms.ComboBox();
             this.txtMaCS = new DevExpress.XtraEditors.TextEdit();
-            this.txtMaKH = new DevExpress.XtraEditors.TextEdit();
             this.txtTenKH = new DevExpress.XtraEditors.TextEdit();
             this.gcKhoa = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
@@ -104,6 +103,7 @@ namespace TRACNGHIEM
             this.panelControl4 = new DevExpress.XtraEditors.PanelControl();
             this.cbbHocVi = new System.Windows.Forms.ComboBox();
             this.cbbKhoaGV = new System.Windows.Forms.ComboBox();
+            this.bdsDSKHOA = new System.Windows.Forms.BindingSource(this.components);
             this.edtMaKHGV = new DevExpress.XtraEditors.TextEdit();
             this.edtMaGV = new DevExpress.XtraEditors.TextEdit();
             this.edtHoGV = new DevExpress.XtraEditors.TextEdit();
@@ -116,8 +116,8 @@ namespace TRACNGHIEM
             this.bdsBoDe = new System.Windows.Forms.BindingSource(this.components);
             this.tbBoDeADT = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
-            this.bdsDSKHOA = new System.Windows.Forms.BindingSource(this.components);
             this.tbDSKHOAADT = new TRACNGHIEM.TNDataSetTableAdapters.DSKHOATableAdapter();
+            this.txtMaKH = new DevExpress.XtraEditors.TextEdit();
             mACSLabel1 = new System.Windows.Forms.Label();
             mAKHLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
@@ -147,12 +147,12 @@ namespace TRACNGHIEM
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaCS.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcKhoa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).BeginInit();
             this.panelControl4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsDSKHOA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaKHGV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaGV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtHoGV.Properties)).BeginInit();
@@ -162,7 +162,7 @@ namespace TRACNGHIEM
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBoDe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsDSKHOA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mACSLabel1
@@ -662,7 +662,7 @@ namespace TRACNGHIEM
             this.colMAGV.OptionsColumn.AllowEdit = false;
             this.colMAGV.Visible = true;
             this.colMAGV.VisibleIndex = 0;
-            this.colMAGV.Width = 187;
+            this.colMAGV.Width = 134;
             // 
             // colHO
             // 
@@ -672,7 +672,7 @@ namespace TRACNGHIEM
             this.colHO.OptionsColumn.AllowEdit = false;
             this.colHO.Visible = true;
             this.colHO.VisibleIndex = 1;
-            this.colHO.Width = 187;
+            this.colHO.Width = 395;
             // 
             // colTEN
             // 
@@ -682,7 +682,7 @@ namespace TRACNGHIEM
             this.colTEN.OptionsColumn.AllowEdit = false;
             this.colTEN.Visible = true;
             this.colTEN.VisibleIndex = 2;
-            this.colTEN.Width = 187;
+            this.colTEN.Width = 156;
             // 
             // colDIACHI
             // 
@@ -692,7 +692,7 @@ namespace TRACNGHIEM
             this.colDIACHI.OptionsColumn.AllowEdit = false;
             this.colDIACHI.Visible = true;
             this.colDIACHI.VisibleIndex = 3;
-            this.colDIACHI.Width = 187;
+            this.colDIACHI.Width = 357;
             // 
             // colMAKH1
             // 
@@ -702,7 +702,7 @@ namespace TRACNGHIEM
             this.colMAKH1.OptionsColumn.AllowEdit = false;
             this.colMAKH1.Visible = true;
             this.colMAKH1.VisibleIndex = 4;
-            this.colMAKH1.Width = 187;
+            this.colMAKH1.Width = 153;
             // 
             // colHOCVI
             // 
@@ -712,15 +712,15 @@ namespace TRACNGHIEM
             this.colHOCVI.OptionsColumn.AllowEdit = false;
             this.colHOCVI.Visible = true;
             this.colHOCVI.VisibleIndex = 5;
-            this.colHOCVI.Width = 187;
+            this.colHOCVI.Width = 345;
             // 
             // panelControl2
             // 
+            this.panelControl2.Controls.Add(this.txtMaKH);
             this.panelControl2.Controls.Add(this.cbbCoSoAdd);
             this.panelControl2.Controls.Add(mACSLabel1);
             this.panelControl2.Controls.Add(this.txtMaCS);
             this.panelControl2.Controls.Add(mAKHLabel);
-            this.panelControl2.Controls.Add(this.txtMaKH);
             this.panelControl2.Controls.Add(tENKHLabel);
             this.panelControl2.Controls.Add(this.txtTenKH);
             this.panelControl2.Controls.Add(mACSLabel);
@@ -750,15 +750,6 @@ namespace TRACNGHIEM
             this.txtMaCS.Name = "txtMaCS";
             this.txtMaCS.Size = new System.Drawing.Size(486, 50);
             this.txtMaCS.TabIndex = 10;
-            // 
-            // txtMaKH
-            // 
-            this.txtMaKH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKhoa, "MAKH", true));
-            this.txtMaKH.Location = new System.Drawing.Point(251, 48);
-            this.txtMaKH.MenuManager = this.barManager;
-            this.txtMaKH.Name = "txtMaKH";
-            this.txtMaKH.Size = new System.Drawing.Size(486, 50);
-            this.txtMaKH.TabIndex = 1;
             // 
             // txtTenKH
             // 
@@ -799,7 +790,7 @@ namespace TRACNGHIEM
             this.colMAKH.OptionsColumn.AllowEdit = false;
             this.colMAKH.Visible = true;
             this.colMAKH.VisibleIndex = 0;
-            this.colMAKH.Width = 187;
+            this.colMAKH.Width = 193;
             // 
             // colTENKH
             // 
@@ -809,7 +800,7 @@ namespace TRACNGHIEM
             this.colTENKH.OptionsColumn.AllowEdit = false;
             this.colTENKH.Visible = true;
             this.colTENKH.VisibleIndex = 1;
-            this.colTENKH.Width = 187;
+            this.colTENKH.Width = 625;
             // 
             // colMACS
             // 
@@ -819,7 +810,7 @@ namespace TRACNGHIEM
             this.colMACS.OptionsColumn.AllowEdit = false;
             this.colMACS.Visible = true;
             this.colMACS.VisibleIndex = 2;
-            this.colMACS.Width = 187;
+            this.colMACS.Width = 209;
             // 
             // panelControl4
             // 
@@ -868,6 +859,11 @@ namespace TRACNGHIEM
             this.cbbKhoaGV.TabIndex = 14;
             this.cbbKhoaGV.ValueMember = "MAKH";
             this.cbbKhoaGV.SelectedIndexChanged += new System.EventHandler(this.cbbKhoaGV_SelectedIndexChanged);
+            // 
+            // bdsDSKHOA
+            // 
+            this.bdsDSKHOA.DataMember = "DSKHOA";
+            this.bdsDSKHOA.DataSource = this.TNDataSet;
             // 
             // edtMaKHGV
             // 
@@ -942,14 +938,18 @@ namespace TRACNGHIEM
             // 
             this.tbBoDeADT.ClearBeforeFill = true;
             // 
-            // bdsDSKHOA
-            // 
-            this.bdsDSKHOA.DataMember = "DSKHOA";
-            this.bdsDSKHOA.DataSource = this.TNDataSet;
-            // 
             // tbDSKHOAADT
             // 
             this.tbDSKHOAADT.ClearBeforeFill = true;
+            // 
+            // txtMaKH
+            // 
+            this.txtMaKH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKhoa, "MAKH", true));
+            this.txtMaKH.Location = new System.Drawing.Point(251, 48);
+            this.txtMaKH.MenuManager = this.barManager;
+            this.txtMaKH.Name = "txtMaKH";
+            this.txtMaKH.Size = new System.Drawing.Size(486, 50);
+            this.txtMaKH.TabIndex = 12;
             // 
             // frmKhoa
             // 
@@ -987,13 +987,13 @@ namespace TRACNGHIEM
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaCS.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcKhoa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl4)).EndInit();
             this.panelControl4.ResumeLayout(false);
             this.panelControl4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsDSKHOA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaKHGV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaGV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtHoGV.Properties)).EndInit();
@@ -1003,7 +1003,7 @@ namespace TRACNGHIEM
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBoDe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsDSKHOA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1054,7 +1054,6 @@ namespace TRACNGHIEM
         private DevExpress.XtraEditors.PanelControl panelControl2;
         private System.Windows.Forms.ComboBox cbbCoSoAdd;
         private DevExpress.XtraEditors.TextEdit txtMaCS;
-        private DevExpress.XtraEditors.TextEdit txtMaKH;
         private DevExpress.XtraEditors.TextEdit txtTenKH;
         private DevExpress.XtraGrid.GridControl gcKhoa;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
@@ -1084,5 +1083,6 @@ namespace TRACNGHIEM
         private DevExpress.Utils.Behaviors.BehaviorManager behaviorManager1;
         private System.Windows.Forms.BindingSource bdsDSKHOA;
         private TNDataSetTableAdapters.DSKHOATableAdapter tbDSKHOAADT;
+        private DevExpress.XtraEditors.TextEdit txtMaKH;
     }
 }

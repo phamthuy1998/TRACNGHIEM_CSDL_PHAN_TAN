@@ -14,6 +14,8 @@ namespace TRACNGHIEM
     {
         private Boolean checkThem = false;
         private Boolean checkSua = false;
+        public static Boolean checkSave = true;
+
 
         public frmMonHoc()
         {
@@ -30,6 +32,7 @@ namespace TRACNGHIEM
 
         private void frmMonHoc_Load(object sender, EventArgs e)
         {
+            this.ControlBox = false;
             TNDataSet.EnforceConstraints = false;
             gcMH.UseDisabledStatePainter = false;
             // TODO: This line of code loads data into the 'tNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
@@ -55,8 +58,9 @@ namespace TRACNGHIEM
                 gcMH.Enabled = false;
                 edtTenMH.Enabled = edtMaMH.Enabled = true;
                 edtMaMH.Focus();
-                btnThemMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = false;
+                btnThemMH.Enabled = btnSuaMH.Enabled = btnTaiLaiMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = false;
                 checkThem = true;
+                checkSave = false;
             }
             catch (Exception ex)
             {
@@ -69,7 +73,7 @@ namespace TRACNGHIEM
             gcMH.Enabled = true;
             edtTenMH.Enabled = false;
             edtMaMH.Enabled = false;
-            btnThemMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+            btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
             try
             {
                 bdsMonHoc.EndEdit();
@@ -78,9 +82,11 @@ namespace TRACNGHIEM
                 edtTim.Text = "";
                 this.tbMonHoc.Connection.ConnectionString = Program.connstr;
                 this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                checkSave = true;
             }
             catch (Exception ex)
             {
+                checkSave = false;
                 MessageBox.Show("Lỗi ghi môn học" + ex.Message, "", MessageBoxButtons.OK);
             }
         }
@@ -122,7 +128,7 @@ namespace TRACNGHIEM
                     MessageBox.Show("Tên môn học không được để trống ", "Thông báo", MessageBoxButtons.OK);
                     return;
                 }
-                String sql = "EXEC SP_KT_TEN_MONHOC_TON_TAI N'" + edtTenMH.Text.Trim() + "'";
+                String sql = "EXEC SP_KT_TEN_MONHOC_TON_TAI '" + edtMaMH.Text.Trim() + "', N'" + edtTenMH.Text.Trim() + "'";
 
                 int kq = Program.ExecSqlNonQuery(sql);
                 if (kq == 1)
@@ -195,9 +201,10 @@ namespace TRACNGHIEM
             gcMH.Enabled = true;
             edtTenMH.Enabled = false;
             edtMaMH.Enabled = false;
-            btnThemMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+            btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
             this.tbMonHoc.Connection.ConnectionString = Program.connstr;
             this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+            checkSave = true;
         }
 
         private void btnTaiLaiMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -212,24 +219,45 @@ namespace TRACNGHIEM
 
         }
 
-        private void btnThoatMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        public void btnThoatMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát môn học", "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+            if (checkThem == true)
             {
-                Application.ExitThread();
+                if (MessageBox.Show("Bạn đang tạo mới môn học, bạn có muốn ghi thông tin này?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhiMH_ItemClick(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
             }
-            // Kiểm tra có mẫu tin nào đang ghi dở hk, hỏi người dùng có muốn ghi?
-        }
-
-        private void frmMonHoc_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát môn học", "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+            else if (checkSua == true)
             {
-                Application.ExitThread();
+                if (MessageBox.Show("Bạn đang sửa môn học, bạn có muốn ghi thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhiMH_ItemClick(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
             }
-            else e.Cancel = true;
+            else
+            {
+                checkSave = true;
+                this.Close();
+            }
         }
 
         private void btnSuaMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -244,8 +272,9 @@ namespace TRACNGHIEM
                 gcMH.Enabled = true;
                 edtTenMH.Enabled = true;
                 edtMaMH.Enabled = false;
-                btnThemMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = false;
+                btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = false;
                 checkSua = true;
+                checkSave = false;
             }
         }
 

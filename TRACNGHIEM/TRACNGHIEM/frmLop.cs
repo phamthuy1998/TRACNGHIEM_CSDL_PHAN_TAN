@@ -165,6 +165,7 @@ namespace TRACNGHIEM
                 cbbTenLop.SelectedValue = edtMaLop.Text;
                 edtMaLopSV.Text = ((DataRowView)this.bdsLop.Current).Row["MALOP"].ToString();
                 checkSave = false;
+                panelTimGV.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -210,6 +211,7 @@ namespace TRACNGHIEM
                 btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
                 btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
                 checkSave = true;
+                panelTimGV.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -386,6 +388,7 @@ namespace TRACNGHIEM
                 edtMaKH.Text = cbbTenKhoa.SelectedValue.ToString();
                 edtMaLop.Enabled = edtTenLop.Enabled = true;
                 checkThem = true;
+                panelTimGV.Enabled = false;
                 checkSave = false;
             }
             catch (Exception ex)
@@ -417,6 +420,7 @@ namespace TRACNGHIEM
                 btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
                 btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
                 checkSave = true;
+                panelTimGV.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -464,7 +468,7 @@ namespace TRACNGHIEM
                     return;
                 }
 
-                String sql = "EXEC SP_KTMALop_TONTAI N'" + edtTenLop.Text.Trim() + "'";
+                String sql = "EXEC SP_KTMALop_TONTAI '" + edtMaLop.Text.Trim() + "', N'" + edtTenLop.Text.Trim() + "'";
 
                 int kq = Program.ExecSqlNonQuery(sql);
                 if (kq == 1)
@@ -549,6 +553,7 @@ namespace TRACNGHIEM
             checkThem = checkSua = checkXoa = false;
 
             ctxMenuSV.Enabled = true;
+            panelTimGV.Enabled = true;
 
             btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
             btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
@@ -575,7 +580,7 @@ namespace TRACNGHIEM
             edtTimSV.Text = "";
         }
 
-        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        public void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (checkThem == true)
             {
@@ -702,6 +707,7 @@ namespace TRACNGHIEM
 
             gcLop.Enabled = gcSinhVien.Enabled = true;
             checkThemSV = checkSuaSV = checkXoaSV = false;
+            panelTimGV.Enabled = true;
 
             btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
             btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
@@ -726,6 +732,7 @@ namespace TRACNGHIEM
                 cbbTenKhoa.SelectedValue = ((DataRowView)this.bdsLop.Current).Row["MAKH"].ToString();
                 edtMaKH.Text = cbbTenKhoa.SelectedValue.ToString();
                 checkSua = true;
+                panelTimGV.Enabled = false;
                 checkSave = false;
             }
         }
@@ -762,6 +769,7 @@ namespace TRACNGHIEM
                 cbbTenLop.Enabled = false;
                 checkSuaSV = true;
                 checkSave = false;
+                panelTimGV.Enabled = false;
             }
         }
 
@@ -792,6 +800,7 @@ namespace TRACNGHIEM
                     checkChuyenLop = true;
                     cbbTenLop.SelectedText = edtMaLopSV.Text;
                     checkSave = false;
+                    panelTimGV.Enabled = false;
                 }
             }
         }

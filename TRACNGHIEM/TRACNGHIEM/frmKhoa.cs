@@ -134,7 +134,7 @@ namespace TRACNGHIEM
             try
             {
                 bdsKhoa.AddNew();
-
+                panelTimGV.Enabled = false;
                 checkThem = true;
                 btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = false;
                 txtMaKH.Focus();
@@ -174,6 +174,7 @@ namespace TRACNGHIEM
                 txtMaKH.Enabled = txtTenKH.Enabled = false;
                 cbbCoSoAdd.Enabled = false;
                 checkSave = true;
+                panelTimGV.Enabled = true;
                 return 0;
             }
             catch (Exception ex)
@@ -224,7 +225,7 @@ namespace TRACNGHIEM
                     return;
                 }
 
-                String sql = "EXEC SP_KT_TEN_Khoa_TONTAI N'" + txtTenKH.Text.Trim() + "'";
+                String sql = "EXEC SP_KT_TEN_Khoa_TONTAI '" + txtMaKH.Text.Trim() + "', N'" + txtTenKH.Text.Trim() + "'";
 
                 int kq = Program.ExecSqlNonQuery(sql);
                 if (kq == 1)
@@ -333,6 +334,7 @@ namespace TRACNGHIEM
             else
             {
                 checkSua = true;
+                panelTimGV.Enabled = false;
                 btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = false;
                 txtMaKH.Focus();
                 btnGhi.Enabled = true;
@@ -359,6 +361,7 @@ namespace TRACNGHIEM
             this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
             txtMaKH.Enabled = txtTenKH.Enabled = false;
             cbbCoSoAdd.Enabled = false;
+            panelTimGV.Enabled = true;
         }
 
         public void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -489,7 +492,7 @@ namespace TRACNGHIEM
             try
             {
                 bdsGiaoVien.AddNew();
-
+                panelTimGV.Enabled = false;
                 edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
                     = edtDiachiGV.Enabled = true;
                 cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
@@ -575,6 +578,7 @@ namespace TRACNGHIEM
                 gcGiaoVien.Enabled = true; edtTimGV.Text = "";
                 btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
                 checkSave = true;
+                panelTimGV.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -716,6 +720,7 @@ namespace TRACNGHIEM
             btnGhi.Enabled = true;
             gcKhoa.Enabled = true;
             gcGiaoVien.Enabled = true;
+            panelTimGV.Enabled = true;
             btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
             this.tbDSKHOAADT.Connection.ConnectionString = Program.connstr;
             this.tbDSKHOAADT.Fill(this.TNDataSet.DSKHOA);
@@ -736,6 +741,7 @@ namespace TRACNGHIEM
             }
             else
             {
+                panelTimGV.Enabled = false;
                 cbbHocVi.SelectedValue = ((DataRowView)this.bdsGiaoVien.Current).Row["HOCVI"].ToString();
                 edtMaGV.Enabled = false;
                 edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled = edtDiachiGV.Enabled = true;
@@ -763,7 +769,7 @@ namespace TRACNGHIEM
                 edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled = edtDiachiGV.Enabled = false;
                 cbbKhoaGV.Enabled = true;
                 edtMaKHGV.Enabled = false;
-
+                panelTimGV.Enabled = false;
                 btnThem.Enabled = btnSuaK.Enabled = btnXoa.Enabled = btnTaiLai.Enabled
                     = btnPhucHoi.Enabled = btnGhi.Enabled = false;
                 gcKhoa.Enabled = false;

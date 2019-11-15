@@ -67,6 +67,8 @@ namespace TRACNGHIEM
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbThiThu;
         private DevExpress.XtraBars.BarButtonItem btnDSDK;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem3;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
 
         public frmMain()
@@ -116,6 +118,8 @@ namespace TRACNGHIEM
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
@@ -141,9 +145,11 @@ namespace TRACNGHIEM
             this.btnDe,
             this.btnThiThu,
             this.btnBangdiem,
-            this.btnDSDK});
+            this.btnDSDK,
+            this.barButtonItem3,
+            this.barButtonItem4});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 18;
+            this.ribbonControl1.MaxItemId = 20;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage3,
@@ -201,6 +207,7 @@ namespace TRACNGHIEM
             this.btnThoatMain.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoatMain.ImageOptions.Image")));
             this.btnThoatMain.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoatMain.ImageOptions.LargeImage")));
             this.btnThoatMain.Name = "btnThoatMain";
+
             this.btnThoatMain.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoatMain_ItemClick);
             // 
             // btnDangXuat
@@ -418,6 +425,22 @@ namespace TRACNGHIEM
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "ribbonPageGroup1";
             // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "btnThoatForm";
+            this.barButtonItem3.Id = 18;
+            this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
+            this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // barButtonItem4
+            // 
+            this.barButtonItem4.Caption = "btnThoatForm";
+            this.barButtonItem4.Id = 19;
+            this.barButtonItem4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.Image")));
+            this.barButtonItem4.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
+            this.barButtonItem4.Name = "barButtonItem4";
+            // 
             // frmMain
             // 
             this.ClientSize = new System.Drawing.Size(2052, 1324);
@@ -597,8 +620,6 @@ namespace TRACNGHIEM
 
         private void btnThoatMain_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Boolean checkThoat = false;
-
             if (checkOpenKhoa == true && this.frmKhoa != null)
             {
                 if (frmKhoa.checkSave == false)
@@ -606,17 +627,47 @@ namespace TRACNGHIEM
                     form = this.CheckExists(typeof(frmKhoa));
                     form.Activate();
                     frmKhoa.btnThoat_ItemClick(sender, e);
+                    if (frmKhoa.checkSave == false)
+                        return;
                 }
             }
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
+
+            if (checkOpenLop == true && this.frmLop != null)
+            {
+                if (frmLop.checkSave == false)
+                {
+                    form = this.CheckExists(typeof(frmLop));
+                    form.Activate();
+                    frmLop.btnThoat_ItemClick(sender, e);
+                    if (frmLop.checkSave == false)
+                        return;
+                }
+            }
+
+            if (checkOpenMonHoc == true && this.frmMonHoc != null)
+            {
+                if (frmMonHoc.checkSave == false)
+                {
+                    form = this.CheckExists(typeof(frmMonHoc));
+                    form.Activate();
+                    frmMonHoc.btnThoatMH_ItemClick(sender, e);
+                    if (frmMonHoc.checkSave == false)
+                        return;
+                }
+            }
+
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình?", "", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
                 Application.ExitThread();
             }
-            // Kiểm tra có mẫu tin nào đang ghi dở hk, hỏi người dùng có muốn ghi?
+            else
+            {
+                return;
+            }
         }
 
-        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs ea)
         {
             if (checkDangXuat == true)
             {
@@ -626,12 +677,15 @@ namespace TRACNGHIEM
             }
             else
             {
-                DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
+                DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình?", "", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
                     Application.ExitThread();
                 }
-                else e.Cancel = true;
+                else
+                {
+                    return;
+                }
             }
         }
 

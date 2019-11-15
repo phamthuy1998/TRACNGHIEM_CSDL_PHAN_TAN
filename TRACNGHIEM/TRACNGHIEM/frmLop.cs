@@ -19,6 +19,7 @@ namespace TRACNGHIEM
         private Boolean checkXoaSV = false;
         private Boolean checkChuyenLop = false;
         private Boolean checkSuaSV = false;
+        public static Boolean checkSave = true;
 
         private int dem = 0;
         public frmLop()
@@ -71,7 +72,7 @@ namespace TRACNGHIEM
         private void frmLop_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'TNDataSet.DSLOP' table. You can move, or remove it, as needed.
-
+            this.ControlBox = false;
             TNDataSet.EnforceConstraints = false;
             gcSinhVien.UseDisabledStatePainter = false;
             gcLop.UseDisabledStatePainter = false;
@@ -128,7 +129,7 @@ namespace TRACNGHIEM
             else if (Program.mGroup == "Truong")
             {
                 cbbCoSo.Enabled = true;
-                btnThem.Visibility = btnGhi.Visibility = btnXoa.Visibility = btnPhucHoi.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                btnThem.Visibility = btnSuaL.Visibility= btnGhi.Visibility = btnXoa.Visibility = btnPhucHoi.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 btnThemSV.Visible = btnSuaSV.Visible = btnChuyenLop.Visible = btnGhiSV.Visible = btnXoaSV.Visible = btnPhucHoiSV.Visible = false;
             }
             dem++;
@@ -163,7 +164,7 @@ namespace TRACNGHIEM
                 // TODO: This line of code loads data into the 'TNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
                 cbbTenLop.SelectedValue = edtMaLop.Text;
                 edtMaLopSV.Text = ((DataRowView)this.bdsLop.Current).Row["MALOP"].ToString();
-
+                checkSave = false;
             }
             catch (Exception ex)
             {
@@ -208,9 +209,11 @@ namespace TRACNGHIEM
 
                 btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
                 btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
+                checkSave = true;
             }
             catch (Exception ex)
             {
+                checkSave = false;
                 MessageBox.Show("Lỗi ghi sinh viên" + ex.Message, "", MessageBoxButtons.OK);
             }
         }
@@ -383,6 +386,7 @@ namespace TRACNGHIEM
                 edtMaKH.Text = cbbTenKhoa.SelectedValue.ToString();
                 edtMaLop.Enabled = edtTenLop.Enabled = true;
                 checkThem = true;
+                checkSave = false;
             }
             catch (Exception ex)
             {
@@ -412,9 +416,11 @@ namespace TRACNGHIEM
 
                 btnThemSV.Enabled = btnSuaSV.Enabled = btnChuyenLop.Enabled = btnXoaSV.Enabled = true;
                 btnGhiSV.Enabled = btnPhucHoiSV.Enabled = btnTaiLaiSV.Enabled = true;
+                checkSave = true;
             }
             catch (Exception ex)
             {
+                checkSave = false;
                 MessageBox.Show("Lỗi ghi lớp" + ex.Message, "", MessageBoxButtons.OK);
             }
 
@@ -571,22 +577,94 @@ namespace TRACNGHIEM
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form lóp", "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+            if (checkThem == true)
             {
+                if (MessageBox.Show("Bạn đang tạo mới lớp, bạn có muốn ghi thông tin này?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhi_ItemClick(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
+            }
+            else if (checkSua == true)
+            {
+                if (MessageBox.Show("Bạn đang sửa lớp, bạn có muốn ghi thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhi_ItemClick(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
+            }
+            //Thêm mới giảng viên
+            else if (checkThemSV == true)
+            {
+                if (MessageBox.Show("Bạn đang tạo mới sinh viên, bạn có muốn lưu thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhiSV_Click(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
+            }
+            //Sửa thông tin giảng viên
+            else if (checkSuaSV == true)
+            {
+                if (MessageBox.Show("Bạn đang sửa sinh viên, bạn có muốn lưu thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhiSV_Click(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
+            }
+            else if (checkChuyenLop == true)
+            {
+                if (MessageBox.Show("Bạn đang chuyển lớp, bạn có muốn lưu thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhiSV_Click(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
+            }
+            else
+            {
+                checkSave = true;
                 this.Close();
             }
-            // Kiểm tra có mẫu tin nào đang ghi dở hk, hỏi người dùng có muốn ghi?
-        }
 
-        private void frmLop_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form lớp", "", MessageBoxButtons.YesNo);
-            //if (dr == DialogResult.Yes)
-            //{
-            // this.Close();
-            //}
-            //else e.Cancel = true;
         }
 
         private void btnTaiLaiSV_Click(object sender, EventArgs e)
@@ -648,6 +726,7 @@ namespace TRACNGHIEM
                 cbbTenKhoa.SelectedValue = ((DataRowView)this.bdsLop.Current).Row["MAKH"].ToString();
                 edtMaKH.Text = cbbTenKhoa.SelectedValue.ToString();
                 checkSua = true;
+                checkSave = false;
             }
         }
 
@@ -682,6 +761,7 @@ namespace TRACNGHIEM
                 edtHo.Enabled = edtTen.Enabled = edtNgaySInh.Enabled = edtDiaChi.Enabled = true;
                 cbbTenLop.Enabled = false;
                 checkSuaSV = true;
+                checkSave = false;
             }
         }
 
@@ -711,6 +791,7 @@ namespace TRACNGHIEM
                     cbbTenLop.Enabled = true;
                     checkChuyenLop = true;
                     cbbTenLop.SelectedText = edtMaLopSV.Text;
+                    checkSave = false;
                 }
             }
         }

@@ -13,6 +13,21 @@ namespace TRACNGHIEM
 {
     public partial class frmMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private Boolean checkOpenKhoa = false;
+        private Boolean checkOpenLop = false;
+        private Boolean checkOpenMonHoc = false;
+        private Boolean checkOpenDeThi = false;
+        private Boolean checkOpenThiThu = false;
+        private Boolean checkOpenTaoTK = false;
+        private frmKhoa frmKhoa = null;
+        private frmLop frmLop = null;
+        private frmMonHoc frmMonHoc = null;
+        private frmBoDe frmBoDe = null;
+        private frmThi frmThi = null;
+        private frmDangKy frmDangKy = null;
+        private Form form;
+
+
         private Boolean checkDangXuat = false;
         private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
         private DevExpress.XtraBars.Ribbon.RibbonPage rbpTaiKhoan;
@@ -456,15 +471,16 @@ namespace TRACNGHIEM
 
         private void btnKhoa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form form = this.CheckExists(typeof(frmKhoa));
+            form = this.CheckExists(typeof(frmKhoa));
             if (form == null)
             {
 
                 IsMdiContainer = true;
-                frmKhoa f = new frmKhoa();
-                f.MdiParent = this;
+                frmKhoa = new frmKhoa();
+                frmKhoa.MdiParent = this;
 
-                f.Show();
+                frmKhoa.Show();
+                checkOpenKhoa = true;
             }
             else form.Activate();
         }
@@ -476,10 +492,11 @@ namespace TRACNGHIEM
             {
 
                 IsMdiContainer = true;
-                frmLop f = new frmLop();
-                f.MdiParent = this;
+                frmLop = new frmLop();
+                frmLop.MdiParent = this;
 
-                f.Show();
+                frmLop.Show();
+                checkOpenLop = true;
             }
             else form.Activate();
         }
@@ -491,10 +508,11 @@ namespace TRACNGHIEM
             {
 
                 IsMdiContainer = true;
-                frmMonHoc f = new frmMonHoc();
-                f.MdiParent = this;
+                frmMonHoc = new frmMonHoc();
+                frmMonHoc.MdiParent = this;
 
-                f.Show();
+                frmMonHoc.Show();
+                checkOpenMonHoc = true;
             }
             else form.Activate();
         }
@@ -506,10 +524,11 @@ namespace TRACNGHIEM
             {
 
                 IsMdiContainer = true;
-                frmBoDe f = new frmBoDe();
-                f.MdiParent = this;
+                frmBoDe = new frmBoDe();
+                frmBoDe.MdiParent = this;
 
-                f.Show();
+                frmBoDe.Show();
+                checkOpenDeThi = true;
             }
             else form.Activate();
         }
@@ -521,10 +540,11 @@ namespace TRACNGHIEM
             {
 
                 IsMdiContainer = true;
-                frmThi f = new frmThi();
-                f.MdiParent = this;
+                frmThi = new frmThi();
+                frmThi.MdiParent = this;
 
-                f.Show();
+                frmThi.Show();
+                checkOpenThiThu = true;
             }
             else form.Activate();
         }
@@ -566,16 +586,28 @@ namespace TRACNGHIEM
             {
 
                 IsMdiContainer = true;
-                frmDangKy f = new frmDangKy();
-                f.MdiParent = this;
+                frmDangKy = new frmDangKy();
+                frmDangKy.MdiParent = this;
 
-                f.Show();
+                frmDangKy.Show();
+                checkOpenTaoTK = true;
             }
             else form.Activate();
         }
 
         private void btnThoatMain_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            Boolean checkThoat = false;
+
+            if (checkOpenKhoa == true && this.frmKhoa != null)
+            {
+                if (frmKhoa.checkSave == false)
+                {
+                    form = this.CheckExists(typeof(frmKhoa));
+                    form.Activate();
+                    frmKhoa.btnThoat_ItemClick(sender, e);
+                }
+            }
             DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {

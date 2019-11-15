@@ -92,6 +92,7 @@ namespace TRACNGHIEM
             this.colMAKH1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.colHOCVI = new DevExpress.XtraGrid.Columns.GridColumn();
             this.panelControl2 = new DevExpress.XtraEditors.PanelControl();
+            this.txtMaKH = new DevExpress.XtraEditors.TextEdit();
             this.cbbCoSoAdd = new System.Windows.Forms.ComboBox();
             this.txtMaCS = new DevExpress.XtraEditors.TextEdit();
             this.txtTenKH = new DevExpress.XtraEditors.TextEdit();
@@ -117,7 +118,6 @@ namespace TRACNGHIEM
             this.tbBoDeADT = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
             this.behaviorManager1 = new DevExpress.Utils.Behaviors.BehaviorManager(this.components);
             this.tbDSKHOAADT = new TRACNGHIEM.TNDataSetTableAdapters.DSKHOATableAdapter();
-            this.txtMaKH = new DevExpress.XtraEditors.TextEdit();
             mACSLabel1 = new System.Windows.Forms.Label();
             mAKHLabel = new System.Windows.Forms.Label();
             tENKHLabel = new System.Windows.Forms.Label();
@@ -146,6 +146,7 @@ namespace TRACNGHIEM
             ((System.ComponentModel.ISupportInitialize)(this.gridView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).BeginInit();
             this.panelControl2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaCS.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKH.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcKhoa)).BeginInit();
@@ -162,7 +163,6 @@ namespace TRACNGHIEM
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBoDe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).BeginInit();
             this.SuspendLayout();
             // 
             // mACSLabel1
@@ -579,7 +579,7 @@ namespace TRACNGHIEM
             this.btnPhucHoiGV,
             this.btnTaiLaiGV});
             this.ctxMenuGV.Name = "btnThemGV";
-            this.ctxMenuGV.Size = new System.Drawing.Size(389, 326);
+            this.ctxMenuGV.Size = new System.Drawing.Size(389, 381);
             // 
             // btnThemGV
             // 
@@ -729,6 +729,15 @@ namespace TRACNGHIEM
             this.panelControl2.Name = "panelControl2";
             this.panelControl2.Size = new System.Drawing.Size(1067, 475);
             this.panelControl2.TabIndex = 10;
+            // 
+            // txtMaKH
+            // 
+            this.txtMaKH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKhoa, "MAKH", true));
+            this.txtMaKH.Location = new System.Drawing.Point(251, 48);
+            this.txtMaKH.MenuManager = this.barManager;
+            this.txtMaKH.Name = "txtMaKH";
+            this.txtMaKH.Size = new System.Drawing.Size(486, 50);
+            this.txtMaKH.TabIndex = 12;
             // 
             // cbbCoSoAdd
             // 
@@ -942,15 +951,6 @@ namespace TRACNGHIEM
             // 
             this.tbDSKHOAADT.ClearBeforeFill = true;
             // 
-            // txtMaKH
-            // 
-            this.txtMaKH.DataBindings.Add(new System.Windows.Forms.Binding("EditValue", this.bdsKhoa, "MAKH", true));
-            this.txtMaKH.Location = new System.Drawing.Point(251, 48);
-            this.txtMaKH.MenuManager = this.barManager;
-            this.txtMaKH.Name = "txtMaKH";
-            this.txtMaKH.Size = new System.Drawing.Size(486, 50);
-            this.txtMaKH.TabIndex = 12;
-            // 
             // frmKhoa
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
@@ -964,7 +964,6 @@ namespace TRACNGHIEM
             this.Controls.Add(this.barDockControl1);
             this.Name = "frmKhoa";
             this.Text = "Form khoa";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmKhoa_FormClosing);
             this.Load += new System.EventHandler(this.frmKhoa_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
@@ -986,6 +985,7 @@ namespace TRACNGHIEM
             ((System.ComponentModel.ISupportInitialize)(this.panelControl2)).EndInit();
             this.panelControl2.ResumeLayout(false);
             this.panelControl2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtMaCS.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtTenKH.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcKhoa)).EndInit();
@@ -1003,7 +1003,6 @@ namespace TRACNGHIEM
             ((System.ComponentModel.ISupportInitialize)(this.bdsGVDK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBoDe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.behaviorManager1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtMaKH.Properties)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

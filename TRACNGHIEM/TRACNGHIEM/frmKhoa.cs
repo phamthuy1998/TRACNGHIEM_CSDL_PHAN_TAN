@@ -15,12 +15,12 @@ namespace TRACNGHIEM
     {
         private int dem = 0;
         private Boolean checkThem = false;
-        private Boolean checkXoa = false;
         private Boolean checkSua = false;
         private Boolean checkThemGV = false;
         private Boolean checkXoaGV = false;
         private Boolean checkSuaGV = false;
         private Boolean checkChuyenKhoa = false;
+        public static Boolean checkSave = true;
 
         public frmKhoa()
         {
@@ -38,13 +38,7 @@ namespace TRACNGHIEM
         private void frmKhoa_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'TNDataSet.DSKHOA' table. You can move, or remove it, as needed.
-
-            cbbHocVi.Items.Add("Thạc sĩ");
-            cbbHocVi.Items.Add("Nghiên cứu sinh");
-            cbbHocVi.Items.Add("Tiến sĩ");
-            cbbHocVi.Items.Add("Tiến sĩ khoa học");
-
-
+            this.ControlBox = false;
             Program.connstr1 = Program.connstr;
             TNDataSet.EnforceConstraints = false;
             gcKhoa.UseDisabledStatePainter = false;
@@ -103,7 +97,8 @@ namespace TRACNGHIEM
             else if (Program.mGroup == "Truong")
             {
                 cbbCoSo.Enabled = true;
-                btnThem.Visibility = btnGhi.Visibility = btnXoa.Visibility = btnPhucHoi.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                btnThem.Visibility = btnGhi.Visibility = btnXoa.Visibility = btnSuaK.Visibility
+                    = btnPhucHoi.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 btnThemGV.Visible = btnChuyenKhoaGV.Enabled = btnSuaGV.Enabled = btnGhiGV.Visible = btnXoaGV.Visible = btnPhucHoiGV.Visible = false;
             }
             txtMaKH.Enabled = txtTenKH.Enabled = false;
@@ -120,6 +115,16 @@ namespace TRACNGHIEM
                 //  for(int i=0; i<)
                 //cbbKhoaGV.SelectedIndex = txtMaKH.Text;
             }
+
+            cbbHocVi.Items.Add("Thạc sĩ");
+            cbbHocVi.Items.Add("Nghiên cứu sinh");
+            cbbHocVi.Items.Add("Tiến sĩ");
+            cbbHocVi.Items.Add("Tiến sĩ khoa học");
+            cbbHocVi.Items.Add("Thạc sĩ");
+            cbbHocVi.Items.Add("Nghiên cứu sinh");
+            cbbHocVi.Items.Add("Tiến sĩ");
+            cbbHocVi.Items.Add("Tiến sĩ khoa học");
+
 
             dem++;
         }
@@ -139,6 +144,7 @@ namespace TRACNGHIEM
                 ctxMenuGV.Enabled = false;
                 txtMaKH.Enabled = txtTenKH.Enabled = true;
                 txtMaCS.Text = cbbCoSoAdd.SelectedValue.ToString();
+                checkSave = false;
             }
             catch (Exception ex)
             {
@@ -167,10 +173,12 @@ namespace TRACNGHIEM
                 ctxMenuGV.Enabled = true;
                 txtMaKH.Enabled = txtTenKH.Enabled = false;
                 cbbCoSoAdd.Enabled = false;
+                checkSave = true;
                 return 0;
             }
             catch (Exception ex)
             {
+                checkSave = false;
                 MessageBox.Show("Lỗi ghi khoa" + ex.Message, "", MessageBoxButtons.OK);
                 return -1;
             }
@@ -333,6 +341,7 @@ namespace TRACNGHIEM
                 cbbCoSoAdd.Enabled = true;
                 ctxMenuGV.Enabled = false;
                 txtTenKH.Enabled = true;
+                checkSave = false;
             }
         }
 
@@ -352,44 +361,96 @@ namespace TRACNGHIEM
             cbbCoSoAdd.Enabled = false;
         }
 
-        private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        public void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             if (checkThem == true)
             {
-                if (MessageBox.Show("Bạn đang tạo khoa mới, nếu không ghi khoa mới sẽ không được lưu, bạn có muốn ghi khoa?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Bạn đang tạo mới khoa, bạn có muốn ghi thông tin này?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    try
-                    {
-                        ghiKhoa();
-                        // ghi xong đóng form
-                        //Close();
-                        //checkThem = false;
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi ghi khoa" + ex.Message, "", MessageBoxButtons.OK);
-                    }
+                    btnGhi_ItemClick(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
                 }
                 else
                 {
+                    checkSave = true;
+                    Close();
+                }
+            }
+            else if (checkSua == true)
+            {
+                if (MessageBox.Show("Bạn đang sửa khoa, bạn có muốn ghi thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhi_ItemClick(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
+            }
+            //Thêm mới giảng viên
+            else if (checkThemGV == true)
+            {
+                if (MessageBox.Show("Bạn đang tạo mới giảng viên, bạn có muốn lưu thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhiGV_Click_1(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
+            }
+            //Sửa thông tin giảng viên
+            else if (checkSuaGV == true)
+            {
+                if (MessageBox.Show("Bạn đang sửa giảng viên, bạn có muốn lưu thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhiGV_Click_1(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
+            }
+            else if (checkChuyenKhoa == true)
+            {
+                if (MessageBox.Show("Bạn đang chuyển khoa cho giảng viên, bạn có muốn lưu thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhiGV_Click_1(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
                     Close();
                 }
             }
             else
             {
+                checkSave = true;
                 this.Close();
             }
 
-        }
-
-        private void frmKhoa_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            //DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form lớp", "", MessageBoxButtons.YesNo);
-            //if (dr == DialogResult.Yes)
-            //{
-            //  this.Close();
-            //}
-            //else e.Cancel = true;
         }
 
         private void btnInDS_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -400,23 +461,23 @@ namespace TRACNGHIEM
         private void btnTaiLai_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             // TODO: This line of code loads data into the 'TNDataSet.BODE' table. You can move, or remove it, as needed.
-            this.tbBoDeADT.Connection.ConnectionString = Program.connstr;
+            this.tbBoDeADT.Connection.ConnectionString = Program.connstr1;
             this.tbBoDeADT.Fill(this.TNDataSet.BODE);
             // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
 
-            this.tbGiaoVienDKADT.Connection.ConnectionString = Program.connstr;
+            this.tbGiaoVienDKADT.Connection.ConnectionString = Program.connstr1;
             this.tbGiaoVienDKADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
             // TODO: This line of code loads data into the 'TNDataSet.LOP' table. You can move, or remove it, as needed.
 
-            this.tbLopADT.Connection.ConnectionString = Program.connstr;
+            this.tbLopADT.Connection.ConnectionString = Program.connstr1;
             this.tbLopADT.Fill(this.TNDataSet.LOP);
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
 
-            this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+            this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr1;
             this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
             // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
 
-            this.tbKhoaADT.Connection.ConnectionString = Program.connstr;
+            this.tbKhoaADT.Connection.ConnectionString = Program.connstr1;
             this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
             edtTimGV.Text = "";
         }
@@ -427,12 +488,12 @@ namespace TRACNGHIEM
         {
             try
             {
-                checkThemGV = true;
                 bdsGiaoVien.AddNew();
+
                 edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
                     = edtDiachiGV.Enabled = true;
                 cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
-                cbbKhoaGV.ValueMember = txtTenKH.Text;
+
                 edtMaKHGV.Text = txtMaKH.Text;
 
                 btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = false;
@@ -442,6 +503,9 @@ namespace TRACNGHIEM
                 gcKhoa.Enabled = gcGiaoVien.Enabled = false;
                 btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = false;
                 txtMaKH.Enabled = txtTenKH.Enabled = false;
+
+                checkThemGV = true;
+                checkSave = false;
             }
             catch (Exception ex)
             {
@@ -500,7 +564,7 @@ namespace TRACNGHIEM
                 edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
                   = edtDiachiGV.Enabled = false;
                 cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
-                checkThemGV = checkSuaGV = checkXoaGV = false;
+                checkThemGV = checkSuaGV = checkXoaGV = checkChuyenKhoa = false;
 
                 btnPhucHoi.Enabled = true;
                 btnGhi.Enabled = true;
@@ -510,10 +574,11 @@ namespace TRACNGHIEM
                  = btnPhucHoi.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = true;
                 gcGiaoVien.Enabled = true; edtTimGV.Text = "";
                 btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
-
+                checkSave = true;
             }
             catch (Exception ex)
             {
+                checkSave = false;
                 MessageBox.Show("Lỗi ghi giảng viên " + ex.Message, "", MessageBoxButtons.OK);
             }
         }
@@ -592,7 +657,8 @@ namespace TRACNGHIEM
                         string strLenh = "EXEC sp_chuyenKhoa '" + edtMaKHGV.Text + "','" + edtMaGV.Text + "'";
                         //Thực hiện sp
                         Program.myReader = Program.ExecSqlDataReader1(strLenh);
-                        Program.myReader.Close();
+
+
                         //if (Program.myReader == null)
                         //{
                         //    MessageBox.Show("Lỗi chuyển khoa ", "", MessageBoxButtons.OK);
@@ -617,7 +683,8 @@ namespace TRACNGHIEM
                         gcGiaoVien.Enabled = true;
                         btnThem.Enabled = btnXoa.Enabled = btnSuaK.Enabled
                          = btnPhucHoi.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = true;
-                        gcGiaoVien.Enabled = true; edtTimGV.Text = "";
+                        gcGiaoVien.Enabled = true;
+                        edtTimGV.Text = "";
                         btnSuaGV.Enabled = btnThemGV.Enabled = btnChuyenKhoaGV.Enabled = btnXoaGV.Enabled = true;
 
                     }
@@ -638,7 +705,7 @@ namespace TRACNGHIEM
             // Hủy bỏ thao tác đang hiệu chỉnh
             bdsGiaoVien.CancelEdit();
             checkSuaGV = false;
-            checkThemGV = false;
+            checkThemGV = checkChuyenKhoa = false;
             edtMaGV.Enabled = false;
             edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled = edtDiachiGV.Enabled = false;
             cbbKhoaGV.Enabled = false;
@@ -678,6 +745,7 @@ namespace TRACNGHIEM
                     = btnPhucHoi.Enabled = btnTaiLai.Enabled = btnGhi.Enabled = false;
                 edtMaKHGV.Enabled = false;
                 btnThemGV.Enabled = btnXoaGV.Enabled = btnSuaGV.Enabled = btnChuyenKhoaGV.Enabled = false;
+                checkSave = false;
             }
         }
 
@@ -708,7 +776,6 @@ namespace TRACNGHIEM
                     Program.conn.ConnectionString = chuoiketnoi;
                     Program.conn.Open();
 
-                    // Gọi view V_DS_COSO và trả về datable 
                     DataTable dt = new DataTable();
                     dt = Program.ExecSqlDataTable("SELECT MAKH, TENKH, MACS FROM dbo.KHOA");
 
@@ -718,6 +785,7 @@ namespace TRACNGHIEM
                     cbbKhoaGV.ValueMember = "MAKH";
 
                     cbbKhoaGV.SelectedValue = ((DataRowView)this.bdsKhoa.Current).Row["MAKH"].ToString();
+                    checkSave = false;
                 }
                 catch (Exception ex)
                 {
@@ -798,6 +866,6 @@ namespace TRACNGHIEM
             txtMaCS.Text = cbbCoSoAdd.SelectedValue.ToString();
         }
 
-      
+
     }
 }

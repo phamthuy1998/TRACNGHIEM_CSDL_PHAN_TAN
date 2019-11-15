@@ -952,7 +952,6 @@
             this.Controls.Add(this.barDockControl1);
             this.Name = "frmLop";
             this.Text = "Form lớp";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLop_FormClosing);
             this.Load += new System.EventHandler(this.frmLop_Load);
             ((System.ComponentModel.ISupportInitialize)(this.barManager)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();

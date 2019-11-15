@@ -28,6 +28,8 @@ namespace TRACNGHIEM
 
         private void frmBoDe_Load(object sender, EventArgs e)
         {
+            this.ControlBox = false;
+            gcBoDe.UseDisabledStatePainter = false;
             tNDataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'tNDataSet.BAITHI' table. You can move, or remove it, as needed.
             this.tbBaiThiADT.Connection.ConnectionString = Program.connstr;

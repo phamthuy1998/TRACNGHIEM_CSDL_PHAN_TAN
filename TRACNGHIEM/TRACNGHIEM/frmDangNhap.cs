@@ -146,7 +146,7 @@ namespace TRACNGHIEM
             }
             catch (Exception a)
             {
-                MessageBox.Show("Không thể kết nối tới data base! " + a.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể kết nối tới database! " + a.Message, "", MessageBoxButtons.OK);
             }
         }
 

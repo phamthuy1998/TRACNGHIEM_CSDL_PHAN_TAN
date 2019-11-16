@@ -160,6 +160,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TNDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ComboboxItem.cs" />
     <EmbeddedResource Include="frmBangDiem.resx">
       <DependentUpon>frmBangDiem.cs</DependentUpon>
     </EmbeddedResource>

@@ -12,6 +12,8 @@ namespace TRACNGHIEM
 {
     public partial class frmBoDe : Form
     {
+        private Boolean checkThem = false;
+        private Boolean checkSua = false;
         public static Boolean checkSave = true;
         private int dem = 0;
         public frmBoDe()
@@ -23,31 +25,52 @@ namespace TRACNGHIEM
         {
             this.Validate();
             this.bdsBoDe.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.tNDataSet);
+            this.tableAdapterManager.UpdateAll(this.TNDataSet);
 
         }
 
         private void frmBoDe_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'tNDataSet.MONHOC' table. You can move, or remove it, as needed.
+
             this.ControlBox = false;
             gcBoDe.UseDisabledStatePainter = false;
-            tNDataSet.EnforceConstraints = false;
+            TNDataSet.EnforceConstraints = false;
+
             // TODO: This line of code loads data into the 'tNDataSet.BAITHI' table. You can move, or remove it, as needed.
             this.tbBaiThiADT.Connection.ConnectionString = Program.connstr;
-            this.tbBaiThiADT.Fill(this.tNDataSet.BAITHI);
+            this.tbBaiThiADT.Fill(this.TNDataSet.BAITHI);
             // TODO: This line of code loads data into the 'tNDataSet.DSGIAOVIEN' table. You can move, or remove it, as needed.
             this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
-            this.tbGiaoVienADT.Fill(this.tNDataSet.DSGIAOVIEN);
-            // TODO: This line of code loads data into the 'tNDataSet.DSMONHOC' table. You can move, or remove it, as needed.
-            this.tbMonHocADT.Connection.ConnectionString = Program.connstr;
-            this.tbMonHocADT.Fill(this.tNDataSet.DSMONHOC);
-            // TODO: This line of code loads data into the 'tNDataSet.MONHOC' table. You can move, or remove it, as needed.
-            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
-            this.tbMonHoc.Fill(this.tNDataSet.MONHOC);
+            this.tbGiaoVienADT.Fill(this.TNDataSet.DSGIAOVIEN);
+
             // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
             this.tbBoDe.Connection.ConnectionString = Program.connstr;
-            this.tbBoDe.Fill(this.tNDataSet.BODE);
+            this.tbBoDe.Fill(this.TNDataSet.BODE);
+
+            // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
+            this.tbDSMHAdt.Connection.ConnectionString = Program.connstr;
+            this.tbDSMHAdt.Fill(this.TNDataSet.DSMONHOC);
+
             cbbTenMonHocC.SelectedIndex = 0;
+            this.tbBoDe.Connection.ConnectionString = Program.connstr;
+            this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
+
+            this.tbmonHocADT.Connection.ConnectionString = Program.connstr;
+            this.tbmonHocADT.Fill(this.TNDataSet.MONHOC);
+
+            gcDetail.Enabled = false;
+
+            cbbTrinhDo.Items.Add("A");
+            cbbTrinhDo.Items.Add("B");
+            cbbTrinhDo.Items.Add("C");
+            cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["TRINHDO"].ToString();
+
+            cbbDapAn.Items.Add("A");
+            cbbDapAn.Items.Add("B");
+            cbbDapAn.Items.Add("C");
+            cbbDapAn.Items.Add("D");
+            cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["DAP_AN"].ToString();
 
             dem++;
 
@@ -55,22 +78,43 @@ namespace TRACNGHIEM
 
         public void btnThoatBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form bộ đề?", "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+            if (checkThem == true)
             {
-                Application.ExitThread();
+                if (MessageBox.Show("Bạn đang tạo mới câu hỏi thi, bạn có muốn ghi thông tin này?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhiBD_ItemClick(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
             }
-            // Kiểm tra có mẫu tin nào đang ghi dở hk, hỏi người dùng có muốn ghi?
-        }
-
-        private void frmBoDe_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form bộ đề?", "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+            else if (checkSua == true)
             {
-                Application.ExitThread();
+                if (MessageBox.Show("Bạn đang sửa câu hỏi thi, bạn có muốn ghi thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    btnGhiBD_ItemClick(sender, e);
+                    if (checkSave == true)
+                        this.Close();
+                    else
+                        return;
+                }
+                else
+                {
+                    checkSave = true;
+                    Close();
+                }
             }
-            else e.Cancel = true;
+            else
+            {
+                checkSave = true;
+                this.Close();
+            }
         }
 
         private void btnThemBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -78,12 +122,23 @@ namespace TRACNGHIEM
             try
             {
                 bdsBoDe.AddNew();
-                //btnAdd.Enabled = btnEdit.Enabled
-                //    = btnDel.Enabled = btnRefres     h.Enabled = btnExit.Enabled=false;
-                //btnSave.Enabled = btnRevert.Enabled = true;
-                //gcGiangVien.Enabled = false;
+                cbbTenMh.SelectedValue = cbbTenMonHocC.SelectedValue.ToString();
+                edtMaMon.Text = cbbTenMonHocC.SelectedValue.ToString();
 
+                checkThem = true;
+                btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = btnTaiLaiBD.Enabled = false;
+                gcBoDe.Enabled = false;
                 checkSave = false;
+                cbbTenMh.Enabled = false;
+
+                gcDetail.Enabled = true;
+                cbbTenGV.Enabled = true;
+                cbbTenGV.SelectedIndex = 0;
+
+                cbbTrinhDo.SelectedIndex = 0;
+                cbbTenMonHocC.Enabled = false;
+
+
             }
             catch (Exception ex)
             {
@@ -91,23 +146,94 @@ namespace TRACNGHIEM
             }
         }
 
-        private void btnGhiBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        private void ghiBD()
         {
             try
             {
                 bdsBoDe.EndEdit();
-                //lấy dữ liệu hiện tại của control phía dưới lưu lên bên trên
                 bdsBoDe.ResetCurrentItem();
-
-                //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
-                // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
-                this.tbBoDe.Update(this.tNDataSet.BODE);
+                this.tbBoDe.Update(this.TNDataSet.BODE);
+                btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = btnTaiLaiBD.Enabled = true;
+                gcBoDe.Enabled = true;
                 checkSave = true;
+                gcDetail.Enabled = false;
+                cbbTenMonHocC.Enabled = true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Lỗi ghi bộ đề " + ex.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Lỗi ghi bộ đề thi " + ex.Message, "", MessageBoxButtons.OK);
             }
+
+        }
+        public void btnGhiBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            if (checkThem == true)
+            {
+                if (edtMaCauHoi.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Mã khoa không được rỗng", "", MessageBoxButtons.OK);
+                    edtMaCauHoi.Focus();
+                    return;
+                }
+                if (edtNoiDung.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Nội dung câu hỏi thi không được rỗng", "", MessageBoxButtons.OK);
+                    edtNoiDung.Focus();
+                    return;
+                }
+                //a
+                if (edtA.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Đáp án không được bỏ trống", "", MessageBoxButtons.OK);
+                    edtA.Focus();
+                    return;
+                }
+                //B
+                if (edtB.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Đáp án không được bỏ trống", "", MessageBoxButtons.OK);
+                    edtB.Focus();
+                    return;
+                }
+                //c
+                if (edtC.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Đáp án không được bỏ trống", "", MessageBoxButtons.OK);
+                    edtC.Focus();
+                    return;
+                }
+                //D
+                if (edtD.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Đáp án không được bỏ trống", "", MessageBoxButtons.OK);
+                    edtD.Focus();
+                    return;
+                }
+
+                String sql = "EXEC SP_KT_MA_BO_DE '" + edtMaCauHoi.Text.Trim() + "'";
+
+                int kq = Program.ExecSqlNonQuery(sql);
+                if (kq == 1)
+                {
+                    edtMaCauHoi.Focus();
+                    return;
+                }
+                else
+                {
+                    ghiBD();
+                    checkThem = false;
+                }
+            }
+            else if (checkSua == true)
+            {
+                ghiBD();
+                checkSua = false;
+            }
+            else
+            {
+                ghiBD();
+            }
+
         }
 
         private void btnXoaBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -134,7 +260,7 @@ namespace TRACNGHIEM
                     //phải chạy lệnh del from where mới chính xác
                     bdsBoDe.RemoveCurrent();
                     //đẩy dữ liệu về adapter
-                    this.tbBoDe.Update(this.tNDataSet.BODE);
+                    this.tbBoDe.Update(this.TNDataSet.BODE);
                 }
                 catch (Exception ex)
                 {
@@ -147,7 +273,8 @@ namespace TRACNGHIEM
         {
             try
             {
-                this.tbBoDe.Fill(this.tNDataSet.BODE);
+                this.tbBoDe.Connection.ConnectionString = Program.connstr;
+                this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
             }
             catch (Exception ex)
             {
@@ -160,7 +287,16 @@ namespace TRACNGHIEM
         {
             // Hủy bỏ thao tác đang hiệu chỉnh
             bdsBoDe.CancelEdit();
+            // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
+            this.tbBoDe.Connection.ConnectionString = Program.connstr;
+            this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
+
+            checkThem = checkSua = false;
+            btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = btnTaiLaiBD.Enabled = true;
+            gcBoDe.Enabled = true;
             checkSave = true;
+            gcDetail.Enabled = false;
+            cbbTenMonHocC.Enabled = true;
         }
 
         private void cbbTenMonHocC_SelectedIndexChanged(object sender, EventArgs e)
@@ -168,38 +304,13 @@ namespace TRACNGHIEM
             if (cbbTenMonHocC.SelectedValue != null && dem > 0)
             {
 
-                //Console.WriteLine(cbbMH.SelectedValue.ToString());
-                //this.sP_DSLanThiDKTableAdapter.Connection.ConnectionString = Program.connstr1;
-                //this.sP_DSLanThiDKTableAdapter.Fill(this.tNDataSet.SP_DSLanThiDK, cbbMH.SelectedValue.ToString(), cbbLop.SelectedValue.ToString());
-                //cbbLThi.SelectedIndex = 0;
-
-                //this.sP_XemKetQuaSVTableAdapter.Connection.ConnectionString = Program.connstr1;
-                //this.sP_XemKetQuaSVTableAdapter.Fill(this.tNDataSet.SP_XemKetQuaSV, cbbLop.SelectedValue.ToString(), cbbMH.SelectedValue.ToString(), short.Parse(cbbLThi.SelectedValue.ToString()));
                 try
                 {
-                    Program.conn.ConnectionString = Program.connstr;
-                    Program.conn.Open();
-
-                    // Gọi view V_DS_COSO và trả về datable 
-                    DataTable dt = new DataTable();
-                    String sql = "EXEC SP_KT_LOP_TONTAI N'" + cbbTenMonHocC.SelectedValue.ToString().Trim() + "'";
-                    dt = Program.ExecSqlDataTable(sql);
-                    this.tbBoDe.Fill(dt);
-
-                    //String kqTimkiem = "";
-                    //String strlenh = "SELECT CAUHOI FROM dbo.BODE WHERE MAMH = '"
-                    //    + cbbTenMonHocC.SelectedValue.ToString() + "'";
-                    //Program.myReader = Program.ExecSqlDataReader(strlenh);
-                    //while (Program.myReader.Read())
-                    //{
-                    //    kqTimkiem += "'" + Program.myReader.GetString(0).Trim() + "',";
-                    //}
-                    //Program.conn.Close();
-                    //bdsBoDe.Filter = "MAMH IN (" + kqTimkiem + ")";
+                    this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
+                    lbTenMH.Text = cbbTenMonHocC.SelectedValue.ToString().Trim();
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi tải dữ liệu theo môn học " + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 }
 
             }
@@ -207,9 +318,46 @@ namespace TRACNGHIEM
 
         private void btnSuaBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (bdsBoDe.Count == 0)
+            {
+                MessageBox.Show("Không có Khoa để sửa!", "THÔNG BÁO", MessageBoxButtons.OK);
 
-            checkSave = false;
+            }
+            else
+            {
+                checkSua = true;
+                edtMaCauHoi.Enabled = false;
+                btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = btnTaiLaiBD.Enabled = false;
+                gcBoDe.Enabled = false;
+
+                gcDetail.Enabled = true;
+                cbbTenGV.Enabled = true;
+                cbbTenGV.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["MAGV"].ToString();
+                cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["TRINHDO"].ToString();
+                cbbTenMh.Enabled = true;
+                cbbTenMonHocC.Enabled = false;
+                checkSave = false;
+            }
         }
+
+        private void cbbTenMh_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                edtMaMon.Text = cbbTenMh.SelectedValue.ToString();
+            }
+            catch (Exception ex) { }
+        }
+
+        private void cbbTenGV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                edtMaGV.Text = cbbTenGV.SelectedValue.ToString();
+            }
+            catch (Exception ex) { }
+        }
+
 
     }
 }

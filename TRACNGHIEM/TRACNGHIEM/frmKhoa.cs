@@ -188,13 +188,13 @@ namespace TRACNGHIEM
         {
             if (checkThem == true)
             {
-                if (txtMaKH.Text.Equals(""))
+                if (txtMaKH.Text.Trim().Equals(""))
                 {
                     MessageBox.Show("Mã khoa không được rỗng", "", MessageBoxButtons.OK);
                     txtMaKH.Focus();
                     return;
                 }
-                if (txtTenKH.Text.Equals(""))
+                if (txtTenKH.Text.Trim().Equals(""))
                 {
                     MessageBox.Show("Tên khoa không được rỗng", "", MessageBoxButtons.OK);
                     txtTenKH.Focus();

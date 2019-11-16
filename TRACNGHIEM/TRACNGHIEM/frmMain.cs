@@ -715,7 +715,7 @@ namespace TRACNGHIEM
             //    }
             //}
 
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình?", "", MessageBoxButtons.YesNo);
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình t?", "", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
                 Application.ExitThread();
@@ -739,11 +739,11 @@ namespace TRACNGHIEM
                 DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình?", "", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
-                    Application.ExitThread();
+                   // Application.ExitThread();
                 }
                 else
                 {
-                    return;
+                   // return;
                 }
             }
         }

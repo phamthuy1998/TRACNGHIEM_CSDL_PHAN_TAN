@@ -19,12 +19,14 @@ namespace TRACNGHIEM
         private Boolean checkOpenDeThi = false;
         private Boolean checkOpenThiThu = false;
         private Boolean checkOpenTaoTK = false;
+        private Boolean checkOpenGVDK = false;
         private frmKhoa frmKhoa = null;
         private frmLop frmLop = null;
         private frmMonHoc frmMonHoc = null;
         private frmBoDe frmBoDe = null;
         private frmThi frmThi = null;
         private frmDangKy frmDangKy = null;
+        private frmGiangVienDangKy frmGVDK = null;
         private Form form;
 
 
@@ -69,6 +71,8 @@ namespace TRACNGHIEM
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup10;
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
+        private DevExpress.XtraBars.BarButtonItem btnGiangVienDK;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
 
         public frmMain()
@@ -96,6 +100,8 @@ namespace TRACNGHIEM
             this.btnThiThu = new DevExpress.XtraBars.BarButtonItem();
             this.btnBangdiem = new DevExpress.XtraBars.BarButtonItem();
             this.btnDSDK = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
+            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rbKhoa = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbLop = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -118,8 +124,8 @@ namespace TRACNGHIEM
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
-            this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.btnGiangVienDK = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
@@ -147,9 +153,10 @@ namespace TRACNGHIEM
             this.btnBangdiem,
             this.btnDSDK,
             this.barButtonItem3,
-            this.barButtonItem4});
+            this.barButtonItem4,
+            this.btnGiangVienDK});
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 20;
+            this.ribbonControl1.MaxItemId = 21;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage3,
@@ -207,7 +214,6 @@ namespace TRACNGHIEM
             this.btnThoatMain.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThoatMain.ImageOptions.Image")));
             this.btnThoatMain.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnThoatMain.ImageOptions.LargeImage")));
             this.btnThoatMain.Name = "btnThoatMain";
-
             this.btnThoatMain.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnThoatMain_ItemClick);
             // 
             // btnDangXuat
@@ -280,11 +286,28 @@ namespace TRACNGHIEM
             this.btnDSDK.Name = "btnDSDK";
             this.btnDSDK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDSDK_ItemClick);
             // 
+            // barButtonItem3
+            // 
+            this.barButtonItem3.Caption = "btnThoatForm";
+            this.barButtonItem3.Id = 18;
+            this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
+            this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
+            this.barButtonItem3.Name = "barButtonItem3";
+            // 
+            // barButtonItem4
+            // 
+            this.barButtonItem4.Caption = "btnThoatForm";
+            this.barButtonItem4.Id = 19;
+            this.barButtonItem4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.Image")));
+            this.barButtonItem4.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
+            this.barButtonItem4.Name = "barButtonItem4";
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.rbKhoa,
             this.rbLop,
+            this.ribbonPageGroup4,
             this.rbMon,
             this.rbDe,
             this.rbThiThu});
@@ -425,21 +448,19 @@ namespace TRACNGHIEM
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "ribbonPageGroup1";
             // 
-            // barButtonItem3
+            // ribbonPageGroup4
             // 
-            this.barButtonItem3.Caption = "btnThoatForm";
-            this.barButtonItem3.Id = 18;
-            this.barButtonItem3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.Image")));
-            this.barButtonItem3.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem3.ImageOptions.LargeImage")));
-            this.barButtonItem3.Name = "barButtonItem3";
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnGiangVienDK, true);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
             // 
-            // barButtonItem4
+            // btnGiangVienDK
             // 
-            this.barButtonItem4.Caption = "btnThoatForm";
-            this.barButtonItem4.Id = 19;
-            this.barButtonItem4.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.Image")));
-            this.barButtonItem4.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
-            this.barButtonItem4.Name = "barButtonItem4";
+            this.btnGiangVienDK.Caption = "Giảng viên đăng ký";
+            this.btnGiangVienDK.Id = 20;
+            this.btnGiangVienDK.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGiangVienDK.ImageOptions.LargeImage")));
+            this.btnGiangVienDK.Name = "btnGiangVienDK";
+            this.btnGiangVienDK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGiangVienDK_ItemClick);
             // 
             // frmMain
             // 
@@ -510,7 +531,7 @@ namespace TRACNGHIEM
 
         private void btnLop_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form form = this.CheckExists(typeof(frmLop));
+            form = this.CheckExists(typeof(frmLop));
             if (form == null)
             {
 
@@ -526,7 +547,7 @@ namespace TRACNGHIEM
 
         private void btnMonHoc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form form = this.CheckExists(typeof(frmMonHoc));
+            form = this.CheckExists(typeof(frmMonHoc));
             if (form == null)
             {
 
@@ -542,7 +563,7 @@ namespace TRACNGHIEM
 
         private void btnDe_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form form = this.CheckExists(typeof(frmBoDe));
+            form = this.CheckExists(typeof(frmBoDe));
             if (form == null)
             {
 
@@ -558,10 +579,9 @@ namespace TRACNGHIEM
 
         private void btnThiThu_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form form = this.CheckExists(typeof(frmThi));
+            form = this.CheckExists(typeof(frmThi));
             if (form == null)
             {
-
                 IsMdiContainer = true;
                 frmThi = new frmThi();
                 frmThi.MdiParent = this;
@@ -574,7 +594,7 @@ namespace TRACNGHIEM
 
         private void btnBangDiemBaoCao_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form form = this.CheckExists(typeof(frmBangDiem));
+            form = this.CheckExists(typeof(frmBangDiem));
             if (form == null)
             {
 
@@ -589,7 +609,7 @@ namespace TRACNGHIEM
 
         private void btnDSDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form form = this.CheckExists(typeof(frmDSDK));
+            form = this.CheckExists(typeof(frmDSDK));
             if (form == null)
             {
 
@@ -604,7 +624,7 @@ namespace TRACNGHIEM
 
         private void btnTaoTK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            Form form = this.CheckExists(typeof(frmDangKy));
+            form = this.CheckExists(typeof(frmDangKy));
             if (form == null)
             {
 
@@ -656,6 +676,45 @@ namespace TRACNGHIEM
                 }
             }
 
+            //Giang vien dang ký
+            if (checkOpenGVDK == true && this.frmGVDK != null)
+            {
+                if (frmGiangVienDangKy.checkSave == false)
+                {
+                    form = this.CheckExists(typeof(frmGiangVienDangKy));
+                    form.Activate();
+                    frmGVDK.btnThoatGVDK_ItemClick(sender, e);
+                    if (frmGiangVienDangKy.checkSave == false)
+                        return;
+                }
+            }
+
+            // Bộ đề
+            if (checkOpenDeThi == true && this.frmBoDe != null)
+            {
+                if (frmBoDe.checkSave == false)
+                {
+                    form = this.CheckExists(typeof(frmBoDe));
+                    form.Activate();
+                    frmBoDe.btnThoatBD_ItemClick(sender, e);
+                    if (frmBoDe.checkSave == false)
+                        return;
+                }
+            }
+
+            //// tạo tài khoản
+            //if (checkOpenTaoTK == true && this.frmDangKy != null)
+            //{
+            //    if (frmDangKy.checkSave == false)
+            //    {
+            //        form = this.CheckExists(typeof(frmDangKy));
+            //        form.Activate();
+            //        frmDangKy.btnThoatBD_ItemClick(sender, e);
+            //        if (frmBoDe.checkSave == false)
+            //            return;
+            //    }
+            //}
+
             DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình?", "", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
@@ -699,6 +758,22 @@ namespace TRACNGHIEM
             Program.frmDangNhap.Activate();
             Program.frmDangNhap.ShowDialog();
             this.Close();
+        }
+
+        private void btnGiangVienDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            form = this.CheckExists(typeof(frmGiangVienDangKy));
+            if (form == null)
+            {
+
+                IsMdiContainer = true;
+                frmGVDK = new frmGiangVienDangKy();
+                frmGVDK.MdiParent = this;
+
+                frmGVDK.Show();
+                checkOpenGVDK = true;
+            }
+            else form.Activate();
         }
     }
 }

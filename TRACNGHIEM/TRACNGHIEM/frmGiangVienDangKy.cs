@@ -12,6 +12,7 @@ namespace TRACNGHIEM
 {
     public partial class frmGiangVienDangKy : Form
     {
+        public static Boolean checkSave = true;
         public frmGiangVienDangKy()
         {
             InitializeComponent();
@@ -101,7 +102,7 @@ namespace TRACNGHIEM
 
         }
 
-        private void btnThoatGVDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        public void btnThoatGVDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form giảng viên đăng ký", "", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
@@ -121,7 +122,11 @@ namespace TRACNGHIEM
 
         private void frmGiangVienDangKy_Load(object sender, EventArgs e)
         {
+            this.ControlBox = false;
+            gcGVDK.UseDisabledStatePainter = false;
+            tNDataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+            this.tbGiangVienDK.Connection.ConnectionString = Program.connstr;
             this.tbGiangVienDK.Fill(this.tNDataSet.GIAOVIEN_DANGKY);
 
         }

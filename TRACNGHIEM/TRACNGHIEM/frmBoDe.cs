@@ -12,6 +12,7 @@ namespace TRACNGHIEM
 {
     public partial class frmBoDe : Form
     {
+        public static Boolean checkSave = true;
         private int dem = 0;
         public frmBoDe()
         {
@@ -52,7 +53,7 @@ namespace TRACNGHIEM
 
         }
 
-        private void btnThoatBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        public void btnThoatBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát form bộ đề?", "", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
@@ -81,6 +82,8 @@ namespace TRACNGHIEM
                 //    = btnDel.Enabled = btnRefres     h.Enabled = btnExit.Enabled=false;
                 //btnSave.Enabled = btnRevert.Enabled = true;
                 //gcGiangVien.Enabled = false;
+
+                checkSave = false;
             }
             catch (Exception ex)
             {
@@ -99,6 +102,7 @@ namespace TRACNGHIEM
                 //ghi dữ liệu tạm về server, fill là ghi tạm, update là ghi thật
                 // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
                 this.tbBoDe.Update(this.tNDataSet.BODE);
+                checkSave = true;
             }
             catch (Exception ex)
             {
@@ -156,11 +160,12 @@ namespace TRACNGHIEM
         {
             // Hủy bỏ thao tác đang hiệu chỉnh
             bdsBoDe.CancelEdit();
+            checkSave = true;
         }
 
         private void cbbTenMonHocC_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbbTenMonHocC.SelectedValue != null)
+            if (cbbTenMonHocC.SelectedValue != null && dem > 0)
             {
 
                 //Console.WriteLine(cbbMH.SelectedValue.ToString());
@@ -172,16 +177,25 @@ namespace TRACNGHIEM
                 //this.sP_XemKetQuaSVTableAdapter.Fill(this.tNDataSet.SP_XemKetQuaSV, cbbLop.SelectedValue.ToString(), cbbMH.SelectedValue.ToString(), short.Parse(cbbLThi.SelectedValue.ToString()));
                 try
                 {
-                    String kqTimkiem = "";
-                    String strlenh = "SELECT CAUHOI FROM dbo.BODE WHERE MAMH = '" 
-                        +cbbTenMonHocC.SelectedValue.ToString()+"'";
-                    Program.myReader = Program.ExecSqlDataReader(strlenh);
-                    while (Program.myReader.Read())
-                    {
-                        kqTimkiem += "'" + Program.myReader.GetString(0).Trim() + "',";
-                    }
-                    Program.conn.Close();
-                    bdsBoDe.Filter = "MAMH IN (" + kqTimkiem + ")";
+                    Program.conn.ConnectionString = Program.connstr;
+                    Program.conn.Open();
+
+                    // Gọi view V_DS_COSO và trả về datable 
+                    DataTable dt = new DataTable();
+                    String sql = "EXEC SP_KT_LOP_TONTAI N'" + cbbTenMonHocC.SelectedValue.ToString().Trim() + "'";
+                    dt = Program.ExecSqlDataTable(sql);
+                    this.tbBoDe.Fill(dt);
+
+                    //String kqTimkiem = "";
+                    //String strlenh = "SELECT CAUHOI FROM dbo.BODE WHERE MAMH = '"
+                    //    + cbbTenMonHocC.SelectedValue.ToString() + "'";
+                    //Program.myReader = Program.ExecSqlDataReader(strlenh);
+                    //while (Program.myReader.Read())
+                    //{
+                    //    kqTimkiem += "'" + Program.myReader.GetString(0).Trim() + "',";
+                    //}
+                    //Program.conn.Close();
+                    //bdsBoDe.Filter = "MAMH IN (" + kqTimkiem + ")";
                 }
                 catch (Exception ex)
                 {
@@ -190,5 +204,12 @@ namespace TRACNGHIEM
 
             }
         }
+
+        private void btnSuaBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+            checkSave = false;
+        }
+
     }
 }

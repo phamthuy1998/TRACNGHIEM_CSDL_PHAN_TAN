@@ -83,23 +83,13 @@
             this.edtMaMon = new DevExpress.XtraEditors.TextEdit();
             this.tbBoDe = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
             this.tableAdapterManager = new TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager();
-            this.gcBoDe = new DevExpress.XtraGrid.GridControl();
-            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.colCAUHOI = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMAMH = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colTRINHDO = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colNOIDUNG = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colA = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colB = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colC = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colD = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colDAP_AN = new DevExpress.XtraGrid.Columns.GridColumn();
-            this.colMAGV = new DevExpress.XtraGrid.Columns.GridColumn();
             this.tbMonHoc = new TRACNGHIEM.TNDataSetTableAdapters.MONHOCTableAdapter();
             this.tbMonHocADT = new TRACNGHIEM.TNDataSetTableAdapters.DSMONHOCTableAdapter();
             this.tbGiaoVienADT = new TRACNGHIEM.TNDataSetTableAdapters.DSGIAOVIENTableAdapter();
             this.bdsBaiThi = new System.Windows.Forms.BindingSource(this.components);
             this.tbBaiThiADT = new TRACNGHIEM.TNDataSetTableAdapters.BAITHITableAdapter();
+            this.gcBoDe = new DevExpress.XtraGrid.GridControl();
+            this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
             mAMHLabel = new System.Windows.Forms.Label();
             mAGVLabel = new System.Windows.Forms.Label();
             tRINHDOLabel = new System.Windows.Forms.Label();
@@ -130,9 +120,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtMaCauHoi.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaGV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaMon.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsBaiThi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcBoDe)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsBaiThi)).BeginInit();
             this.SuspendLayout();
             // 
             // mAMHLabel
@@ -308,6 +298,7 @@
             this.btnSuaBD.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSuaBD.ImageOptions.Image")));
             this.btnSuaBD.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnSuaBD.ImageOptions.LargeImage")));
             this.btnSuaBD.Name = "btnSuaBD";
+            this.btnSuaBD.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnSuaBD_ItemClick);
             // 
             // btnXoaBD
             // 
@@ -404,7 +395,6 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(3844, 174);
             this.groupControl1.TabIndex = 4;
-            // 
             // panelTimGV
             // 
             this.panelTimGV.Controls.Add(this.btnTim);
@@ -661,135 +651,6 @@
             this.tableAdapterManager.SINHVIENTableAdapter = null;
             this.tableAdapterManager.UpdateOrder = TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // gcBoDe
-            // 
-            this.gcBoDe.DataSource = this.bdsBoDe;
-            this.gcBoDe.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gcBoDe.Location = new System.Drawing.Point(0, 270);
-            this.gcBoDe.MainView = this.gridView1;
-            this.gcBoDe.MenuManager = this.barManager1;
-            this.gcBoDe.Name = "gcBoDe";
-            this.gcBoDe.Size = new System.Drawing.Size(3844, 1124);
-            this.gcBoDe.TabIndex = 7;
-            this.gcBoDe.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
-            this.gridView1});
-            // 
-            // gridView1
-            // 
-            this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
-            this.colCAUHOI,
-            this.colMAMH,
-            this.colTRINHDO,
-            this.colNOIDUNG,
-            this.colA,
-            this.colB,
-            this.colC,
-            this.colD,
-            this.colDAP_AN,
-            this.colMAGV});
-            this.gridView1.GridControl = this.gcBoDe;
-            this.gridView1.Name = "gridView1";
-            // 
-            // colCAUHOI
-            // 
-            this.colCAUHOI.FieldName = "CAUHOI";
-            this.colCAUHOI.MinWidth = 50;
-            this.colCAUHOI.Name = "colCAUHOI";
-            this.colCAUHOI.OptionsColumn.AllowEdit = false;
-            this.colCAUHOI.Visible = true;
-            this.colCAUHOI.VisibleIndex = 0;
-            this.colCAUHOI.Width = 132;
-            // 
-            // colMAMH
-            // 
-            this.colMAMH.FieldName = "MAMH";
-            this.colMAMH.MinWidth = 50;
-            this.colMAMH.Name = "colMAMH";
-            this.colMAMH.OptionsColumn.AllowEdit = false;
-            this.colMAMH.Visible = true;
-            this.colMAMH.VisibleIndex = 1;
-            this.colMAMH.Width = 155;
-            // 
-            // colTRINHDO
-            // 
-            this.colTRINHDO.FieldName = "TRINHDO";
-            this.colTRINHDO.MinWidth = 50;
-            this.colTRINHDO.Name = "colTRINHDO";
-            this.colTRINHDO.OptionsColumn.AllowEdit = false;
-            this.colTRINHDO.Visible = true;
-            this.colTRINHDO.VisibleIndex = 2;
-            this.colTRINHDO.Width = 159;
-            // 
-            // colNOIDUNG
-            // 
-            this.colNOIDUNG.FieldName = "NOIDUNG";
-            this.colNOIDUNG.MinWidth = 50;
-            this.colNOIDUNG.Name = "colNOIDUNG";
-            this.colNOIDUNG.OptionsColumn.AllowEdit = false;
-            this.colNOIDUNG.Visible = true;
-            this.colNOIDUNG.VisibleIndex = 3;
-            this.colNOIDUNG.Width = 619;
-            // 
-            // colA
-            // 
-            this.colA.FieldName = "A";
-            this.colA.MinWidth = 50;
-            this.colA.Name = "colA";
-            this.colA.OptionsColumn.AllowEdit = false;
-            this.colA.Visible = true;
-            this.colA.VisibleIndex = 4;
-            this.colA.Width = 519;
-            // 
-            // colB
-            // 
-            this.colB.FieldName = "B";
-            this.colB.MinWidth = 50;
-            this.colB.Name = "colB";
-            this.colB.OptionsColumn.AllowEdit = false;
-            this.colB.Visible = true;
-            this.colB.VisibleIndex = 5;
-            this.colB.Width = 551;
-            // 
-            // colC
-            // 
-            this.colC.FieldName = "C";
-            this.colC.MinWidth = 50;
-            this.colC.Name = "colC";
-            this.colC.OptionsColumn.AllowEdit = false;
-            this.colC.Visible = true;
-            this.colC.VisibleIndex = 6;
-            this.colC.Width = 600;
-            // 
-            // colD
-            // 
-            this.colD.FieldName = "D";
-            this.colD.MinWidth = 50;
-            this.colD.Name = "colD";
-            this.colD.OptionsColumn.AllowEdit = false;
-            this.colD.Visible = true;
-            this.colD.VisibleIndex = 7;
-            this.colD.Width = 614;
-            // 
-            // colDAP_AN
-            // 
-            this.colDAP_AN.FieldName = "DAP_AN";
-            this.colDAP_AN.MinWidth = 50;
-            this.colDAP_AN.Name = "colDAP_AN";
-            this.colDAP_AN.OptionsColumn.AllowEdit = false;
-            this.colDAP_AN.Visible = true;
-            this.colDAP_AN.VisibleIndex = 8;
-            this.colDAP_AN.Width = 267;
-            // 
-            // colMAGV
-            // 
-            this.colMAGV.FieldName = "MAGV";
-            this.colMAGV.MinWidth = 50;
-            this.colMAGV.Name = "colMAGV";
-            this.colMAGV.OptionsColumn.AllowEdit = false;
-            this.colMAGV.Visible = true;
-            this.colMAGV.VisibleIndex = 9;
-            this.colMAGV.Width = 188;
-            // 
             // tbMonHoc
             // 
             this.tbMonHoc.ClearBeforeFill = true;
@@ -810,6 +671,24 @@
             // tbBaiThiADT
             // 
             this.tbBaiThiADT.ClearBeforeFill = true;
+            // 
+            // gcBoDe
+            // 
+            this.gcBoDe.DataSource = this.bdsBoDe;
+            this.gcBoDe.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gcBoDe.Location = new System.Drawing.Point(0, 270);
+            this.gcBoDe.MainView = this.gridView1;
+            this.gcBoDe.MenuManager = this.barManager1;
+            this.gcBoDe.Name = "gcBoDe";
+            this.gcBoDe.Size = new System.Drawing.Size(3844, 1124);
+            this.gcBoDe.TabIndex = 9;
+            this.gcBoDe.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridView1});
+            // 
+            // gridView1
+            // 
+            this.gridView1.GridControl = this.gcBoDe;
+            this.gridView1.Name = "gridView1";
             // 
             // frmBoDe
             // 
@@ -849,9 +728,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtMaCauHoi.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaGV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaMon.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsBaiThi)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gcBoDe)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsBaiThi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -879,8 +758,6 @@
         private DevExpress.XtraEditors.GroupControl groupControl2;
         private TNDataSetTableAdapters.BODETableAdapter tbBoDe;
         private TNDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private DevExpress.XtraGrid.GridControl gcBoDe;
-        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.TextEdit dAP_ANTextEdit;
         private DevExpress.XtraEditors.SpinEdit edtMaCauHoi;
         private System.Windows.Forms.BindingSource bdsMoHocBD;
@@ -900,21 +777,13 @@
         private TNDataSetTableAdapters.DSGIAOVIENTableAdapter tbGiaoVienADT;
         private System.Windows.Forms.ComboBox cbbTenGV;
         private System.Windows.Forms.ComboBox cbbTenMonHocC;
-        private DevExpress.XtraGrid.Columns.GridColumn colCAUHOI;
-        private DevExpress.XtraGrid.Columns.GridColumn colMAMH;
-        private DevExpress.XtraGrid.Columns.GridColumn colTRINHDO;
-        private DevExpress.XtraGrid.Columns.GridColumn colNOIDUNG;
-        private DevExpress.XtraGrid.Columns.GridColumn colA;
-        private DevExpress.XtraGrid.Columns.GridColumn colB;
-        private DevExpress.XtraGrid.Columns.GridColumn colC;
-        private DevExpress.XtraGrid.Columns.GridColumn colD;
-        private DevExpress.XtraGrid.Columns.GridColumn colDAP_AN;
-        private DevExpress.XtraGrid.Columns.GridColumn colMAGV;
         private DevExpress.XtraEditors.PanelControl panelTimGV;
         private System.Windows.Forms.Button btnTim;
         private System.Windows.Forms.Label label2;
         private DevExpress.XtraEditors.TextEdit edtTim;
         private System.Windows.Forms.BindingSource bdsBaiThi;
         private TNDataSetTableAdapters.BAITHITableAdapter tbBaiThiADT;
+        private DevExpress.XtraGrid.GridControl gcBoDe;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
     }
 }

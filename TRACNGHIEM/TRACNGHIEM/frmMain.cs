@@ -102,9 +102,11 @@ namespace TRACNGHIEM
             this.btnDSDK = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem3 = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem4 = new DevExpress.XtraBars.BarButtonItem();
+            this.btnGiangVienDK = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rbKhoa = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbLop = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbMon = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbDe = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbThiThu = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -124,8 +126,6 @@ namespace TRACNGHIEM
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             this.ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.btnGiangVienDK = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
@@ -302,13 +302,21 @@ namespace TRACNGHIEM
             this.barButtonItem4.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
             this.barButtonItem4.Name = "barButtonItem4";
             // 
+            // btnGiangVienDK
+            // 
+            this.btnGiangVienDK.Caption = "Giảng viên đăng ký";
+            this.btnGiangVienDK.Id = 20;
+            this.btnGiangVienDK.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGiangVienDK.ImageOptions.LargeImage")));
+            this.btnGiangVienDK.Name = "btnGiangVienDK";
+            this.btnGiangVienDK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGiangVienDK_ItemClick);
+            // 
             // ribbonPage3
             // 
             this.ribbonPage3.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
             this.rbKhoa,
             this.rbLop,
-            this.ribbonPageGroup4,
             this.rbMon,
+            this.ribbonPageGroup4,
             this.rbDe,
             this.rbThiThu});
             this.ribbonPage3.Name = "ribbonPage3";
@@ -325,6 +333,12 @@ namespace TRACNGHIEM
             this.rbLop.ItemLinks.Add(this.btnLop);
             this.rbLop.Name = "rbLop";
             this.rbLop.Text = "ribbonPageGroup4";
+            // 
+            // ribbonPageGroup4
+            // 
+            this.ribbonPageGroup4.ItemLinks.Add(this.btnGiangVienDK, true);
+            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
+            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
             // 
             // rbMon
             // 
@@ -447,20 +461,6 @@ namespace TRACNGHIEM
             // 
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "ribbonPageGroup1";
-            // 
-            // ribbonPageGroup4
-            // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnGiangVienDK, true);
-            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
-            // 
-            // btnGiangVienDK
-            // 
-            this.btnGiangVienDK.Caption = "Giảng viên đăng ký";
-            this.btnGiangVienDK.Id = 20;
-            this.btnGiangVienDK.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnGiangVienDK.ImageOptions.LargeImage")));
-            this.btnGiangVienDK.Name = "btnGiangVienDK";
-            this.btnGiangVienDK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnGiangVienDK_ItemClick);
             // 
             // frmMain
             // 
@@ -739,11 +739,11 @@ namespace TRACNGHIEM
                 DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình?", "", MessageBoxButtons.YesNo);
                 if (dr == DialogResult.Yes)
                 {
-                   // Application.ExitThread();
+                    Application.ExitThread();
                 }
                 else
                 {
-                   // return;
+                   return;
                 }
             }
         }

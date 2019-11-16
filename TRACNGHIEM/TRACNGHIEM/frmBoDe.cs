@@ -70,8 +70,17 @@ namespace TRACNGHIEM
             cbbDapAn.Items.Add("B");
             cbbDapAn.Items.Add("C");
             cbbDapAn.Items.Add("D");
-            cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["DAP_AN"].ToString();
+            cbbDapAn.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["DAP_AN"].ToString();
 
+            if (Program.mGroup == "Coso")
+            {
+                btnThemBD.Visibility = btnSuaBD.Visibility = btnGhiBD.Visibility = btnXoaBD.Visibility = btnPhucHoiBD.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
+            }
+            //Truong thì login đó có thể đăng nhập vào bất kỳ phân mảnh  nào để xem dữ liệu 
+            else if (Program.mGroup == "Truong")
+            {
+                btnThemBD.Visibility =btnSuaBD.Visibility= btnGhiBD.Visibility = btnXoaBD.Visibility = btnPhucHoiBD.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            }
             dem++;
 
         }

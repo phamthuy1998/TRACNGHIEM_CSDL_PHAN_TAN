@@ -124,6 +124,8 @@ namespace TRACNGHIEM
         {
             txUsername.Focus();
             radGiaoVien.Checked = true;
+            if (Program.conn != null && Program.conn.State == ConnectionState.Open)
+                Program.conn.Close();
             try
             {
                 //Integrated Security=True--> Kết nối về site chủ không cần password và tài khoản

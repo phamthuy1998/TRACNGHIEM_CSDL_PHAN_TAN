@@ -36,7 +36,14 @@ namespace TRACNGHIEM
                 cbbTenMon.SelectedIndex = 0;
                 cbbTenLop.SelectedIndex = 0;
                 cbbTrinhDo.SelectedIndex = 0;
+                edtTrinhdo.Text = cbbTrinhDo.SelectedValue.ToString();
+
+                gcGVDK.Enabled = false;
+
+                cbbLan.SelectedIndex = 1;
                 cbbLan.SelectedIndex = 0;
+
+                cbbThoiGian.SelectedIndex = 1;
                 cbbThoiGian.SelectedIndex = 0;
                 checkThem = true;
                 checkSave = false;
@@ -54,10 +61,12 @@ namespace TRACNGHIEM
                 bdsGiangVienDK.EndEdit();
                 bdsGiangVienDK.ResetCurrentItem();
                 this.tbGiangVienDK.Update(this.tNDataSet.GIAOVIEN_DANGKY);
+
                 btnThemGVDK.Enabled = btnXoaGVDK.Enabled = btnSuaGVDK.Enabled = btnTaiLaiGVDK.Enabled = true;
                 gcDetail.Enabled = false;
                 checkThem = checkSua = true;
                 checkSave = true;
+                gcGVDK.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -68,7 +77,7 @@ namespace TRACNGHIEM
 
         private void btnGhiGVDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (checkThem == true)
+            if (checkThem == true || checkSua == true)
             {
 
                 if (edtNgayThi.Text.Trim().Equals(""))
@@ -98,36 +107,33 @@ namespace TRACNGHIEM
                 }
 
                 //số câu thi không hợp lệ
-                int i = Decimal.ToInt32(edtSoCau.Value);
-
-
-                if (i < 10 || i > 100)
+                int socau = Decimal.ToInt16(edtSoCau.Value);
+                if (socau < 10 || socau > 100)
                 {
                     MessageBox.Show("Số câu thi phải >=10 và <=100 câu, vui lòng nhập lại", "", MessageBoxButtons.OK);
                     edtSoCau.Focus();
                     return;
                 }
 
-
-                String sql = "EXEC SP_KT_MA_BO_DE '" + edtMaGV.Text.Trim() + "'";
+                Console.WriteLine("lỗi số lần:  "+ cbbLan.SelectedValue);
+                String sql = "EXEC SP_KT_GVDK N'" + edtMaMon.Text.Trim()
+                    + "', N'" + edtMaLop.Text.Trim()
+                    + "',  " + cbbLan.SelectedValue;
 
                 int kq = Program.ExecSqlNonQuery(sql);
                 if (kq == 1)
                 {
-                    cbbTenGV.Focus();
+                    cbbLan.Focus();
                     return;
                 }
                 else
                 {
                     ghiGVDK();
                     checkThem = false;
+                    checkSua = false;
                 }
             }
-            else if (checkSua == true)
-            {
-                ghiGVDK();
-                checkSua = false;
-            }
+
             else
             {
                 ghiGVDK();
@@ -161,7 +167,9 @@ namespace TRACNGHIEM
             btnThemGVDK.Enabled = btnXoaGVDK.Enabled = btnSuaGVDK.Enabled = btnTaiLaiGVDK.Enabled = false;
             gcDetail.Enabled = true;
             cbbTenGV.Enabled = false;
+            gcGVDK.Enabled = false;
             checkSave = false;
+            cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["TRINHDO"].ToString();
         }
 
         private void btnPhuchoiGVDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -185,6 +193,7 @@ namespace TRACNGHIEM
             gcDetail.Enabled = false;
             checkSave = true;
             checkThem = checkSua = true;
+            gcGVDK.Enabled = true;
         }
 
         private void btnTaiLaiGVDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -262,11 +271,14 @@ namespace TRACNGHIEM
         private void frmGiangVienDangKy_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'tNDataSet.DSGIAOVIEN' table. You can move, or remove it, as needed.
-            this.tbDSGiangVien.Fill(this.tNDataSet.DSGIAOVIEN);
+
             Program.connstr1 = Program.connstr;
             this.ControlBox = false;
             gcGVDK.UseDisabledStatePainter = false;
             tNDataSet.EnforceConstraints = false;
+
+            this.tbDSGiangVien.Connection.ConnectionString = Program.connstr;
+            this.tbDSGiangVien.Fill(this.tNDataSet.DSGIAOVIEN);
 
             this.tbGiangVienDK.Connection.ConnectionString = Program.connstr;
             this.tbGiangVienDK.Fill(this.tNDataSet.GIAOVIEN_DANGKY);
@@ -294,13 +306,17 @@ namespace TRACNGHIEM
                 MessageBox.Show("Lỗi load dữ liệu cơ sở" + ex.Message, "", MessageBoxButtons.OK);
             }
 
-            cbbTrinhDo.Items.Add("A");
-            cbbTrinhDo.Items.Add("B");
-            cbbTrinhDo.Items.Add("C");
+            Dictionary<string, string> items = new Dictionary<string, string>();
+            items.Add("Đại học, chuyên ngành", "A");
+            items.Add("Đại học, không chuyên ngành", "B");
+            items.Add("Cao đẳng", "c");
+            cbbTrinhDo.DataSource = new BindingSource(items, null);
+            cbbTrinhDo.DisplayMember = "KEY";
+            cbbTrinhDo.ValueMember = "VALUE";
             cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["TRINHDO"].ToString();
 
-            cbbLan.Items.Add(1);
-            cbbLan.Items.Add(2);
+            cbbLan.Items.Add(new Decimal(1.0));
+            cbbLan.Items.Add(new Decimal(2.0));
             cbbLan.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["LAN"].ToString();
 
 
@@ -390,6 +406,23 @@ namespace TRACNGHIEM
             try
             {
                 edtMaGV.Text = cbbTenGV.SelectedValue.ToString();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        private void gcGVDK_Click(object sender, EventArgs e)
+        {
+            cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["TRINHDO"].ToString();
+        }
+
+        private void cbbTrinhDo_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            try
+            {
+                edtTrinhdo.Text = cbbTrinhDo.SelectedValue.ToString();
             }
             catch (Exception ex)
             {

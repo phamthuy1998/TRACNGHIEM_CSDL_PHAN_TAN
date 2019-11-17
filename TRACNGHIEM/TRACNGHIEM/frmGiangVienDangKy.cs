@@ -27,7 +27,7 @@ namespace TRACNGHIEM
             try
             {
                 bdsGiangVienDK.AddNew();
-
+                cbbTenLop.Enabled = cbbTenMon.Enabled = cbbLan.Enabled = true;
                 btnThemGVDK.Enabled = btnXoaGVDK.Enabled = btnSuaGVDK.Enabled = btnTaiLaiGVDK.Enabled = false;
                 gcDetail.Enabled = true;
 
@@ -77,7 +77,60 @@ namespace TRACNGHIEM
 
         private void btnGhiGVDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (checkThem == true || checkSua == true)
+            if (checkThem == true)
+            {
+
+                if (edtNgayThi.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Bạn chưa nhập ngày thi", "", MessageBoxButtons.OK);
+                    edtNgayThi.Focus();
+                    return;
+                }
+                //câu thi
+                if (edtSoCau.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Bạn chưa nhập số câu thi", "", MessageBoxButtons.OK);
+                    edtSoCau.Focus();
+                    return;
+                }
+
+                // ngày không hợp lệ
+                var FromDate = edtNgayThi.DateTime;
+                var ToDate = DateTime.Today;
+                Console.WriteLine("ngay thi: " + FromDate);
+                Console.WriteLine("ngay hien tai: " + ToDate);
+                int compare = DateTime.Compare(ToDate, FromDate);
+                if (compare > 0)
+                {
+                    MessageBox.Show("Ngày thi phải lớn hơn ngày hiện tại", "", MessageBoxButtons.OK);
+                    return;
+                }
+
+                //số câu thi không hợp lệ
+                int socau = Decimal.ToInt16(edtSoCau.Value);
+                if (socau < 10 || socau > 100)
+                {
+                    MessageBox.Show("Số câu thi phải >=10 và <=100 câu, vui lòng nhập lại", "", MessageBoxButtons.OK);
+                    edtSoCau.Focus();
+                    return;
+                }
+                String sql = "EXEC SP_KT_GVDK N'" + edtMaMon.Text.Trim()
+                    + "', N'" + edtMaLop.Text.Trim()
+                    + "',  " + cbbLan.SelectedItem.ToString();
+
+                int kq = Program.ExecSqlNonQuery(sql);
+                if (kq == 1)
+                {
+                    cbbLan.Focus();
+                    return;
+                }
+                else
+                {
+                    ghiGVDK();
+                    checkThem = false;
+                }
+            }
+            else if (checkSua == true)
             {
 
                 if (edtNgayThi.Text.Trim().Equals(""))
@@ -115,23 +168,8 @@ namespace TRACNGHIEM
                     return;
                 }
 
-                Console.WriteLine("lỗi số lần:  "+ cbbLan.SelectedValue);
-                String sql = "EXEC SP_KT_GVDK N'" + edtMaMon.Text.Trim()
-                    + "', N'" + edtMaLop.Text.Trim()
-                    + "',  " + cbbLan.SelectedValue;
-
-                int kq = Program.ExecSqlNonQuery(sql);
-                if (kq == 1)
-                {
-                    cbbLan.Focus();
-                    return;
-                }
-                else
-                {
-                    ghiGVDK();
-                    checkThem = false;
-                    checkSua = false;
-                }
+                ghiGVDK();
+                checkSua = false;
             }
 
             else
@@ -142,34 +180,65 @@ namespace TRACNGHIEM
 
         private void btnXoaGVDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên "
-                + ((DataRowView)this.bdsGiangVienDK.Current).Row["MAGV"].ToString() + " của môn "
-                + ((DataRowView)this.bdsGiangVienDK.Current).Row["MAMH"].ToString()
-                + "?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (bdsGiangVienDK.Count == 0)
             {
-                try
+                MessageBox.Show("Không có giảng viên đăng ký để xóa!", "THÔNG BÁO", MessageBoxButtons.OK);
+
+            }
+            else
+            {
+                String sql = "EXEC SP_KT_XOA_GVDK N'" + edtMaMon.Text.Trim()
+                   + "', N'" + edtMaLop.Text.Trim()
+                   + "',  " + cbbLan.SelectedItem.ToString();
+
+                int kq = Program.ExecSqlNonQuery(sql);
+                if (kq == 1)
                 {
-                    //phải chạy lệnh del from where mới chính xác
-                    bdsGiangVienDK.RemoveCurrent();
-                    //đẩy dữ liệu về adapter
-                    this.tbGiangVienDK.Update(this.tNDataSet.GIAOVIEN_DANGKY);
+                    return;
                 }
-                catch (Exception ex)
+                else
                 {
-                    MessageBox.Show("Lỗi xóa giảng viên " + ex.Message, "", MessageBoxButtons.OK);
+                    if (MessageBox.Show("Bạn có chắc chắn muốn xóa giảng viên "
+                    + ((DataRowView)this.bdsGiangVienDK.Current).Row["MAGV"].ToString() + " của môn "
+                    + ((DataRowView)this.bdsGiangVienDK.Current).Row["MAMH"].ToString() + " lớp "
+                     + ((DataRowView)this.bdsGiangVienDK.Current).Row["MALOP"].ToString() + " lần "
+                     + ((DataRowView)this.bdsGiangVienDK.Current).Row["LAN"].ToString()
+                    + "?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            //phải chạy lệnh del from where mới chính xác
+                            bdsGiangVienDK.RemoveCurrent();
+                            //đẩy dữ liệu về adapter
+                            this.tbGiangVienDK.Update(this.tNDataSet.GIAOVIEN_DANGKY);
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Lỗi xóa giảng viên " + ex.Message, "", MessageBoxButtons.OK);
+                        }
+                    }
                 }
+                
             }
         }
 
         private void btnSuaGVDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            checkSua = true;
-            btnThemGVDK.Enabled = btnXoaGVDK.Enabled = btnSuaGVDK.Enabled = btnTaiLaiGVDK.Enabled = false;
-            gcDetail.Enabled = true;
-            cbbTenGV.Enabled = false;
-            gcGVDK.Enabled = false;
-            checkSave = false;
-            cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["TRINHDO"].ToString();
+            if (bdsGiangVienDK.Count == 0)
+            {
+                MessageBox.Show("Không có giảng viên đăng ký để sửa!", "THÔNG BÁO", MessageBoxButtons.OK);
+
+            }
+            else
+            {
+                cbbTenLop.Enabled = cbbTenMon.Enabled = cbbLan.Enabled = false;
+                checkSua = true;
+                btnThemGVDK.Enabled = btnXoaGVDK.Enabled = btnSuaGVDK.Enabled = btnTaiLaiGVDK.Enabled = false;
+                gcDetail.Enabled = true;
+                gcGVDK.Enabled = false;
+                checkSave = false;
+                cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["TRINHDO"].ToString();
+            }
         }
 
         private void btnPhuchoiGVDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

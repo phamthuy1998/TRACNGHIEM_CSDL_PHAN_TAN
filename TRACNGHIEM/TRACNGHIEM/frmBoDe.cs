@@ -45,16 +45,48 @@ namespace TRACNGHIEM
             this.tbGiaoVienADT.Fill(this.TNDataSet.DSGIAOVIEN);
 
             // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
-            this.tbBoDe.Connection.ConnectionString = Program.connstr;
-            this.tbBoDe.Fill(this.TNDataSet.BODE);
+            if (Program.mGroup.Equals("Giangvien"))
+            {
+                this.tbDSMHAdt.Connection.ConnectionString = Program.connstr;
+                this.tbDSMHAdt.FillByMaGV(this.TNDataSet.DSMONHOC, Program.username);
+                if (bdsDSMH.Count <= 0)
+                {
+                    MessageBox.Show("Giảng viên chưa có môn học đăng ký ", "Thông báo", MessageBoxButtons.OK);
+                    this.tbBoDe.Connection.ConnectionString = Program.connstr;
+                    bdsBoDe = null;
+                    btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                        = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                }
+                else
+                {
+                    btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                    cbbTenMonHocC.SelectedIndex = 0;
+                    this.tbBoDe.Connection.ConnectionString = Program.connstr;
+                    this.tbBoDe.FillByGV_MH(this.TNDataSet.BODE, Program.username, cbbTenMonHocC.SelectedValue.ToString().Trim());
+                }
 
-            // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
-            this.tbDSMHAdt.Connection.ConnectionString = Program.connstr;
-            this.tbDSMHAdt.Fill(this.TNDataSet.DSMONHOC);
-
-            cbbTenMonHocC.SelectedIndex = 0;
-            this.tbBoDe.Connection.ConnectionString = Program.connstr;
-            this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
+            }
+            else
+            {
+                this.tbDSMHAdt.Connection.ConnectionString = Program.connstr;
+                this.tbDSMHAdt.Fill(this.TNDataSet.DSMONHOC);
+                if (bdsDSMH.Count <= 0)
+                {
+                    MessageBox.Show("Danh sách môn học rỗng ", "Thông báo", MessageBoxButtons.OK);
+                    bdsBoDe = null;
+                    btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                }
+                else
+                {
+                    btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                          = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                    cbbTenMonHocC.SelectedIndex = 0;
+                    this.tbBoDe.Connection.ConnectionString = Program.connstr;
+                    this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
+                }
+            }
 
             this.tbmonHocADT.Connection.ConnectionString = Program.connstr;
             this.tbmonHocADT.Fill(this.TNDataSet.MONHOC);
@@ -64,13 +96,15 @@ namespace TRACNGHIEM
             cbbTrinhDo.Items.Add("A");
             cbbTrinhDo.Items.Add("B");
             cbbTrinhDo.Items.Add("C");
-            cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["TRINHDO"].ToString();
+            if (bdsBoDe != null)
+                cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["TRINHDO"].ToString();
 
             cbbDapAn.Items.Add("A");
             cbbDapAn.Items.Add("B");
             cbbDapAn.Items.Add("C");
             cbbDapAn.Items.Add("D");
-            cbbDapAn.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["DAP_AN"].ToString();
+            if (bdsBoDe != null)
+                cbbDapAn.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["DAP_AN"].ToString();
 
             if (Program.mGroup == "Coso")
             {
@@ -79,7 +113,7 @@ namespace TRACNGHIEM
             //Truong thì login đó có thể đăng nhập vào bất kỳ phân mảnh  nào để xem dữ liệu 
             else if (Program.mGroup == "Truong")
             {
-                btnThemBD.Visibility =btnSuaBD.Visibility= btnGhiBD.Visibility = btnXoaBD.Visibility = btnPhucHoiBD.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                btnThemBD.Visibility = btnSuaBD.Visibility = btnGhiBD.Visibility = btnXoaBD.Visibility = btnPhucHoiBD.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
             dem++;
 
@@ -141,13 +175,21 @@ namespace TRACNGHIEM
                 cbbTenMh.Enabled = false;
 
                 gcDetail.Enabled = true;
-                cbbTenGV.Enabled = true;
-                cbbTenGV.SelectedIndex = 0;
 
                 cbbTrinhDo.SelectedIndex = 0;
                 cbbTenMonHocC.Enabled = false;
-
-
+                edtMaCauHoi.Enabled = true;
+                cbbDapAn.SelectedIndex = 0;
+                if (Program.mGroup.Equals("Giangvien"))
+                {
+                    cbbTenGV.Enabled = false;
+                    cbbTenGV.SelectedValue = Program.username;
+                }
+                else
+                {
+                    cbbTenGV.Enabled = true;
+                    cbbTenGV.SelectedIndex = 0;
+                }
             }
             catch (Exception ex)
             {
@@ -282,8 +324,60 @@ namespace TRACNGHIEM
         {
             try
             {
-                this.tbBoDe.Connection.ConnectionString = Program.connstr;
-                this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
+
+                // TODO: This line of code loads data into the 'tNDataSet.BAITHI' table. You can move, or remove it, as needed.
+                this.tbBaiThiADT.Connection.ConnectionString = Program.connstr;
+                this.tbBaiThiADT.Fill(this.TNDataSet.BAITHI);
+                // TODO: This line of code loads data into the 'tNDataSet.DSGIAOVIEN' table. You can move, or remove it, as needed.
+                this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+                this.tbGiaoVienADT.Fill(this.TNDataSet.DSGIAOVIEN);
+
+                // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
+                if (Program.mGroup.Equals("Giangvien"))
+                {
+                    this.tbDSMHAdt.Connection.ConnectionString = Program.connstr;
+                    this.tbDSMHAdt.FillByMaGV(this.TNDataSet.DSMONHOC, Program.username);
+                    if (bdsDSMH.Count <= 0)
+                    {
+                        MessageBox.Show("Giảng viên chưa có môn học đăng ký ", "Thông báo", MessageBoxButtons.OK);
+                        this.tbBoDe.Connection.ConnectionString = Program.connstr;
+                        bdsBoDe = null;
+                        btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                            = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                    }
+                    else
+                    {
+                        btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                           = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                        cbbTenMonHocC.SelectedIndex = 0;
+                        this.tbBoDe.Connection.ConnectionString = Program.connstr;
+                        this.tbBoDe.FillByGV_MH(this.TNDataSet.BODE, Program.username, cbbTenMonHocC.SelectedValue.ToString().Trim());
+                    }
+
+                }
+                else
+                {
+                    this.tbDSMHAdt.Connection.ConnectionString = Program.connstr;
+                    this.tbDSMHAdt.Fill(this.TNDataSet.DSMONHOC);
+                    if (bdsDSMH.Count <= 0)
+                    {
+                        MessageBox.Show("Danh sách môn học rỗng ", "Thông báo", MessageBoxButtons.OK);
+                        bdsBoDe = null;
+                        btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                           = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                    }
+                    else
+                    {
+                        btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                              = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                        cbbTenMonHocC.SelectedIndex = 0;
+                        this.tbBoDe.Connection.ConnectionString = Program.connstr;
+                        this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
+                    }
+                }
+
+                this.tbmonHocADT.Connection.ConnectionString = Program.connstr;
+                this.tbmonHocADT.Fill(this.TNDataSet.MONHOC);
             }
             catch (Exception ex)
             {
@@ -297,8 +391,60 @@ namespace TRACNGHIEM
             // Hủy bỏ thao tác đang hiệu chỉnh
             bdsBoDe.CancelEdit();
             // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
-            this.tbBoDe.Connection.ConnectionString = Program.connstr;
-            this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
+
+            // TODO: This line of code loads data into the 'tNDataSet.BAITHI' table. You can move, or remove it, as needed.
+            this.tbBaiThiADT.Connection.ConnectionString = Program.connstr;
+            this.tbBaiThiADT.Fill(this.TNDataSet.BAITHI);
+            // TODO: This line of code loads data into the 'tNDataSet.DSGIAOVIEN' table. You can move, or remove it, as needed.
+            this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+            this.tbGiaoVienADT.Fill(this.TNDataSet.DSGIAOVIEN);
+
+            // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
+            if (Program.mGroup.Equals("Giangvien"))
+            {
+                this.tbDSMHAdt.Connection.ConnectionString = Program.connstr;
+                this.tbDSMHAdt.FillByMaGV(this.TNDataSet.DSMONHOC, Program.username);
+                if (bdsDSMH.Count <= 0)
+                {
+                    MessageBox.Show("Giảng viên chưa có môn học đăng ký ", "Thông báo", MessageBoxButtons.OK);
+                    this.tbBoDe.Connection.ConnectionString = Program.connstr;
+                    bdsBoDe = null;
+                    btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                        = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                }
+                else
+                {
+                    btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                    cbbTenMonHocC.SelectedIndex = 0;
+                    this.tbBoDe.Connection.ConnectionString = Program.connstr;
+                    this.tbBoDe.FillByGV_MH(this.TNDataSet.BODE, Program.username, cbbTenMonHocC.SelectedValue.ToString().Trim());
+                }
+
+            }
+            else
+            {
+                this.tbDSMHAdt.Connection.ConnectionString = Program.connstr;
+                this.tbDSMHAdt.Fill(this.TNDataSet.DSMONHOC);
+                if (bdsDSMH.Count <= 0)
+                {
+                    MessageBox.Show("Danh sách môn học rỗng ", "Thông báo", MessageBoxButtons.OK);
+                    bdsBoDe = null;
+                    btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                }
+                else
+                {
+                    btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
+                          = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                    cbbTenMonHocC.SelectedIndex = 0;
+                    this.tbBoDe.Connection.ConnectionString = Program.connstr;
+                    this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
+                }
+            }
+
+            this.tbmonHocADT.Connection.ConnectionString = Program.connstr;
+            this.tbmonHocADT.Fill(this.TNDataSet.MONHOC);
 
             checkThem = checkSua = false;
             btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = btnTaiLaiBD.Enabled = true;
@@ -334,14 +480,23 @@ namespace TRACNGHIEM
             }
             else
             {
+                if (Program.mGroup.Equals("Giangvien"))
+                {
+                    cbbTenGV.Enabled = false;
+                    cbbTenGV.SelectedValue = Program.username;
+                }
+                else
+                {
+                    cbbTenGV.Enabled = true;
+                    cbbTenGV.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["MAGV"].ToString();
+
+                }
                 checkSua = true;
                 edtMaCauHoi.Enabled = false;
                 btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = btnTaiLaiBD.Enabled = false;
                 gcBoDe.Enabled = false;
 
                 gcDetail.Enabled = true;
-                cbbTenGV.Enabled = true;
-                cbbTenGV.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["MAGV"].ToString();
                 cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["TRINHDO"].ToString();
                 cbbTenMh.Enabled = true;
                 cbbTenMonHocC.Enabled = false;

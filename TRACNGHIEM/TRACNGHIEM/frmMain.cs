@@ -72,7 +72,7 @@ namespace TRACNGHIEM
         private DevExpress.XtraBars.BarButtonItem barButtonItem3;
         private DevExpress.XtraBars.BarButtonItem barButtonItem4;
         private DevExpress.XtraBars.BarButtonItem btnGiangVienDK;
-        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup rbGVDK;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage2;
 
         public frmMain()
@@ -106,8 +106,8 @@ namespace TRACNGHIEM
             this.ribbonPage3 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rbKhoa = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbLop = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
-            this.ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbMon = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            this.rbGVDK = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbDe = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbThiThu = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rbpTaiKhoan = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -316,7 +316,7 @@ namespace TRACNGHIEM
             this.rbKhoa,
             this.rbLop,
             this.rbMon,
-            this.ribbonPageGroup4,
+            this.rbGVDK,
             this.rbDe,
             this.rbThiThu});
             this.ribbonPage3.Name = "ribbonPage3";
@@ -334,17 +334,17 @@ namespace TRACNGHIEM
             this.rbLop.Name = "rbLop";
             this.rbLop.Text = "ribbonPageGroup4";
             // 
-            // ribbonPageGroup4
-            // 
-            this.ribbonPageGroup4.ItemLinks.Add(this.btnGiangVienDK, true);
-            this.ribbonPageGroup4.Name = "ribbonPageGroup4";
-            this.ribbonPageGroup4.Text = "ribbonPageGroup4";
-            // 
             // rbMon
             // 
             this.rbMon.ItemLinks.Add(this.btnMonHoc);
             this.rbMon.Name = "rbMon";
             this.rbMon.Text = "ribbonPageGroup4";
+            // 
+            // rbGVDK
+            // 
+            this.rbGVDK.ItemLinks.Add(this.btnGiangVienDK, true);
+            this.rbGVDK.Name = "rbGVDK";
+            this.rbGVDK.Text = "ribbonPageGroup4";
             // 
             // rbDe
             // 
@@ -489,6 +489,7 @@ namespace TRACNGHIEM
             if (Program.mGroup == "Giangvien")
             {
                 rbKhoa.Visible = rbLop.Visible = rbMon.Visible = false;
+                rbGVDK.Visible = false;
                 rbBaoCao.Visible = false;
                 rbTaoTK.Visible = false;
             }
@@ -496,6 +497,7 @@ namespace TRACNGHIEM
             {
                 rbKhoa.Visible = rbLop.Visible = rbMon.Visible = true;
                 rbBaoCao.Visible = true;
+                rbGVDK.Visible = true;
                 rbTaoTK.Visible = true;
             }
         }

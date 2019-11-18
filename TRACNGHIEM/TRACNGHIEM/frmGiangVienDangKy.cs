@@ -218,7 +218,7 @@ namespace TRACNGHIEM
                         }
                     }
                 }
-                
+
             }
         }
 
@@ -374,33 +374,34 @@ namespace TRACNGHIEM
             {
                 MessageBox.Show("Lỗi load dữ liệu cơ sở" + ex.Message, "", MessageBoxButtons.OK);
             }
+            if (this.bdsGiangVienDK.Count > 0)
+            {
+                Dictionary<string, string> items = new Dictionary<string, string>();
+                items.Add("Đại học, chuyên ngành", "A");
+                items.Add("Đại học, không chuyên ngành", "B");
+                items.Add("Cao đẳng", "c");
+                cbbTrinhDo.DataSource = new BindingSource(items, null);
+                cbbTrinhDo.DisplayMember = "KEY";
+                cbbTrinhDo.ValueMember = "VALUE";
+                cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["TRINHDO"].ToString();
 
-            Dictionary<string, string> items = new Dictionary<string, string>();
-            items.Add("Đại học, chuyên ngành", "A");
-            items.Add("Đại học, không chuyên ngành", "B");
-            items.Add("Cao đẳng", "c");
-            cbbTrinhDo.DataSource = new BindingSource(items, null);
-            cbbTrinhDo.DisplayMember = "KEY";
-            cbbTrinhDo.ValueMember = "VALUE";
-            cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["TRINHDO"].ToString();
+                cbbLan.Items.Add(new Decimal(1.0));
+                cbbLan.Items.Add(new Decimal(2.0));
+                cbbLan.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["LAN"].ToString();
 
-            cbbLan.Items.Add(new Decimal(1.0));
-            cbbLan.Items.Add(new Decimal(2.0));
-            cbbLan.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["LAN"].ToString();
+                cbbThoiGian.Items.Add(15);
+                cbbThoiGian.Items.Add(20);
+                cbbThoiGian.Items.Add(25);
+                cbbThoiGian.Items.Add(30);
+                cbbThoiGian.Items.Add(35);
+                cbbThoiGian.Items.Add(40);
+                cbbThoiGian.Items.Add(45);
+                cbbThoiGian.Items.Add(50);
+                cbbThoiGian.Items.Add(55);
+                cbbThoiGian.Items.Add(60);
+                cbbThoiGian.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["THOIGIAN"].ToString();
 
-
-            cbbThoiGian.Items.Add(15);
-            cbbThoiGian.Items.Add(20);
-            cbbThoiGian.Items.Add(25);
-            cbbThoiGian.Items.Add(30);
-            cbbThoiGian.Items.Add(35);
-            cbbThoiGian.Items.Add(40);
-            cbbThoiGian.Items.Add(45);
-            cbbThoiGian.Items.Add(50);
-            cbbThoiGian.Items.Add(55);
-            cbbThoiGian.Items.Add(60);
-            cbbThoiGian.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["THOIGIAN"].ToString();
-
+            }
 
             if (Program.mGroup == "Coso")
             {
@@ -482,11 +483,6 @@ namespace TRACNGHIEM
             }
         }
 
-        private void gcGVDK_Click(object sender, EventArgs e)
-        {
-            cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["TRINHDO"].ToString();
-        }
-
         private void cbbTrinhDo_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             try
@@ -497,6 +493,12 @@ namespace TRACNGHIEM
             {
 
             }
+        }
+
+        private void gcGVDK_Click_1(object sender, EventArgs e)
+        {
+            if (bdsGiangVienDK.Count > 0)
+                cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsGiangVienDK.Current).Row["TRINHDO"].ToString();
         }
     }
 }

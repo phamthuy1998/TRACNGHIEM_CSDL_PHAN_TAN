@@ -13,6 +13,7 @@ namespace TRACNGHIEM
 {
     public partial class frmSinhVienMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
+        private Boolean checkDangXuat = false;
         public frmSinhVienMain()
         {
             InitializeComponent();
@@ -50,7 +51,14 @@ namespace TRACNGHIEM
 
         private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            checkDangXuat = true;
+            Program.mlogin = "";
+            Program.password = "";
+            this.Hide();
+            Program.frmDangNhap = new frmDangNhap();
+            Program.frmDangNhap.Activate();
+            Program.frmDangNhap.ShowDialog();
+            this.Close();
         }
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -73,12 +81,21 @@ namespace TRACNGHIEM
 
         private void frmSVMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
+            if (checkDangXuat == true)
             {
-                Application.ExitThread();
+                // xác nhận xem có cần lưu lại những thay đổi trước khi đăng xuất không?
+                this.Close();
+                return;
             }
-            else e.Cancel = true;
+            else
+            {
+                DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
+                if (dr == DialogResult.Yes)
+                {
+                    Application.ExitThread();
+                }
+                else e.Cancel = true;
+            }
         }
 
     }

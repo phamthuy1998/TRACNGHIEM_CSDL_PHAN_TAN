@@ -24,11 +24,19 @@ namespace TRACNGHIEM
                 MessageBox.Show("Login name và password không được trống", "", MessageBoxButtons.OK);
                 return;
             }
+            if (txtMSV.Text.Trim() == ""&&radSinhVien.Checked )
+            {
+                MessageBox.Show("Bạn chưa nhập mã sinh viên", "", MessageBoxButtons.OK);
+                return;
+            }
             Program.mlogin = txUsername.Text;
             Program.password = txPassword.Text;
+            Program.mSV = txtMSV.Text;
+
 
             // Đăng nhập thất bại
             if (Program.KetNoi() == 0) return;
+
 
             Program.mCoSo = cbbCoso.SelectedIndex;
             Program.mloginDN = Program.mlogin;
@@ -41,7 +49,7 @@ namespace TRACNGHIEM
             }
             else
             {
-                strLenh = "EXEC SP_LAY_TT_DANGNHAP_SV  '" + Program.mlogin + "'";
+                strLenh = "EXEC SP_LAY_TT_DANGNHAP_SV  '" + Program.mlogin + "' , " + "'" + Program.mSV + "'";
             }
 
             //Thực hiện sp
@@ -122,10 +130,10 @@ namespace TRACNGHIEM
 
         private void frmDangNhap_Load(object sender, EventArgs e)
         {
-            txUsername.Focus();
             radGiaoVien.Checked = true;
-            if (Program.conn != null && Program.conn.State == ConnectionState.Open)
-                Program.conn.Close();
+            lbMSV.Visible = false;
+            txtMSV.Visible = false;
+            pictureBoxMSV.Visible = false;
             try
             {
                 //Integrated Security=True--> Kết nối về site chủ không cần password và tài khoản
@@ -148,7 +156,7 @@ namespace TRACNGHIEM
             }
             catch (Exception a)
             {
-                MessageBox.Show("Không thể kết nối tới database! " + a.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể kết nối tới data base! " + a.Message, "", MessageBoxButtons.OK);
             }
         }
 
@@ -177,12 +185,18 @@ namespace TRACNGHIEM
 
         private void radGiaoVien_CheckedChanged(object sender, EventArgs e)
         {
+            lbMSV.Visible = false;
+            txtMSV.Visible = false;
+            pictureBoxMSV.Visible = false;
             label2.Text = "Tên ĐN";
         }
 
         private void radSinhVien_CheckedChanged(object sender, EventArgs e)
         {
-            label2.Text = "Mã sinh viên";
+            lbMSV.Visible = true;
+            txtMSV.Visible = true;
+            pictureBoxMSV.Visible = true;
+            label2.Text = "Tên ĐN";
         }
     }
 }

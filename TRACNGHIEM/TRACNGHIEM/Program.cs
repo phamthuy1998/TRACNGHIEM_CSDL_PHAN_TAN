@@ -21,6 +21,7 @@ namespace TRACNGHIEM
         public static String username = "";
         public static String mlogin = "";
         public static String password = "";
+        public static String mSV = "";
 
 
         public static String mlogin1 = "HTKN";

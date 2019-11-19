@@ -42,6 +42,16 @@ namespace TRACNGHIEM
             Program.mloginDN = Program.mlogin;
             Program.passwordDN = Program.password;
 
+            if (radSinhVien.Checked)
+            {
+                String sql = "EXEC SP_KTSV_DANGNHAP '" + txtMSV.Text + "'";
+                int kq = Program.ExecSqlNonQuery(sql);
+                if (kq == 1)
+                {
+                    return;
+                }
+            }
+
             string strLenh;
             if (radGiaoVien.Checked)
             {
@@ -96,7 +106,7 @@ namespace TRACNGHIEM
                     this.Hide();
                     Program.frmSinhVienMain = new frmSinhVienMain();
                     Program.frmSinhVienMain.Activate();
-                    Program.frmSinhVienMain.MASO.Text = "Mã số: " + Program.username;
+                    Program.frmSinhVienMain.MASO.Text = "Mã số: " + Program.mSV;
                     Program.frmSinhVienMain.HOTEN.Text = "Họ tên: " + Program.mHoten;
                     Program.frmSinhVienMain.NHOM.Text = "Nhóm: " + Program.mGroup;
                     Program.frmSinhVienMain.ShowDialog();
@@ -153,10 +163,11 @@ namespace TRACNGHIEM
                 cbbCoso.ValueMember = "TENSERVER";
                 cbbCoso.SelectedIndex = 1;
                 cbbCoso.SelectedIndex = 0;
+                txUsername.Focus();
             }
             catch (Exception a)
             {
-                MessageBox.Show("Không thể kết nối tới data base! " + a.Message, "", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể kết nối tới database! " + a.Message, "", MessageBoxButtons.OK);
             }
         }
 

@@ -37,28 +37,39 @@ namespace TRACNGHIEM
             String mLop = Program.myReader.GetString(0);
             tenLop = Program.myReader.GetString(1);
             Program.myReader.Close();
+
             try
             {
 
                 this.sP_MonHocSVTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.sP_MonHocSVTableAdapter.Fill(this.tNDataSet.SP_MonHocSV, Program.mSV);
-                cbbMHSV.SelectedIndex = 0;
-                this.sP_LanThiSVTableAdapter.Connection.ConnectionString = Program.connstr;
-                this.sP_LanThiSVTableAdapter.Fill(this.tNDataSet.SP_LanThiSV, Program.mSV, cbbMHSV.SelectedValue.ToString());
-                cbbLThi.SelectedIndex = 0;
-                String sqlNgayThi = "SELECT BANGDIEM.NGAYTHI FROM BANGDIEM WHERE BANGDIEM.MASV = '" + Program.mSV + "' AND BANGDIEM.MAMH = '" + cbbMHSV.SelectedValue.ToString() + "'  AND BANGDIEM.LAN = '" + cbbLThi.SelectedValue.ToString() + "' ";
-                Program.myReader = Program.ExecSqlDataReader(sqlNgayThi);
-                if (Program.myReader == null) return;
-                Program.myReader.Read();
-                String ngay = Program.myReader.GetDateTime(0).ToString();
-                String[] arrNgay = ngay.Split(' ');
-                ngayThi = arrNgay[0];
-                Program.myReader.Close();
-
+                if (bds_SPMonHocSV.Count > 0)
+                {
+                    cbbMHSV.SelectedIndex = 0;
+                    this.sP_LanThiSVTableAdapter.Connection.ConnectionString = Program.connstr;
+                    this.sP_LanThiSVTableAdapter.Fill(this.tNDataSet.SP_LanThiSV, Program.mSV, cbbMHSV.SelectedValue.ToString());
+                    if (bds_SPLanThiSV.Count > 0)
+                    {
+                        cbbLThi.SelectedIndex = 0;
+                        String sqlNgayThi = "SELECT BANGDIEM.NGAYTHI FROM BANGDIEM WHERE BANGDIEM.MASV = '" + Program.mSV + "' AND BANGDIEM.MAMH = '" + cbbMHSV.SelectedValue.ToString() + "'  AND BANGDIEM.LAN = '" + cbbLThi.SelectedValue.ToString() + "' ";
+                        Program.myReader = Program.ExecSqlDataReader(sqlNgayThi);
+                        if (Program.myReader == null) return;
+                        Program.myReader.Read();
+                        String ngay = Program.myReader.GetDateTime(0).ToString();
+                        String[] arrNgay = ngay.Split(' ');
+                        ngayThi = arrNgay[0];
+                        Program.myReader.Close();
+                        Program.conn.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sinh viên không có môn học đăng ký", "THÔNG BÁO", MessageBoxButtons.OK);
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("abc" + ex.Message);
+                MessageBox.Show("abc " + ex.Message);
             };
 
 

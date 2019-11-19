@@ -69,6 +69,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CauHoiItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CauHoiItem.Designer.cs">
+      <DependentUpon>CauHoiItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmBangDiem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -170,6 +176,9 @@
       <DependentUpon>TNDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ComboboxItem.cs" />
+    <EmbeddedResource Include="CauHoiItem.resx">
+      <DependentUpon>CauHoiItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmBangDiem.resx">
       <DependentUpon>frmBangDiem.cs</DependentUpon>
     </EmbeddedResource>

@@ -114,20 +114,39 @@ namespace TRACNGHIEM
                     edtSoCau.Focus();
                     return;
                 }
-                String sql = "EXEC SP_KT_GVDK N'" + edtMaMon.Text.Trim()
-                    + "', N'" + edtMaLop.Text.Trim()
-                    + "',  " + cbbLan.SelectedItem.ToString();
 
-                int kq = Program.ExecSqlNonQuery(sql);
-                if (kq == 1)
+                String mamh = cbbTenMon.SelectedValue.ToString();
+                String ktsocau = "select count (cauhoi) from BODE where MAMH = '" + mamh + "'";
+                Program.myReader = Program.ExecSqlDataReader(ktsocau);
+                if (Program.myReader == null)
                 {
-                    cbbLan.Focus();
+                    return;
+                }
+                Program.myReader.Read();
+                if (Program.myReader.GetInt32(0) < edtSoCau.Value)
+                {
+                    MessageBox.Show("Không đủ câu hỏi trong bộ đề");
+                    edtSoCau.Focus();
                     return;
                 }
                 else
                 {
-                    ghiGVDK();
-                    checkThem = false;
+
+                    String sql = "EXEC SP_KT_GVDK N'" + edtMaMon.Text.Trim()
+                        + "', N'" + edtMaLop.Text.Trim()
+                        + "',  " + cbbLan.SelectedItem.ToString();
+
+                    int kq = Program.ExecSqlNonQuery(sql);
+                    if (kq == 1)
+                    {
+                        cbbLan.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        ghiGVDK();
+                        checkThem = false;
+                    }
                 }
             }
             else if (checkSua == true)
@@ -167,9 +186,26 @@ namespace TRACNGHIEM
                     edtSoCau.Focus();
                     return;
                 }
-
-                ghiGVDK();
-                checkSua = false;
+                String mamh = cbbTenMon.SelectedValue.ToString();
+                String ktsocau = "select count (cauhoi) from BODE where MAMH = '" + mamh + "'";
+                Program.myReader = Program.ExecSqlDataReader(ktsocau);
+                if (Program.myReader == null)
+                {
+                    return;
+                }
+                Program.myReader.Read();
+                if (Program.myReader.GetInt32(0) < edtSoCau.Value)
+                {
+                    MessageBox.Show("Không đủ câu hỏi trong bộ đề, chỉ còn " 
+                        + Program.myReader.GetInt32(0) + " câu của môn học này");
+                    edtSoCau.Focus();
+                    return;
+                }
+                else
+                {
+                    ghiGVDK();
+                    checkSua = false;
+                }
             }
 
             else

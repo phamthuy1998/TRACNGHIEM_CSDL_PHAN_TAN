@@ -45,10 +45,10 @@
             this.groupControl1 = new DevExpress.XtraEditors.GroupControl();
             this.button1 = new System.Windows.Forms.Button();
             this.cbbLThi = new System.Windows.Forms.ComboBox();
-            this.sPLanThiSV = new System.Windows.Forms.BindingSource(this.components);
+            this.bds_SPLanThiSV = new System.Windows.Forms.BindingSource(this.components);
             this.tNDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cbbMHSV = new System.Windows.Forms.ComboBox();
-            this.sPMonHocSV = new System.Windows.Forms.BindingSource(this.components);
+            this.bds_SPMonHocSV = new System.Windows.Forms.BindingSource(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cbbLanThi = new System.Windows.Forms.ComboBox();
@@ -77,9 +77,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.barManager3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).BeginInit();
             this.groupControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sPLanThiSV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_SPLanThiSV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tNDataSetBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sPMonHocSV)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_SPMonHocSV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sP_INBAITHI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sP_INBAITHIGridControl)).BeginInit();
@@ -172,35 +172,35 @@
             this.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager3;
-            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1412, 50);
+            this.barDockControlTop.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.barDockControlTop.Size = new System.Drawing.Size(2824, 96);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 603);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1168);
             this.barDockControlBottom.Manager = this.barManager3;
-            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1412, 0);
+            this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.barDockControlBottom.Size = new System.Drawing.Size(2824, 0);
             // 
             // barDockControlLeft
             // 
             this.barDockControlLeft.CausesValidation = false;
             this.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.barDockControlLeft.Location = new System.Drawing.Point(0, 50);
+            this.barDockControlLeft.Location = new System.Drawing.Point(0, 96);
             this.barDockControlLeft.Manager = this.barManager3;
-            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 553);
+            this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1072);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1412, 50);
+            this.barDockControlRight.Location = new System.Drawing.Point(2824, 96);
             this.barDockControlRight.Manager = this.barManager3;
-            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 553);
+            this.barDockControlRight.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1072);
             // 
             // groupControl1
             // 
@@ -215,18 +215,19 @@
             this.groupControl1.Controls.Add(this.cbbTenMonhoc);
             this.groupControl1.Controls.Add(this.label3);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupControl1.Location = new System.Drawing.Point(0, 50);
-            this.groupControl1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupControl1.Location = new System.Drawing.Point(0, 96);
+            this.groupControl1.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1412, 232);
+            this.groupControl1.Size = new System.Drawing.Size(2824, 450);
             this.groupControl1.TabIndex = 14;
             // 
             // button1
             // 
             this.button1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(47, 148);
+            this.button1.Location = new System.Drawing.Point(94, 287);
+            this.button1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(145, 31);
+            this.button1.Size = new System.Drawing.Size(290, 60);
             this.button1.TabIndex = 12;
             this.button1.Text = "Xem chi tiết bài thi";
             this.button1.UseVisualStyleBackColor = true;
@@ -234,22 +235,22 @@
             // 
             // cbbLThi
             // 
-            this.cbbLThi.DataSource = this.sPLanThiSV;
+            this.cbbLThi.DataSource = this.bds_SPLanThiSV;
             this.cbbLThi.DisplayMember = "LAN";
             this.cbbLThi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbLThi.FormattingEnabled = true;
-            this.cbbLThi.Location = new System.Drawing.Point(627, 79);
-            this.cbbLThi.Margin = new System.Windows.Forms.Padding(4);
+            this.cbbLThi.Location = new System.Drawing.Point(1254, 153);
+            this.cbbLThi.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.cbbLThi.Name = "cbbLThi";
-            this.cbbLThi.Size = new System.Drawing.Size(133, 24);
+            this.cbbLThi.Size = new System.Drawing.Size(262, 41);
             this.cbbLThi.TabIndex = 11;
             this.cbbLThi.ValueMember = "LAN";
             this.cbbLThi.SelectedIndexChanged += new System.EventHandler(this.cbbLThi_SelectedIndexChanged);
             // 
-            // sPLanThiSV
+            // bds_SPLanThiSV
             // 
-            this.sPLanThiSV.DataMember = "SP_LanThiSV";
-            this.sPLanThiSV.DataSource = this.tNDataSetBindingSource;
+            this.bds_SPLanThiSV.DataMember = "SP_LanThiSV";
+            this.bds_SPLanThiSV.DataSource = this.tNDataSetBindingSource;
             // 
             // tNDataSetBindingSource
             // 
@@ -258,31 +259,31 @@
             // 
             // cbbMHSV
             // 
-            this.cbbMHSV.DataSource = this.sPMonHocSV;
+            this.cbbMHSV.DataSource = this.bds_SPMonHocSV;
             this.cbbMHSV.DisplayMember = "TENMH";
             this.cbbMHSV.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbMHSV.FormattingEnabled = true;
-            this.cbbMHSV.Location = new System.Drawing.Point(161, 79);
-            this.cbbMHSV.Margin = new System.Windows.Forms.Padding(4);
+            this.cbbMHSV.Location = new System.Drawing.Point(322, 153);
+            this.cbbMHSV.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.cbbMHSV.Name = "cbbMHSV";
-            this.cbbMHSV.Size = new System.Drawing.Size(240, 24);
+            this.cbbMHSV.Size = new System.Drawing.Size(476, 41);
             this.cbbMHSV.TabIndex = 10;
             this.cbbMHSV.ValueMember = "MAMH";
             this.cbbMHSV.SelectedIndexChanged += new System.EventHandler(this.cbbMH_SelectedIndexChanged);
             // 
-            // sPMonHocSV
+            // bds_SPMonHocSV
             // 
-            this.sPMonHocSV.DataMember = "SP_MonHocSV";
-            this.sPMonHocSV.DataSource = this.tNDataSet;
+            this.bds_SPMonHocSV.DataMember = "SP_MonHocSV";
+            this.bds_SPMonHocSV.DataSource = this.tNDataSet;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(513, 81);
-            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Location = new System.Drawing.Point(1026, 157);
+            this.label6.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(69, 21);
+            this.label6.Size = new System.Drawing.Size(135, 41);
             this.label6.TabIndex = 9;
             this.label6.Text = "Lần thi";
             // 
@@ -290,58 +291,58 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(43, 78);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(86, 151);
+            this.label5.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(83, 21);
+            this.label5.Size = new System.Drawing.Size(162, 41);
             this.label5.TabIndex = 8;
             this.label5.Text = "Môn học";
             // 
             // cbbLanThi
             // 
             this.cbbLanThi.FormattingEnabled = true;
-            this.cbbLanThi.Location = new System.Drawing.Point(3906, 169);
-            this.cbbLanThi.Margin = new System.Windows.Forms.Padding(4);
+            this.cbbLanThi.Location = new System.Drawing.Point(7812, 327);
+            this.cbbLanThi.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.cbbLanThi.Name = "cbbLanThi";
-            this.cbbLanThi.Size = new System.Drawing.Size(238, 24);
+            this.cbbLanThi.Size = new System.Drawing.Size(472, 41);
             this.cbbLanThi.TabIndex = 7;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(401, 78);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(802, 151);
+            this.label1.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 21);
+            this.label1.Size = new System.Drawing.Size(0, 41);
             this.label1.TabIndex = 0;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3692, 169);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(7384, 327);
+            this.label4.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 17);
+            this.label4.Size = new System.Drawing.Size(100, 34);
             this.label4.TabIndex = 6;
             this.label4.Text = "Lần thi";
             // 
             // cbbTenMonhoc
             // 
             this.cbbTenMonhoc.FormattingEnabled = true;
-            this.cbbTenMonhoc.Location = new System.Drawing.Point(2736, 134);
-            this.cbbTenMonhoc.Margin = new System.Windows.Forms.Padding(4);
+            this.cbbTenMonhoc.Location = new System.Drawing.Point(5472, 260);
+            this.cbbTenMonhoc.Margin = new System.Windows.Forms.Padding(8, 8, 8, 8);
             this.cbbTenMonhoc.Name = "cbbTenMonhoc";
-            this.cbbTenMonhoc.Size = new System.Drawing.Size(616, 24);
+            this.cbbTenMonhoc.Size = new System.Drawing.Size(1228, 41);
             this.cbbTenMonhoc.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2442, 138);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(4884, 267);
+            this.label3.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 17);
+            this.label3.Size = new System.Drawing.Size(163, 34);
             this.label3.TabIndex = 4;
             this.label3.Text = "Tên mô học";
             // 
@@ -390,97 +391,101 @@
             this.colB,
             this.colC,
             this.colD});
+            this.gridView1.DetailHeight = 678;
+            this.gridView1.FixedLineWidth = 4;
             this.gridView1.GridControl = this.sP_INBAITHIGridControl;
             this.gridView1.Name = "gridView1";
             // 
             // colCauSo
             // 
             this.colCauSo.FieldName = "CauSo";
-            this.colCauSo.MinWidth = 25;
+            this.colCauSo.MinWidth = 50;
             this.colCauSo.Name = "colCauSo";
             this.colCauSo.Visible = true;
             this.colCauSo.VisibleIndex = 0;
-            this.colCauSo.Width = 94;
+            this.colCauSo.Width = 188;
             // 
             // colNoiDung
             // 
             this.colNoiDung.FieldName = "NoiDung";
-            this.colNoiDung.MinWidth = 25;
+            this.colNoiDung.MinWidth = 50;
             this.colNoiDung.Name = "colNoiDung";
             this.colNoiDung.Visible = true;
             this.colNoiDung.VisibleIndex = 1;
-            this.colNoiDung.Width = 94;
+            this.colNoiDung.Width = 188;
             // 
             // colCacLuaChon
             // 
             this.colCacLuaChon.FieldName = "CacLuaChon";
-            this.colCacLuaChon.MinWidth = 25;
+            this.colCacLuaChon.MinWidth = 50;
             this.colCacLuaChon.Name = "colCacLuaChon";
-            this.colCacLuaChon.Width = 94;
+            this.colCacLuaChon.Width = 188;
             // 
             // colDapAn
             // 
             this.colDapAn.FieldName = "DapAn";
-            this.colDapAn.MinWidth = 25;
+            this.colDapAn.MinWidth = 50;
             this.colDapAn.Name = "colDapAn";
             this.colDapAn.Visible = true;
             this.colDapAn.VisibleIndex = 6;
-            this.colDapAn.Width = 94;
+            this.colDapAn.Width = 188;
             // 
             // colDaChon
             // 
             this.colDaChon.FieldName = "DaChon";
-            this.colDaChon.MinWidth = 25;
+            this.colDaChon.MinWidth = 50;
             this.colDaChon.Name = "colDaChon";
             this.colDaChon.Visible = true;
             this.colDaChon.VisibleIndex = 7;
-            this.colDaChon.Width = 94;
+            this.colDaChon.Width = 188;
             // 
             // colA
             // 
             this.colA.FieldName = "A";
-            this.colA.MinWidth = 25;
+            this.colA.MinWidth = 50;
             this.colA.Name = "colA";
             this.colA.Visible = true;
             this.colA.VisibleIndex = 2;
-            this.colA.Width = 94;
+            this.colA.Width = 188;
             // 
             // colB
             // 
             this.colB.FieldName = "B";
-            this.colB.MinWidth = 25;
+            this.colB.MinWidth = 50;
             this.colB.Name = "colB";
             this.colB.Visible = true;
             this.colB.VisibleIndex = 3;
-            this.colB.Width = 94;
+            this.colB.Width = 188;
             // 
             // colC
             // 
             this.colC.FieldName = "C";
-            this.colC.MinWidth = 25;
+            this.colC.MinWidth = 50;
             this.colC.Name = "colC";
             this.colC.Visible = true;
             this.colC.VisibleIndex = 4;
-            this.colC.Width = 94;
+            this.colC.Width = 188;
             // 
             // colD
             // 
             this.colD.FieldName = "D";
-            this.colD.MinWidth = 25;
+            this.colD.MinWidth = 50;
             this.colD.Name = "colD";
             this.colD.Visible = true;
             this.colD.VisibleIndex = 5;
-            this.colD.Width = 94;
+            this.colD.Width = 188;
             // 
             // sP_INBAITHIGridControl
             // 
             this.sP_INBAITHIGridControl.DataSource = this.sP_INBAITHI;
             this.sP_INBAITHIGridControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.sP_INBAITHIGridControl.Location = new System.Drawing.Point(0, 282);
+            this.sP_INBAITHIGridControl.EmbeddedNavigator.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.sP_INBAITHIGridControl.Location = new System.Drawing.Point(0, 546);
             this.sP_INBAITHIGridControl.MainView = this.gridView1;
+            this.sP_INBAITHIGridControl.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.sP_INBAITHIGridControl.MenuManager = this.barManager3;
             this.sP_INBAITHIGridControl.Name = "sP_INBAITHIGridControl";
-            this.sP_INBAITHIGridControl.Size = new System.Drawing.Size(1412, 321);
+            this.sP_INBAITHIGridControl.Size = new System.Drawing.Size(2824, 622);
             this.sP_INBAITHIGridControl.TabIndex = 19;
             this.sP_INBAITHIGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -494,15 +499,16 @@
             // 
             // frmKQThi
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1412, 603);
+            this.ClientSize = new System.Drawing.Size(2824, 1168);
             this.Controls.Add(this.sP_INBAITHIGridControl);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.barDockControlLeft);
             this.Controls.Add(this.barDockControlRight);
             this.Controls.Add(this.barDockControlBottom);
             this.Controls.Add(this.barDockControlTop);
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "frmKQThi";
             this.Text = "frmKQThi";
             this.Load += new System.EventHandler(this.frmKQThi_Load);
@@ -511,9 +517,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.groupControl1)).EndInit();
             this.groupControl1.ResumeLayout(false);
             this.groupControl1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sPLanThiSV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_SPLanThiSV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tNDataSetBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sPMonHocSV)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_SPMonHocSV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sP_INBAITHI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sP_INBAITHIGridControl)).EndInit();
@@ -547,9 +553,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbbTenMonhoc;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.BindingSource sPMonHocSV;
+        private System.Windows.Forms.BindingSource bds_SPMonHocSV;
         private TNDataSetTableAdapters.SP_MonHocSVTableAdapter sP_MonHocSVTableAdapter;
-        private System.Windows.Forms.BindingSource sPLanThiSV;
+        private System.Windows.Forms.BindingSource bds_SPLanThiSV;
         private System.Windows.Forms.BindingSource tNDataSetBindingSource;
         private TNDataSetTableAdapters.SP_LanThiSVTableAdapter sP_LanThiSVTableAdapter;
         private System.Windows.Forms.BindingSource sP_INBAITHI;

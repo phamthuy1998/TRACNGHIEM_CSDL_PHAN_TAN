@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSinhVienMain));
-            this.ribbonControl1 = new DevExpress.XtraBars.Ribbon.RibbonControl();
+            this.rbSinhVien = new DevExpress.XtraBars.Ribbon.RibbonControl();
             this.btnThi = new DevExpress.XtraBars.BarButtonItem();
             this.btnXemKQ = new DevExpress.XtraBars.BarButtonItem();
             this.btnDangXuat = new DevExpress.XtraBars.BarButtonItem();
@@ -46,27 +46,34 @@
             this.HOTEN = new System.Windows.Forms.ToolStripStatusLabel();
             this.NHOM = new System.Windows.Forms.ToolStripStatusLabel();
             this.xtraTabbedMdiManager1 = new DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbSinhVien)).BeginInit();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).BeginInit();
             this.SuspendLayout();
             // 
-            // ribbonControl1
+            // rbSinhVien
             // 
-            this.ribbonControl1.ExpandCollapseItem.Id = 0;
-            this.ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
-            this.ribbonControl1.ExpandCollapseItem,
-            this.ribbonControl1.SearchEditItem,
+            this.rbSinhVien.ExpandCollapseItem.Id = 0;
+            this.rbSinhVien.Items.AddRange(new DevExpress.XtraBars.BarItem[] {
+            this.rbSinhVien.ExpandCollapseItem,
             this.btnThi,
             this.btnXemKQ,
             this.btnDangXuat,
             this.btnThoat});
-            this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 5;
-            this.ribbonControl1.Name = "ribbonControl1";
-            this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
+            this.rbSinhVien.Location = new System.Drawing.Point(0, 0);
+            this.rbSinhVien.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.rbSinhVien.MaxItemId = 5;
+            this.rbSinhVien.Name = "rbSinhVien";
+            this.rbSinhVien.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1});
-            this.ribbonControl1.Size = new System.Drawing.Size(2173, 346);
+            // 
+            // 
+            // 
+            this.rbSinhVien.SearchEditItem.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Left;
+            this.rbSinhVien.SearchEditItem.EditWidth = 150;
+            this.rbSinhVien.SearchEditItem.Id = -5000;
+            this.rbSinhVien.SearchEditItem.ImageOptions.AllowGlyphSkinning = DevExpress.Utils.DefaultBoolean.True;
+            this.rbSinhVien.Size = new System.Drawing.Size(618, 143);
             // 
             // btnThi
             // 
@@ -150,28 +157,29 @@
             this.MASO,
             this.HOTEN,
             this.NHOM});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 1056);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 324);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(2173, 46);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 6, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(618, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // MASO
             // 
             this.MASO.Name = "MASO";
-            this.MASO.Size = new System.Drawing.Size(103, 41);
+            this.MASO.Size = new System.Drawing.Size(41, 17);
             this.MASO.Text = "MASO";
             // 
             // HOTEN
             // 
             this.HOTEN.Name = "HOTEN";
-            this.HOTEN.Size = new System.Drawing.Size(114, 41);
+            this.HOTEN.Size = new System.Drawing.Size(45, 17);
             this.HOTEN.Text = "HOTEN";
             // 
             // NHOM
             // 
             this.NHOM.Name = "NHOM";
-            this.NHOM.Size = new System.Drawing.Size(111, 41);
+            this.NHOM.Size = new System.Drawing.Size(45, 17);
             this.NHOM.Text = "NHOM";
             // 
             // xtraTabbedMdiManager1
@@ -180,18 +188,19 @@
             // 
             // frmSinhVienMain
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(15F, 33F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2173, 1102);
+            this.ClientSize = new System.Drawing.Size(618, 346);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.ribbonControl1);
+            this.Controls.Add(this.rbSinhVien);
             this.IsMdiContainer = true;
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "frmSinhVienMain";
-            this.Ribbon = this.ribbonControl1;
+            this.Ribbon = this.rbSinhVien;
             this.Text = "Form sinh viên";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSVMain_FormClosing);
-            ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.rbSinhVien)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.xtraTabbedMdiManager1)).EndInit();
@@ -201,8 +210,6 @@
         }
 
         #endregion
-
-        private DevExpress.XtraBars.Ribbon.RibbonControl ribbonControl1;
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
@@ -218,5 +225,6 @@
         public System.Windows.Forms.ToolStripStatusLabel HOTEN;
         public System.Windows.Forms.ToolStripStatusLabel NHOM;
         private DevExpress.XtraTabbedMdi.XtraTabbedMdiManager xtraTabbedMdiManager1;
+        public DevExpress.XtraBars.Ribbon.RibbonControl rbSinhVien;
     }
 }

@@ -500,3 +500,4 @@ D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\T
 D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.rpBangDiem.resources
 D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.rpDSDKThi.resources
 D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.rpKQTHI.resources
+D:\Thuy\tai lieu tren lop\nam4\cơ sở dữ liệu phân tán\data\TRACNGHIEM\TRACNGHIEM_CSDL_PHAN_TAN\TRACNGHIEM\TRACNGHIEM\obj\Debug\TRACNGHIEM.CauHoiItem.resources

@@ -55,12 +55,12 @@ namespace TRACNGHIEM
                     this.tbBoDe.Connection.ConnectionString = Program.connstr;
                     bdsBoDe = null;
                     btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                        = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                        = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = false;
                 }
                 else
                 {
                     btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = true;
                     cbbTenMonHocC.SelectedIndex = 0;
                     this.tbBoDe.Connection.ConnectionString = Program.connstr;
                     this.tbBoDe.FillByGV_MH(this.TNDataSet.BODE, Program.username, cbbTenMonHocC.SelectedValue.ToString().Trim());
@@ -76,12 +76,12 @@ namespace TRACNGHIEM
                     MessageBox.Show("Danh sách môn học rỗng ", "Thông báo", MessageBoxButtons.OK);
                     bdsBoDe = null;
                     btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = false;
                 }
                 else
                 {
                     btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                          = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                          = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = true;
                     cbbTenMonHocC.SelectedIndex = 0;
                     this.tbBoDe.Connection.ConnectionString = Program.connstr;
                     this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
@@ -97,14 +97,16 @@ namespace TRACNGHIEM
             cbbTrinhDo.Items.Add("B");
             cbbTrinhDo.Items.Add("C");
             if (bdsBoDe != null)
-                cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["TRINHDO"].ToString();
+                if (bdsBoDe.Count > 0)
+                    cbbTrinhDo.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["TRINHDO"].ToString();
 
             cbbDapAn.Items.Add("A");
             cbbDapAn.Items.Add("B");
             cbbDapAn.Items.Add("C");
             cbbDapAn.Items.Add("D");
             if (bdsBoDe != null)
-                cbbDapAn.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["DAP_AN"].ToString();
+                if (bdsBoDe.Count > 0)
+                    cbbDapAn.SelectedValue = ((DataRowView)this.bdsBoDe.Current).Row["DAP_AN"].ToString();
 
             if (Program.mGroup == "Coso")
             {
@@ -169,7 +171,7 @@ namespace TRACNGHIEM
                 edtMaMon.Text = cbbTenMonHocC.SelectedValue.ToString();
 
                 checkThem = true;
-                btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = btnTaiLaiBD.Enabled = false;
+                btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = false;
                 gcBoDe.Enabled = false;
                 checkSave = false;
                 cbbTenMh.Enabled = false;
@@ -204,7 +206,7 @@ namespace TRACNGHIEM
                 bdsBoDe.EndEdit();
                 bdsBoDe.ResetCurrentItem();
                 this.tbBoDe.Update(this.TNDataSet.BODE);
-                btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = btnTaiLaiBD.Enabled = true;
+                btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = true;
                 gcBoDe.Enabled = true;
                 checkSave = true;
                 gcDetail.Enabled = false;
@@ -343,12 +345,12 @@ namespace TRACNGHIEM
                         this.tbBoDe.Connection.ConnectionString = Program.connstr;
                         bdsBoDe = null;
                         btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                            = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                            = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = false;
                     }
                     else
                     {
                         btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                           = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                           = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = true;
                         cbbTenMonHocC.SelectedIndex = 0;
                         this.tbBoDe.Connection.ConnectionString = Program.connstr;
                         this.tbBoDe.FillByGV_MH(this.TNDataSet.BODE, Program.username, cbbTenMonHocC.SelectedValue.ToString().Trim());
@@ -364,12 +366,12 @@ namespace TRACNGHIEM
                         MessageBox.Show("Danh sách môn học rỗng ", "Thông báo", MessageBoxButtons.OK);
                         bdsBoDe = null;
                         btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                           = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                           = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = false;
                     }
                     else
                     {
                         btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                              = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                              = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = true;
                         cbbTenMonHocC.SelectedIndex = 0;
                         this.tbBoDe.Connection.ConnectionString = Program.connstr;
                         this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
@@ -410,12 +412,12 @@ namespace TRACNGHIEM
                     this.tbBoDe.Connection.ConnectionString = Program.connstr;
                     bdsBoDe = null;
                     btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                        = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                        = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = false;
                 }
                 else
                 {
                     btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = true;
                     cbbTenMonHocC.SelectedIndex = 0;
                     this.tbBoDe.Connection.ConnectionString = Program.connstr;
                     this.tbBoDe.FillByGV_MH(this.TNDataSet.BODE, Program.username, cbbTenMonHocC.SelectedValue.ToString().Trim());
@@ -431,12 +433,12 @@ namespace TRACNGHIEM
                     MessageBox.Show("Danh sách môn học rỗng ", "Thông báo", MessageBoxButtons.OK);
                     bdsBoDe = null;
                     btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = false;
+                       = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = false;
                 }
                 else
                 {
                     btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled
-                          = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = btnTaiLaiBD.Enabled = true;
+                          = btnGhiBD.Enabled = btnPhucHoiBD.Enabled = true;
                     cbbTenMonHocC.SelectedIndex = 0;
                     this.tbBoDe.Connection.ConnectionString = Program.connstr;
                     this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
@@ -447,7 +449,7 @@ namespace TRACNGHIEM
             this.tbmonHocADT.Fill(this.TNDataSet.MONHOC);
 
             checkThem = checkSua = false;
-            btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = btnTaiLaiBD.Enabled = true;
+            btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = true;
             gcBoDe.Enabled = true;
             checkSave = true;
             gcDetail.Enabled = false;
@@ -493,7 +495,7 @@ namespace TRACNGHIEM
                 }
                 checkSua = true;
                 edtMaCauHoi.Enabled = false;
-                btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = btnTaiLaiBD.Enabled = false;
+                btnThemBD.Enabled = btnSuaBD.Enabled = btnXoaBD.Enabled = false;
                 gcBoDe.Enabled = false;
 
                 gcDetail.Enabled = true;

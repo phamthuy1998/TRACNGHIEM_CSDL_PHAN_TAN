@@ -36,7 +36,6 @@
             this.lbPass = new System.Windows.Forms.Label();
             this.cbbLoaiTK = new System.Windows.Forms.ComboBox();
             this.edtTenDN = new System.Windows.Forms.TextBox();
-            this.edtPass = new System.Windows.Forms.TextBox();
             this.btnThoat = new System.Windows.Forms.Button();
             this.btnDangKy = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -52,6 +51,7 @@
             this.tb_SP_GVChuaCoTk = new TRACNGHIEM.TNDataSetTableAdapters.SP_MA_GV_CHUA_TAO_TKTableAdapter();
             this.tableAdapterManager = new TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager();
             this.mAGVTextEdit = new DevExpress.XtraEditors.TextEdit();
+            this.edtPass = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bdsSP_GVChuaTaoTk)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TNDataSet)).BeginInit();
@@ -119,14 +119,6 @@
             this.edtTenDN.Name = "edtTenDN";
             this.edtTenDN.Size = new System.Drawing.Size(731, 56);
             this.edtTenDN.TabIndex = 7;
-            // 
-            // edtPass
-            // 
-            this.edtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.edtPass.Location = new System.Drawing.Point(794, 765);
-            this.edtPass.Name = "edtPass";
-            this.edtPass.Size = new System.Drawing.Size(731, 56);
-            this.edtPass.TabIndex = 9;
             // 
             // btnThoat
             // 
@@ -280,12 +272,22 @@
             this.mAGVTextEdit.Size = new System.Drawing.Size(250, 64);
             this.mAGVTextEdit.TabIndex = 31;
             // 
+            // edtPass
+            // 
+            this.edtPass.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.edtPass.Location = new System.Drawing.Point(794, 765);
+            this.edtPass.Name = "edtPass";
+            this.edtPass.PasswordChar = '*';
+            this.edtPass.Size = new System.Drawing.Size(731, 56);
+            this.edtPass.TabIndex = 32;
+            // 
             // frmDangKy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.ClientSize = new System.Drawing.Size(1949, 1355);
+            this.Controls.Add(this.edtPass);
             this.Controls.Add(this.mAGVTextEdit);
             this.Controls.Add(this.pictureBox5);
             this.Controls.Add(this.pictureBox4);
@@ -297,7 +299,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnThoat);
             this.Controls.Add(this.btnDangKy);
-            this.Controls.Add(this.edtPass);
             this.Controls.Add(this.edtTenDN);
             this.Controls.Add(this.cbbLoaiTK);
             this.Controls.Add(this.lbPass);
@@ -329,7 +330,6 @@
         private System.Windows.Forms.Label lbPass;
         private System.Windows.Forms.ComboBox cbbLoaiTK;
         private System.Windows.Forms.TextBox edtTenDN;
-        private System.Windows.Forms.TextBox edtPass;
         private System.Windows.Forms.Button btnThoat;
         private System.Windows.Forms.Button btnDangKy;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -345,5 +345,6 @@
         private TNDataSetTableAdapters.SP_MA_GV_CHUA_TAO_TKTableAdapter tb_SP_GVChuaCoTk;
         private TNDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private DevExpress.XtraEditors.TextEdit mAGVTextEdit;
+        private System.Windows.Forms.TextBox edtPass;
     }
 }

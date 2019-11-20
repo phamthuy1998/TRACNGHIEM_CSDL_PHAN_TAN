@@ -317,7 +317,6 @@
             this.cbbTenMonhoc.Name = "cbbTenMonhoc";
             this.cbbTenMonhoc.Size = new System.Drawing.Size(616, 41);
             this.cbbTenMonhoc.TabIndex = 5;
-            this.cbbTenMonhoc.SelectedIndexChanged += new System.EventHandler(this.cbbTenMonhoc_SelectedIndexChanged);
             // 
             // cbbLop
             // 
@@ -455,7 +454,6 @@
             this.groupControl1.Name = "groupControl1";
             this.groupControl1.Size = new System.Drawing.Size(1924, 213);
             this.groupControl1.TabIndex = 8;
-            this.groupControl1.Paint += new System.Windows.Forms.PaintEventHandler(this.groupControl1_Paint);
             // 
             // sP_XemKetQuaSVTableAdapter
             // 

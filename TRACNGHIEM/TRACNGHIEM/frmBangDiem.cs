@@ -128,34 +128,7 @@ namespace TRACNGHIEM
             catch (Exception) { };
         }
 
-        private void cbbTenLop_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbbTenMonhoc_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fillToolStripButton_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void fillToolStripButton1_Click(object sender, EventArgs e)
-        {
-
-
-        }
-
-        private void fillToolStripButton1_Click_1(object sender, EventArgs e)
-        {
-
-
-        }
-
+       
         private void cbbMH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -196,25 +169,12 @@ namespace TRACNGHIEM
                             // continuos
                             this.sP_XemKetQuaSVTableAdapter.Connection.ConnectionString = Program.connstr1;
                             this.sP_XemKetQuaSVTableAdapter.Fill(this.tNDataSet.SP_XemKetQuaSV, cbbLop.SelectedValue.ToString(), cbbMH.SelectedValue.ToString(), short.Parse(cbbLThi.SelectedValue.ToString()));
-
-
                         }
                     }
                 }
             }
             catch (Exception) { };
         }
-
-        private void groupControl1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void maLopToolStripTextBox_Click(object sender, EventArgs e)
-        {
-
-        }
-
 
         private void cbbCoSo_SelectedIndexChanged_1(object sender, EventArgs e)
         {

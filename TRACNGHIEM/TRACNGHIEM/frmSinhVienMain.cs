@@ -14,6 +14,7 @@ namespace TRACNGHIEM
     public partial class frmSinhVienMain : DevExpress.XtraBars.Ribbon.RibbonForm
     {
         private Boolean checkDangXuat = false;
+        public static Boolean checkThi = false;
         public frmSinhVienMain()
         {
             InitializeComponent();
@@ -28,10 +29,10 @@ namespace TRACNGHIEM
                 IsMdiContainer = true;
                 frmThi f = new frmThi();
                 f.MdiParent = this;
-
                 f.Show();
             }
             else form.Activate();
+            checkThi = true;
         }
 
         private void btnXemKQ_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -63,7 +64,7 @@ namespace TRACNGHIEM
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình", "", MessageBoxButtons.YesNo);
+            DialogResult dr = MessageBox.Show("Bạn có chắc muốn thoát chương trình dl", "", MessageBoxButtons.YesNo);
             if (dr == DialogResult.Yes)
             {
                 Application.ExitThread();

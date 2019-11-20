@@ -24,6 +24,8 @@ namespace TRACNGHIEM
         private string cauB;
         private string cauC;
         private string cauD;
+        private string daChon="";
+        private string dapAn="";
         [Category("Custom Props")]
         public int CauSo
         {
@@ -79,7 +81,7 @@ namespace TRACNGHIEM
                 rbC.Text = cauC;
             }
         }
-        //câu A
+        //câu D
         [Category("Custom Props")]
         public string CauD
         {
@@ -91,6 +93,41 @@ namespace TRACNGHIEM
             }
         }
 
+        //câu đã chọn
+        [Category("Custom Props")]
+        public string CauDaChon
+        {
+            get { return daChon; }
+            set { daChon = value; }
+        }
+
+        //câu đáp án
+        [Category("Custom Props")]
+        public string CauDapAn
+        {
+            get { return dapAn; }
+            set { dapAn = value; }
+        }
+
+        private void rbA_CheckedChanged(object sender, EventArgs e)
+        {
+            daChon = "A";
+        }
+
+        private void rbB_CheckedChanged(object sender, EventArgs e)
+        {
+            daChon = "B";
+        }
+
+        private void rbC_CheckedChanged(object sender, EventArgs e)
+        {
+            daChon = "C";
+        }
+
+        private void rbD_CheckedChanged(object sender, EventArgs e)
+        {
+            daChon = "D";
+        }
     }
 
 }

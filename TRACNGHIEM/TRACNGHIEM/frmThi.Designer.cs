@@ -63,11 +63,7 @@
             this.lbTenLop = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbCongCu = new System.Windows.Forms.GroupBox();
-            this.lbTG = new System.Windows.Forms.Label();
-            this.lbTime = new System.Windows.Forms.Label();
             this.btnThoat = new System.Windows.Forms.Button();
-            this.btnNopBai = new System.Windows.Forms.Button();
-            this.btnBatDau = new System.Windows.Forms.Button();
             this.summarylistview = new System.Windows.Forms.ListView();
             this.cauHoi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.dapAn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -77,6 +73,12 @@
             this.tbDSMonHocADT = new TRACNGHIEM.TNDataSetTableAdapters.DSMONHOCTableAdapter();
             this.tableAdapterManager = new TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager();
             this.tbLopADT = new TRACNGHIEM.TNDataSetTableAdapters.DSLOPTableAdapter();
+            this.pnBatdau = new System.Windows.Forms.Panel();
+            this.lbTG = new System.Windows.Forms.Label();
+            this.lbTime = new System.Windows.Forms.Label();
+            this.btnNopBai = new System.Windows.Forms.Button();
+            this.btnBatDau = new System.Windows.Forms.Button();
+            this.bdsBaiThi = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -96,6 +98,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtTenLop.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaLop.Properties)).BeginInit();
             this.gbCongCu.SuspendLayout();
+            this.pnBatdau.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsBaiThi)).BeginInit();
             this.SuspendLayout();
             // 
             // barManager1
@@ -426,6 +430,7 @@
             this.cbbTenLop.Size = new System.Drawing.Size(463, 41);
             this.cbbTenLop.TabIndex = 9;
             this.cbbTenLop.ValueMember = "MALOP";
+            this.cbbTenLop.SelectedIndexChanged += new System.EventHandler(this.cbbTenLop_SelectedIndexChanged);
             // 
             // bdsDSLop
             // 
@@ -513,11 +518,8 @@
             // gbCongCu
             // 
             this.gbCongCu.BackColor = System.Drawing.Color.White;
-            this.gbCongCu.Controls.Add(this.lbTG);
-            this.gbCongCu.Controls.Add(this.lbTime);
+            this.gbCongCu.Controls.Add(this.pnBatdau);
             this.gbCongCu.Controls.Add(this.btnThoat);
-            this.gbCongCu.Controls.Add(this.btnNopBai);
-            this.gbCongCu.Controls.Add(this.btnBatDau);
             this.gbCongCu.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gbCongCu.Location = new System.Drawing.Point(3, 243);
             this.gbCongCu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -527,35 +529,10 @@
             this.gbCongCu.TabIndex = 0;
             this.gbCongCu.TabStop = false;
             // 
-            // lbTG
-            // 
-            this.lbTG.AutoSize = true;
-            this.lbTG.BackColor = System.Drawing.Color.White;
-            this.lbTG.Font = new System.Drawing.Font("Tahoma", 8.1F, System.Drawing.FontStyle.Bold);
-            this.lbTG.ForeColor = System.Drawing.Color.DarkBlue;
-            this.lbTG.Location = new System.Drawing.Point(1043, 64);
-            this.lbTG.Name = "lbTG";
-            this.lbTG.Size = new System.Drawing.Size(145, 34);
-            this.lbTG.TabIndex = 6;
-            this.lbTG.Text = "Thời gian";
-            this.lbTG.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // lbTime
-            // 
-            this.lbTime.AutoSize = true;
-            this.lbTime.BackColor = System.Drawing.Color.White;
-            this.lbTime.Font = new System.Drawing.Font("Tahoma", 20.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTime.ForeColor = System.Drawing.Color.ForestGreen;
-            this.lbTime.Location = new System.Drawing.Point(1208, 33);
-            this.lbTime.Name = "lbTime";
-            this.lbTime.Size = new System.Drawing.Size(252, 82);
-            this.lbTime.TabIndex = 3;
-            this.lbTime.Text = "20: 59";
-            // 
             // btnThoat
             // 
             this.btnThoat.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnThoat.Location = new System.Drawing.Point(2944, 33);
+            this.btnThoat.Location = new System.Drawing.Point(3166, 55);
             this.btnThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnThoat.Name = "btnThoat";
             this.btnThoat.Size = new System.Drawing.Size(333, 95);
@@ -563,30 +540,6 @@
             this.btnThoat.Text = "Thoát";
             this.btnThoat.UseVisualStyleBackColor = false;
             this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
-            // 
-            // btnNopBai
-            // 
-            this.btnNopBai.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnNopBai.Location = new System.Drawing.Point(2259, 33);
-            this.btnNopBai.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnNopBai.Name = "btnNopBai";
-            this.btnNopBai.Size = new System.Drawing.Size(333, 95);
-            this.btnNopBai.TabIndex = 1;
-            this.btnNopBai.Text = "Nộp bài";
-            this.btnNopBai.UseVisualStyleBackColor = false;
-            this.btnNopBai.Click += new System.EventHandler(this.btnNopBai_Click);
-            // 
-            // btnBatDau
-            // 
-            this.btnBatDau.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnBatDau.Location = new System.Drawing.Point(171, 33);
-            this.btnBatDau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnBatDau.Name = "btnBatDau";
-            this.btnBatDau.Size = new System.Drawing.Size(333, 95);
-            this.btnBatDau.TabIndex = 0;
-            this.btnBatDau.Text = "Bắt đầu";
-            this.btnBatDau.UseVisualStyleBackColor = false;
-            this.btnBatDau.Click += new System.EventHandler(this.btnBatDau_Click);
             // 
             // summarylistview
             // 
@@ -609,12 +562,17 @@
             // cauHoi
             // 
             this.cauHoi.Text = "Câu hỏi";
-            this.cauHoi.Width = 61;
+            this.cauHoi.Width = 126;
             // 
             // dapAn
             // 
             this.dapAn.Text = "Đáp án";
             this.dapAn.Width = 120;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // cosoTableAdapter1
             // 
@@ -653,6 +611,67 @@
             // tbLopADT
             // 
             this.tbLopADT.ClearBeforeFill = true;
+            // 
+            // pnBatdau
+            // 
+            this.pnBatdau.Controls.Add(this.lbTG);
+            this.pnBatdau.Controls.Add(this.lbTime);
+            this.pnBatdau.Controls.Add(this.btnNopBai);
+            this.pnBatdau.Controls.Add(this.btnBatDau);
+            this.pnBatdau.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnBatdau.Location = new System.Drawing.Point(3, 35);
+            this.pnBatdau.Name = "pnBatdau";
+            this.pnBatdau.Size = new System.Drawing.Size(2599, 135);
+            this.pnBatdau.TabIndex = 7;
+            // 
+            // lbTG
+            // 
+            this.lbTG.AutoSize = true;
+            this.lbTG.BackColor = System.Drawing.Color.White;
+            this.lbTG.Font = new System.Drawing.Font("Tahoma", 8.1F, System.Drawing.FontStyle.Bold);
+            this.lbTG.ForeColor = System.Drawing.Color.DarkBlue;
+            this.lbTG.Location = new System.Drawing.Point(1040, 51);
+            this.lbTG.Name = "lbTG";
+            this.lbTG.Size = new System.Drawing.Size(145, 34);
+            this.lbTG.TabIndex = 10;
+            this.lbTG.Text = "Thời gian";
+            this.lbTG.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
+            // lbTime
+            // 
+            this.lbTime.AutoSize = true;
+            this.lbTime.BackColor = System.Drawing.Color.White;
+            this.lbTime.Font = new System.Drawing.Font("Tahoma", 20.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTime.ForeColor = System.Drawing.Color.ForestGreen;
+            this.lbTime.Location = new System.Drawing.Point(1205, 20);
+            this.lbTime.Name = "lbTime";
+            this.lbTime.Size = new System.Drawing.Size(252, 82);
+            this.lbTime.TabIndex = 9;
+            this.lbTime.Text = "20: 59";
+            // 
+            // btnNopBai
+            // 
+            this.btnNopBai.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnNopBai.Location = new System.Drawing.Point(2256, 20);
+            this.btnNopBai.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnNopBai.Name = "btnNopBai";
+            this.btnNopBai.Size = new System.Drawing.Size(333, 95);
+            this.btnNopBai.TabIndex = 8;
+            this.btnNopBai.Text = "Nộp bài";
+            this.btnNopBai.UseVisualStyleBackColor = false;
+            this.btnNopBai.Click += new System.EventHandler(this.btnNopBai_Click_1);
+            // 
+            // btnBatDau
+            // 
+            this.btnBatDau.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnBatDau.Location = new System.Drawing.Point(168, 20);
+            this.btnBatDau.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnBatDau.Name = "btnBatDau";
+            this.btnBatDau.Size = new System.Drawing.Size(333, 95);
+            this.btnBatDau.TabIndex = 7;
+            this.btnBatDau.Text = "Bắt đầu";
+            this.btnBatDau.UseVisualStyleBackColor = false;
+            this.btnBatDau.Click += new System.EventHandler(this.btnBatDau_Click_1);
             // 
             // frmThi
             // 
@@ -693,7 +712,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.edtTenLop.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaLop.Properties)).EndInit();
             this.gbCongCu.ResumeLayout(false);
-            this.gbCongCu.PerformLayout();
+            this.pnBatdau.ResumeLayout(false);
+            this.pnBatdau.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsBaiThi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -732,11 +753,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Button btnBatDau;
-        private System.Windows.Forms.Label lbTG;
-        private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Button btnThoat;
-        private System.Windows.Forms.Button btnNopBai;
         private System.Windows.Forms.Label label10;
         private TNDataSetTableAdapters.COSOTableAdapter cosoTableAdapter1;
         private System.Windows.Forms.FlowLayoutPanel scrollCauHoi;
@@ -749,5 +766,11 @@
         private TNDataSetTableAdapters.DSLOPTableAdapter tbLopADT;
         private DevExpress.XtraEditors.TextEdit edtTrinhDo;
         private DevExpress.XtraEditors.SpinEdit edtSoCau;
+        private System.Windows.Forms.Panel pnBatdau;
+        private System.Windows.Forms.Label lbTG;
+        private System.Windows.Forms.Label lbTime;
+        private System.Windows.Forms.Button btnNopBai;
+        private System.Windows.Forms.Button btnBatDau;
+        private System.Windows.Forms.BindingSource bdsBaiThi;
     }
 }

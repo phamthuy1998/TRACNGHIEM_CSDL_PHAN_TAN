@@ -24,7 +24,7 @@ namespace TRACNGHIEM
                 MessageBox.Show("Login name và password không được trống", "", MessageBoxButtons.OK);
                 return;
             }
-            if (txtMSV.Text.Trim() == ""&&radSinhVien.Checked )
+            if (txtMSV.Text.Trim() == "" && radSinhVien.Checked)
             {
                 MessageBox.Show("Bạn chưa nhập mã sinh viên", "", MessageBoxButtons.OK);
                 return;
@@ -181,6 +181,14 @@ namespace TRACNGHIEM
                 }
             }
             catch (Exception) { };
+        }
+
+        private Form CheckExists(Type ftype)
+        {
+            foreach (Form f in this.MdiChildren)
+                if (f.GetType() == ftype)
+                    return f;
+            return null;
         }
 
         private void frmDangNhap_FormClosing(object sender, FormClosingEventArgs e)

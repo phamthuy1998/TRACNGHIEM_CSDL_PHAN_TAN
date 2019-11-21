@@ -355,16 +355,16 @@
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlTop.Size = new System.Drawing.Size(2873, 96);
+            this.barDockControlTop.Size = new System.Drawing.Size(3844, 96);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1366);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1959);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlBottom.Size = new System.Drawing.Size(2873, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(3844, 0);
             // 
             // barDockControlLeft
             // 
@@ -373,16 +373,16 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 96);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1270);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1863);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(2873, 96);
+            this.barDockControlRight.Location = new System.Drawing.Point(3844, 96);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1270);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1863);
             // 
             // btnInDSBD
             // 
@@ -401,7 +401,7 @@
             this.groupControl1.Location = new System.Drawing.Point(0, 96);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(2873, 186);
+            this.groupControl1.Size = new System.Drawing.Size(3844, 186);
             this.groupControl1.TabIndex = 4;
             // 
             // lbTenMH
@@ -464,10 +464,10 @@
             this.gcDetail.Controls.Add(mAMHLabel);
             this.gcDetail.Controls.Add(this.edtMaMon);
             this.gcDetail.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.gcDetail.Location = new System.Drawing.Point(0, 653);
+            this.gcDetail.Location = new System.Drawing.Point(0, 1246);
             this.gcDetail.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcDetail.Name = "gcDetail";
-            this.gcDetail.Size = new System.Drawing.Size(2873, 713);
+            this.gcDetail.Size = new System.Drawing.Size(3844, 713);
             this.gcDetail.TabIndex = 5;
             // 
             // cbbDapAn
@@ -678,7 +678,7 @@
             this.gcBoDe.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcBoDe.MenuManager = this.barManager1;
             this.gcBoDe.Name = "gcBoDe";
-            this.gcBoDe.Size = new System.Drawing.Size(2873, 371);
+            this.gcBoDe.Size = new System.Drawing.Size(3844, 964);
             this.gcBoDe.TabIndex = 9;
             this.gcBoDe.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -820,7 +820,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(2873, 1366);
+            this.ClientSize = new System.Drawing.Size(3844, 1959);
             this.Controls.Add(this.gcBoDe);
             this.Controls.Add(this.gcDetail);
             this.Controls.Add(this.groupControl1);

@@ -18,14 +18,39 @@ namespace TRACNGHIEM
         }
 
         // câu số
+        private int idBaiThi;
+        private int idde;
         private int cauSo;
-        private string cauHoi;
+        private string ndCauHoi;
         private string cauA;
         private string cauB;
         private string cauC;
         private string cauD;
-        private string daChon="";
-        private string dapAn="";
+        private string daChon = "";
+        private string dapAn = "";
+        private int maBD;
+
+        [Category("Custom Props")]
+        public int MaBangDiem
+        {
+            get { return maBD; }
+            set { maBD = value; }
+        }
+
+        [Category("Custom Props")]
+        public int IDBaiThi
+        {
+            get { return idBaiThi; }
+            set { idBaiThi = value; }
+        }
+
+        [Category("Custom Props")]
+        public int IDDe
+        {
+            get { return idde; }
+            set { idde = value; }
+        }
+
         [Category("Custom Props")]
         public int CauSo
         {
@@ -38,13 +63,13 @@ namespace TRACNGHIEM
         }
         //câu hỏi
         [Category("Custom Props")]
-        public string CauHoi
+        public string NDCauHoi
         {
-            get { return cauHoi; }
+            get { return ndCauHoi; }
             set
             {
-                cauHoi = value;
-                lbNoiDungCH.Text = CauHoi;
+                ndCauHoi = value;
+                lbNoiDungCH.Text = ndCauHoi;
             }
         }
 
@@ -112,22 +137,32 @@ namespace TRACNGHIEM
         private void rbA_CheckedChanged(object sender, EventArgs e)
         {
             daChon = "A";
+            var principalForm = Application.OpenForms.OfType<frmThi>().Single();
+            principalForm.capNhapDaChon(cauSo, "A");
         }
 
         private void rbB_CheckedChanged(object sender, EventArgs e)
         {
             daChon = "B";
+            var principalForm = Application.OpenForms.OfType<frmThi>().Single();
+            principalForm.capNhapDaChon(cauSo, "B");
         }
 
         private void rbC_CheckedChanged(object sender, EventArgs e)
         {
             daChon = "C";
+            var principalForm = Application.OpenForms.OfType<frmThi>().Single();
+            principalForm.capNhapDaChon(cauSo, "C");
         }
 
         private void rbD_CheckedChanged(object sender, EventArgs e)
         {
             daChon = "D";
+            var principalForm = Application.OpenForms.OfType<frmThi>().Single();
+            principalForm.capNhapDaChon(cauSo, "D");
         }
+
+        
     }
 
 }

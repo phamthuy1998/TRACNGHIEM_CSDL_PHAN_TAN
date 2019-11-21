@@ -179,16 +179,16 @@
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(1924, 96);
+            this.barDockControlTop.Size = new System.Drawing.Size(2335, 96);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1055);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1140);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(1924, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(2335, 0);
             // 
             // barDockControlLeft
             // 
@@ -197,16 +197,16 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 96);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 959);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1044);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(1924, 96);
+            this.barDockControlRight.Location = new System.Drawing.Point(2335, 96);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 959);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1044);
             // 
             // bANGDIEMGridControl
             // 
@@ -219,7 +219,7 @@
             this.bANGDIEMGridControl.MenuManager = this.barManager1;
             this.bANGDIEMGridControl.Name = "bANGDIEMGridControl";
             this.bANGDIEMGridControl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bANGDIEMGridControl.Size = new System.Drawing.Size(1924, 746);
+            this.bANGDIEMGridControl.Size = new System.Drawing.Size(2335, 831);
             this.bANGDIEMGridControl.TabIndex = 13;
             this.bANGDIEMGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -452,7 +452,7 @@
             this.groupControl1.Location = new System.Drawing.Point(0, 96);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(1924, 213);
+            this.groupControl1.Size = new System.Drawing.Size(2335, 213);
             this.groupControl1.TabIndex = 8;
             // 
             // sP_XemKetQuaSVTableAdapter
@@ -464,7 +464,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 42F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1924, 1055);
+            this.ClientSize = new System.Drawing.Size(2335, 1140);
             this.Controls.Add(this.bANGDIEMGridControl);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.barDockControlLeft);

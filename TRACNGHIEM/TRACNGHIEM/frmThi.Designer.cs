@@ -42,6 +42,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtThoiGian = new System.Windows.Forms.Label();
             this.cbbLanThi = new System.Windows.Forms.ComboBox();
+            this.bdsLanThiThu = new System.Windows.Forms.BindingSource(this.components);
+            this.tNDataSet = new TRACNGHIEM.TNDataSet();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -49,13 +51,12 @@
             this.edtNgayThi = new DevExpress.XtraEditors.DateEdit();
             this.label5 = new System.Windows.Forms.Label();
             this.cbbTenMon = new System.Windows.Forms.ComboBox();
-            this.bdsDSMonHoc = new System.Windows.Forms.BindingSource(this.components);
-            this.tNDataSet = new TRACNGHIEM.TNDataSet();
+            this.bds_MonHocDK = new System.Windows.Forms.BindingSource(this.components);
             this.edtMaMon = new DevExpress.XtraEditors.TextEdit();
             this.label4 = new System.Windows.Forms.Label();
             this.gbThongTinSV = new System.Windows.Forms.GroupBox();
             this.cbbTenLop = new System.Windows.Forms.ComboBox();
-            this.bdsDSLop = new System.Windows.Forms.BindingSource(this.components);
+            this.bdsLopDK = new System.Windows.Forms.BindingSource(this.components);
             this.edtHoTenSV = new DevExpress.XtraEditors.TextEdit();
             this.edtTenLop = new DevExpress.XtraEditors.TextEdit();
             this.edtMaLop = new DevExpress.XtraEditors.TextEdit();
@@ -63,6 +64,11 @@
             this.lbTenLop = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbCongCu = new System.Windows.Forms.GroupBox();
+            this.pnBatdau = new System.Windows.Forms.Panel();
+            this.lbTG = new System.Windows.Forms.Label();
+            this.lbTime = new System.Windows.Forms.Label();
+            this.btnNopBai = new System.Windows.Forms.Button();
+            this.btnBatDau = new System.Windows.Forms.Button();
             this.btnThoat = new System.Windows.Forms.Button();
             this.summarylistview = new System.Windows.Forms.ListView();
             this.cauHoi = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -70,15 +76,28 @@
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.cosoTableAdapter1 = new TRACNGHIEM.TNDataSetTableAdapters.COSOTableAdapter();
             this.scrollCauHoi = new System.Windows.Forms.FlowLayoutPanel();
-            this.tbDSMonHocADT = new TRACNGHIEM.TNDataSetTableAdapters.DSMONHOCTableAdapter();
             this.tableAdapterManager = new TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager();
-            this.tbLopADT = new TRACNGHIEM.TNDataSetTableAdapters.DSLOPTableAdapter();
-            this.pnBatdau = new System.Windows.Forms.Panel();
-            this.lbTG = new System.Windows.Forms.Label();
-            this.lbTime = new System.Windows.Forms.Label();
-            this.btnNopBai = new System.Windows.Forms.Button();
-            this.btnBatDau = new System.Windows.Forms.Button();
             this.bdsBaiThi = new System.Windows.Forms.BindingSource(this.components);
+            this.baithiTableAdapter1 = new TRACNGHIEM.TNDataSetTableAdapters.BAITHITableAdapter();
+            this.tbMonHocDk = new TRACNGHIEM.TNDataSetTableAdapters.SP_DSMHDKTableAdapter();
+            this.fillToolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.maLopToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.maLopToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.fillToolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.tbLopDk = new TRACNGHIEM.TNDataSetTableAdapters.DSLOPDKTableAdapter();
+            this.maSVToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.maSVToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.maMHToolStripLabel = new System.Windows.Forms.ToolStripLabel();
+            this.maMHToolStripTextBox = new System.Windows.Forms.ToolStripTextBox();
+            this.fillToolStripButton = new System.Windows.Forms.ToolStripButton();
+            this.fillToolStrip = new System.Windows.Forms.ToolStrip();
+            this.tbLanThiThu = new TRACNGHIEM.TNDataSetTableAdapters.SP_DSLanThiThuGVTableAdapter();
+            this.fillToolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.maMHToolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.maMHToolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.maLopToolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.maLopToolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.fillToolStripButton2 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
@@ -87,19 +106,23 @@
             this.gbThongTinBaiThi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtSoCau.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTrinhDo.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsLanThiThu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tNDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtNgayThi.Properties.CalendarTimeProperties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtNgayThi.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsDSMonHoc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tNDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_MonHocDK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaMon.Properties)).BeginInit();
             this.gbThongTinSV.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsDSLop)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsLopDK)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtHoTenSV.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTenLop.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaLop.Properties)).BeginInit();
             this.gbCongCu.SuspendLayout();
             this.pnBatdau.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBaiThi)).BeginInit();
+            this.fillToolStrip1.SuspendLayout();
+            this.fillToolStrip.SuspendLayout();
+            this.fillToolStrip2.SuspendLayout();
             this.SuspendLayout();
             // 
             // barManager1
@@ -123,7 +146,7 @@
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1295);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1596);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.barDockControlBottom.Size = new System.Drawing.Size(3844, 0);
@@ -135,7 +158,7 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 0);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1295);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1596);
             // 
             // barDockControlRight
             // 
@@ -144,7 +167,7 @@
             this.barDockControlRight.Location = new System.Drawing.Point(3844, 0);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1295);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1596);
             // 
             // panelControl1
             // 
@@ -188,11 +211,11 @@
             this.gbThongTinBaiThi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbThongTinBaiThi.Font = new System.Drawing.Font("Tahoma", 8.1F, System.Drawing.FontStyle.Bold);
             this.gbThongTinBaiThi.ForeColor = System.Drawing.Color.DarkBlue;
-            this.gbThongTinBaiThi.Location = new System.Drawing.Point(1600, 3);
+            this.gbThongTinBaiThi.Location = new System.Drawing.Point(1684, 3);
             this.gbThongTinBaiThi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbThongTinBaiThi.Name = "gbThongTinBaiThi";
             this.gbThongTinBaiThi.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbThongTinBaiThi.Size = new System.Drawing.Size(2235, 240);
+            this.gbThongTinBaiThi.Size = new System.Drawing.Size(2151, 240);
             this.gbThongTinBaiThi.TabIndex = 2;
             this.gbThongTinBaiThi.TabStop = false;
             this.gbThongTinBaiThi.Text = "Thông tin bài thi";
@@ -254,6 +277,8 @@
             // cbbLanThi
             // 
             this.cbbLanThi.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.cbbLanThi.DataSource = this.bdsLanThiThu;
+            this.cbbLanThi.DisplayMember = "LAN";
             this.cbbLanThi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbLanThi.Font = new System.Drawing.Font("Tahoma", 8.1F, System.Drawing.FontStyle.Bold);
             this.cbbLanThi.ForeColor = System.Drawing.Color.DarkBlue;
@@ -263,7 +288,18 @@
             this.cbbLanThi.Name = "cbbLanThi";
             this.cbbLanThi.Size = new System.Drawing.Size(258, 41);
             this.cbbLanThi.TabIndex = 15;
+            this.cbbLanThi.ValueMember = "LAN";
             this.cbbLanThi.SelectedIndexChanged += new System.EventHandler(this.cbbLanThi_SelectedIndexChanged);
+            // 
+            // bdsLanThiThu
+            // 
+            this.bdsLanThiThu.DataMember = "SP_DSLanThiThuGV";
+            this.bdsLanThiThu.DataSource = this.tNDataSet;
+            // 
+            // tNDataSet
+            // 
+            this.tNDataSet.DataSetName = "TNDataSet";
+            this.tNDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // label9
             // 
@@ -344,7 +380,7 @@
             // 
             // cbbTenMon
             // 
-            this.cbbTenMon.DataSource = this.bdsDSMonHoc;
+            this.cbbTenMon.DataSource = this.bds_MonHocDK;
             this.cbbTenMon.DisplayMember = "TENMH";
             this.cbbTenMon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbbTenMon.Font = new System.Drawing.Font("Tahoma", 8.1F, System.Drawing.FontStyle.Bold);
@@ -358,15 +394,10 @@
             this.cbbTenMon.ValueMember = "MAMH";
             this.cbbTenMon.SelectedIndexChanged += new System.EventHandler(this.cbbTenMon_SelectedIndexChanged);
             // 
-            // bdsDSMonHoc
+            // bds_MonHocDK
             // 
-            this.bdsDSMonHoc.DataMember = "DSMONHOC";
-            this.bdsDSMonHoc.DataSource = this.tNDataSet;
-            // 
-            // tNDataSet
-            // 
-            this.tNDataSet.DataSetName = "TNDataSet";
-            this.tNDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.bds_MonHocDK.DataMember = "SP_DSMHDK";
+            this.bds_MonHocDK.DataSource = this.tNDataSet;
             // 
             // edtMaMon
             // 
@@ -411,31 +442,31 @@
             this.gbThongTinSV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gbThongTinSV.Name = "gbThongTinSV";
             this.gbThongTinSV.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.gbThongTinSV.Size = new System.Drawing.Size(1597, 240);
+            this.gbThongTinSV.Size = new System.Drawing.Size(1681, 240);
             this.gbThongTinSV.TabIndex = 1;
             this.gbThongTinSV.TabStop = false;
             this.gbThongTinSV.Text = "Thông tin sinh viên";
             // 
             // cbbTenLop
             // 
-            this.cbbTenLop.DataSource = this.bdsDSLop;
+            this.cbbTenLop.DataSource = this.bdsLopDK;
             this.cbbTenLop.DisplayMember = "TENLOP";
             this.cbbTenLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbTenLop.Font = new System.Drawing.Font("Tahoma", 8.1F, System.Drawing.FontStyle.Bold);
+            this.cbbTenLop.Font = new System.Drawing.Font("Tahoma", 9.900001F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbbTenLop.ForeColor = System.Drawing.Color.DarkBlue;
             this.cbbTenLop.FormattingEnabled = true;
-            this.cbbTenLop.Location = new System.Drawing.Point(171, 59);
+            this.cbbTenLop.Location = new System.Drawing.Point(171, 55);
             this.cbbTenLop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbbTenLop.Name = "cbbTenLop";
-            this.cbbTenLop.Size = new System.Drawing.Size(463, 41);
+            this.cbbTenLop.Size = new System.Drawing.Size(463, 48);
             this.cbbTenLop.TabIndex = 9;
             this.cbbTenLop.ValueMember = "MALOP";
             this.cbbTenLop.SelectedIndexChanged += new System.EventHandler(this.cbbTenLop_SelectedIndexChanged);
             // 
-            // bdsDSLop
+            // bdsLopDK
             // 
-            this.bdsDSLop.DataMember = "DSLOP";
-            this.bdsDSLop.DataSource = this.tNDataSet;
+            this.bdsLopDK.DataMember = "DSLOPDK";
+            this.bdsLopDK.DataSource = this.tNDataSet;
             // 
             // edtHoTenSV
             // 
@@ -529,91 +560,9 @@
             this.gbCongCu.TabIndex = 0;
             this.gbCongCu.TabStop = false;
             // 
-            // btnThoat
-            // 
-            this.btnThoat.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.btnThoat.Location = new System.Drawing.Point(3166, 55);
-            this.btnThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnThoat.Name = "btnThoat";
-            this.btnThoat.Size = new System.Drawing.Size(333, 95);
-            this.btnThoat.TabIndex = 2;
-            this.btnThoat.Text = "Thoát";
-            this.btnThoat.UseVisualStyleBackColor = false;
-            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
-            // 
-            // summarylistview
-            // 
-            this.summarylistview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.cauHoi,
-            this.dapAn});
-            this.summarylistview.Dock = System.Windows.Forms.DockStyle.Right;
-            this.summarylistview.GridLines = true;
-            this.summarylistview.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.summarylistview.HideSelection = false;
-            this.summarylistview.Location = new System.Drawing.Point(3453, 424);
-            this.summarylistview.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
-            this.summarylistview.MultiSelect = false;
-            this.summarylistview.Name = "summarylistview";
-            this.summarylistview.Size = new System.Drawing.Size(391, 871);
-            this.summarylistview.TabIndex = 18;
-            this.summarylistview.UseCompatibleStateImageBehavior = false;
-            this.summarylistview.View = System.Windows.Forms.View.Details;
-            // 
-            // cauHoi
-            // 
-            this.cauHoi.Text = "Câu hỏi";
-            this.cauHoi.Width = 126;
-            // 
-            // dapAn
-            // 
-            this.dapAn.Text = "Đáp án";
-            this.dapAn.Width = 120;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 1000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // cosoTableAdapter1
-            // 
-            this.cosoTableAdapter1.ClearBeforeFill = true;
-            // 
-            // scrollCauHoi
-            // 
-            this.scrollCauHoi.AutoScroll = true;
-            this.scrollCauHoi.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.scrollCauHoi.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.scrollCauHoi.Location = new System.Drawing.Point(0, 424);
-            this.scrollCauHoi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.scrollCauHoi.Name = "scrollCauHoi";
-            this.scrollCauHoi.Size = new System.Drawing.Size(3453, 871);
-            this.scrollCauHoi.TabIndex = 19;
-            // 
-            // tbDSMonHocADT
-            // 
-            this.tbDSMonHocADT.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.BAITHITableAdapter = null;
-            this.tableAdapterManager.BANGDIEMTableAdapter = null;
-            this.tableAdapterManager.BODETableAdapter = null;
-            this.tableAdapterManager.COSOTableAdapter = this.cosoTableAdapter1;
-            this.tableAdapterManager.GIAOVIEN_DANGKYTableAdapter = null;
-            this.tableAdapterManager.GIAOVIENTableAdapter = null;
-            this.tableAdapterManager.KHOATableAdapter = null;
-            this.tableAdapterManager.LOPTableAdapter = null;
-            this.tableAdapterManager.MONHOCTableAdapter = null;
-            this.tableAdapterManager.SINHVIENTableAdapter = null;
-            this.tableAdapterManager.UpdateOrder = TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
-            // tbLopADT
-            // 
-            this.tbLopADT.ClearBeforeFill = true;
-            // 
             // pnBatdau
             // 
+            this.pnBatdau.AutoScroll = true;
             this.pnBatdau.Controls.Add(this.lbTG);
             this.pnBatdau.Controls.Add(this.lbTime);
             this.pnBatdau.Controls.Add(this.btnNopBai);
@@ -621,7 +570,7 @@
             this.pnBatdau.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnBatdau.Location = new System.Drawing.Point(3, 35);
             this.pnBatdau.Name = "pnBatdau";
-            this.pnBatdau.Size = new System.Drawing.Size(2599, 135);
+            this.pnBatdau.Size = new System.Drawing.Size(2695, 135);
             this.pnBatdau.TabIndex = 7;
             // 
             // lbTG
@@ -673,12 +622,231 @@
             this.btnBatDau.UseVisualStyleBackColor = false;
             this.btnBatDau.Click += new System.EventHandler(this.btnBatDau_Click_1);
             // 
+            // btnThoat
+            // 
+            this.btnThoat.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.btnThoat.Location = new System.Drawing.Point(3166, 55);
+            this.btnThoat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnThoat.Name = "btnThoat";
+            this.btnThoat.Size = new System.Drawing.Size(333, 95);
+            this.btnThoat.TabIndex = 2;
+            this.btnThoat.Text = "Thoát";
+            this.btnThoat.UseVisualStyleBackColor = false;
+            this.btnThoat.Click += new System.EventHandler(this.btnThoat_Click);
+            // 
+            // summarylistview
+            // 
+            this.summarylistview.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cauHoi,
+            this.dapAn});
+            this.summarylistview.Dock = System.Windows.Forms.DockStyle.Right;
+            this.summarylistview.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.summarylistview.GridLines = true;
+            this.summarylistview.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.summarylistview.HideSelection = false;
+            this.summarylistview.Location = new System.Drawing.Point(3453, 424);
+            this.summarylistview.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
+            this.summarylistview.Name = "summarylistview";
+            this.summarylistview.Size = new System.Drawing.Size(391, 1172);
+            this.summarylistview.TabIndex = 18;
+            this.summarylistview.UseCompatibleStateImageBehavior = false;
+            this.summarylistview.View = System.Windows.Forms.View.Details;
+            this.summarylistview.SelectedIndexChanged += new System.EventHandler(this.summarylistview_SelectedIndexChanged);
+            // 
+            // cauHoi
+            // 
+            this.cauHoi.Text = "Câu hỏi";
+            this.cauHoi.Width = 72;
+            // 
+            // dapAn
+            // 
+            this.dapAn.Text = "Đáp án";
+            this.dapAn.Width = 120;
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // cosoTableAdapter1
+            // 
+            this.cosoTableAdapter1.ClearBeforeFill = true;
+            // 
+            // scrollCauHoi
+            // 
+            this.scrollCauHoi.AutoScroll = true;
+            this.scrollCauHoi.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.scrollCauHoi.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.scrollCauHoi.Location = new System.Drawing.Point(0, 424);
+            this.scrollCauHoi.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.scrollCauHoi.Name = "scrollCauHoi";
+            this.scrollCauHoi.Size = new System.Drawing.Size(3453, 1172);
+            this.scrollCauHoi.TabIndex = 19;
+            // 
+            // tableAdapterManager
+            // 
+            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
+            this.tableAdapterManager.BAITHITableAdapter = null;
+            this.tableAdapterManager.BANGDIEMTableAdapter = null;
+            this.tableAdapterManager.BODETableAdapter = null;
+            this.tableAdapterManager.COSOTableAdapter = this.cosoTableAdapter1;
+            this.tableAdapterManager.GIAOVIEN_DANGKYTableAdapter = null;
+            this.tableAdapterManager.GIAOVIENTableAdapter = null;
+            this.tableAdapterManager.KHOATableAdapter = null;
+            this.tableAdapterManager.LOPTableAdapter = null;
+            this.tableAdapterManager.MONHOCTableAdapter = null;
+            this.tableAdapterManager.SINHVIENTableAdapter = null;
+            this.tableAdapterManager.UpdateOrder = TRACNGHIEM.TNDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
+            // 
+            // baithiTableAdapter1
+            // 
+            this.baithiTableAdapter1.ClearBeforeFill = true;
+            // 
+            // tbMonHocDk
+            // 
+            this.tbMonHocDk.ClearBeforeFill = true;
+            // 
+            // fillToolStrip1
+            // 
+            this.fillToolStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.fillToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.maLopToolStripLabel,
+            this.maLopToolStripTextBox,
+            this.fillToolStripButton1});
+            this.fillToolStrip1.Location = new System.Drawing.Point(0, 424);
+            this.fillToolStrip1.Name = "fillToolStrip1";
+            this.fillToolStrip1.Size = new System.Drawing.Size(3453, 48);
+            this.fillToolStrip1.TabIndex = 34;
+            this.fillToolStrip1.Text = "fillToolStrip1";
+            this.fillToolStrip1.Visible = false;
+            // 
+            // maLopToolStripLabel
+            // 
+            this.maLopToolStripLabel.Name = "maLopToolStripLabel";
+            this.maLopToolStripLabel.Size = new System.Drawing.Size(116, 45);
+            this.maLopToolStripLabel.Text = "maLop:";
+            // 
+            // maLopToolStripTextBox
+            // 
+            this.maLopToolStripTextBox.Name = "maLopToolStripTextBox";
+            this.maLopToolStripTextBox.Size = new System.Drawing.Size(100, 48);
+            // 
+            // fillToolStripButton1
+            // 
+            this.fillToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillToolStripButton1.Name = "fillToolStripButton1";
+            this.fillToolStripButton1.Size = new System.Drawing.Size(58, 45);
+            this.fillToolStripButton1.Text = "Fill";
+            this.fillToolStripButton1.Click += new System.EventHandler(this.fillToolStripButton1_Click);
+            // 
+            // tbLopDk
+            // 
+            this.tbLopDk.ClearBeforeFill = true;
+            // 
+            // maSVToolStripLabel
+            // 
+            this.maSVToolStripLabel.Name = "maSVToolStripLabel";
+            this.maSVToolStripLabel.Size = new System.Drawing.Size(101, 45);
+            this.maSVToolStripLabel.Text = "maSV:";
+            // 
+            // maSVToolStripTextBox
+            // 
+            this.maSVToolStripTextBox.Name = "maSVToolStripTextBox";
+            this.maSVToolStripTextBox.Size = new System.Drawing.Size(100, 48);
+            // 
+            // maMHToolStripLabel
+            // 
+            this.maMHToolStripLabel.Name = "maMHToolStripLabel";
+            this.maMHToolStripLabel.Size = new System.Drawing.Size(114, 45);
+            this.maMHToolStripLabel.Text = "maMH:";
+            // 
+            // maMHToolStripTextBox
+            // 
+            this.maMHToolStripTextBox.Name = "maMHToolStripTextBox";
+            this.maMHToolStripTextBox.Size = new System.Drawing.Size(100, 48);
+            // 
+            // fillToolStripButton
+            // 
+            this.fillToolStripButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillToolStripButton.Name = "fillToolStripButton";
+            this.fillToolStripButton.Size = new System.Drawing.Size(58, 45);
+            this.fillToolStripButton.Text = "Fill";
+            // 
+            // fillToolStrip
+            // 
+            this.fillToolStrip.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.fillToolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.maSVToolStripLabel,
+            this.maSVToolStripTextBox,
+            this.maMHToolStripLabel,
+            this.maMHToolStripTextBox,
+            this.fillToolStripButton});
+            this.fillToolStrip.Location = new System.Drawing.Point(0, 424);
+            this.fillToolStrip.Name = "fillToolStrip";
+            this.fillToolStrip.Size = new System.Drawing.Size(3453, 48);
+            this.fillToolStrip.TabIndex = 29;
+            this.fillToolStrip.Text = "fillToolStrip";
+            this.fillToolStrip.Visible = false;
+            // 
+            // tbLanThiThu
+            // 
+            this.tbLanThiThu.ClearBeforeFill = true;
+            // 
+            // fillToolStrip2
+            // 
+            this.fillToolStrip2.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.fillToolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.maMHToolStripLabel1,
+            this.maMHToolStripTextBox1,
+            this.maLopToolStripLabel1,
+            this.maLopToolStripTextBox1,
+            this.fillToolStripButton2});
+            this.fillToolStrip2.Location = new System.Drawing.Point(0, 424);
+            this.fillToolStrip2.Name = "fillToolStrip2";
+            this.fillToolStrip2.Size = new System.Drawing.Size(3453, 48);
+            this.fillToolStrip2.TabIndex = 39;
+            this.fillToolStrip2.Text = "fillToolStrip2";
+            this.fillToolStrip2.Visible = false;
+            // 
+            // maMHToolStripLabel1
+            // 
+            this.maMHToolStripLabel1.Name = "maMHToolStripLabel1";
+            this.maMHToolStripLabel1.Size = new System.Drawing.Size(114, 45);
+            this.maMHToolStripLabel1.Text = "maMH:";
+            // 
+            // maMHToolStripTextBox1
+            // 
+            this.maMHToolStripTextBox1.Name = "maMHToolStripTextBox1";
+            this.maMHToolStripTextBox1.Size = new System.Drawing.Size(100, 48);
+            // 
+            // maLopToolStripLabel1
+            // 
+            this.maLopToolStripLabel1.Name = "maLopToolStripLabel1";
+            this.maLopToolStripLabel1.Size = new System.Drawing.Size(116, 45);
+            this.maLopToolStripLabel1.Text = "maLop:";
+            // 
+            // maLopToolStripTextBox1
+            // 
+            this.maLopToolStripTextBox1.Name = "maLopToolStripTextBox1";
+            this.maLopToolStripTextBox1.Size = new System.Drawing.Size(100, 48);
+            // 
+            // fillToolStripButton2
+            // 
+            this.fillToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.fillToolStripButton2.Name = "fillToolStripButton2";
+            this.fillToolStripButton2.Size = new System.Drawing.Size(58, 45);
+            this.fillToolStripButton2.Text = "Fill";
+            this.fillToolStripButton2.Click += new System.EventHandler(this.fillToolStripButton2_Click);
+            // 
             // frmThi
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(3844, 1295);
+            this.ClientSize = new System.Drawing.Size(3844, 1596);
+            this.Controls.Add(this.fillToolStrip2);
+            this.Controls.Add(this.fillToolStrip);
+            this.Controls.Add(this.fillToolStrip1);
             this.Controls.Add(this.scrollCauHoi);
             this.Controls.Add(this.summarylistview);
             this.Controls.Add(this.panelControl1);
@@ -700,14 +868,15 @@
             this.gbThongTinBaiThi.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.edtSoCau.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTrinhDo.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsLanThiThu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tNDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtNgayThi.Properties.CalendarTimeProperties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtNgayThi.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsDSMonHoc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tNDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bds_MonHocDK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaMon.Properties)).EndInit();
             this.gbThongTinSV.ResumeLayout(false);
             this.gbThongTinSV.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bdsDSLop)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bdsLopDK)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtHoTenSV.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtTenLop.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.edtMaLop.Properties)).EndInit();
@@ -715,6 +884,12 @@
             this.pnBatdau.ResumeLayout(false);
             this.pnBatdau.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bdsBaiThi)).EndInit();
+            this.fillToolStrip1.ResumeLayout(false);
+            this.fillToolStrip1.PerformLayout();
+            this.fillToolStrip.ResumeLayout(false);
+            this.fillToolStrip.PerformLayout();
+            this.fillToolStrip2.ResumeLayout(false);
+            this.fillToolStrip2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -727,7 +902,6 @@
         private DevExpress.XtraBars.BarDockControl barDockControlBottom;
         private DevExpress.XtraBars.BarDockControl barDockControlLeft;
         private DevExpress.XtraBars.BarDockControl barDockControlRight;
-        private System.Windows.Forms.ListView summarylistview;
         private System.Windows.Forms.ColumnHeader cauHoi;
         private System.Windows.Forms.ColumnHeader dapAn;
         private DevExpress.XtraEditors.PanelControl panelControl1;
@@ -757,13 +931,9 @@
         private System.Windows.Forms.Label label10;
         private TNDataSetTableAdapters.COSOTableAdapter cosoTableAdapter1;
         private System.Windows.Forms.FlowLayoutPanel scrollCauHoi;
-        private System.Windows.Forms.BindingSource bdsDSMonHoc;
         private TNDataSet tNDataSet;
-        private TNDataSetTableAdapters.DSMONHOCTableAdapter tbDSMonHocADT;
         private TNDataSetTableAdapters.TableAdapterManager tableAdapterManager;
         private System.Windows.Forms.ComboBox cbbTenLop;
-        private System.Windows.Forms.BindingSource bdsDSLop;
-        private TNDataSetTableAdapters.DSLOPTableAdapter tbLopADT;
         private DevExpress.XtraEditors.TextEdit edtTrinhDo;
         private DevExpress.XtraEditors.SpinEdit edtSoCau;
         private System.Windows.Forms.Panel pnBatdau;
@@ -772,5 +942,29 @@
         private System.Windows.Forms.Button btnNopBai;
         private System.Windows.Forms.Button btnBatDau;
         private System.Windows.Forms.BindingSource bdsBaiThi;
+        private TNDataSetTableAdapters.BAITHITableAdapter baithiTableAdapter1;
+        private System.Windows.Forms.ToolStrip fillToolStrip1;
+        private System.Windows.Forms.ToolStripLabel maLopToolStripLabel;
+        private System.Windows.Forms.ToolStripTextBox maLopToolStripTextBox;
+        private System.Windows.Forms.ToolStripButton fillToolStripButton1;
+        private System.Windows.Forms.BindingSource bds_MonHocDK;
+        private TNDataSetTableAdapters.SP_DSMHDKTableAdapter tbMonHocDk;
+        private System.Windows.Forms.BindingSource bdsLopDK;
+        private TNDataSetTableAdapters.DSLOPDKTableAdapter tbLopDk;
+        private System.Windows.Forms.ToolStrip fillToolStrip;
+        private System.Windows.Forms.ToolStripLabel maSVToolStripLabel;
+        private System.Windows.Forms.ToolStripTextBox maSVToolStripTextBox;
+        private System.Windows.Forms.ToolStripLabel maMHToolStripLabel;
+        private System.Windows.Forms.ToolStripTextBox maMHToolStripTextBox;
+        private System.Windows.Forms.ToolStripButton fillToolStripButton;
+        private System.Windows.Forms.ToolStrip fillToolStrip2;
+        private System.Windows.Forms.ToolStripLabel maMHToolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox maMHToolStripTextBox1;
+        private System.Windows.Forms.ToolStripLabel maLopToolStripLabel1;
+        private System.Windows.Forms.ToolStripTextBox maLopToolStripTextBox1;
+        private System.Windows.Forms.ToolStripButton fillToolStripButton2;
+        private TNDataSetTableAdapters.SP_DSLanThiThuGVTableAdapter tbLanThiThu;
+        private System.Windows.Forms.BindingSource bdsLanThiThu;
+        public System.Windows.Forms.ListView summarylistview;
     }
 }

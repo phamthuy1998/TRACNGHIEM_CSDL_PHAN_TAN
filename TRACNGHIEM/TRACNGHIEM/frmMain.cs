@@ -492,13 +492,23 @@ namespace TRACNGHIEM
                 rbGVDK.Visible = false;
                 rbBaoCao.Visible = false;
                 rbTaoTK.Visible = false;
+                rbThiThu.Visible = true;
             }
-            else if (Program.mGroup == "Truong" || Program.mGroup == "Giangvien")
+            else if (Program.mGroup == "Coso")
             {
                 rbKhoa.Visible = rbLop.Visible = rbMon.Visible = true;
                 rbBaoCao.Visible = true;
                 rbGVDK.Visible = true;
                 rbTaoTK.Visible = true;
+                rbThiThu.Visible = true;
+            }
+            else
+            {
+                rbKhoa.Visible = rbLop.Visible = rbMon.Visible = true;
+                rbBaoCao.Visible = true;
+                rbGVDK.Visible = true;
+                rbTaoTK.Visible = true;
+                rbThiThu.Visible = false;
             }
         }
 

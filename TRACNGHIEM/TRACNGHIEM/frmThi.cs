@@ -14,8 +14,12 @@ namespace TRACNGHIEM
     {
         private int dem = 0;
         public static Boolean checkThi = false;
+        private Boolean isSinhVien = false;
         private int thoigianThi = 0;
         private int soCauThi = 0;
+        public static CauHoiItem[] listCauHoi;
+        public static ListViewItem baiThi;
+        private float diem = -1;
 
         public frmThi()
         {
@@ -51,66 +55,155 @@ namespace TRACNGHIEM
         {
 
             String sql = "";
-            if (Program.mGroup.Equals("Sinhvien"))
+            if (isSinhVien == true)
             {
                 sql = "exec SP_BAITHI '"
                     + edtMaLop.Text + "','"
                     + Program.mSV + "','"
                     + cbbTenMon.SelectedValue.ToString() + "', "
-                    + cbbLanThi.SelectedItem.ToString();
+                    + cbbLanThi.SelectedValue.ToString().Trim();
             }
             else
             {
-                sql = "exec SP_BAITHI '"
-                     + edtMaLop.Text + "','"
+                sql = "exec SP_ThiThu '"
+                     + cbbTenLop.SelectedValue.ToString() + "','"
                     + cbbTenMon.SelectedValue.ToString() + "', "
-                    + cbbLanThi.SelectedItem.ToString();
+                    + cbbLanThi.SelectedValue.ToString().Trim();
             }
-
             DataTable dt = Program.ExecSqlDataTable(sql);
-            bdsBaiThi.DataSource = dt;
-
-            CauHoiItem[] listCauHoi = new CauHoiItem[soCauThi];
-            for (int i = 0; i < listCauHoi.Length; i++)
+            if (dt == null)
             {
-               
-                listCauHoi[i] = new CauHoiItem();
-                listCauHoi[i].Width = scrollCauHoi.Width;
+                MessageBox.Show("Không thể lấy được đề thi ", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
+            bdsBaiThi.DataSource = dt;
+            cbbTenLop.Enabled = cbbTenMon.Enabled = cbbLanThi.Enabled = false;
+            listCauHoi = new CauHoiItem[soCauThi];
 
-                listCauHoi[i].CauSo = i + 1;
-                listCauHoi[i].CauHoi = ((DataRowView)bdsBaiThi[i])["noidung"].ToString();
-                listCauHoi[i].CauA = ((DataRowView)bdsBaiThi[i])["a"].ToString();
-                listCauHoi[i].CauB = ((DataRowView)bdsBaiThi[i])["b"].ToString();
-                listCauHoi[i].CauC = ((DataRowView)bdsBaiThi[i])["c"].ToString();
-                listCauHoi[i].CauD = ((DataRowView)bdsBaiThi[i])["d"].ToString();
-                listCauHoi[i].CauDapAn = ((DataRowView)bdsBaiThi[i])["dap_an"].ToString();
-                if (scrollCauHoi.Controls.Count < 0)
+            if (isSinhVien == true)
+            {
+                for (int i = 0; i < listCauHoi.Length; i++)
                 {
-                    scrollCauHoi.Controls.Clear();
+                    listCauHoi[i] = new CauHoiItem();
+                    listCauHoi[i].Width = scrollCauHoi.Width;
+
+                    listCauHoi[i].CauSo = i + 1;
+                    listCauHoi[i].IDBaiThi = (int)((DataRowView)bdsBaiThi[i])["idCauHoi"];
+                    Console.WriteLine("id cau hoi: " + listCauHoi[i].IDBaiThi);
+                    listCauHoi[i].IDDe = (int)((DataRowView)bdsBaiThi[i])["cauhoi"];
+                    listCauHoi[i].NDCauHoi = ((DataRowView)bdsBaiThi[i])["noidung"].ToString();
+                    listCauHoi[i].CauA = ((DataRowView)bdsBaiThi[i])["a"].ToString();
+                    listCauHoi[i].CauB = ((DataRowView)bdsBaiThi[i])["b"].ToString();
+                    listCauHoi[i].CauC = ((DataRowView)bdsBaiThi[i])["c"].ToString();
+                    listCauHoi[i].CauD = ((DataRowView)bdsBaiThi[i])["d"].ToString();
+                    listCauHoi[i].CauDapAn = ((DataRowView)bdsBaiThi[i])["dap_an"].ToString();
+                    listCauHoi[i].MaBangDiem = (int)((DataRowView)bdsBaiThi[i])["ma_BD"];
+                    listCauHoi[i].CauDaChon = "";
+
+                    String[] arr = new string[2];
+                    arr[0] = (i + 1).ToString();
+                    arr[1] = listCauHoi[i].CauDaChon;
+
+                    baiThi = new ListViewItem(arr);
+                    Console.WriteLine("cau: " + (i + 1) + ":" + listCauHoi[i].CauDapAn);
+                    this.summarylistview.Items.Add(baiThi);
+
+
+                    if (scrollCauHoi.Controls.Count < 0)
+                    {
+                        scrollCauHoi.Controls.Clear();
+                    }
+                    else
+                        scrollCauHoi.Controls.Add(listCauHoi[i]);
                 }
-                else
-                    scrollCauHoi.Controls.Add(listCauHoi[i]);
+            }
+            else
+            {
+                for (int i = 0; i < listCauHoi.Length; i++)
+                {
+                    listCauHoi[i] = new CauHoiItem();
+                    listCauHoi[i].Width = scrollCauHoi.Width;
+
+                    listCauHoi[i].CauSo = i + 1;
+                    listCauHoi[i].NDCauHoi = ((DataRowView)bdsBaiThi[i])["NOIDUNG"].ToString();
+                    listCauHoi[i].CauA = ((DataRowView)bdsBaiThi[i])["A"].ToString();
+                    listCauHoi[i].CauB = ((DataRowView)bdsBaiThi[i])["B"].ToString();
+                    listCauHoi[i].CauC = ((DataRowView)bdsBaiThi[i])["C"].ToString();
+                    listCauHoi[i].CauD = ((DataRowView)bdsBaiThi[i])["D"].ToString();
+                    listCauHoi[i].CauDapAn = ((DataRowView)bdsBaiThi[i])["DAP_AN"].ToString();
+                    listCauHoi[i].CauDaChon = "";
+
+                    String[] arr = new string[2];
+                    arr[0] = (i + 1).ToString();
+                    arr[1] = listCauHoi[i].CauDaChon;
+
+                    baiThi = new ListViewItem(arr);
+                    Console.WriteLine("cau: " + (i + 1) + ":" + listCauHoi[i].CauDapAn);
+                    this.summarylistview.Items.Add(baiThi);
+
+
+                    if (scrollCauHoi.Controls.Count < 0)
+                    {
+                        scrollCauHoi.Controls.Clear();
+                    }
+                    else
+                        scrollCauHoi.Controls.Add(listCauHoi[i]);
+                }
             }
         }
 
         private Boolean loadThongTinThi()
         {
-
+            pnBatdau.Visible = false;
             String sql = "";
             if (Program.mGroup.Equals("Sinhvien"))
             {
-                sql = "exec sp_thongtinlanthi '"
-                    + edtMaLop.Text + "','"
+                if (edtMaLop.Text.Trim().Equals(""))
+                {
+                    MessageBox.Show("Mã lớp sinh viên rỗng ", "Thông báo", MessageBoxButtons.OK);
+                    return false;
+                }
+                if (cbbTenMon.SelectedValue.ToString().Trim().Equals(""))
+                {
+                    MessageBox.Show("Môn học sinh viên rỗng ", "Thông báo", MessageBoxButtons.OK);
+                    return false;
+                }
+                if (cbbLanThi.SelectedValue.ToString().Trim().Equals(""))
+                {
+                    MessageBox.Show("Lần thi sinh viên rỗng ", "Thông báo", MessageBoxButtons.OK);
+                    return false;
+                }
+
+                Console.WriteLine("lan thi nè: " + cbbLanThi.SelectedValue.ToString().Trim());
+                sql = "exec sp_thongtinlanthi N'"
+                    + edtMaLop.Text + "', N'"
                     + cbbTenMon.SelectedValue.ToString() + "', "
-                    + cbbLanThi.SelectedItem.ToString();
+                    + cbbLanThi.SelectedValue.ToString().Trim();
             }
             else
             {
-                sql = "exec sp_thongtinlanthi '"
-                    + cbbTenLop.SelectedValue.ToString().Trim() + "','"
+                if (cbbTenLop.SelectedValue.ToString().Trim().Equals(""))
+                {
+                    MessageBox.Show("Mã lớp thi thử rỗng ", "Thông báo", MessageBoxButtons.OK);
+                    return false;
+                }
+                if (cbbTenMon.SelectedValue.ToString().Trim().Equals(""))
+                {
+                    MessageBox.Show("Môn học thi thử rỗng ", "Thông báo", MessageBoxButtons.OK);
+                    return false;
+                }
+                if (cbbLanThi.SelectedValue.ToString().Trim().Equals(""))
+                {
+                    MessageBox.Show("Lần thi thi thử rỗng ", "Thông báo", MessageBoxButtons.OK);
+                    return false;
+                }
+
+                sql = "exec sp_thongtinlanthi N'"
+                    + cbbTenLop.SelectedValue.ToString().Trim() + "', N'"
                     + cbbTenMon.SelectedValue.ToString() + "', "
-                    + cbbLanThi.SelectedItem.ToString();
+                    + cbbLanThi.SelectedValue.ToString();
             }
+
 
             try
             {
@@ -138,6 +231,7 @@ namespace TRACNGHIEM
                     Program.myReader.Close();
                     Program.conn.Close();
                     pnBatdau.Visible = true;
+                    btnBatDau.Visible = true;
                     return true;
                 }
 
@@ -152,55 +246,79 @@ namespace TRACNGHIEM
 
         private void frmThi_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'tNDataSet.DSLOPDK' table. You can move, or remove it, as needed.
+            pnBatdau.Visible = false;
+            if (Program.mGroup.Equals("Sinhvien"))
+            {
+                isSinhVien = true;
+                cbbTenLop.Visible = false;
+            }
+            else
+            {
+                isSinhVien = false;
+                cbbTenLop.Visible = true;
+            }
+
             this.ControlBox = false;
             tNDataSet.EnforceConstraints = false;
             // TODO: This line of code loads data into the 'tNDataSet.DSMONHOC' table. You can move, or remove it, as needed.
-            this.tbDSMonHocADT.Connection.ConnectionString = Program.connstr;
-            this.tbDSMonHocADT.Fill(this.tNDataSet.DSMONHOC);
 
-            if (bdsDSMonHoc.Count < 0)
+            this.tbLopDk.Connection.ConnectionString = Program.connstr;
+            this.tbLopDk.Fill(this.tNDataSet.DSLOPDK);
+
+
+            if (bdsLopDK.Count < 0)
             {
-                MessageBox.Show("Danh sách môn học rỗng ", "Thông báo", MessageBoxButtons.OK);
-
+                MessageBox.Show("Danh sách lớp đăng kí rỗng ", "Thông báo", MessageBoxButtons.OK);
+                return;
             }
             else
             {
-                cbbTenMon.SelectedIndex = 0;
-                edtMaMon.Text = cbbTenMon.SelectedValue.ToString().Trim();
+                if (isSinhVien == true)
+                    loadThongTinSInhVien();
+
+                cbbTenLop.SelectedIndex = 0;
+                this.tbMonHocDk.Connection.ConnectionString = Program.connstr;
+                if (isSinhVien)
+                    this.tbMonHocDk.Fill(this.tNDataSet.SP_DSMHDK, edtMaLop.Text.Trim());
+                else
+                    this.tbMonHocDk.Fill(this.tNDataSet.SP_DSMHDK, cbbTenLop.SelectedValue.ToString().Trim());
+                if (bds_MonHocDK.Count > 0)
+                {
+                    cbbTenMon.SelectedIndex = 0;
+                    edtMaMon.Text = cbbTenMon.SelectedValue.ToString().Trim();
+
+                    this.tbLanThiThu.Connection.ConnectionString = Program.connstr;
+                    this.tbLanThiThu.Fill(this.tNDataSet.SP_DSLanThiThuGV, cbbTenMon.SelectedValue.ToString().Trim(), cbbTenLop.SelectedValue.ToString().Trim());
+                    if (bdsLanThiThu.Count <= 0)
+                    {
+                        MessageBox.Show("Môn học " + cbbTenMon.SelectedValue.ToString() + " không có lần thi", "Thông báo", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        cbbLanThi.SelectedIndex = 0;
+                        loadThongTinThi();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có môn học đăng ký", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+
             }
 
-            this.tbLopADT.Connection.ConnectionString = Program.connstr;
-            this.tbLopADT.Fill(this.tNDataSet.DSLOP);
 
-            if (bdsDSLop.Count < 0)
+            if (isSinhVien == true)
             {
-                MessageBox.Show("Danh sách Lớp học rỗng ", "Thông báo", MessageBoxButtons.OK);
-
-            }
-
-
-            cbbTenLop.SelectedIndex = 0;
-
-            cbbLanThi.Items.Add(1);
-            cbbLanThi.Items.Add(2);
-            cbbLanThi.SelectedIndex = 0;
-
-            if (Program.mGroup.Equals("Sinhvien"))
-            {
-                loadThongTinSInhVien();
-                cbbTenLop.Visible = false;
                 edtMaLop.Visible = true;
                 lbHoTen.Visible = edtHoTenSV.Visible = lbTenLop.Visible = edtTenLop.Visible = true;
-                loadThongTinThi();
-
             }
             else
             {
-                cbbTenLop.Visible = true;
                 edtMaLop.Visible = false;
                 lbHoTen.Visible = edtHoTenSV.Visible = lbTenLop.Visible = edtTenLop.Visible = false;
-                loadThongTinThi();
-
             }
 
             btnNopBai.Visible = false;
@@ -236,9 +354,31 @@ namespace TRACNGHIEM
         {
             try
             {
+                if (dem == 0)
+                    return;
                 edtMaMon.Text = cbbTenMon.SelectedValue.ToString().Trim();
-                if (dem > 0)
-                    loadThongTinThi();
+                if (bds_MonHocDK.Count > 0)
+                {
+                    edtMaMon.Text = cbbTenMon.SelectedValue.ToString().Trim();
+
+                    this.tbLanThiThu.Connection.ConnectionString = Program.connstr;
+                    this.tbLanThiThu.Fill(this.tNDataSet.SP_DSLanThiThuGV, cbbTenMon.SelectedValue.ToString().Trim(), cbbTenLop.SelectedValue.ToString().Trim());
+                    if (bdsLanThiThu.Count <= 0)
+                    {
+                        MessageBox.Show("Môn học " + cbbTenMon.SelectedValue.ToString() + " không có lần thi", "Thông báo", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        cbbLanThi.SelectedIndex = 0;
+                        loadThongTinThi();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có môn học đăng ký", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
             }
             catch (Exception ex) { }
         }
@@ -253,12 +393,54 @@ namespace TRACNGHIEM
             catch (Exception ex) { }
         }
 
-        private void cbbTenLop_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbbLanThiThu_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
                 if (dem > 0)
                     loadThongTinThi();
+            }
+            catch (Exception ex) { }
+        }
+
+        private void cbbTenLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dem == 0)
+                    return;
+                if (isSinhVien == true)
+                    loadThongTinSInhVien();
+
+                cbbTenLop.SelectedIndex = 0;
+                this.tbMonHocDk.Connection.ConnectionString = Program.connstr;
+                if (isSinhVien)
+                    this.tbMonHocDk.Fill(this.tNDataSet.SP_DSMHDK, edtMaLop.Text.Trim());
+                else
+                    this.tbMonHocDk.Fill(this.tNDataSet.SP_DSMHDK, cbbTenLop.SelectedValue.ToString().Trim());
+                if (bds_MonHocDK.Count > 0)
+                {
+                    cbbTenMon.SelectedIndex = 0;
+                    edtMaMon.Text = cbbTenMon.SelectedValue.ToString().Trim();
+
+                    this.tbLanThiThu.Connection.ConnectionString = Program.connstr;
+                    this.tbLanThiThu.Fill(this.tNDataSet.SP_DSLanThiThuGV, cbbTenMon.SelectedValue.ToString().Trim(), cbbTenLop.SelectedValue.ToString().Trim());
+                    if (bdsLanThiThu.Count <= 0)
+                    {
+                        MessageBox.Show("Môn học " + cbbTenMon.SelectedValue.ToString() + " không có lần thi", "Thông báo", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        cbbLanThi.SelectedIndex = 0;
+                        loadThongTinThi();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có môn học đăng ký", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
             }
             catch (Exception ex) { }
         }
@@ -272,7 +454,7 @@ namespace TRACNGHIEM
                 String ktlan = "exec sp_ktlanthi '"
                     + Program.mSV + "', '"
                     + cbbTenMon.SelectedValue.ToString() + "', "
-                    + cbbLanThi.SelectedItem.ToString() + "";
+                    + cbbLanThi.SelectedValue.ToString().Trim();
 
                 int kq = Program.ExecSqlNonQuery(ktlan);
                 if (kq == 1)
@@ -281,7 +463,9 @@ namespace TRACNGHIEM
                 }
             }
             checkThi = true;
+
             lbTG.Visible = lbTime.Visible = true;
+            btnBatDau.Visible = false;
             btnNopBai.Visible = true;
             // load câu hỏi thi
             timer1.Start();
@@ -299,17 +483,93 @@ namespace TRACNGHIEM
 
                 if (Program.mGroup.Equals("Sinhvien"))
                     insertdiemsv();
-                btnNopBai.Enabled = false;
-            }
 
+                btnNopBai.Visible = false;
+                btnBatDau.Visible = btnBatDau.Enabled = true;
+                summarylistview.Items.Clear();
+                scrollCauHoi.Controls.Clear();
+                cbbTenLop.Enabled = cbbLanThi.Enabled = cbbTenMon.Enabled = true;
+            }
         }
 
         private void insertdiemsv()
         {
+            String sql = "UPDATE dbo.BANGDIEM SET DIEM = " + diem +
+                "WHERE MASV = '" + Program.mSV
+                + "' AND MAMH = '" + cbbTenMon.SelectedValue.ToString().Trim()
+                + "' AND LAN = " + cbbLanThi.SelectedValue.ToString().Trim();
+
+            try
+            {
+                int kq = Program.ExecSqlNonQuery(sql);
+                ghiDapAn();
+                //if (kq == 1)
+                //{
+                //    ghiDapAn();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Lỗi ghi điểm thi", "", MessageBoxButtons.OK);
+                //    return;
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi ghi điểm thi " + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
+        }
+
+        private void ghiDapAn()
+        {
+            string sqlUpdate = "";
+            for (int i = 0; i < listCauHoi.Length; i++)
+            {
+                sqlUpdate += " UPDATE dbo.BAITHI SET DaChon = '"
+                   + listCauHoi[i].CauDaChon
+                   + "' WHERE CauHoi = " + listCauHoi[i].IDBaiThi + "  ";
+                Console.WriteLine("id cau hoi ghi:  " + listCauHoi[i].IDBaiThi + " da chon:" + listCauHoi[i].CauDaChon);
+            }
+
+            Console.WriteLine("câu lệnh: " + sqlUpdate);
+
+            try
+            {
+                int kq = Program.ExecSqlNonQuery(sqlUpdate);
+                //if (kq != 0)
+                //{
+                //    MessageBox.Show("Ghi kết quả thành công ", "Thông báo", MessageBoxButtons.OK);
+                //    return;
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Lỗi ghi đáp án thi", "", MessageBoxButtons.OK);
+                //    return;
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi ghi đáp án thi " + ex.Message, "", MessageBoxButtons.OK);
+                return;
+            }
         }
 
         private void tinhdiem()
         {
+            int caudung = 0;
+            for (int i = 0; i < listCauHoi.Length; i++)
+            {
+                if (listCauHoi[i].CauDaChon.Trim().CompareTo(listCauHoi[i].CauDapAn.Trim()) == 0)
+                    caudung++;
+
+            }
+
+            if (caudung == 0) diem = 0;
+
+            else diem = (float)Math.Round((double)(10 * caudung) / soCauThi, 2);
+            MessageBox.Show("Số câu đúng: " + caudung + "/" + soCauThi + "\nĐiểm: " + diem, "Kết Quả", MessageBoxButtons.OK);
+            btnNopBai.Visible = false;
+            btnBatDau.Visible = true;
         }
 
         private int s = 1;
@@ -328,6 +588,7 @@ namespace TRACNGHIEM
             if (thoigianThi == 0 && s == 0)
             {
                 timer1.Stop();
+                cbbTenLop.Enabled = cbbTenMon.Enabled = cbbLanThi.Enabled = true;
                 checkThi = false;
                 MessageBox.Show("Đã hết thời gian thi!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 tinhdiem();
@@ -336,8 +597,93 @@ namespace TRACNGHIEM
                     insertdiemsv();
                 }
                 btnNopBai.Enabled = false;
+            }
+
+        }
+
+        public void capNhapDaChon(int cauSo, String daChon)
+        {
+            String[] arr = new string[2];
+            arr[0] = (cauSo).ToString();
+            arr[1] = daChon;
+            ListViewItem baiThi = new ListViewItem(arr);
+            summarylistview.Items[cauSo - 1] = baiThi;
+        }
+
+        private void summarylistview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void fillToolStripButton1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (bdsLopDK.Count < 0 && isSinhVien == false)
+                {
+                    MessageBox.Show("Danh sách lớp đăng kí rỗng ", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    if (isSinhVien)
+                        this.tbMonHocDk.Fill(this.tNDataSet.SP_DSMHDK, edtMaLop.Text.Trim());
+                    else
+                        this.tbMonHocDk.Fill(this.tNDataSet.SP_DSMHDK, cbbTenLop.SelectedValue.ToString().Trim());
+
+                    if (bds_MonHocDK.Count > 0)
+                    {
+                        loadThongTinThi();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không có môn học đăng ký", "Thông báo", MessageBoxButtons.OK);
+                        return;
+                    }
+                }
+            }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void fillToolStripButton2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (bds_MonHocDK.Count > 0)
+                {
+                    cbbTenMon.SelectedIndex = 0;
+                    edtMaMon.Text = cbbTenMon.SelectedValue.ToString().Trim();
+
+                    this.tbLanThiThu.Connection.ConnectionString = Program.connstr;
+                    this.tbLanThiThu.Fill(this.tNDataSet.SP_DSLanThiThuGV, cbbTenMon.SelectedValue.ToString().Trim(), cbbTenLop.SelectedValue.ToString().Trim());
+                    if (bdsLanThiThu.Count <= 0)
+                    {
+                        MessageBox.Show("Môn học " + cbbTenMon.SelectedValue.ToString() + " không có lần thi", "Thông báo", MessageBoxButtons.OK);
+                        return;
+                    }
+                    else
+                    {
+                        cbbLanThi.SelectedIndex = 0;
+                        loadThongTinThi();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không có môn học đăng ký", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
 
             }
+            catch (System.Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
+            }
         }
+
     }
 }

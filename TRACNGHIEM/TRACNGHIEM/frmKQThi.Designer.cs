@@ -500,6 +500,7 @@
             this.btnReFresh.Caption = "Tải lại";
             this.btnReFresh.Id = 2;
             this.btnReFresh.Name = "btnReFresh";
+            this.btnReFresh.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnReFresh_ItemClick);
             // 
             // frmKQThi
             // 

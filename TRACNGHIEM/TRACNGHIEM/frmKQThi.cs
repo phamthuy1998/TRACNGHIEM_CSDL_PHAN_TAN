@@ -160,6 +160,50 @@ namespace TRACNGHIEM
 
         }
 
-        
+        private void btnReFresh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            String sql = "SELECT LOP.MALOP, LOP.TENLOP FROM SINHVIEN SV inner join LOP ON(SV.MASV='" + Program.mSV + "' AND SV.MALOP = lOP.MALOP)";
+            Program.myReader = Program.ExecSqlDataReader(sql);
+            if (Program.myReader == null) return;
+            Program.myReader.Read();
+            String mLop = Program.myReader.GetString(0);
+            tenLop = Program.myReader.GetString(1);
+            Program.myReader.Close();
+
+            try
+            {
+
+                this.sP_MonHocSVTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.sP_MonHocSVTableAdapter.Fill(this.tNDataSet.SP_MonHocSV, Program.mSV);
+                if (sPMonHocSV.Count > 0)
+                {
+                    cbbMHSV.SelectedIndex = 0;
+                    this.sP_LanThiSVTableAdapter.Connection.ConnectionString = Program.connstr;
+                    this.sP_LanThiSVTableAdapter.Fill(this.tNDataSet.SP_LanThiSV, Program.mSV, cbbMHSV.SelectedValue.ToString());
+                    if (sPLanThiSV.Count > 0)
+                    {
+                        cbbLThi.SelectedIndex = 0;
+                        String sqlNgayThi = "SELECT BANGDIEM.NGAYTHI FROM BANGDIEM WHERE BANGDIEM.MASV = '" + Program.mSV + "' AND BANGDIEM.MAMH = '" + cbbMHSV.SelectedValue.ToString() + "'  AND BANGDIEM.LAN = '" + cbbLThi.SelectedValue.ToString() + "' ";
+                        Program.myReader = Program.ExecSqlDataReader(sqlNgayThi);
+                        if (Program.myReader == null) return;
+                        Program.myReader.Read();
+                        String ngay = Program.myReader.GetDateTime(0).ToString();
+                        String[] arrNgay = ngay.Split(' ');
+                        ngayThi = arrNgay[0];
+                        Program.myReader.Close();
+                        Program.conn.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Sinh viên không có môn học đăng ký", "THÔNG BÁO", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("abc " + ex.Message);
+            };
+
+        }
     }
 }

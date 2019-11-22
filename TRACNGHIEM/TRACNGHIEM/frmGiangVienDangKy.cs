@@ -64,7 +64,7 @@ namespace TRACNGHIEM
 
                 btnThemGVDK.Enabled = btnXoaGVDK.Enabled = btnSuaGVDK.Enabled = btnTaiLaiGVDK.Enabled = true;
                 gcDetail.Enabled = false;
-                checkThem = checkSua = true;
+                checkThem = checkSua = false;
                 checkSave = true;
                 gcGVDK.Enabled = true;
             }
@@ -117,6 +117,10 @@ namespace TRACNGHIEM
 
                 String mamh = cbbTenMon.SelectedValue.ToString();
                 String ktsocau = "select count (cauhoi) from BODE where MAMH = '" + mamh + "'";
+                if (Program.myReader.IsClosed == false)
+                {
+                    Program.myReader.Close();
+                }
                 Program.myReader = Program.ExecSqlDataReader(ktsocau);
                 if (Program.myReader == null)
                 {
@@ -131,7 +135,7 @@ namespace TRACNGHIEM
                 }
                 else
                 {
-
+                    Program.myReader.Close();
                     String sql = "EXEC SP_KT_GVDK N'" + edtMaMon.Text.Trim()
                         + "', N'" + edtMaLop.Text.Trim()
                         + "',  " + cbbLan.SelectedItem.ToString();
@@ -188,6 +192,10 @@ namespace TRACNGHIEM
                 }
                 String mamh = cbbTenMon.SelectedValue.ToString();
                 String ktsocau = "select count (cauhoi) from BODE where MAMH = '" + mamh + "'";
+                if (Program.myReader.IsClosed == false)
+                {
+                    Program.myReader.Close();
+                }
                 Program.myReader = Program.ExecSqlDataReader(ktsocau);
                 if (Program.myReader == null)
                 {
@@ -199,6 +207,7 @@ namespace TRACNGHIEM
                     MessageBox.Show("Không đủ câu hỏi trong bộ đề, chỉ còn " 
                         + Program.myReader.GetInt32(0) + " câu của môn học này");
                     edtSoCau.Focus();
+                    Program.myReader.Close();
                     return;
                 }
                 else
@@ -297,7 +306,7 @@ namespace TRACNGHIEM
             btnThemGVDK.Enabled = btnXoaGVDK.Enabled = btnSuaGVDK.Enabled = btnTaiLaiGVDK.Enabled = true;
             gcDetail.Enabled = false;
             checkSave = true;
-            checkThem = checkSua = true;
+            checkThem = checkSua = false;
             gcGVDK.Enabled = true;
         }
 

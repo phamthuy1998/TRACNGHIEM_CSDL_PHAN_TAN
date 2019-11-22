@@ -43,7 +43,7 @@ namespace TRACNGHIEM
             sqlcmd.CommandText = "sp_TaoTaiKhoan";
             sqlcmd.Parameters.Add(new SqlParameter("@LGNAME", edtTenDN.Text.Trim()));
             sqlcmd.Parameters.Add(new SqlParameter("@PASS", edtPass.Text.Trim()));
-            sqlcmd.Parameters.Add(new SqlParameter("@USERNAME", cbbMaGV.SelectedValue.ToString()));
+            sqlcmd.Parameters.Add(new SqlParameter("@USERNAME", cbbMaGV.SelectedValue.ToString().Trim()));
             sqlcmd.Parameters.Add(new SqlParameter("@ROLE", cbbLoaiTK.SelectedItem.ToString().Trim()));
             SqlParameter sqlParameter = new SqlParameter("@return", System.Data.SqlDbType.Int, sizeof(int));
             sqlParameter.Direction = System.Data.ParameterDirection.ReturnValue;
@@ -109,6 +109,8 @@ namespace TRACNGHIEM
                 MessageBox.Show("Tạo tài khoản thất bại", "Lỗi", MessageBoxButtons.OK);
                 return;
             }
+            if (Program.conn != null && Program.conn.State == ConnectionState.Open)
+                Program.conn.Close();
         }
 
         private void btnThoat_Click(object sender, EventArgs e)

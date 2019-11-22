@@ -120,10 +120,6 @@ namespace TRACNGHIEM
             cbbHocVi.Items.Add("Nghiên cứu sinh");
             cbbHocVi.Items.Add("Tiến sĩ");
             cbbHocVi.Items.Add("Tiến sĩ khoa học");
-            cbbHocVi.Items.Add("Thạc sĩ");
-            cbbHocVi.Items.Add("Nghiên cứu sinh");
-            cbbHocVi.Items.Add("Tiến sĩ");
-            cbbHocVi.Items.Add("Tiến sĩ khoa học");
 
 
             dem++;
@@ -498,7 +494,7 @@ namespace TRACNGHIEM
                 cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
 
                 edtMaKHGV.Text = txtMaKH.Text;
-
+                cbbHocVi.SelectedIndex = 0;
                 btnThem.Enabled = btnXoa.Enabled = btnTaiLai.Enabled = btnSuaK.Enabled = false;
                 txtMaKH.Focus();
                 btnGhi.Enabled = false;

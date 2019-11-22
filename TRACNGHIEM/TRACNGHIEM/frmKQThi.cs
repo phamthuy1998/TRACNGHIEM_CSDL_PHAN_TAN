@@ -43,12 +43,12 @@ namespace TRACNGHIEM
 
                 this.sP_MonHocSVTableAdapter.Connection.ConnectionString = Program.connstr;
                 this.sP_MonHocSVTableAdapter.Fill(this.tNDataSet.SP_MonHocSV, Program.mSV);
-                if (bds_SPMonHocSV.Count > 0)
+                if (sPMonHocSV.Count > 0)
                 {
                     cbbMHSV.SelectedIndex = 0;
                     this.sP_LanThiSVTableAdapter.Connection.ConnectionString = Program.connstr;
                     this.sP_LanThiSVTableAdapter.Fill(this.tNDataSet.SP_LanThiSV, Program.mSV, cbbMHSV.SelectedValue.ToString());
-                    if (bds_SPLanThiSV.Count > 0)
+                    if (sPLanThiSV.Count > 0)
                     {
                         cbbLThi.SelectedIndex = 0;
                         String sqlNgayThi = "SELECT BANGDIEM.NGAYTHI FROM BANGDIEM WHERE BANGDIEM.MASV = '" + Program.mSV + "' AND BANGDIEM.MAMH = '" + cbbMHSV.SelectedValue.ToString() + "'  AND BANGDIEM.LAN = '" + cbbLThi.SelectedValue.ToString() + "' ";
@@ -111,10 +111,8 @@ namespace TRACNGHIEM
                     String ngay = Program.myReader.GetDateTime(0).ToString();
                     String[] arrNgay = ngay.Split(' ');
                     ngayThi = arrNgay[0];
-
-
-
-
+                    Program.myReader.Close();
+                    Program.conn.Close();
                 }
                 catch (Exception ex)
                 {
@@ -125,6 +123,11 @@ namespace TRACNGHIEM
 
         private void button1_Click(object sender, EventArgs e)
         {
+            if (sPMonHocSV.Count <= 0 || sPLanThiSV.Count <= 0)
+            {
+                MessageBox.Show("Sinh viên chưa có kết quả thi", "THÔNG BÁO", MessageBoxButtons.OK);
+                return;
+            }
             this.sP_INBAITHITableAdapter.Connection.ConnectionString = Program.connstr;
             this.sP_INBAITHITableAdapter.Fill(this.tNDataSet.SP_INBAITHI, Program.mSV, cbbMHSV.SelectedValue.ToString(), short.Parse(cbbLThi.SelectedValue.ToString()));
         }
@@ -146,5 +149,17 @@ namespace TRACNGHIEM
 
             Close();
         }
+
+        private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        private void barButtonItem1_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+
+        }
+
+        
     }
 }

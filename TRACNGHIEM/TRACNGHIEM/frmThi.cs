@@ -20,6 +20,7 @@ namespace TRACNGHIEM
         public static CauHoiItem[] listCauHoi;
         public static ListViewItem baiThi;
         private float diem = -1;
+        private DateTime ngayThi;
 
         public frmThi()
         {
@@ -79,7 +80,7 @@ namespace TRACNGHIEM
             bdsBaiThi.DataSource = dt;
             cbbTenLop.Enabled = cbbTenMon.Enabled = cbbLanThi.Enabled = false;
             listCauHoi = new CauHoiItem[soCauThi];
-
+            checkThi = true;
             if (isSinhVien == true)
             {
                 for (int i = 0; i < listCauHoi.Length; i++)
@@ -174,7 +175,6 @@ namespace TRACNGHIEM
                     return false;
                 }
 
-                Console.WriteLine("lan thi nè: " + cbbLanThi.SelectedValue.ToString().Trim());
                 sql = "exec sp_thongtinlanthi N'"
                     + edtMaLop.Text + "', N'"
                     + cbbTenMon.SelectedValue.ToString() + "', "
@@ -227,7 +227,7 @@ namespace TRACNGHIEM
                     thoigianThi = Program.myReader.GetInt16(2);
                     lbTime.Text = thoigianThi + ": 00";
                     txtThoiGian.Text = thoigianThi.ToString();
-                    edtNgayThi.DateTime = Program.myReader.GetDateTime(3);
+                    edtNgayThi.DateTime = ngayThi = Program.myReader.GetDateTime(3);
                     Program.myReader.Close();
                     Program.conn.Close();
                     pnBatdau.Visible = true;
@@ -462,8 +462,16 @@ namespace TRACNGHIEM
                     return;
                 }
             }
-            checkThi = true;
-
+            if (isSinhVien == true)
+            {
+                DateTime today = DateTime.Today;
+                if (today.CompareTo(ngayThi.Date) != 0)
+                {
+                    Console.WriteLine("Ngay thi : " + ngayThi + " ngay hien tai: " + today);
+                    MessageBox.Show("Chưa đến ngày thi", "Thông báo", MessageBoxButtons.OK);
+                    return;
+                }
+            }
             lbTG.Visible = lbTime.Visible = true;
             btnBatDau.Visible = false;
             btnNopBai.Visible = true;

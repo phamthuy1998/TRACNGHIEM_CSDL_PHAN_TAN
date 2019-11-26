@@ -158,33 +158,26 @@ namespace TRACNGHIEM
 
         private void frmDangKy_Load(object sender, EventArgs e)
         {
-            Program.connstr1= Program.connstr;
             this.ControlBox = false;
+            Program.connstr1 = Program.connstr;
             TNDataSet.EnforceConstraints = false;
 
-            this.tb_SP_GVChuaCoTk.Connection.ConnectionString = Program.connstr1;
-            this.tb_SP_GVChuaCoTk.Fill(this.TNDataSet.SP_MA_GV_CHUA_TAO_TK);
-
-            // Lấy kết danh sách phân mảnh đổ vào combobox
             try
             {
-                if (Program.bds_dspm.DataSource == null)
-                {
-                    MessageBox.Show("Lỗi load cơ sở ", "Lỗi", MessageBoxButtons.OK);
-                    return;
-                }
-                else
-                {
-                    cbbCoSo.DataSource = Program.bds_dspm.DataSource;
-                    cbbCoSo.DisplayMember = "TENCS";
-                    cbbCoSo.ValueMember = "TENSERVER";
-                    cbbCoSo.SelectedIndex = Program.mCoSo;
-                }
+                cbbCoSo.DataSource = Program.bds_dspm.DataSource;
+                cbbCoSo.DisplayMember = "TENCS";
+                cbbCoSo.ValueMember = "TENSERVER";
+                cbbCoSo.SelectedIndex = Program.mCoSo;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Lỗi load cơ sở " + ex.Message, "Lỗi", MessageBoxButtons.OK);
             }
+
+            this.tb_SP_GVChuaCoTk.Connection.ConnectionString = Program.connstr;
+            this.tb_SP_GVChuaCoTk.Fill(this.TNDataSet.SP_MA_GV_CHUA_TAO_TK);
+
+          
 
             // phân quyền
             if (Program.mGroup == "Coso")
@@ -198,6 +191,7 @@ namespace TRACNGHIEM
                 cbbCoSo.Enabled = true;
                 cbbLoaiTK.Items.Add("Truong");
             }
+
             cbbLoaiTK.SelectedIndex = 0;
             dem++;
         }

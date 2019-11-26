@@ -64,6 +64,8 @@ namespace TRACNGHIEM
                 }
                 else
                 {
+                    Program.myReader.Close();
+                    Program.conn.Close();
                     MessageBox.Show("Sinh viên không có môn học đăng ký", "THÔNG BÁO", MessageBoxButtons.OK);
                 }
             }

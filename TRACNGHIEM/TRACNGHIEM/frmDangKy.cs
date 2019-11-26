@@ -112,6 +112,7 @@ namespace TRACNGHIEM
                     MessageBox.Show("Tạo tài khoản thành công", "Thành công", MessageBoxButtons.OK);
                     edtPass.Text = "";
                     edtTenDN.Text = "";
+                    this.tb_SP_GVChuaCoTk.Connection.ConnectionString = Program.connstr1;
                     this.tb_SP_GVChuaCoTk.Fill(this.TNDataSet.SP_MA_GV_CHUA_TAO_TK);
                     return;
                 }
@@ -157,17 +158,33 @@ namespace TRACNGHIEM
 
         private void frmDangKy_Load(object sender, EventArgs e)
         {
-
+            Program.connstr1= Program.connstr;
             this.ControlBox = false;
             TNDataSet.EnforceConstraints = false;
 
-            this.tb_SP_GVChuaCoTk.Connection.ConnectionString = Program.connstr;
+            this.tb_SP_GVChuaCoTk.Connection.ConnectionString = Program.connstr1;
             this.tb_SP_GVChuaCoTk.Fill(this.TNDataSet.SP_MA_GV_CHUA_TAO_TK);
+
             // Lấy kết danh sách phân mảnh đổ vào combobox
-            cbbCoSo.DataSource = Program.bds_dspm.DataSource;
-            cbbCoSo.DisplayMember = "TENCS";
-            cbbCoSo.ValueMember = "TENSERVER";
-            cbbCoSo.SelectedIndex = Program.mCoSo;
+            try
+            {
+                if (Program.bds_dspm.DataSource == null)
+                {
+                    MessageBox.Show("Lỗi load cơ sở ", "Lỗi", MessageBoxButtons.OK);
+                    return;
+                }
+                else
+                {
+                    cbbCoSo.DataSource = Program.bds_dspm.DataSource;
+                    cbbCoSo.DisplayMember = "TENCS";
+                    cbbCoSo.ValueMember = "TENSERVER";
+                    cbbCoSo.SelectedIndex = Program.mCoSo;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Lỗi load cơ sở " + ex.Message, "Lỗi", MessageBoxButtons.OK);
+            }
 
             // phân quyền
             if (Program.mGroup == "Coso")

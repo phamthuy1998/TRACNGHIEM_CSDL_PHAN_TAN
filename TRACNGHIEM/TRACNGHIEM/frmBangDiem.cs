@@ -86,7 +86,11 @@ namespace TRACNGHIEM
 
         private void btnInDSBD_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            if (dSLOPDK.Count <= 0 || sP_DSMHDK.Count <= 0 || sP_DSLanThiDK.Count <= 0)
+            {
+                MessageBox.Show("Không có thông tin bảng điểm ", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             rpBangDiem rpBD = new rpBangDiem(cbbLop.SelectedValue.ToString(), cbbMH.SelectedValue.ToString(), short.Parse(cbbLThi.SelectedValue.ToString()));
             rpBD.lbLop.Text = cbbLop.Text;
             rpBD.lbMH.Text = cbbMH.Text;
@@ -98,7 +102,7 @@ namespace TRACNGHIEM
 
         private void btnThoatBDiem_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            
+
             this.Close();
         }
 
@@ -128,7 +132,7 @@ namespace TRACNGHIEM
             catch (Exception) { };
         }
 
-       
+
         private void cbbMH_SelectedIndexChanged(object sender, EventArgs e)
         {
             try

@@ -267,7 +267,7 @@ namespace TRACNGHIEM
             this.tbLopDk.Fill(this.tNDataSet.DSLOPDK);
 
 
-            if (bdsLopDK.Count < 0)
+            if (bdsLopDK.Count <= 0)
             {
                 MessageBox.Show("Danh sách lớp đăng kí rỗng ", "Thông báo", MessageBoxButtons.OK);
                 return;
@@ -276,7 +276,6 @@ namespace TRACNGHIEM
             {
                 if (isSinhVien == true)
                     loadThongTinSInhVien();
-
                 cbbTenLop.SelectedIndex = 0;
                 this.tbMonHocDk.Connection.ConnectionString = Program.connstr;
                 if (isSinhVien)

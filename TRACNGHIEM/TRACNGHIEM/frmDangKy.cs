@@ -37,8 +37,35 @@ namespace TRACNGHIEM
                 edtPass.Focus();
                 return;
             }
+            SqlCommand sqlcmd;
+            //neu dăng nhập với quyền co so
+            if (Program.mGroup.Equals("Coso"))
+            {
+                if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
+                sqlcmd = Program.conn.CreateCommand();
+            }
+            else
+            {
+                if (cbbCoSo.SelectedIndex != Program.mCoSo)
+                {
+                    Program.servername1 = cbbCoSo.SelectedValue.ToString();
 
-            SqlCommand sqlcmd = Program.conn.CreateCommand();
+                    if (Program.KetNoiCosoKhac() == 0) return;
+                    else
+                    {
+                        this.tb_SP_GVChuaCoTk.Connection.ConnectionString = Program.connstr1;
+                        this.tb_SP_GVChuaCoTk.Fill(this.TNDataSet.SP_MA_GV_CHUA_TAO_TK);
+                        sqlcmd = Program.conn1.CreateCommand();
+                    }
+                }
+                else
+                {
+                    if (Program.conn.State == ConnectionState.Closed) Program.conn.Open();
+                    sqlcmd = Program.conn.CreateCommand();
+                }
+            }
+
+
             sqlcmd.CommandType = CommandType.StoredProcedure;
             sqlcmd.CommandText = "sp_TaoTaiKhoan";
             sqlcmd.Parameters.Add(new SqlParameter("@LGNAME", edtTenDN.Text.Trim()));
@@ -53,24 +80,12 @@ namespace TRACNGHIEM
             int result = -1;
             try
             {
-                //neu dăng nhập với quyền truong
-                if (cbbCoSo.SelectedIndex == Program.mCoSo)
-                {
-                    if (Program.conn != null && Program.conn.State == ConnectionState.Open)
-                        Program.conn.Close();
-                    Program.conn.Open();
-                }
-                else
-                {
-                    Program.servername1 = cbbCoSo.SelectedValue.ToString();
-                    if (Program.KetNoiCosoKhac() == 0) return;
-                }
-               
                 sqlcmd.ExecuteNonQuery();
                 result = (int)sqlcmd.Parameters["@return"].Value;
             }
             catch (Exception ex)
             {
+                Program.conn.Close();
                 MessageBox.Show("Lỗi tạo tài khoản " + ex.Message, "Lỗi", MessageBoxButtons.OK);
                 return;
             }
@@ -78,12 +93,14 @@ namespace TRACNGHIEM
             {
                 if (result == 1)
                 {
+                    Program.conn.Close();
                     MessageBox.Show("Tên đăng nhập đã tồn tại", "Lỗi", MessageBoxButtons.OK);
                     edtTenDN.Focus();
                     return;
                 }
                 if (result == 2)
                 {
+                    Program.conn.Close();
                     MessageBox.Show("Mã giảng viên đã tồn tại", "Lỗi", MessageBoxButtons.OK);
                     cbbMaGV.Focus();
                     return;
@@ -100,6 +117,7 @@ namespace TRACNGHIEM
                 }
                 else
                 {
+                    Program.conn.Close();
                     MessageBox.Show("Tạo tài khoản thất bại", "Lỗi", MessageBoxButtons.OK);
                     return;
                 }
@@ -109,15 +127,14 @@ namespace TRACNGHIEM
                 MessageBox.Show("Tạo tài khoản thất bại", "Lỗi", MessageBoxButtons.OK);
                 return;
             }
-            if (Program.conn != null && Program.conn.State == ConnectionState.Open)
-                Program.conn.Close();
+
         }
 
         private void btnThoat_Click(object sender, EventArgs e)
         {
             if (checkThem == true)
             {
-                if (MessageBox.Show("Bạn đang sửa giảng viên đăng ký, bạn có muốn ghi thông tin này?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Bạn đang tạo tài khoản, bạn có muốn lưu thông tin này", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     btnDangKy_Click(sender, e);
                     if (checkSave == true)
@@ -172,18 +189,30 @@ namespace TRACNGHIEM
         {
             try
             {
-                if (cbbCoSo.SelectedValue != null && dem != 0)
+                if (cbbCoSo.SelectedValue != null && Program.mGroup.Equals("Truong"))
                 {
-                    Program.servername1 = cbbCoSo.SelectedValue.ToString();
-                    if (Program.KetNoiCosoKhac() == 0) return;
+                    if (cbbCoSo.SelectedIndex != Program.mCoSo)
+                    {
+                        Program.servername1 = cbbCoSo.SelectedValue.ToString();
+                        if (Program.KetNoiCosoKhac() == 0) return;
+                        else
+                        {
+                            this.tb_SP_GVChuaCoTk.Connection.ConnectionString = Program.connstr1;
+                            this.tb_SP_GVChuaCoTk.Fill(this.TNDataSet.SP_MA_GV_CHUA_TAO_TK);
+                        }
+                    }
                     else
                     {
-                        this.tb_SP_GVChuaCoTk.Connection.ConnectionString = Program.connstr1;
+                        this.tb_SP_GVChuaCoTk.Connection.ConnectionString = Program.connstr;
                         this.tb_SP_GVChuaCoTk.Fill(this.TNDataSet.SP_MA_GV_CHUA_TAO_TK);
                     }
                 }
             }
-            catch (Exception) { };
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi chọn cơ sở " + ex.Message, "Lỗi", MessageBoxButtons.OK);
+            };
         }
+
     }
 }

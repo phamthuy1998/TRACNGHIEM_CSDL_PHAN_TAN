@@ -29,7 +29,6 @@ namespace TRACNGHIEM
                 this.sP_DanhSach_DK_ThiTableAdapter.Fill(tnDataSet1.SP_DanhSach_DK_Thi, fromDate, toDate);
             }
 
-
         }
 
     }

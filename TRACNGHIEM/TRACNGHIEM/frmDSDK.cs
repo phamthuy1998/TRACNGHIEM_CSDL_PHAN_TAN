@@ -122,6 +122,11 @@ namespace TRACNGHIEM
 
         private void btnInDSDK_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
+            if (dateFrom.Text.ToString().Trim().Equals("") || dateTo.Text.ToString().Trim().Equals(""))
+            {
+                MessageBox.Show("Bạn phải chọn ngày bắt đầu và ngày kết thúc trước", "Thông báo", MessageBoxButtons.OK);
+                return;
+            }
             var FromDate = dateFrom.DateTime;
             var ToDate = dateTo.DateTime;
             var CoSo = cbbPRCoso.Text;

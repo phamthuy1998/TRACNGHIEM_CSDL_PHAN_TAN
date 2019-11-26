@@ -200,7 +200,7 @@ namespace TRACNGHIEM
         {
             try
             {
-                if (cbbCoSo.SelectedValue != null && Program.mGroup.Equals("Truong"))
+                if (cbbCoSo.SelectedValue != null && Program.mGroup.Equals("Truong")&&dem>0)
                 {
                     if (cbbCoSo.SelectedIndex != Program.mCoSo)
                     {

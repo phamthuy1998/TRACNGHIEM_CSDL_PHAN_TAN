@@ -177,7 +177,7 @@ namespace TRACNGHIEM
             this.tb_SP_GVChuaCoTk.Connection.ConnectionString = Program.connstr;
             this.tb_SP_GVChuaCoTk.Fill(this.TNDataSet.SP_MA_GV_CHUA_TAO_TK);
 
-          
+
 
             // phân quyền
             if (Program.mGroup == "Coso")
@@ -200,7 +200,7 @@ namespace TRACNGHIEM
         {
             try
             {
-                if (cbbCoSo.SelectedValue != null && Program.mGroup.Equals("Truong")&&dem>0)
+                if (cbbCoSo.SelectedValue != null && Program.mGroup.Equals("Truong") && dem > 0)
                 {
                     if (cbbCoSo.SelectedIndex != Program.mCoSo)
                     {

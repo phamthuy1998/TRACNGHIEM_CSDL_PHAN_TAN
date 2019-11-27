@@ -13,6 +13,8 @@ namespace TRACNGHIEM
 {
     public partial class frmBangDiem : Form
     {
+        public static Boolean isCoSoKhac = false;
+        public static String _coso = "";
         private String maLop = "", maMH = "";
         private int dem = 0;
         private int lan = 1;
@@ -39,47 +41,47 @@ namespace TRACNGHIEM
             cbbCoSo.DataSource = Program.bds_dspm.DataSource;
             cbbCoSo.DisplayMember = "TENCS";
             cbbCoSo.ValueMember = "TENSERVER";
-
-
-
-            // this.sP_DSMHDKTableAdapter.Fill(this.tNDataSet.SP_DSMHDK, "TH04");
-            // TODO: This line of code loads data into the 'tNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
-            //this.tbBangDiem.Connection.ConnectionString = Program.connstr;
-            //this.tbBangDiem.Fill(this.tNDataSet.BANGDIEM);
+            cbbCoSo.SelectedIndex = Program.mCoSo;
 
             if (Program.mGroup == "Truong")
             {
                 cbbCoSo.Enabled = true;
-                cbbCoSo.SelectedIndex = 1;
             }
             else if (Program.mGroup == "Coso")
             {
                 cbbCoSo.Enabled = false;
-                cbbCoSo.SelectedIndex = Program.mCoSo;
             }
             dem++;
 
-            this.dSLOPDKTableAdapter.Connection.ConnectionString = Program.connstr;
+            this.dSLOPDKTableAdapter.Connection.ConnectionString = Program.connstr1;
             this.dSLOPDKTableAdapter.Fill(this.tNDataSet.DSLOPDK);
             if (dSLOPDK.Count > 0)
             {
                 cbbLop.SelectedIndex = 0;
-                this.sP_DSMHDKTableAdapter.Connection.ConnectionString = Program.connstr;
+                this.sP_DSMHDKTableAdapter.Connection.ConnectionString = Program.connstr1;
                 this.sP_DSMHDKTableAdapter.Fill(this.tNDataSet.SP_DSMHDK, cbbLop.SelectedValue.ToString());
                 if (sP_DSMHDK.Count > 0)
                 {
                     cbbMH.SelectedIndex = 0;
 
-                    this.sP_DSLanThiDKTableAdapter.Connection.ConnectionString = Program.connstr;
+                    this.sP_DSLanThiDKTableAdapter.Connection.ConnectionString = Program.connstr1;
                     this.sP_DSLanThiDKTableAdapter.Fill(this.tNDataSet.SP_DSLanThiDK, cbbMH.SelectedValue.ToString(), cbbLop.SelectedValue.ToString());
                     if (sP_DSLanThiDK.Count > 0)
                     {
                         cbbLThi.SelectedIndex = 0;
-                        this.sP_XemKetQuaSVTableAdapter.Connection.ConnectionString = Program.connstr;
+                        this.sP_XemKetQuaSVTableAdapter.Connection.ConnectionString = Program.connstr1;
                         this.sP_XemKetQuaSVTableAdapter.Fill(this.tNDataSet.SP_XemKetQuaSV, cbbLop.SelectedValue.ToString(), cbbMH.SelectedValue.ToString(), short.Parse(cbbLThi.SelectedValue.ToString()));
 
                     }
                 }
+            }
+            else
+            {
+                this.sP_DSMHDKTableAdapter.Connection.ConnectionString = Program.connstr1;
+                this.sP_DSMHDKTableAdapter.Fill(this.tNDataSet.SP_DSMHDK, null);
+                this.sP_XemKetQuaSVTableAdapter.Connection.ConnectionString = Program.connstr1;
+                this.sP_XemKetQuaSVTableAdapter.Fill(this.tNDataSet.SP_XemKetQuaSV, null, null, null);
+
             }
 
         }
@@ -184,28 +186,42 @@ namespace TRACNGHIEM
         {
             if (cbbCoSo.SelectedValue != null && dem != 0)
             {
-
                 Program.servername1 = cbbCoSo.SelectedValue.ToString();
                 if (Program.KetNoiCosoKhac() == 0) return;
                 else
                 {
                     this.dSLOPDKTableAdapter.Connection.ConnectionString = Program.connstr1;
                     this.dSLOPDKTableAdapter.Fill(this.tNDataSet.DSLOPDK);
-                    cbbLop.SelectedIndex = 0;
+                    if (dSLOPDK.Count > 0)
+                    {
+                        cbbLop.SelectedIndex = 0;
+                        this.sP_DSMHDKTableAdapter.Connection.ConnectionString = Program.connstr1;
+                        this.sP_DSMHDKTableAdapter.Fill(this.tNDataSet.SP_DSMHDK, cbbLop.SelectedValue.ToString());
+                        if (sP_DSMHDK.Count > 0)
+                        {
+                            cbbMH.SelectedIndex = 0;
 
-                    this.sP_DSMHDKTableAdapter.Connection.ConnectionString = Program.connstr1;
-                    this.sP_DSMHDKTableAdapter.Fill(this.tNDataSet.SP_DSMHDK, cbbLop.SelectedValue.ToString());
-                    cbbMH.SelectedIndex = 0;
+                            this.sP_DSLanThiDKTableAdapter.Connection.ConnectionString = Program.connstr1;
+                            this.sP_DSLanThiDKTableAdapter.Fill(this.tNDataSet.SP_DSLanThiDK, cbbMH.SelectedValue.ToString(), cbbLop.SelectedValue.ToString());
+                            if (sP_DSLanThiDK.Count > 0)
+                            {
+                                cbbLThi.SelectedIndex = 0;
+                                this.sP_XemKetQuaSVTableAdapter.Connection.ConnectionString = Program.connstr1;
+                                this.sP_XemKetQuaSVTableAdapter.Fill(this.tNDataSet.SP_XemKetQuaSV, cbbLop.SelectedValue.ToString(), cbbMH.SelectedValue.ToString(), short.Parse(cbbLThi.SelectedValue.ToString()));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        this.sP_DSMHDKTableAdapter.Connection.ConnectionString = Program.connstr1;
+                        this.sP_DSMHDKTableAdapter.Fill(this.tNDataSet.SP_DSMHDK, null);
+                        this.sP_XemKetQuaSVTableAdapter.Connection.ConnectionString = Program.connstr1;
+                        this.sP_XemKetQuaSVTableAdapter.Fill(this.tNDataSet.SP_XemKetQuaSV, null, null, null);
 
-                    this.sP_DSLanThiDKTableAdapter.Connection.ConnectionString = Program.connstr1;
-                    this.sP_DSLanThiDKTableAdapter.Fill(this.tNDataSet.SP_DSLanThiDK, cbbMH.SelectedValue.ToString(), cbbLop.SelectedValue.ToString());
-                    cbbLThi.SelectedIndex = 0;
-
-                    this.sP_XemKetQuaSVTableAdapter.Connection.ConnectionString = Program.connstr1;
-                    this.sP_XemKetQuaSVTableAdapter.Fill(this.tNDataSet.SP_XemKetQuaSV, cbbLop.SelectedValue.ToString(), cbbMH.SelectedValue.ToString(), short.Parse(cbbLThi.SelectedValue.ToString()));
-
+                    }
                 }
             }
+            if (Program.mCoSo != cbbCoSo.SelectedIndex) isCoSoKhac = true;
         }
 
     }

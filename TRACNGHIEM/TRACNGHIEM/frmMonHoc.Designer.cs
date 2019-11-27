@@ -76,6 +76,8 @@
             this.tbBoDeADT = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
             this.tbBangDiemADT = new TRACNGHIEM.TNDataSetTableAdapters.BANGDIEMTableAdapter();
+            this.btnRedo = new DevExpress.XtraBars.BarButtonItem();
+            this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
             mAMHLabel = new System.Windows.Forms.Label();
             tENMHLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -142,16 +144,16 @@
             this.barDockControlTop.Location = new System.Drawing.Point(0, 96);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlTop.Size = new System.Drawing.Size(2627, 0);
+            this.barDockControlTop.Size = new System.Drawing.Size(2540, 0);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 844);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1261);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlBottom.Size = new System.Drawing.Size(2627, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(2540, 0);
             // 
             // barDockControlLeft
             // 
@@ -160,16 +162,16 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 96);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 748);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1165);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(2627, 96);
+            this.barDockControlRight.Location = new System.Drawing.Point(2540, 96);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 748);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 1165);
             // 
             // bar3
             // 
@@ -204,9 +206,11 @@
             this.btnPhucHoiMH,
             this.btnTaiLaiMH,
             this.btnInDanhSachMH,
-            this.btnThoatMH});
+            this.btnThoatMH,
+            this.btnRedo,
+            this.btnHuy});
             this.barManager2.MainMenu = this.bar6;
-            this.barManager2.MaxItemId = 8;
+            this.barManager2.MaxItemId = 10;
             // 
             // bar6
             // 
@@ -218,8 +222,10 @@
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThemMH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnSuaMH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnXoaMH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnHuy, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnGhiMH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnPhucHoiMH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
+            new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnRedo, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnTaiLaiMH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph),
             new DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.PaintStyle, this.btnThoatMH, DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph)});
             this.bar6.OptionsBar.MultiLine = true;
@@ -296,16 +302,16 @@
             this.barDockControl1.Location = new System.Drawing.Point(0, 0);
             this.barDockControl1.Manager = this.barManager2;
             this.barDockControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControl1.Size = new System.Drawing.Size(2627, 96);
+            this.barDockControl1.Size = new System.Drawing.Size(2540, 96);
             // 
             // barDockControl2
             // 
             this.barDockControl2.CausesValidation = false;
             this.barDockControl2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControl2.Location = new System.Drawing.Point(0, 844);
+            this.barDockControl2.Location = new System.Drawing.Point(0, 1261);
             this.barDockControl2.Manager = this.barManager2;
             this.barDockControl2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControl2.Size = new System.Drawing.Size(2627, 0);
+            this.barDockControl2.Size = new System.Drawing.Size(2540, 0);
             // 
             // barDockControl3
             // 
@@ -314,16 +320,16 @@
             this.barDockControl3.Location = new System.Drawing.Point(0, 96);
             this.barDockControl3.Manager = this.barManager2;
             this.barDockControl3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControl3.Size = new System.Drawing.Size(0, 748);
+            this.barDockControl3.Size = new System.Drawing.Size(0, 1165);
             // 
             // barDockControl4
             // 
             this.barDockControl4.CausesValidation = false;
             this.barDockControl4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControl4.Location = new System.Drawing.Point(2627, 96);
+            this.barDockControl4.Location = new System.Drawing.Point(2540, 96);
             this.barDockControl4.Manager = this.barManager2;
             this.barDockControl4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.barDockControl4.Size = new System.Drawing.Size(0, 748);
+            this.barDockControl4.Size = new System.Drawing.Size(0, 1165);
             // 
             // btnInDanhSachMH
             // 
@@ -341,7 +347,7 @@
             this.gcMonHoc.Location = new System.Drawing.Point(0, 96);
             this.gcMonHoc.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcMonHoc.Name = "gcMonHoc";
-            this.gcMonHoc.Size = new System.Drawing.Size(2627, 193);
+            this.gcMonHoc.Size = new System.Drawing.Size(2540, 193);
             this.gcMonHoc.TabIndex = 8;
             // 
             // panelTimGV
@@ -353,7 +359,7 @@
             this.panelTimGV.Location = new System.Drawing.Point(3, 48);
             this.panelTimGV.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panelTimGV.Name = "panelTimGV";
-            this.panelTimGV.Size = new System.Drawing.Size(2621, 142);
+            this.panelTimGV.Size = new System.Drawing.Size(2534, 142);
             this.panelTimGV.TabIndex = 6;
             // 
             // btnTim
@@ -424,10 +430,10 @@
             this.groupControl1.Controls.Add(mAMHLabel);
             this.groupControl1.Controls.Add(this.edtMaMH);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupControl1.Location = new System.Drawing.Point(0, 484);
+            this.groupControl1.Location = new System.Drawing.Point(0, 901);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(2627, 360);
+            this.groupControl1.Size = new System.Drawing.Size(2540, 360);
             this.groupControl1.TabIndex = 11;
             // 
             // edtTenMH
@@ -462,7 +468,7 @@
             this.gcMH.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.gcMH.MenuManager = this.barManager1;
             this.gcMH.Name = "gcMH";
-            this.gcMH.Size = new System.Drawing.Size(2627, 195);
+            this.gcMH.Size = new System.Drawing.Size(2540, 612);
             this.gcMH.TabIndex = 11;
             this.gcMH.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -530,12 +536,28 @@
             // 
             this.tbBangDiemADT.ClearBeforeFill = true;
             // 
+            // btnRedo
+            // 
+            this.btnRedo.Caption = "Quay lại";
+            this.btnRedo.Id = 8;
+            this.btnRedo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
+            this.btnRedo.Name = "btnRedo";
+            this.btnRedo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRedo_ItemClick);
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.Caption = "Hủy thêm/Sửa";
+            this.btnHuy.Id = 9;
+            this.btnHuy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHuy.ImageOptions.Image")));
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
+            // 
             // frmMonHoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(2627, 844);
+            this.ClientSize = new System.Drawing.Size(2540, 1261);
             this.Controls.Add(this.gcMH);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.gcMonHoc);
@@ -623,5 +645,7 @@
         private DevExpress.XtraEditors.TextEdit edtTim;
         private DevExpress.XtraGrid.Columns.GridColumn colMAMH;
         private DevExpress.XtraGrid.Columns.GridColumn colTENMH;
+        private DevExpress.XtraBars.BarButtonItem btnRedo;
+        private DevExpress.XtraBars.BarButtonItem btnHuy;
     }
 }

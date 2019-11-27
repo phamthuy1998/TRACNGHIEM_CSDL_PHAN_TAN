@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections;
+using System.Data.SqlClient;
 
 namespace TRACNGHIEM
 {
@@ -15,6 +17,11 @@ namespace TRACNGHIEM
         private Boolean checkThem = false;
         private Boolean checkSua = false;
         public static Boolean checkSave = true;
+        private ArrayList arrPhucHoi = new ArrayList();
+        private int viTri = 0;
+
+        private String truocKhiUpdate;
+        private PhucHoi phucHoi;
 
 
         public frmMonHoc()
@@ -32,6 +39,7 @@ namespace TRACNGHIEM
 
         private void frmMonHoc_Load(object sender, EventArgs e)
         {
+
             this.ControlBox = false;
             TNDataSet.EnforceConstraints = false;
             gcMH.UseDisabledStatePainter = false;
@@ -56,9 +64,21 @@ namespace TRACNGHIEM
             //Truong thì login đó có thể đăng nhập vào bất kỳ phân mảnh  nào để xem dữ liệu 
             else if (Program.mGroup == "Truong")
             {
-                btnThemMH.Visibility =btnSuaMH.Visibility= btnGhiMH.Visibility = btnXoaMH.Visibility = btnPhucHoiMH.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+                btnThemMH.Visibility = btnSuaMH.Visibility = btnGhiMH.Visibility = btnXoaMH.Visibility = btnPhucHoiMH.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
 
+            if (viTri <= 0)
+            {
+                btnPhucHoiMH.Enabled = btnRedo.Enabled = false;
+            }
+            else if (viTri < arrPhucHoi.Count)
+            {
+                btnRedo.Enabled = true;
+            }
+            else
+            {
+                btnPhucHoiMH.Enabled = true;
+            }
         }
 
         private void btnThemMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -91,6 +111,16 @@ namespace TRACNGHIEM
                 bdsMonHoc.ResetCurrentItem();
                 this.tbMonHoc.Update(this.TNDataSet.MONHOC);
                 edtTim.Text = "";
+                // TODO: This line of code loads data into the 'tNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
+                this.tbBangDiemADT.Connection.ConnectionString = Program.connstr;
+                this.tbBangDiemADT.Fill(this.TNDataSet.BANGDIEM);
+                // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
+                this.tbBoDeADT.Connection.ConnectionString = Program.connstr;
+                this.tbBoDeADT.Fill(this.TNDataSet.BODE);
+                // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+                this.tbGVDKyADT.Connection.ConnectionString = Program.connstr;
+                this.tbGVDKyADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
+
                 this.tbMonHoc.Connection.ConnectionString = Program.connstr;
                 this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
                 checkSave = true;
@@ -129,9 +159,25 @@ namespace TRACNGHIEM
                 {
                     ghiMH();
                     checkThem = false;
-                }
 
+                    arrPhucHoi.Add(new PhucHoi("N'" + edtMaMH.Text.Trim() + "', N'" + edtTenMH.Text.Trim() + "'", null, "INSERT"));
+                    viTri++;
+                    if (viTri < 0)
+                    {
+                        btnPhucHoiMH.Enabled = btnRedo.Enabled = false;
+                    }
+                    else if (viTri < arrPhucHoi.Count)
+                    {
+                        btnRedo.Enabled = true;
+                    }
+                    else
+                    {
+                        btnPhucHoiMH.Enabled = true;
+                        btnRedo.Enabled = false;
+                    }
+                }
             }
+
             else if (checkSua == true)
             {
                 if (edtTenMH.Text.Trim().Equals(""))
@@ -151,8 +197,23 @@ namespace TRACNGHIEM
                 {
                     ghiMH();
                     checkSua = false;
-                }
 
+                    arrPhucHoi.Add(new PhucHoi("N'" + edtMaMH.Text.Trim() + "', N'" + edtTenMH.Text.Trim() + "'", truocKhiUpdate, "UPDATE"));
+                    viTri++;
+                    if (viTri < 0)
+                    {
+                        btnPhucHoiMH.Enabled = btnRedo.Enabled = false;
+                    }
+                    else if (viTri < arrPhucHoi.Count)
+                    {
+                        btnRedo.Enabled = true;
+                    }
+                    else
+                    {
+                        btnPhucHoiMH.Enabled = true;
+                        btnRedo.Enabled = false;
+                    }
+                }
             }
             else
             {
@@ -191,10 +252,40 @@ namespace TRACNGHIEM
                 {
                     try
                     {
+                        arrPhucHoi.Add(new PhucHoi("N'" + edtMaMH.Text.Trim() + "', N'" + edtTenMH.Text.Trim() + "'", null, "DELETE"));
+
                         //phải chạy lệnh del from where mới chính xác
                         bdsMonHoc.RemoveCurrent();
                         //đẩy dữ liệu về adapter
                         this.tbMonHoc.Update(this.TNDataSet.MONHOC);
+                        // TODO: This line of code loads data into the 'tNDataSet.BANGDIEM' table. You can move, or remove it, as needed.
+                        this.tbBangDiemADT.Connection.ConnectionString = Program.connstr;
+                        this.tbBangDiemADT.Fill(this.TNDataSet.BANGDIEM);
+                        // TODO: This line of code loads data into the 'tNDataSet.BODE' table. You can move, or remove it, as needed.
+                        this.tbBoDeADT.Connection.ConnectionString = Program.connstr;
+                        this.tbBoDeADT.Fill(this.TNDataSet.BODE);
+                        // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+                        this.tbGVDKyADT.Connection.ConnectionString = Program.connstr;
+                        this.tbGVDKyADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
+
+                        this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                        this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+
+                        viTri++;
+                       
+                        if (viTri < 0)
+                        {
+                            btnPhucHoiMH.Enabled = btnRedo.Enabled = false;
+                        }
+                        else if (viTri < arrPhucHoi.Count)
+                        {
+                            btnRedo.Enabled = true;
+                        }
+                        else
+                        {
+                            btnPhucHoiMH.Enabled = true;
+                            btnRedo.Enabled = false;
+                        }
                     }
                     catch (Exception ex)
                     {
@@ -206,16 +297,379 @@ namespace TRACNGHIEM
 
         private void btnPhucHoiMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-            // Hủy bỏ thao tác đang hiệu chỉnh
-            bdsMonHoc.CancelEdit();
-            checkSua = checkThem = false;
-            gcMH.Enabled = true;
-            edtTenMH.Enabled = false;
-            edtMaMH.Enabled = false;
-            btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
-            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
-            this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
-            checkSave = true;
+            Console.WriteLine("vi tri: " + viTri + " count: " + arrPhucHoi.Count);
+
+            if (viTri == 0)
+            {
+                // Hủy bỏ thao tác đang hiệu chỉnh
+                bdsMonHoc.CancelEdit();
+                checkSua = checkThem = false;
+                gcMH.Enabled = true;
+                edtTenMH.Enabled = false;
+                edtMaMH.Enabled = false;
+                btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+                this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                checkSave = true;
+                return;
+            }
+            else
+            {
+                if (arrPhucHoi.Count > 0)
+                {
+
+                    phucHoi = (PhucHoi)arrPhucHoi[viTri-1];
+
+                    if (phucHoi.LoaiCauLenh.Equals("INSERT"))
+                    {
+                        // ---> xóa
+                        String sql = "EXEC SP_PhucHoiXoaMH " + phucHoi.cauLenh1;
+                        int result = Program.ExecSqlNonQuery(sql);
+                        //kiểm tra kết quả câu lệnh
+                        if (result == 1)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Môn học đã có trong bảng điểm, không thể xóa", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                        if (result == 2)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Môn học đã tồn tại trong bộ đề, không thể xóa", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                        if (result == 3)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Môn học đã tồn tại trong giảng viên đăng ký, không thể xóa", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                        //Xóa môn học thành công
+                        if (result == 0)
+                        {
+                            Program.conn.Close();
+                            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                            this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                            checkSua = checkThem = false;
+                            gcMH.Enabled = true;
+                            edtTenMH.Enabled = false;
+                            edtMaMH.Enabled = false;
+                            btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+                            checkSave = true;
+                            MessageBox.Show("Phục hồi thành công, đã xóa môn học", "Thành công", MessageBoxButtons.OK);
+                            viTri--;
+                        }
+                        else
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Phục hồi thất bại", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                    else if (phucHoi.LoaiCauLenh.Equals("UPDATE"))
+                    {
+                        // ---> sửa
+                        String sql = "EXEC SP_PhucHoiSuaMH " + phucHoi.cauLenh2;
+                        int result = Program.ExecSqlNonQuery(sql);
+
+                        if (result == 2)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Tên môn học đã tồn tại, không thể phục hồi", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        //Sửa môn học thành công
+                        if (result == 0)
+                        {
+                            Program.conn.Close();
+                            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                            this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                            checkSua = checkThem = false;
+                            gcMH.Enabled = true;
+                            edtTenMH.Enabled = false;
+                            edtMaMH.Enabled = false;
+                            btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+                            checkSave = true;
+                            MessageBox.Show("Phục hồi thành công, đã sửa lại môn học", "Thành công", MessageBoxButtons.OK);
+                            viTri--;
+                        }
+                        else
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Phục hồi thất bại", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                    else if (phucHoi.LoaiCauLenh.Equals("DELETE"))
+                    {
+                        // ---> thêm
+                        String sql = "EXEC SP_PhucHoiThemMH " + phucHoi.cauLenh1;
+                        int result = Program.ExecSqlNonQuery(sql);
+
+                        if (result == 1)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Mã môn học đã tồn tại, không thể phục hồi", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        if (result == 2)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Tên môn học đã tồn tại, không thể phục hồi", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        //Thêm môn học thành công
+                        if (result == 0)
+                        {
+                            Program.conn.Close();
+                            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                            this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                            checkSua = checkThem = false;
+                            gcMH.Enabled = true;
+                            edtTenMH.Enabled = false;
+                            edtMaMH.Enabled = false;
+                            btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+                            checkSave = true;
+                            MessageBox.Show("Phục hồi thành công, đã thêm lại môn học", "Thành công", MessageBoxButtons.OK);
+                            viTri--;
+                        }
+                        else
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Phục hồi thất bại", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        // Hủy bỏ thao tác đang hiệu chỉnh
+                        bdsMonHoc.CancelEdit();
+                    }
+
+                }
+                else
+                {
+                    bdsMonHoc.CancelEdit();
+                    this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                    this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                    checkSua = checkThem = false;
+                    gcMH.Enabled = true;
+                    edtTenMH.Enabled = false;
+                    edtMaMH.Enabled = false;
+                    btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+                    checkSave = true;
+                }
+            }
+
+            if (viTri == 0)
+            {
+                btnPhucHoiMH.Enabled = false;
+
+            }
+            else if (viTri < arrPhucHoi.Count)
+            {
+                if (viTri >= 0)
+                    btnRedo.Enabled = true;
+                if (viTri > 0)
+                    btnPhucHoiMH.Enabled = true;
+                else
+                    btnPhucHoiMH.Enabled = false;
+            }
+            else
+            {
+                btnPhucHoiMH.Enabled = btnRedo.Enabled = false;
+            }
+        }
+
+
+        private void btnRedo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Console.WriteLine("vi tri undo: " + viTri + " count: " + arrPhucHoi.Count);
+
+            if (viTri< 0)
+            {
+                // Hủy bỏ thao tác đang hiệu chỉnh
+                bdsMonHoc.CancelEdit();
+                checkSua = checkThem = false;
+                gcMH.Enabled = true;
+                edtTenMH.Enabled = false;
+                edtMaMH.Enabled = false;
+                btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+                this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                return;
+            }
+            else
+            {
+                if (viTri < arrPhucHoi.Count)
+                {
+                    phucHoi = (PhucHoi)arrPhucHoi[viTri];
+
+                    if (phucHoi.LoaiCauLenh.Equals("INSERT"))
+                    {
+                        // ---> thêm
+                        String sql = "EXEC SP_PhucHoiThemMH " + phucHoi.cauLenh1;
+                        int result = Program.ExecSqlNonQuery(sql);
+
+                        if (result == 1)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Mã môn học đã tồn tại, không thể phục hồi", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        if (result == 2)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Tên môn học đã tồn tại, không thể phục hồi", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        //Thêm môn học thành công
+                        if (result == 0)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Phục hồi thành công, đã thêm lại môn học", "Thành công", MessageBoxButtons.OK);
+                            viTri++;
+                            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                            this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                            checkSua = checkThem = false;
+                            gcMH.Enabled = true;
+                            edtTenMH.Enabled = false;
+                            edtMaMH.Enabled = false;
+                            btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+                            checkSave = true;
+                        }
+                        else
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Phục hồi thất bại", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                    else if (phucHoi.LoaiCauLenh.Equals("UPDATE"))
+                    {
+                        // ---> sửa
+                        String sql = "EXEC SP_PhucHoiSuaMH " + phucHoi.cauLenh1;
+                        int result = Program.ExecSqlNonQuery(sql);
+
+                        if (result == 2)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Tên môn học đã tồn tại, không thể phục hồi", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+
+                        //Sửa môn học thành công
+                        if (result == 0)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Phục hồi thành công, đã sửa lại môn học", "Thành công", MessageBoxButtons.OK);
+                            viTri++;
+                            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                            this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                            checkSua = checkThem = false;
+                            gcMH.Enabled = true;
+                            edtTenMH.Enabled = false;
+                            edtMaMH.Enabled = false;
+                            btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+                            checkSave = true;
+                        }
+                        else
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Phục hồi thất bại", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                    else if (phucHoi.LoaiCauLenh.Equals("DELETE"))
+                    {
+                        // ---> xóa
+                        String sql = "EXEC SP_PhucHoiXoaMH " + phucHoi.cauLenh1;
+                        int result = Program.ExecSqlNonQuery(sql);
+
+                        //kiểm tra kết quả câu lệnh
+                        if (result == 1)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Môn học đã có trong bảng điểm, không thể xóa", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                        if (result == 2)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Môn học đã tồn tại trong bộ đề, không thể xóa", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                        if (result == 3)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Môn học đã tồn tại trong giảng viên đăng ký, không thể xóa", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                        //Xóa môn học thành công
+                        if (result == 0)
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Phục hồi thành công, đã xóa môn học", "Thành công", MessageBoxButtons.OK);
+                            viTri++;
+                            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                            this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                            checkSua = checkThem = false;
+                            gcMH.Enabled = true;
+                            edtTenMH.Enabled = false;
+                            edtMaMH.Enabled = false;
+                            btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+                            checkSave = true;
+                        }
+                        else
+                        {
+                            Program.conn.Close();
+                            MessageBox.Show("Phục hồi thất bại", "Lỗi", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        // Hủy bỏ thao tác đang hiệu chỉnh
+                        bdsMonHoc.CancelEdit();
+                    }
+
+                }
+                else
+                {
+                    bdsMonHoc.CancelEdit();
+                    this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+                    this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+                    checkSua = checkThem = false;
+                    gcMH.Enabled = true;
+                    edtTenMH.Enabled = false;
+                    edtMaMH.Enabled = false;
+                    btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+                    checkSave = true;
+                }
+            }
+            if (viTri == 0)
+            {
+                btnPhucHoiMH.Enabled = false;
+               
+            }
+            else if (viTri < arrPhucHoi.Count)
+            {
+                if (viTri >= 0)
+                    btnRedo.Enabled = true;
+                if (viTri > 0)
+                    btnPhucHoiMH.Enabled = true;
+                else
+                    btnPhucHoiMH.Enabled = false;
+            }
+            else
+            {
+                btnPhucHoiMH.Enabled = btnRedo.Enabled = false;
+            }
         }
 
         private void btnTaiLaiMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -286,6 +740,8 @@ namespace TRACNGHIEM
                 btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = false;
                 checkSua = true;
                 checkSave = false;
+
+                truocKhiUpdate = "N'" + edtMaMH.Text.Trim() + "', N'" + edtTenMH.Text.Trim() + "'";
             }
         }
 
@@ -349,6 +805,20 @@ namespace TRACNGHIEM
                     }
                 }
             }
+        }
+
+        private void btnHuy_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            // Hủy bỏ thao tác đang hiệu chỉnh
+            bdsMonHoc.CancelEdit();
+            checkSua = checkThem = false;
+            gcMH.Enabled = true;
+            edtTenMH.Enabled = false;
+            edtMaMH.Enabled = false;
+            btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
+            this.tbMonHoc.Connection.ConnectionString = Program.connstr;
+            this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
+            checkSave = true;
         }
     }
 }

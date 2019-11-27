@@ -150,6 +150,7 @@
     <Compile Include="frmThi.Designer.cs">
       <DependentUpon>frmThi.cs</DependentUpon>
     </Compile>
+    <Compile Include="PhucHoi.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="rpBangDiem.cs">

@@ -29,6 +29,5 @@ namespace TRACNGHIEM
                 this.sP_XemKetQuaSVTableAdapter.Fill(tnDataSet1.SP_XemKetQuaSV, maLop, MaMH, lanThi);
             }
         }
-
     }
 }

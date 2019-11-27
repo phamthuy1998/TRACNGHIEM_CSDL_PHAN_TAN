@@ -806,8 +806,8 @@ namespace TRACNGHIEM
             if (!tim.Equals(""))
             {
                 String kqTimkiem = "";
-                String strlenh = "SELECT MASV from dbo.SINHVIEN WHERE MASV = '"
-                   + tim + "' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
+                String strlenh = "SELECT MASV from dbo.SINHVIEN WHERE MASV  LIKE '%"
+                   + tim + "%' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
                 Program.myReader = Program.ExecSqlDataReader(strlenh);
                 while (Program.myReader.Read())
                 {
@@ -840,8 +840,8 @@ namespace TRACNGHIEM
             else
             {
                 String kqTimkiem = "";
-                String strlenh = "SELECT MASV from dbo.SINHVIEN WHERE MASV = '"
-                   + tim + "' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
+                String strlenh = "SELECT MASV from dbo.SINHVIEN WHERE MASV LIKE '%"
+                   + tim + "%' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
                 Program.myReader = Program.ExecSqlDataReader(strlenh);
                 while (Program.myReader.Read())
                 {

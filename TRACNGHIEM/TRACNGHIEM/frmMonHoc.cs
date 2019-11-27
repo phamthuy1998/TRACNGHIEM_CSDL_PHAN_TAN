@@ -760,8 +760,8 @@ namespace TRACNGHIEM
             if (!tim.Equals(""))
             {
                 String kqTimkiem = "";
-                String strlenh = "SELECT MAMH from dbo.MONHOC WHERE MAMH = '"
-                   + tim + "' OR TENMH  LIKE '%" + tim + "%'";
+                String strlenh = "SELECT MAMH from dbo.MONHOC WHERE MAMH LIKE '%"
+                   + tim + "%' OR TENMH  LIKE '%" + tim + "%'";
                 Program.myReader = Program.ExecSqlDataReader(strlenh);
                 while (Program.myReader.Read())
                 {
@@ -777,7 +777,7 @@ namespace TRACNGHIEM
                     }
                 }
             }
-            else
+            else 
             {
                 bdsMonHoc.Filter = "";
                 this.tbMonHoc.Fill(this.TNDataSet.MONHOC);
@@ -797,8 +797,8 @@ namespace TRACNGHIEM
             else
             {
                 String kqTimkiem = "";
-                String strlenh = "SELECT MAMH from dbo.MONHOC WHERE MAMH = '"
-                   + tim + "' OR TENMH  LIKE '%" + tim + "%'";
+                String strlenh = "SELECT MAMH from dbo.MONHOC WHERE MAMH  LIKE '%"
+                   + tim + "%' OR TENMH  LIKE '%" + tim + "%'";
                 Program.myReader = Program.ExecSqlDataReader(strlenh);
                 while (Program.myReader.Read())
                 {

@@ -814,8 +814,8 @@ namespace TRACNGHIEM
             if (!tim.Equals(""))
             {
                 String kqTimkiem = "";
-                String strlenh = "SELECT MAGV from dbo.GIAOVIEN WHERE MAGV = '"
-                   + tim + "' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
+                String strlenh = "SELECT MAGV from dbo.GIAOVIEN WHERE MAGV  LIKE '%"
+                   + tim + "%' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
                 Program.myReader = Program.ExecSqlDataReader(strlenh);
                 while (Program.myReader.Read())
                 {
@@ -828,7 +828,7 @@ namespace TRACNGHIEM
             else
             {
                 bdsGiaoVien.Filter = "";
-                this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr1;
+                //this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr1;
                 this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
                 // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
 
@@ -842,7 +842,7 @@ namespace TRACNGHIEM
             if (tim.Equals(""))
             {
                 MessageBox.Show("Bạn chưa nhập tìm kiếm", "", MessageBoxButtons.OK);
-                this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+                //this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
                 this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
                 // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
                 return;
@@ -850,8 +850,8 @@ namespace TRACNGHIEM
             else
             {
                 String kqTimkiem = "";
-                String strlenh = "SELECT MAGV from dbo.GIAOVIEN WHERE MAGV = '"
-                   + tim + "' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
+                String strlenh = "SELECT MAGV from dbo.GIAOVIEN WHERE MAGV  LIKE '%"
+                   + tim + "%' OR HO  LIKE '%" + tim + "%' OR TEN LIKE '%" + tim + "%'";
                 Program.myReader = Program.ExecSqlDataReader(strlenh);
                 while (Program.myReader.Read())
                 {

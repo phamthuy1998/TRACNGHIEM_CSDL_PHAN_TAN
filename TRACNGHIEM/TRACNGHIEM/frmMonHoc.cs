@@ -21,6 +21,7 @@ namespace TRACNGHIEM
         private int viTri = 0;
 
         private String truocKhiUpdate;
+        private String sauKhiUpdate;
         private PhucHoi phucHoi;
 
 
@@ -157,10 +158,10 @@ namespace TRACNGHIEM
                 }
                 else
                 {
+                    arrPhucHoi.Add(new PhucHoi("N'" + edtMaMH.Text.Trim() + "', N'" + edtTenMH.Text.Trim() + "'", null, "INSERT"));
                     ghiMH();
                     checkThem = false;
 
-                    arrPhucHoi.Add(new PhucHoi("N'" + edtMaMH.Text.Trim() + "', N'" + edtTenMH.Text.Trim() + "'", null, "INSERT"));
                     viTri++;
                     if (viTri < 0)
                     {
@@ -195,10 +196,12 @@ namespace TRACNGHIEM
                 }
                 else
                 {
+                    sauKhiUpdate = "N'" + edtMaMH.Text.Trim() + "', N'" + edtTenMH.Text.Trim() + "'";
                     ghiMH();
                     checkSua = false;
 
-                    arrPhucHoi.Add(new PhucHoi("N'" + edtMaMH.Text.Trim() + "', N'" + edtTenMH.Text.Trim() + "'", truocKhiUpdate, "UPDATE"));
+                    arrPhucHoi.Add(new PhucHoi(sauKhiUpdate, truocKhiUpdate, "UPDATE"));
+                    Console.WriteLine("trc update: " + truocKhiUpdate+"sau : "+ sauKhiUpdate);
                     viTri++;
                     if (viTri < 0)
                     {
@@ -320,6 +323,7 @@ namespace TRACNGHIEM
 
                     phucHoi = (PhucHoi)arrPhucHoi[viTri-1];
 
+                    Console.WriteLine("vi tri redo: " + (viTri - 1));
                     if (phucHoi.LoaiCauLenh.Equals("INSERT"))
                     {
                         // ---> xóa
@@ -393,6 +397,7 @@ namespace TRACNGHIEM
                             checkSave = true;
                             MessageBox.Show("Phục hồi thành công, đã sửa lại môn học", "Thành công", MessageBoxButtons.OK);
                             viTri--;
+                            Console.WriteLine("vi tri sua redo: " + (viTri));
                         }
                         else
                         {
@@ -467,7 +472,7 @@ namespace TRACNGHIEM
             if (viTri == 0)
             {
                 btnPhucHoiMH.Enabled = false;
-
+                btnRedo.Enabled = true;
             }
             else if (viTri < arrPhucHoi.Count)
             {
@@ -480,7 +485,8 @@ namespace TRACNGHIEM
             }
             else
             {
-                btnPhucHoiMH.Enabled = btnRedo.Enabled = false;
+                btnRedo.Enabled = true;
+                btnPhucHoiMH.Enabled  = false;
             }
         }
 
@@ -489,7 +495,7 @@ namespace TRACNGHIEM
         {
             Console.WriteLine("vi tri undo: " + viTri + " count: " + arrPhucHoi.Count);
 
-            if (viTri< 0)
+            if (viTri < 0)
             {
                 // Hủy bỏ thao tác đang hiệu chỉnh
                 bdsMonHoc.CancelEdit();
@@ -506,7 +512,8 @@ namespace TRACNGHIEM
             {
                 if (viTri < arrPhucHoi.Count)
                 {
-                    phucHoi = (PhucHoi)arrPhucHoi[viTri];
+                    phucHoi = (PhucHoi)arrPhucHoi[(viTri )];
+                    Console.WriteLine("vi tri undoáhjdgfhasgd: " + phucHoi.cauLenh1+"\n"+phucHoi.cauLenh2);
 
                     if (phucHoi.LoaiCauLenh.Equals("INSERT"))
                     {
@@ -577,6 +584,7 @@ namespace TRACNGHIEM
                             edtMaMH.Enabled = false;
                             btnThemMH.Enabled = btnTaiLaiMH.Enabled = btnSuaMH.Enabled = btnXoaMH.Enabled = btnTim.Enabled = edtTim.Enabled = true;
                             checkSave = true;
+                            Console.WriteLine("vi tri sua undo: " + (viTri));
                         }
                         else
                         {
@@ -742,6 +750,7 @@ namespace TRACNGHIEM
                 checkSave = false;
 
                 truocKhiUpdate = "N'" + edtMaMH.Text.Trim() + "', N'" + edtTenMH.Text.Trim() + "'";
+               
             }
         }
 

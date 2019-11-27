@@ -45,8 +45,10 @@
             this.btnThemMH = new DevExpress.XtraBars.BarButtonItem();
             this.btnSuaMH = new DevExpress.XtraBars.BarButtonItem();
             this.btnXoaMH = new DevExpress.XtraBars.BarButtonItem();
+            this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
             this.btnGhiMH = new DevExpress.XtraBars.BarButtonItem();
             this.btnPhucHoiMH = new DevExpress.XtraBars.BarButtonItem();
+            this.btnRedo = new DevExpress.XtraBars.BarButtonItem();
             this.btnTaiLaiMH = new DevExpress.XtraBars.BarButtonItem();
             this.btnThoatMH = new DevExpress.XtraBars.BarButtonItem();
             this.barDockControl1 = new DevExpress.XtraBars.BarDockControl();
@@ -76,8 +78,6 @@
             this.tbBoDeADT = new TRACNGHIEM.TNDataSetTableAdapters.BODETableAdapter();
             this.bdsBangDiem = new System.Windows.Forms.BindingSource(this.components);
             this.tbBangDiemADT = new TRACNGHIEM.TNDataSetTableAdapters.BANGDIEMTableAdapter();
-            this.btnRedo = new DevExpress.XtraBars.BarButtonItem();
-            this.btnHuy = new DevExpress.XtraBars.BarButtonItem();
             mAMHLabel = new System.Windows.Forms.Label();
             tENMHLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.barManager1)).BeginInit();
@@ -259,6 +259,14 @@
             this.btnXoaMH.Name = "btnXoaMH";
             this.btnXoaMH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnXoaMH_ItemClick);
             // 
+            // btnHuy
+            // 
+            this.btnHuy.Caption = "Hủy thêm/Sửa";
+            this.btnHuy.Id = 9;
+            this.btnHuy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHuy.ImageOptions.Image")));
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
+            // 
             // btnGhiMH
             // 
             this.btnGhiMH.Caption = "Ghi";
@@ -276,6 +284,14 @@
             this.btnPhucHoiMH.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnPhucHoiMH.ImageOptions.LargeImage")));
             this.btnPhucHoiMH.Name = "btnPhucHoiMH";
             this.btnPhucHoiMH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnPhucHoiMH_ItemClick);
+            // 
+            // btnRedo
+            // 
+            this.btnRedo.Caption = "Quay lại";
+            this.btnRedo.Id = 8;
+            this.btnRedo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnRedo.ImageOptions.Image")));
+            this.btnRedo.Name = "btnRedo";
+            this.btnRedo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRedo_ItemClick);
             // 
             // btnTaiLaiMH
             // 
@@ -535,22 +551,6 @@
             // tbBangDiemADT
             // 
             this.tbBangDiemADT.ClearBeforeFill = true;
-            // 
-            // btnRedo
-            // 
-            this.btnRedo.Caption = "Quay lại";
-            this.btnRedo.Id = 8;
-            this.btnRedo.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem1.ImageOptions.Image")));
-            this.btnRedo.Name = "btnRedo";
-            this.btnRedo.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnRedo_ItemClick);
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Caption = "Hủy thêm/Sửa";
-            this.btnHuy.Id = 9;
-            this.btnHuy.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnHuy.ImageOptions.Image")));
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnHuy_ItemClick);
             // 
             // frmMonHoc
             // 

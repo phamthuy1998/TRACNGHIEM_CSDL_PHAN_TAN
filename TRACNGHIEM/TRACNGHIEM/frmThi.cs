@@ -89,16 +89,16 @@ namespace TRACNGHIEM
                     listCauHoi[i].Width = scrollCauHoi.Width;
 
                     listCauHoi[i].CauSo = i + 1;
-                    listCauHoi[i].IDBaiThi = (int)((DataRowView)bdsBaiThi[i])["idCauHoi"];
+                    listCauHoi[i].IDBaiThi = (int)((DataRowView)bdsBaiThi[i])["CauHoi"];
                     Console.WriteLine("id cau hoi: " + listCauHoi[i].IDBaiThi);
-                    listCauHoi[i].IDDe = (int)((DataRowView)bdsBaiThi[i])["cauhoi"];
-                    listCauHoi[i].NDCauHoi = ((DataRowView)bdsBaiThi[i])["noidung"].ToString();
-                    listCauHoi[i].CauA = ((DataRowView)bdsBaiThi[i])["a"].ToString();
-                    listCauHoi[i].CauB = ((DataRowView)bdsBaiThi[i])["b"].ToString();
-                    listCauHoi[i].CauC = ((DataRowView)bdsBaiThi[i])["c"].ToString();
-                    listCauHoi[i].CauD = ((DataRowView)bdsBaiThi[i])["d"].ToString();
-                    listCauHoi[i].CauDapAn = ((DataRowView)bdsBaiThi[i])["dap_an"].ToString();
-                    listCauHoi[i].MaBangDiem = (int)((DataRowView)bdsBaiThi[i])["ma_BD"];
+                    listCauHoi[i].IDDe = (int)((DataRowView)bdsBaiThi[i])["CauSo"];
+                    listCauHoi[i].NDCauHoi = ((DataRowView)bdsBaiThi[i])["NoiDung"].ToString();
+                    listCauHoi[i].CauA = ((DataRowView)bdsBaiThi[i])["A"].ToString();
+                    listCauHoi[i].CauB = ((DataRowView)bdsBaiThi[i])["B"].ToString();
+                    listCauHoi[i].CauC = ((DataRowView)bdsBaiThi[i])["C"].ToString();
+                    listCauHoi[i].CauD = ((DataRowView)bdsBaiThi[i])["D"].ToString();
+                    listCauHoi[i].CauDapAn = ((DataRowView)bdsBaiThi[i])["DapAn"].ToString();
+                    listCauHoi[i].MaBangDiem = (int)((DataRowView)bdsBaiThi[i])["MaBD"];
                     listCauHoi[i].CauDaChon = "";
 
                     String[] arr = new string[2];

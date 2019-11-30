@@ -461,7 +461,7 @@ namespace TRACNGHIEM
 
                 try
                 {
-                    this.tbBoDe.FillBy(this.TNDataSet.BODE, cbbTenMonHocC.SelectedValue.ToString().Trim());
+                    this.tbBoDe.FillByGV_MH(this.TNDataSet.BODE, Program.username,cbbTenMonHocC.SelectedValue.ToString().Trim());
                     lbTenMH.Text = cbbTenMonHocC.SelectedValue.ToString().Trim();
                 }
                 catch (Exception ex)

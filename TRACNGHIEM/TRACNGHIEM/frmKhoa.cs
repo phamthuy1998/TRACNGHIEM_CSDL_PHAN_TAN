@@ -560,6 +560,30 @@ namespace TRACNGHIEM
                 // lệnh này sẽ lưu tất cả các giáo viên có thay đổi thông tin về server
                 this.tbGiaoVienADT.Update(this.TNDataSet.GIAOVIEN);
 
+                // TODO: This line of code loads data into the 'TNDataSet.BODE' table. You can move, or remove it, as needed.
+                this.tbBoDeADT.Connection.ConnectionString = Program.connstr;
+                this.tbBoDeADT.Fill(this.TNDataSet.BODE);
+                // TODO: This line of code loads data into the 'TNDataSet.GIAOVIEN_DANGKY' table. You can move, or remove it, as needed.
+
+                this.tbGiaoVienDKADT.Connection.ConnectionString = Program.connstr;
+                this.tbGiaoVienDKADT.Fill(this.TNDataSet.GIAOVIEN_DANGKY);
+                // TODO: This line of code loads data into the 'TNDataSet.LOP' table. You can move, or remove it, as needed.
+
+                this.tbLopADT.Connection.ConnectionString = Program.connstr;
+                this.tbLopADT.Fill(this.TNDataSet.LOP);
+                // TODO: This line of code loads data into the 'tNDataSet.GIAOVIEN' table. You can move, or remove it, as needed.
+
+                this.tbGiaoVienADT.Connection.ConnectionString = Program.connstr;
+                this.tbGiaoVienADT.Fill(this.TNDataSet.GIAOVIEN);
+                // TODO: This line of code loads data into the 'tNDataSet.KHOA' table. You can move, or remove it, as needed.
+
+                this.tbKhoaADT.Connection.ConnectionString = Program.connstr;
+                this.tbKhoaADT.Fill(this.TNDataSet.KHOA);
+
+                this.tbDSKHOAADT.Connection.ConnectionString = Program.connstr;
+                this.tbDSKHOAADT.Fill(this.TNDataSet.DSKHOA);
+
+
                 edtMaGV.Enabled = edtHoGV.Enabled = edtTenGV.Enabled = cbbHocVi.Enabled
                   = edtDiachiGV.Enabled = false;
                 cbbKhoaGV.Enabled = edtMaKHGV.Enabled = false;
@@ -774,12 +798,12 @@ namespace TRACNGHIEM
                 txtMaKH.Enabled = txtTenKH.Enabled = false;
                 try
                 {
+                  
                     string chuoiketnoi = "Data Source=THUY;Initial Catalog=TN;Integrated Security=True";
-                    Program.conn.ConnectionString = chuoiketnoi;
-                    Program.conn.Open();
+                    Program.conn1.ConnectionString = chuoiketnoi;
 
                     DataTable dt = new DataTable();
-                    dt = Program.ExecSqlDataTable("SELECT MAKH, TENKH, MACS FROM dbo.KHOA");
+                    dt = Program.ExecSqlDataTable1("SELECT MAKH, TENKH, MACS FROM dbo.KHOA");
 
                     // Lấy kết quả đổ vào combobox
                     cbbKhoaGV.DataSource = dt;

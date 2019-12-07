@@ -60,11 +60,13 @@ namespace TRACNGHIEM
             // nhóm CoSo thì ta chỉ cho phép toàn quyền làm việc trên cơ sở  đó , không được log vào cơ sở  khác,   
             if (Program.mGroup == "Coso")
             {
+                btnRedo.Visibility = btnHuy.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
                 btnThemMH.Visibility = btnSuaMH.Visibility = btnGhiMH.Visibility = btnXoaMH.Visibility = btnPhucHoiMH.Visibility = DevExpress.XtraBars.BarItemVisibility.Always;
             }
             //Truong thì login đó có thể đăng nhập vào bất kỳ phân mảnh  nào để xem dữ liệu 
             else if (Program.mGroup == "Truong")
             {
+                btnRedo.Visibility = btnHuy.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
                 btnThemMH.Visibility = btnSuaMH.Visibility = btnGhiMH.Visibility = btnXoaMH.Visibility = btnPhucHoiMH.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             }
 

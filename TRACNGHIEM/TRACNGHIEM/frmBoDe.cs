@@ -458,7 +458,6 @@ namespace TRACNGHIEM
         {
             if (cbbTenMonHocC.SelectedValue != null && dem > 0)
             {
-
                 try
                 {
                     this.tbBoDe.FillByGV_MH(this.TNDataSet.BODE, Program.username,cbbTenMonHocC.SelectedValue.ToString().Trim());
@@ -467,7 +466,6 @@ namespace TRACNGHIEM
                 catch (Exception ex)
                 {
                 }
-
             }
         }
 

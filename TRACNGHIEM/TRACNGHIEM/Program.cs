@@ -68,6 +68,7 @@ namespace TRACNGHIEM
 
         public static int ExecSqlNonQuery(String strlenh)
         {
+
             if (conn.State == ConnectionState.Closed) conn.Open();
             SqlCommand Sqlcmd = new SqlCommand(strlenh, conn);
             Sqlcmd.CommandType = CommandType.Text;
@@ -75,7 +76,7 @@ namespace TRACNGHIEM
             try
             {
                 Sqlcmd.ExecuteNonQuery();
-               // conn.Close();
+                
                 return 0;
 
             }
@@ -85,7 +86,6 @@ namespace TRACNGHIEM
                 conn.Close();
                 return ex.State; // trang thai lỗi gởi từ RAISERROR trong SQL Server qua
             }
-            conn.Close();
         }
 
         public static int KetNoi()
@@ -165,6 +165,20 @@ namespace TRACNGHIEM
             // Chạy lệnh cmd
             da.Fill(dt);
             conn.Close();
+            return dt;
+        }
+
+        public static DataTable ExecSqlDataTable1(String cmd)
+        {
+            // Trả về datable
+            DataTable dt = new DataTable();
+            //Nếu đang đóng thì mở
+            if (Program.conn1.State == ConnectionState.Closed) Program.conn1.Open();
+            // Muốn gọi csdl phải thông qua SqlDataAdapter
+            SqlDataAdapter da = new SqlDataAdapter(cmd, conn1);
+            // Chạy lệnh cmd
+            da.Fill(dt);
+            conn1.Close();
             return dt;
         }
 

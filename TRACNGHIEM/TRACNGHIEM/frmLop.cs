@@ -197,9 +197,6 @@ namespace TRACNGHIEM
                 // TODO: This line of code loads data into the 'tNDataSet.DSKHOA' table. You can move, or remove it, as needed.
                 this.tbDSKhoaADT.Connection.ConnectionString = Program.connstr;
                 this.tbDSKhoaADT.Fill(this.TNDataSet.DSKHOA);
-                // TODO: This line of code loads data into the 'tNDataSet.LOP' table. You can move, or remove it, as needed.
-                this.tbLopADT.Connection.ConnectionString = Program.connstr;
-                this.tbLopADT.Fill(this.TNDataSet.LOP);
 
                 btnThem.Enabled = btnSuaL.Enabled
                     = btnXoa.Enabled = btnGhi.Enabled = btnTaiLai.Enabled = btnPhucHoi.Enabled = true;

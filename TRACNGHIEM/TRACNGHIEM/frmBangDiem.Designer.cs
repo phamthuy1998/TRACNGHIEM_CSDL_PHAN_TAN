@@ -56,10 +56,7 @@
             this.dSLOPDKTableAdapter = new TRACNGHIEM.TNDataSetTableAdapters.DSLOPDKTableAdapter();
             this.sP_DSMHDKTableAdapter = new TRACNGHIEM.TNDataSetTableAdapters.SP_DSMHDKTableAdapter();
             this.sP_DSLanThiDKTableAdapter = new TRACNGHIEM.TNDataSetTableAdapters.SP_DSLanThiDKTableAdapter();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cbbTenMonhoc = new System.Windows.Forms.ComboBox();
             this.cbbLop = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cbbLanThi = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -179,16 +176,16 @@
             this.barDockControlTop.Location = new System.Drawing.Point(0, 0);
             this.barDockControlTop.Manager = this.barManager1;
             this.barDockControlTop.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlTop.Size = new System.Drawing.Size(2335, 96);
+            this.barDockControlTop.Size = new System.Drawing.Size(3844, 96);
             // 
             // barDockControlBottom
             // 
             this.barDockControlBottom.CausesValidation = false;
             this.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.barDockControlBottom.Location = new System.Drawing.Point(0, 1140);
+            this.barDockControlBottom.Location = new System.Drawing.Point(0, 2108);
             this.barDockControlBottom.Manager = this.barManager1;
             this.barDockControlBottom.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlBottom.Size = new System.Drawing.Size(2335, 0);
+            this.barDockControlBottom.Size = new System.Drawing.Size(3844, 0);
             // 
             // barDockControlLeft
             // 
@@ -197,16 +194,16 @@
             this.barDockControlLeft.Location = new System.Drawing.Point(0, 96);
             this.barDockControlLeft.Manager = this.barManager1;
             this.barDockControlLeft.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlLeft.Size = new System.Drawing.Size(0, 1044);
+            this.barDockControlLeft.Size = new System.Drawing.Size(0, 2012);
             // 
             // barDockControlRight
             // 
             this.barDockControlRight.CausesValidation = false;
             this.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.barDockControlRight.Location = new System.Drawing.Point(2335, 96);
+            this.barDockControlRight.Location = new System.Drawing.Point(3844, 96);
             this.barDockControlRight.Manager = this.barManager1;
             this.barDockControlRight.Margin = new System.Windows.Forms.Padding(4);
-            this.barDockControlRight.Size = new System.Drawing.Size(0, 1044);
+            this.barDockControlRight.Size = new System.Drawing.Size(0, 2012);
             // 
             // bANGDIEMGridControl
             // 
@@ -219,7 +216,7 @@
             this.bANGDIEMGridControl.MenuManager = this.barManager1;
             this.bANGDIEMGridControl.Name = "bANGDIEMGridControl";
             this.bANGDIEMGridControl.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bANGDIEMGridControl.Size = new System.Drawing.Size(2335, 831);
+            this.bANGDIEMGridControl.Size = new System.Drawing.Size(3844, 1799);
             this.bANGDIEMGridControl.TabIndex = 13;
             this.bANGDIEMGridControl.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
@@ -299,25 +296,6 @@
             // 
             this.sP_DSLanThiDKTableAdapter.ClearBeforeFill = true;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(2442, 138);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(163, 34);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Tên mô học";
-            // 
-            // cbbTenMonhoc
-            // 
-            this.cbbTenMonhoc.FormattingEnabled = true;
-            this.cbbTenMonhoc.Location = new System.Drawing.Point(2736, 134);
-            this.cbbTenMonhoc.Margin = new System.Windows.Forms.Padding(4);
-            this.cbbTenMonhoc.Name = "cbbTenMonhoc";
-            this.cbbTenMonhoc.Size = new System.Drawing.Size(616, 41);
-            this.cbbTenMonhoc.TabIndex = 5;
-            // 
             // cbbLop
             // 
             this.cbbLop.DataSource = this.dSLOPDK;
@@ -331,16 +309,6 @@
             this.cbbLop.TabIndex = 1;
             this.cbbLop.ValueMember = "MALOP";
             this.cbbLop.SelectedIndexChanged += new System.EventHandler(this.cbbCoSo_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3692, 169);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 34);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Lần thi";
             // 
             // label1
             // 
@@ -444,15 +412,12 @@
             this.groupControl1.Controls.Add(this.label5);
             this.groupControl1.Controls.Add(this.cbbLanThi);
             this.groupControl1.Controls.Add(this.label1);
-            this.groupControl1.Controls.Add(this.label4);
             this.groupControl1.Controls.Add(this.cbbLop);
-            this.groupControl1.Controls.Add(this.cbbTenMonhoc);
-            this.groupControl1.Controls.Add(this.label3);
             this.groupControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupControl1.Location = new System.Drawing.Point(0, 96);
             this.groupControl1.Margin = new System.Windows.Forms.Padding(4);
             this.groupControl1.Name = "groupControl1";
-            this.groupControl1.Size = new System.Drawing.Size(2335, 213);
+            this.groupControl1.Size = new System.Drawing.Size(3844, 213);
             this.groupControl1.TabIndex = 8;
             // 
             // sP_XemKetQuaSVTableAdapter
@@ -464,7 +429,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(22F, 42F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(2335, 1140);
+            this.ClientSize = new System.Drawing.Size(3844, 2108);
             this.Controls.Add(this.bANGDIEMGridControl);
             this.Controls.Add(this.groupControl1);
             this.Controls.Add(this.barDockControlLeft);
@@ -524,10 +489,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbbLanThi;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ComboBox cbbLop;
-        private System.Windows.Forms.ComboBox cbbTenMonhoc;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.BindingSource sP_XemKetQuaSV;
         private TNDataSetTableAdapters.SP_XemKetQuaSVTableAdapter sP_XemKetQuaSVTableAdapter;
         private DevExpress.XtraGrid.Columns.GridColumn colMASV;

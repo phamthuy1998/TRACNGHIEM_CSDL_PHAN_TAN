@@ -72,11 +72,16 @@ namespace TRACNGHIEM
                     + cbbLanThi.SelectedValue.ToString().Trim();
             }
             DataTable dt = Program.ExecSqlDataTable(sql);
-            if (dt == null)
+            if (dt.Rows.Count ==0)
             {
-                MessageBox.Show("Không thể lấy được đề thi ", "Thông báo", MessageBoxButtons.OK);
+                MessageBox.Show("Không thể lấy được đề thi, thiếu đề", "Thông báo", MessageBoxButtons.OK);
                 return;
             }
+            // bắt đầu thi khi đã có dữ liệu
+            lbTG.Visible = lbTime.Visible = true;
+            btnBatDau.Visible = false;
+            btnNopBai.Visible = true;
+            timer1.Start();
             bdsBaiThi.DataSource = dt;
             cbbTenLop.Enabled = cbbTenMon.Enabled = cbbLanThi.Enabled = false;
             listCauHoi = new CauHoiItem[soCauThi];
@@ -456,6 +461,7 @@ namespace TRACNGHIEM
                     + cbbLanThi.SelectedValue.ToString().Trim();
 
                 int kq = Program.ExecSqlNonQuery(ktlan);
+                Program.conn.Close();
                 if (kq == 1)
                 {
                     return;
@@ -471,11 +477,8 @@ namespace TRACNGHIEM
                     return;
                 }
             }
-            lbTG.Visible = lbTime.Visible = true;
-            btnBatDau.Visible = false;
-            btnNopBai.Visible = true;
+            
             // load câu hỏi thi
-            timer1.Start();
             loadCauHoi();
         }
 
@@ -509,6 +512,7 @@ namespace TRACNGHIEM
             try
             {
                 int kq = Program.ExecSqlNonQuery(sql);
+                Program.conn.Close();
                 ghiDapAn();
                 //if (kq == 1)
                 //{
@@ -543,6 +547,7 @@ namespace TRACNGHIEM
             try
             {
                 int kq = Program.ExecSqlNonQuery(sqlUpdate);
+                Program.conn.Close();
                 //if (kq != 0)
                 //{
                 //    MessageBox.Show("Ghi kết quả thành công ", "Thông báo", MessageBoxButtons.OK);

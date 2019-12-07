@@ -236,6 +236,7 @@ namespace TRACNGHIEM
                    + "', N'" + edtMaLop.Text.Trim()
                    + "',  " + cbbLan.SelectedItem.ToString();
 
+                if (Program.conn1.State == ConnectionState.Open) Program.conn1.Close();
                 int kq = Program.ExecSqlNonQuery(sql);
                 if (kq == 1)
                 {
@@ -424,7 +425,7 @@ namespace TRACNGHIEM
                 Dictionary<string, string> items = new Dictionary<string, string>();
                 items.Add("Đại học, chuyên ngành", "A");
                 items.Add("Đại học, không chuyên ngành", "B");
-                items.Add("Cao đẳng", "c");
+                items.Add("Cao đẳng", "C");
                 cbbTrinhDo.DataSource = new BindingSource(items, null);
                 cbbTrinhDo.DisplayMember = "KEY";
                 cbbTrinhDo.ValueMember = "VALUE";

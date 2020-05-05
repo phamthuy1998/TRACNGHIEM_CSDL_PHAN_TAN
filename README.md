@@ -2,7 +2,7 @@
 
 Giảng viên hướng dẫn : Lưu Nguyễn Kỳ Thư
 
-Thực hiện: Thu siu nhân và Thủy quần hoa
+Thực hiện: Thu siu nhân và Thủy ngáo ngơ
 
 Học viện Công nghệ Bưu chính viễn thông (PTITHCM)
 

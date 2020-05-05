@@ -2,6 +2,8 @@
 
 Giảng viên hướng dẫn : Lưu Nguyễn Kỳ Thư
 
+Thực hiện: Thu siu nhân và Thủy quần hoa
+
 Học viện Công nghệ Bưu chính viễn thông (PTITHCM)
 
 Cơ sở dữ liệu (sp, func và data bản TN7.sql) : https://github.com/phamthuy1998/csdlPhanTan
